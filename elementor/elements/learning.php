@@ -688,6 +688,7 @@ class LNXElement_Course_learning extends LNXElement_Base {
 				}
 			print '</div>';
 		}else {
+			$content='';
 			echo $content;
 		}
 	}

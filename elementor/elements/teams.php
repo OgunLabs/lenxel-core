@@ -459,6 +459,7 @@ class LNXElement_Teams extends  LNXElement_Base {
             }
             print '</div>'; 
         }else {
+            $content='';
             echo $content;
         }
     }
