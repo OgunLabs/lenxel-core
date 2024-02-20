@@ -2,18 +2,18 @@
 if(!function_exists('lenxel_post_type_megamenu')   ){
   function lenxel_post_type_megamenu(){
     $labels = array(
-      'name' => __( 'Mega Menus', 'lenxel-theme-support' ),
-      'singular_name' => __( 'Mega Menu', 'lenxel-theme-support' ),
-      'add_new' => __( 'Add Profile Mega Menu', 'lenxel-theme-support' ),
-      'add_new_item' => __( 'Add Profile Mega Menu', 'lenxel-theme-support' ),
-      'edit_item' => __( 'Edit Mega Menu', 'lenxel-theme-support' ),
-      'new_item' => __( 'New Profile', 'lenxel-theme-support' ),
-      'view_item' => __( 'View Mega Menu Profile', 'lenxel-theme-support' ),
-      'search_items' => __( 'Search Mega Menu Profiles', 'lenxel-theme-support' ),
-      'not_found' => __( 'No Mega Menu Profiles found', 'lenxel-theme-support' ),
-      'not_found_in_trash' => __( 'No Mega Menu Profiles found in Trash', 'lenxel-theme-support' ),
-      'parent_item_colon' => __( 'Parent Mega Menu:', 'lenxel-theme-support' ),
-      'menu_name' => __( 'Mega Menus', 'lenxel-theme-support' ),
+      'name' => __( 'Mega Menus', 'lenxel-plugin' ),
+      'singular_name' => __( 'Mega Menu', 'lenxel-plugin' ),
+      'add_new' => __( 'Add Profile Mega Menu', 'lenxel-plugin' ),
+      'add_new_item' => __( 'Add Profile Mega Menu', 'lenxel-plugin' ),
+      'edit_item' => __( 'Edit Mega Menu', 'lenxel-plugin' ),
+      'new_item' => __( 'New Profile', 'lenxel-plugin' ),
+      'view_item' => __( 'View Mega Menu Profile', 'lenxel-plugin' ),
+      'search_items' => __( 'Search Mega Menu Profiles', 'lenxel-plugin' ),
+      'not_found' => __( 'No Mega Menu Profiles found', 'lenxel-plugin' ),
+      'not_found_in_trash' => __( 'No Mega Menu Profiles found in Trash', 'lenxel-plugin' ),
+      'parent_item_colon' => __( 'Parent Mega Menu:', 'lenxel-plugin' ),
+      'menu_name' => __( 'Mega Menus', 'lenxel-plugin' ),
     );
 
     $args = array(
@@ -67,7 +67,7 @@ if(!function_exists('lenxel_post_type_megamenu')   ){
       'post_status'    => 'publish',
     );
     $posts = new WP_Query($args);
-    $menu = array('default' => __('-- None --', 'lenxel-theme-support') );
+    $menu = array('default' => __('-- None --', 'lenxel-plugin') );
     if( $posts->have_posts() ){
       while( $posts->have_posts() ){
         $posts->the_post();

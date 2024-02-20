@@ -44,7 +44,7 @@ class LNXElement_Map extends LNXElement_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'LNX Map', 'lenxel-theme-support' );
+		return __( 'LNX Map', 'lenxel-plugin' );
 	}
 
 	/**
@@ -95,16 +95,16 @@ class LNXElement_Map extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => __( 'Content', 'lenxel-theme-support' ),
+				'label' => __( 'Content', 'lenxel-plugin' ),
 			]
 		);
 
 		$this->add_control(
 			'title_text',
 			[
-				'label' => __( 'Title', 'lenxel-theme-support' ),
+				'label' => __( 'Title', 'lenxel-plugin' ),
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __( 'Enter your title', 'lenxel-theme-support' ),
+				'placeholder' => __( 'Enter your title', 'lenxel-plugin' ),
 				'label_block' => true
 			]
 		);
@@ -112,13 +112,13 @@ class LNXElement_Map extends LNXElement_Base {
 		$this->add_control(
 			'map_type',
 			[
-				'label' => __( 'Map Type', 'lenxel-theme-support' ),
+				'label' => __( 'Map Type', 'lenxel-plugin' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'ROADMAP' => esc_html__('ROADMAP', 'lenxel-theme-support'),
-					'HYBRID' => esc_html__('HYBRID', 'lenxel-theme-support'),
-					'SATELLITE' => esc_html__('SATELLITE', 'lenxel-theme-support'),
-					'TERRAIN' => esc_html__('TERRAIN', 'lenxel-theme-support'),
+					'ROADMAP' => esc_html__('ROADMAP', 'lenxel-plugin'),
+					'HYBRID' => esc_html__('HYBRID', 'lenxel-plugin'),
+					'SATELLITE' => esc_html__('SATELLITE', 'lenxel-plugin'),
+					'TERRAIN' => esc_html__('TERRAIN', 'lenxel-plugin'),
 				],
 				'default' => 'ROADMAP',
 			]
@@ -127,10 +127,10 @@ class LNXElement_Map extends LNXElement_Base {
 		$this->add_control(
 			'link',
 			[
-				'label' => __( 'Latitude, Longitude for map', 'lenxel-theme-support' ),
+				'label' => __( 'Latitude, Longitude for map', 'lenxel-plugin' ),
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __( 'Latitude, Longitude', 'lenxel-theme-support' ),
-				'description' => esc_html__( 'eg: 21.0173222,105.78405279999993', 'lenxel-theme-support' ),
+				'placeholder' => __( 'Latitude, Longitude', 'lenxel-plugin' ),
+				'description' => esc_html__( 'eg: 21.0173222,105.78405279999993', 'lenxel-plugin' ),
 				'label_block' => true
 			]
 		);
@@ -138,11 +138,11 @@ class LNXElement_Map extends LNXElement_Base {
 		$this->add_control(
 			'height',
 			[
-				'label' => __( 'Map height', 'lenxel-theme-support' ),
+				'label' => __( 'Map height', 'lenxel-plugin' ),
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __( '500px', 'lenxel-theme-support' ),
+				'placeholder' => __( '500px', 'lenxel-plugin' ),
 				'default' => '500px',
-				'description' => esc_html__( 'Enter map height (in pixels or leave empty for responsive map), eg: 400px', 'lenxel-theme-support' )
+				'description' => esc_html__( 'Enter map height (in pixels or leave empty for responsive map), eg: 400px', 'lenxel-plugin' )
 			]
 		);
 

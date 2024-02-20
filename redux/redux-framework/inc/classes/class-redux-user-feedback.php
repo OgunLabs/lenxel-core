@@ -96,54 +96,54 @@ class Redux_User_Feedback {
 		$years = ( intval( $seconds ) / YEAR_IN_SECONDS ) % 100;
 		if ( $years > 1 ) {
 			/* translators: Number of years */
-			return sprintf( __( '%s years', 'lenxel-theme-support' ), $years );
+			return sprintf( __( '%s years', 'lenxel-plugin' ), $years );
 		} elseif ( $years > 0 ) {
-			return __( 'a year', 'lenxel-theme-support' );
+			return __( 'a year', 'lenxel-plugin' );
 		}
 
 		// Get the weeks.
 		$weeks = ( intval( $seconds ) / WEEK_IN_SECONDS ) % 52;
 		if ( $weeks > 1 ) {
 			/* translators: Number of weeks */
-			return sprintf( __( '%s weeks', 'lenxel-theme-support' ), $weeks );
+			return sprintf( __( '%s weeks', 'lenxel-plugin' ), $weeks );
 		} elseif ( $weeks > 0 ) {
-			return __( 'a week', 'lenxel-theme-support' );
+			return __( 'a week', 'lenxel-plugin' );
 		}
 
 		// Get the days.
 		$days = ( intval( $seconds ) / DAY_IN_SECONDS ) % 7;
 		if ( $days > 1 ) {
 			/* translators: Number of days */
-			return sprintf( __( '%s days', 'lenxel-theme-support' ), $days );
+			return sprintf( __( '%s days', 'lenxel-plugin' ), $days );
 		} elseif ( $days > 0 ) {
-			return __( 'a day', 'lenxel-theme-support' );
+			return __( 'a day', 'lenxel-plugin' );
 		}
 
 		// Get the hours.
 		$hours = ( intval( $seconds ) / HOUR_IN_SECONDS ) % 24;
 		if ( $hours > 1 ) {
 			/* translators: Number of hours */
-			return sprintf( __( '%s hours', 'lenxel-theme-support' ), $hours );
+			return sprintf( __( '%s hours', 'lenxel-plugin' ), $hours );
 		} elseif ( $hours > 0 ) {
-			return __( 'an hour', 'lenxel-theme-support' );
+			return __( 'an hour', 'lenxel-plugin' );
 		}
 
 		// Get the minutes.
 		$minutes = ( intval( $seconds ) / MINUTE_IN_SECONDS ) % 60;
 		if ( $minutes > 1 ) {
 			/* translators: Number of minutes */
-			return sprintf( __( '%s minutes', 'lenxel-theme-support' ), $minutes );
+			return sprintf( __( '%s minutes', 'lenxel-plugin' ), $minutes );
 		} elseif ( $minutes > 0 ) {
-			return __( 'a minute', 'lenxel-theme-support' );
+			return __( 'a minute', 'lenxel-plugin' );
 		}
 
 		// Get the seconds.
 		$seconds = intval( $seconds ) % 60;
 		if ( $seconds > 1 ) {
 			/* translators: Number of seconds */
-			return sprintf( __( '%s seconds', 'lenxel-theme-support' ), $seconds );
+			return sprintf( __( '%s seconds', 'lenxel-plugin' ), $seconds );
 		} elseif ( $seconds > 0 ) {
-			return __( 'a second', 'lenxel-theme-support' );
+			return __( 'a second', 'lenxel-plugin' );
 		}
 	}
 
@@ -273,19 +273,19 @@ class Redux_User_Feedback {
 				<div class="redux-notice-inner">
 					<div class="redux-notice-icon">
 						<?php /* translators: 1. Name */ ?>
-						<img src="<?php echo esc_url( Redux_Core::$url . '/assets/img/icon--color.svg' ); ?>" alt="<?php printf( esc_attr__( '%s WordPress Plugin', 'lenxel-theme-support' ), esc_attr( $this->name ) ); ?>" />
+						<img src="<?php echo esc_url( Redux_Core::$url . '/assets/img/icon--color.svg' ); ?>" alt="<?php printf( esc_attr__( '%s WordPress Plugin', 'lenxel-plugin' ), esc_attr( $this->name ) ); ?>" />
 					</div>
 					<div class="redux-notice-content">
 						<?php /* translators: 1. Name */ ?>
-						<h3><?php printf( esc_html__( 'Are you enjoying %s?', 'lenxel-theme-support' ), esc_html( $this->name ) ); ?></h3>
+						<h3><?php printf( esc_html__( 'Are you enjoying %s?', 'lenxel-plugin' ), esc_html( $this->name ) ); ?></h3>
 						<p>
 							<?php /* translators: 1. Name, 2. Time */ ?>
-							<?php printf( esc_html__( 'You have been using %1$s for %2$s now. Would you mind leaving a review to let us know know what you think? We\'d really appreciate it!', 'lenxel-theme-support' ), esc_html( $this->name ), esc_html( $time ) ); ?>
+							<?php printf( esc_html__( 'You have been using %1$s for %2$s now. Would you mind leaving a review to let us know know what you think? We\'d really appreciate it!', 'lenxel-plugin' ), esc_html( $this->name ), esc_html( $time ) ); ?>
 						</p>
 					</div>
 					<div class="redux-install-now">
-						<?php printf( '<a href="%1$s" class="button button-primary redux-install-button" target="_blank">%2$s</a>', esc_url( 'https://wordpress.org/support/plugin/redux-framework/reviews/?filter=5#new-post' ), esc_html__( 'Leave a Review', 'lenxel-theme-support' ) ); ?>
-						<a href="<?php echo esc_url( $no_bug_url ); ?>" class="no-thanks"><?php echo esc_html__( 'No thanks / I already have', 'lenxel-theme-support' ); ?></a>
+						<?php printf( '<a href="%1$s" class="button button-primary redux-install-button" target="_blank">%2$s</a>', esc_url( 'https://wordpress.org/support/plugin/redux-framework/reviews/?filter=5#new-post' ), esc_html__( 'Leave a Review', 'lenxel-plugin' ) ); ?>
+						<a href="<?php echo esc_url( $no_bug_url ); ?>" class="no-thanks"><?php echo esc_html__( 'No thanks / I already have', 'lenxel-plugin' ); ?></a>
 					</div>
 				</div>
 			</div>
@@ -314,7 +314,7 @@ class Redux_User_Feedback {
 new Redux_User_Feedback(
 	array(
 		'slug'       => 'Redux_plugin_feedback',
-		'name'       => __( 'Redux', 'lenxel-theme-support' ),
+		'name'       => __( 'Redux', 'lenxel-plugin' ),
 		'time_limit' => WEEK_IN_SECONDS,
 	)
 );

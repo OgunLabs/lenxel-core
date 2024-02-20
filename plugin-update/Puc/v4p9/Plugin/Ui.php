@@ -51,7 +51,7 @@ if ( !class_exists('Puc_v4p9_Plugin_Ui', false) ):
 		 */
 		public function addViewDetailsLinkLenxel($pluginMeta, $pluginFile, $pluginData = array()) {
 			if ( $this->isMyPluginFile($pluginFile) && !isset($pluginData['slug']) ) {
-				$linkText = apply_filters($this->updateChecker->getUniqueName('view_details_link'), __('View details','lenxel-theme-support'));
+				$linkText = apply_filters($this->updateChecker->getUniqueName('view_details_link'), __('View details','lenxel-plugin'));
 				if ( !empty($linkText) ) {
 					$viewDetailsLinkPosition = 'append';
 
@@ -74,7 +74,7 @@ if ( !class_exists('Puc_v4p9_Plugin_Ui', false) ):
 					$viewDetailsLink = sprintf('<a href="%s" class="thickbox open-plugin-details-modal" aria-label="%s" data-title="%s">%s</a>',
 						esc_url(network_admin_url('plugin-install.php?tab=plugin-information&plugin=' . urlencode($this->updateChecker->slug) .
 							'&TB_iframe=true&width=600&height=550')),
-						esc_attr(sprintf(__('More information about %s', 'lenxel-theme-support'), $pluginData['Name'])),
+						esc_attr(sprintf(__('More information about %s', 'lenxel-plugin'), $pluginData['Name'])),
 						esc_attr($pluginData['Name']),
 						$linkText
 					);
@@ -125,7 +125,7 @@ if ( !class_exists('Puc_v4p9_Plugin_Ui', false) ):
 
 				$linkText = apply_filters(
 					$this->updateChecker->getUniqueName('manual_check_link'),
-					__('Check for updates', 'lenxel-theme-support')
+					__('Check for updates', 'lenxel-plugin')
 				);
 				if ( !empty($linkText) ) {
 					/** @noinspection HtmlUnknownTarget */
@@ -222,7 +222,7 @@ if ( !class_exists('Puc_v4p9_Plugin_Ui', false) ):
 					$details = $this->formatManualCheckErrors(get_site_transient($this->manualCheckErrorTransient));
 					delete_site_transient($this->manualCheckErrorTransient);
 				} else {
-					$message = sprintf(__('Unknown update checker status "%s"', 'lenxel-theme-support'), htmlentities($status));
+					$message = sprintf(__('Unknown update checker status "%s"', 'lenxel-plugin'), htmlentities($status));
 					$noticeClass = 'error notice-error';
 				}
 				printf(

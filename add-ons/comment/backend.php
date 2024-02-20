@@ -12,7 +12,7 @@ class Lenxel_Listing_Comment_BE extends Lenxel_Listing_Comment{
 		}
 		add_meta_box(
 			$id         = 'lt_review',
-			$title      = __( 'Review', 'lenxel-theme-support' ),
+			$title      = __( 'Review', 'lenxel-plugin' ),
 			$callback   = array( $this, 'output_html' ),
 			$screen     = 'comment',
 			$context    = 'normal' 
@@ -57,7 +57,7 @@ class Lenxel_Listing_Comment_BE extends Lenxel_Listing_Comment{
 			 <?php endforeach; ?>
 
 			 <!-- Category review was deleted -->
-			<tr><td colspan="2"><h3><?php echo esc_html__('Category review was deleted', 'lenxel-theme-support') ?></h3><td></tr>
+			<tr><td colspan="2"><h3><?php echo esc_html__('Category review was deleted', 'lenxel-plugin') ?></h3><td></tr>
 			<?php foreach ( $categories_star as $cat ) :
 				if(!array_key_exists($cat, $review_categories)){ 
 					$current = $stars[ $cat ];
@@ -71,7 +71,7 @@ class Lenxel_Listing_Comment_BE extends Lenxel_Listing_Comment{
 								  	<?php echo ($i . ' star'); ?>
 							  	</option>
 							<?php endfor; ?>
-					 		<option value="delete"><?php echo esc_html__('Delete', 'lenxel-theme-support') ?></option>
+					 		<option value="delete"><?php echo esc_html__('Delete', 'lenxel-plugin') ?></option>
 					 	</select>
 					 	(<?php echo $stars[ $cat ] . ' star'; ?>)
 				  </td>

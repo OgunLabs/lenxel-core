@@ -90,11 +90,11 @@ if ( !class_exists( 'ReduxFramework_wbc_importer' ) ) {
                     if ( !array_key_exists( 'imported', $imports ) ) {
                         $extra_class = 'not-imported';
                         $imported = false;
-                        $import_message = esc_html__( 'Import Demo', 'lenxel-theme-support' );
+                        $import_message = esc_html__( 'Import Demo', 'lenxel-plugin' );
                     }else {
                         $imported = true;
                         $extra_class = 'active imported';
-                        $import_message = esc_html__( 'Demo Imported', 'lenxel-theme-support' );
+                        $import_message = esc_html__( 'Demo Imported', 'lenxel-plugin' );
                     }
                     echo '<div class="wrap-importer theme '.$extra_class.'" data-demo-id="'.esc_attr( $section ).'"  style="display: flex; width:100%;" data-nonce="' . $nonce . '" id="' . $this->field['id'] . '-custom_imports">';
 
@@ -111,11 +111,11 @@ if ( !class_exists( 'ReduxFramework_wbc_importer' ) ) {
 
                     echo '<div class="theme-actions" style="top:82% !important">';
                     if ( false == $imported ) {
-                        echo '<div class="wbc-importer-buttons"><span class="spinner">'.esc_html__( 'Please Wait...', 'lenxel-theme-support' ).'</span><span class="button-primary importer-button import-demo-datas">' . __( 'Import Demo', 'lenxel-theme-support' ) . '</span></div>';
+                        echo '<div class="wbc-importer-buttons"><span class="spinner">'.esc_html__( 'Please Wait...', 'lenxel-plugin' ).'</span><span class="button-primary importer-button import-demo-datas">' . __( 'Import Demo', 'lenxel-plugin' ) . '</span></div>';
                     }else {
-                        echo '<div class="wbc-importer-buttons button-secondary importer-button">'.esc_html__( 'Imported', 'lenxel-theme-support' ).'</div>';
-                        echo '<span class="spinner">'.esc_html__( 'Please Wait...', 'lenxel-theme-support' ).'</span>';
-                        echo '<div id="wbc-importer-reimports" class="wbc-importer-buttons button-primary import-demo-datas importer-button">'.esc_html__( 'Re-Import', 'lenxel-theme-support' ).'</div>';
+                        echo '<div class="wbc-importer-buttons button-secondary importer-button">'.esc_html__( 'Imported', 'lenxel-plugin' ).'</div>';
+                        echo '<span class="spinner">'.esc_html__( 'Please Wait...', 'lenxel-plugin' ).'</span>';
+                        echo '<div id="wbc-importer-reimports" class="wbc-importer-buttons button-primary import-demo-datas importer-button">'.esc_html__( 'Re-Import', 'lenxel-plugin' ).'</div>';
                     }
                     echo '</div></div>';
                     echo '</div>';
@@ -124,7 +124,7 @@ if ( !class_exists( 'ReduxFramework_wbc_importer' ) ) {
                 }
 
             } else {
-                echo "<h5>".esc_html__( 'No Demo Data Provided', 'lenxel-theme-support' )."</h5>";
+                echo "<h5>".esc_html__( 'No Demo Data Provided', 'lenxel-plugin' )."</h5>";
             }
 
             echo '</div></div>';

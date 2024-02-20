@@ -63,7 +63,7 @@ class Lenxel_Listing_Comment_FE extends Lenxel_Listing_Comment{
    			</div>
             <div class="avg-total-tmp">
                <span class="value">3</span>
-               <span class="avg-title"><?php echo esc_html__('Average Ratting', 'lenxel-theme-support') ?></span>
+               <span class="avg-title"><?php echo esc_html__('Average Ratting', 'lenxel-plugin') ?></span>
             </div>
          </div>   
 	 	</div>
@@ -122,7 +122,7 @@ class Lenxel_Listing_Comment_FE extends Lenxel_Listing_Comment{
   public function lenxel_reviews_field_for_listing_owner( $post, $current_user, $is_author ) {
 		if ( $is_author && lenxel_themer_get_theme_option( 'lt_review_allow_owner', 'enable' ) != 'enable' ) {
 			
-			echo sprintf( '<div class="alert alert-warning">%s</div>', wpautop( __( "You can't add a star rating to your own product.", 'lenxel-theme-support' ) ) );
+			echo sprintf( '<div class="alert alert-warning">%s</div>', wpautop( __( "You can't add a star rating to your own product.", 'lenxel-plugin' ) ) );
 			add_filter( 'lt_review_field', '__return_false' ); 
 			
 		}

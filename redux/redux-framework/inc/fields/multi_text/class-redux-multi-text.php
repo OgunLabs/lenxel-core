@@ -25,7 +25,7 @@ if ( ! class_exists( 'Redux_Multi_Text', false ) ) {
 		public function set_defaults() {
 			$defaults = array(
 				'show_empty' => true,
-				'add_text'   => esc_html__( 'Add More', 'lenxel-theme-support' ),
+				'add_text'   => esc_html__( 'Add More', 'lenxel-plugin' ),
 			);
 
 			$this->field = wp_parse_args( $this->field, $defaults );
@@ -57,7 +57,7 @@ if ( ! class_exists( 'Redux_Multi_Text', false ) ) {
 								data-id="' . esc_attr( $this->field['id'] ) . '-ul"
 								href="javascript:void(0);"
 								class="deletion redux-multi-text-remove">' .
-								esc_html__( 'Remove', 'lenxel-theme-support' ) . '</a>';
+								esc_html__( 'Remove', 'lenxel-plugin' ) . '</a>';
 						echo '</li>';
 					}
 				}
@@ -74,7 +74,7 @@ if ( ! class_exists( 'Redux_Multi_Text', false ) ) {
 						data-id="' . esc_attr( $this->field['id'] ) . '-ul"
 						href="javascript:void(0);"
 						class="deletion redux-multi-text-remove">' .
-						esc_html__( 'Remove', 'lenxel-theme-support' ) . '</a>';
+						esc_html__( 'Remove', 'lenxel-plugin' ) . '</a>';
 
 				echo '</li>';
 			}
@@ -96,7 +96,7 @@ if ( ! class_exists( 'Redux_Multi_Text', false ) ) {
 					data-id="' . esc_attr( $this->field['id'] ) . '-ul"
 					href="javascript:void(0);"
 					class="deletion redux-multi-text-remove">' .
-					esc_html__( 'Remove', 'lenxel-theme-support' ) . '</a>';
+					esc_html__( 'Remove', 'lenxel-plugin' ) . '</a>';
 
 			echo '</li>';
 			echo '</ul>';

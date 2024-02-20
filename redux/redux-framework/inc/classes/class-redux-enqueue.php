@@ -614,7 +614,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 				"redux/{$core->args['opt_name_triger']}/localize/save_pending",
 				esc_html__(
 					'You have changes that are not saved. Would you like to save them now?',
-					'lenxel-theme-support'
+					'lenxel-plugin'
 				)
 			);
 
@@ -630,7 +630,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 				"redux/{$core->args['opt_name_triger']}/localize/reset",
 				esc_html__(
 					'Are you sure? Resetting will lose all custom values.',
-					'lenxel-theme-support'
+					'lenxel-plugin'
 				)
 			);
 
@@ -646,7 +646,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 				"redux/{$core->args['opt_name_triger']}/localize/reset_section",
 				esc_html__(
 					'Are you sure? Resetting will lose all custom values in this section.',
-					'lenxel-theme-support'
+					'lenxel-plugin'
 				)
 			);
 
@@ -662,7 +662,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 				"redux/{$core->args['opt_name_triger']}/localize/preset",
 				esc_html__(
 					'Your current options will be replaced with the values of this preset. Would you like to proceed?',
-					'lenxel-theme-support'
+					'lenxel-plugin'
 				)
 			);
 
@@ -678,7 +678,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 				"redux/{$core->args['opt_name_triger']}/localize/import",
 				esc_html__(
 					'Your current options will be replaced with the values of this import. Would you like to proceed?',
-					'lenxel-theme-support'
+					'lenxel-plugin'
 				)
 			);
 
@@ -691,7 +691,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 				'reset_section_confirm'  => $reset_section,
 				'preset_confirm'         => $preset_confirm,
 				'import_section_confirm' => $import_confirm,
-				'please_wait'            => esc_html__( 'Please Wait', 'lenxel-theme-support' ),
+				'please_wait'            => esc_html__( 'Please Wait', 'lenxel-plugin' ),
 				'opt_name_triger'               => $core->args['opt_name_triger'],
 				'flyout_submenus'        => $core->args['flyout_submenus'] ?? false,
 				'slug'                   => $core->args['page_slug'],
@@ -705,11 +705,11 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			$this->localize_data['ajax'] = array(
 				'console' => esc_html__(
 					'There was an error saving. Here is the result of your action:',
-					'lenxel-theme-support'
+					'lenxel-plugin'
 				),
 				'alert'   => esc_html__(
 					'There was a problem with your action. Please try again or reload the page.',
-					'lenxel-theme-support'
+					'lenxel-plugin'
 				),
 			);
 

@@ -508,7 +508,7 @@ if ( ! class_exists( 'Redux_Functions', false ) ) {
 					$return['identifier'] = $data['identifier'];
 				} else {
 					$return['status']  = 'error';
-					$return['message'] = esc_html__( 'Support hash could not be generated. Please try again later.', 'lenxel-theme-support' );
+					$return['message'] = esc_html__( 'Support hash could not be generated. Please try again later.', 'lenxel-plugin' );
 				}
 
 				echo wp_json_encode( $return );

@@ -40,7 +40,7 @@ class LNXElement_Video_Carousel extends LNXElement_Base{
      */
     public function get_title() {
         $get_current_name = load_lenxel_widget_content_element('LNX Video Carousel');
-        return __($get_current_name, 'lenxel-theme-support');
+        return __($get_current_name, 'lenxel-plugin');
     }
 
     /**
@@ -84,7 +84,7 @@ class LNXElement_Video_Carousel extends LNXElement_Base{
         $this->start_controls_section(
             'section_videos',
             [
-                'label' => __('Videos', 'lenxel-theme-support'),
+                'label' => __('Videos', 'lenxel-plugin'),
             ]
         );
         $repeater = new Repeater();
@@ -92,7 +92,7 @@ class LNXElement_Video_Carousel extends LNXElement_Base{
         $repeater->add_control(
             'video_title',
             [
-                'label'       => __('Title', 'lenxel-theme-support'),
+                'label'       => __('Title', 'lenxel-plugin'),
                 'type'        => Controls_Manager::TEXT,
                 'placeholder' => 'Add your title',
                 'label_block' => true
@@ -101,7 +101,7 @@ class LNXElement_Video_Carousel extends LNXElement_Base{
         $repeater->add_control(
             'video_image',
             [
-                'label'      => __('Choose Image', 'lenxel-theme-support'),
+                'label'      => __('Choose Image', 'lenxel-plugin'),
                 'default'    => [
                     'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/image-1.jpg',
                 ],
@@ -111,17 +111,17 @@ class LNXElement_Video_Carousel extends LNXElement_Base{
         $repeater->add_control(
             'video_link',
             [
-                'label'   => __('Video Link', 'lenxel-theme-support'),
+                'label'   => __('Video Link', 'lenxel-plugin'),
                 'default' => 'https://www.youtube.com/watch?v=knTiUD5IAww',
                 'type'    => Controls_Manager::TEXT,
-                'description' => esc_html__( 'You can add youtube/vimeo video link', 'lenxel-theme-support' )
+                'description' => esc_html__( 'You can add youtube/vimeo video link', 'lenxel-plugin' )
             ]
         );
        
         $this->add_control(
             'videos_content',
             [
-                'label'       => __('Video Content', 'lenxel-theme-support'),
+                'label'       => __('Video Content', 'lenxel-plugin'),
                 'type'        => Controls_Manager::REPEATER,
                 'fields'      => $repeater->get_controls(),
                 'title_field' => '',
@@ -155,7 +155,7 @@ class LNXElement_Video_Carousel extends LNXElement_Base{
         $this->add_control(
             'view',
             [
-                'label'   => __('View', 'lenxel-theme-support'),
+                'label'   => __('View', 'lenxel-plugin'),
                 'type'    => Controls_Manager::HIDDEN,
                 'default' => 'traditional',
             ]
@@ -168,14 +168,14 @@ class LNXElement_Video_Carousel extends LNXElement_Base{
         $this->start_controls_section(
             'section_style_name',
             [
-                'label' => __('Title', 'lenxel-theme-support'),
+                'label' => __('Title', 'lenxel-plugin'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
         $this->add_control(
             'title_text_color',
             [
-                'label'     => __('Text Color', 'lenxel-theme-support'),
+                'label'     => __('Text Color', 'lenxel-plugin'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [

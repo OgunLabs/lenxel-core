@@ -47,7 +47,7 @@
          <?php 
             if ( $settings['show_number_content'] == 'yes' && $term ) {
                if(!empty($banner['term_slug'])){
-                  echo '<div class="number-course">' . sprintf(_n('%d Course', '%d Courses', $term->count, 'lenxel-theme-support'), $term->count) . '</div>';
+                  echo '<div class="number-course">' . sprintf(_n('%d Course', '%d Courses', $term->count, 'lenxel-plugin'), $term->count) . '</div>';
                }
             }
          ?>

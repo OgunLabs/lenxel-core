@@ -93,7 +93,7 @@
 
       $icons['lnx_custom_icon'] = array(
            'name'          => 'lenxel-icons-theme',
-           'label'         => esc_html__( 'Icons Theme', 'lenxel-theme-support' ),
+           'label'         => esc_html__( 'Icons Theme', 'lenxel-plugin' ),
            'labelIcon'     => 'fas fa-user',
            'prefix'        => '',
            'displayPrefix' => '',
@@ -2121,7 +2121,7 @@
        
        $icons['lenxel-lineawesome-icon'] = array(
            'name'          => 'lenxel-icons-lineawesome',
-           'label'         => esc_html__( 'Line Awesome', 'lenxel-theme-support' ),
+           'label'         => esc_html__( 'Line Awesome', 'lenxel-plugin' ),
            'labelIcon'     => 'fas fa-user',
            'prefix'        => '',
            'displayPrefix' => '',

@@ -393,7 +393,7 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 		 * @since 4.0.0
 		 */
 		public function __clone() {
-			_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; eh?', 'lenxel-theme-support' ), '4.0' );
+			_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; eh?', 'lenxel-plugin' ), '4.0' );
 		}
 
 		/**
@@ -402,7 +402,7 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 		 * @since 4.0.0
 		 */
 		public function __wakeup() {
-			_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; eh?', 'lenxel-theme-support' ), '4.0' );
+			_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; eh?', 'lenxel-plugin' ), '4.0' );
 		}
 
 		/**

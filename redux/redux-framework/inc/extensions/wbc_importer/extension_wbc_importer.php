@@ -234,7 +234,7 @@ if ( !class_exists( 'ReduxFramework_extension_wbc_importer' ) ) {
                     include $this->extension_dir.'inc/init-installer.php';
                     $installer = new Radium_Lnx_Theme_Demo_Data_Importer( $this, $this->parent );
                 }else {
-                    echo esc_html__( "Demo Already Imported", 'lenxel-theme-support' );
+                    echo esc_html__( "Demo Already Imported", 'lenxel-plugin' );
                 }
 
                 die();
@@ -260,14 +260,14 @@ if ( !class_exists( 'ReduxFramework_extension_wbc_importer' ) ) {
                 }
             }
 
-            $wbc_importer_label = trim( esc_html( apply_filters( 'wbc_importer_label', __( 'Demo Importer', 'lenxel-theme-support' ) ) ) );
+            $wbc_importer_label = trim( esc_html( apply_filters( 'wbc_importer_label', __( 'Demo Importer', 'lenxel-plugin' ) ) ) );
 
-            $wbc_importer_label = ( !empty( $wbc_importer_label ) ) ? $wbc_importer_label : __( 'Demo Importer', 'lenxel-theme-support' );
+            $wbc_importer_label = ( !empty( $wbc_importer_label ) ) ? $wbc_importer_label : __( 'Demo Importer', 'lenxel-plugin' );
 
             $this->parent->sections[] = array(
                 'id'     => 'wbc_importer_section',
                 'title'  => $wbc_importer_label,
-                'desc'   => '<p class="description">'. apply_filters( 'wbc_importer_description', esc_html__( 'Install on a new wordpress installation to aviod duplicate data', 'lenxel-theme-support' ) ).'</p>',
+                'desc'   => '<p class="description">'. apply_filters( 'wbc_importer_description', esc_html__( 'Install on a new wordpress installation to aviod duplicate data', 'lenxel-plugin' ) ).'</p>',
                 'icon'   => 'el-icon-website',
                 'fields' => array(
                     array(

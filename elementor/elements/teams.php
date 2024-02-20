@@ -19,7 +19,7 @@ class LNXElement_Teams extends  LNXElement_Base {
 
     public function get_title() {
         $get_current_name = load_lenxel_widget_content_element('LNX Teams');
-        return __($get_current_name, 'lenxel-theme-support');
+        return __($get_current_name, 'lenxel-plugin');
     }
 
     public function get_keywords() {
@@ -52,7 +52,7 @@ class LNXElement_Teams extends  LNXElement_Base {
             'post_status'=>array('publish'),
         ) );
 
-        $posts['none'] = __('None', 'lenxel-theme-support');
+        $posts['none'] = __('None', 'lenxel-plugin');
 
         while ( $loop->have_posts() ) : $loop->the_post();
             $id = get_the_ID();
@@ -70,14 +70,14 @@ class LNXElement_Teams extends  LNXElement_Base {
         $this->start_controls_section(
             'section_team_query',
             [
-                'label' => __('Teams Query', 'lenxel-theme-support'),
+                'label' => __('Teams Query', 'lenxel-plugin'),
             ]
         );
      
         $this->add_control(
             'post_ids',
             [
-                'label' => __( 'Select Individually', 'lenxel-theme-support' ),
+                'label' => __( 'Select Individually', 'lenxel-plugin' ),
                 'type' => Controls_Manager::SELECT2,
                 'default' => '',
                 'multiple'    => true,
@@ -89,7 +89,7 @@ class LNXElement_Teams extends  LNXElement_Base {
         $this->add_control(
             'posts_per_page',
             [
-                'label' => __( 'Posts Per Page', 'lenxel-theme-support' ),
+                'label' => __( 'Posts Per Page', 'lenxel-plugin' ),
                 'type' => Controls_Manager::NUMBER,
                 'default' => 6,
             ]
@@ -98,14 +98,14 @@ class LNXElement_Teams extends  LNXElement_Base {
         $this->add_control(
             'orderby',
             [
-                'label'   => __( 'Order By', 'lenxel-theme-support' ),
+                'label'   => __( 'Order By', 'lenxel-plugin' ),
                 'type'    => Controls_Manager::SELECT,
                 'default' => 'post_date',
                 'options' => [
-                    'post_date'  => __( 'Date', 'lenxel-theme-support' ),
-                    'post_title' => __( 'Title', 'lenxel-theme-support' ),
-                    'menu_order' => __( 'Menu Order', 'lenxel-theme-support' ),
-                    'rand'       => __( 'Random', 'lenxel-theme-support' ),
+                    'post_date'  => __( 'Date', 'lenxel-plugin' ),
+                    'post_title' => __( 'Title', 'lenxel-plugin' ),
+                    'menu_order' => __( 'Menu Order', 'lenxel-plugin' ),
+                    'rand'       => __( 'Random', 'lenxel-plugin' ),
                 ],
             ]
         );
@@ -113,12 +113,12 @@ class LNXElement_Teams extends  LNXElement_Base {
         $this->add_control(
             'order',
             [
-                'label'   => __( 'Order', 'lenxel-theme-support' ),
+                'label'   => __( 'Order', 'lenxel-plugin' ),
                 'type'    => Controls_Manager::SELECT,
                 'default' => 'desc',
                 'options' => [
-                    'asc'  => __( 'ASC', 'lenxel-theme-support' ),
-                    'desc' => __( 'DESC', 'lenxel-theme-support' ),
+                    'asc'  => __( 'ASC', 'lenxel-plugin' ),
+                    'desc' => __( 'DESC', 'lenxel-plugin' ),
                 ]
             ]
         );
@@ -128,29 +128,29 @@ class LNXElement_Teams extends  LNXElement_Base {
         $this->start_controls_section(
             'section_team_layout',
             [
-                'label' => __('Layout', 'lenxel-theme-support'),
+                'label' => __('Layout', 'lenxel-plugin'),
                 'type'  => Controls_Manager::SECTION,
             ]
         );
          $this->add_control(
             'layout',
             [
-                'label'   => __( 'Layout Display', 'lenxel-theme-support' ),
+                'label'   => __( 'Layout Display', 'lenxel-plugin' ),
                 'type'    => Controls_Manager::SELECT,
                 'default' => 'grid',
                 'options' => [
-                    'grid'      => __( 'Grid', 'lenxel-theme-support' ),
-                    'carousel'  => __( 'Carousel', 'lenxel-theme-support' ),
+                    'grid'      => __( 'Grid', 'lenxel-plugin' ),
+                    'carousel'  => __( 'Carousel', 'lenxel-plugin' ),
                 ]
             ]
         );
         $this->add_control(
             'style',
             [
-                'label'     => __('Style', 'lenxel-theme-support'),
+                'label'     => __('Style', 'lenxel-plugin'),
                 'type'      => \Elementor\Controls_Manager::SELECT,
                 'options' => [
-                    'team-style-1'           => __( 'LNX Team Style', 'lenxel-theme-support' ),
+                    'team-style-1'           => __( 'LNX Team Style', 'lenxel-plugin' ),
                 ],
                  'default' => 'team-style-1',
             ]
@@ -158,7 +158,7 @@ class LNXElement_Teams extends  LNXElement_Base {
         $this->add_control(
             'image_size',
             [
-               'label'     => __('Style', 'lenxel-theme-support'),
+               'label'     => __('Style', 'lenxel-plugin'),
                'type'      => \Elementor\Controls_Manager::SELECT,
                'options'   => $this->get_thumbnail_size(),
                'default'   => 'lenxel_medium'
@@ -168,7 +168,7 @@ class LNXElement_Teams extends  LNXElement_Base {
         $this->add_control(
             'show_skills',
             [
-                'label'     => __('Show Skills', 'lenxel-theme-support'),
+                'label'     => __('Show Skills', 'lenxel-plugin'),
                 'type'      => Controls_Manager::SWITCHER,
                 'default'   => 'no',
             ]
@@ -177,7 +177,7 @@ class LNXElement_Teams extends  LNXElement_Base {
         $this->add_control(
             'pagination',
             [
-                'label'     => __('Pagination', 'lenxel-theme-support'),
+                'label'     => __('Pagination', 'lenxel-plugin'),
                 'type'      => Controls_Manager::SWITCHER,
                 'default'   => 'no',
                 'condition' => [
@@ -196,7 +196,7 @@ class LNXElement_Teams extends  LNXElement_Base {
         $this->start_controls_section(
             'section_style_team_name',
             [
-                'label' => __('Name', 'lenxel-theme-support'),
+                'label' => __('Name', 'lenxel-plugin'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -204,7 +204,7 @@ class LNXElement_Teams extends  LNXElement_Base {
         $this->add_control(
             'name_text_color',
             [
-                'label'     => __('Text Color', 'lenxel-theme-support'),
+                'label'     => __('Text Color', 'lenxel-plugin'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [
@@ -257,7 +257,7 @@ class LNXElement_Teams extends  LNXElement_Base {
         $this->start_controls_section(
             'section_style_team_job',
             [
-                'label' => __('Job', 'lenxel-theme-support'),
+                'label' => __('Job', 'lenxel-plugin'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -265,7 +265,7 @@ class LNXElement_Teams extends  LNXElement_Base {
         $this->add_control(
             'job_text_color',
             [
-                'label'     => __('Text Color', 'lenxel-theme-support'),
+                'label'     => __('Text Color', 'lenxel-plugin'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [
@@ -287,7 +287,7 @@ class LNXElement_Teams extends  LNXElement_Base {
         $this->start_controls_section(
             'section_style_team_social',
             [
-                'label' => __('Social', 'lenxel-theme-support'),
+                'label' => __('Social', 'lenxel-plugin'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -295,7 +295,7 @@ class LNXElement_Teams extends  LNXElement_Base {
         $this->add_responsive_control(
             'social_size',
             [
-                'label' => __( 'Social Size', 'lenxel-theme-support' ),
+                'label' => __( 'Social Size', 'lenxel-plugin' ),
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
                     'size' => 16
@@ -315,7 +315,7 @@ class LNXElement_Teams extends  LNXElement_Base {
         $this->add_control(
             'social_color',
             [
-                'label'     => __('Social Color', 'lenxel-theme-support'),
+                'label'     => __('Social Color', 'lenxel-plugin'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [
@@ -327,7 +327,7 @@ class LNXElement_Teams extends  LNXElement_Base {
         $this->add_control(
             'social_hover_color',
             [
-                'label'     => __('Social Hover Color', 'lenxel-theme-support'),
+                'label'     => __('Social Hover Color', 'lenxel-plugin'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [
@@ -341,14 +341,14 @@ class LNXElement_Teams extends  LNXElement_Base {
         $this->start_controls_section(
             'section_style_team_padding',
             [
-                'label' => __('Team Styling', 'lenxel-theme-support'),
+                'label' => __('Team Styling', 'lenxel-plugin'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
         $this->add_responsive_control(
 			'team_box_space',
 			[
-				'label' => __( 'Team Padding Spacing', 'lenxel-theme-support' ),
+				'label' => __( 'Team Padding Spacing', 'lenxel-plugin' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px'],
 				'default' => [
@@ -366,7 +366,7 @@ class LNXElement_Teams extends  LNXElement_Base {
         $this->add_responsive_control(
             'team_image_border_radius',
             [
-                'label'      => esc_html__( 'Team Image Border Radius', 'lenxel-theme-support' ),
+                'label'      => esc_html__( 'Team Image Border Radius', 'lenxel-plugin' ),
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%', 'em' ],
                 'selectors'  => [
@@ -378,7 +378,7 @@ class LNXElement_Teams extends  LNXElement_Base {
         $this->add_control(
             'team_bg_text_color',
             [
-                'label'     => __('Background Name/Job Color', 'lenxel-theme-support'),
+                'label'     => __('Background Name/Job Color', 'lenxel-plugin'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [
@@ -389,7 +389,7 @@ class LNXElement_Teams extends  LNXElement_Base {
         $this->add_control(
             'bg_team_color',
             [
-                'label'     => __('General Background Color', 'lenxel-theme-support'),
+                'label'     => __('General Background Color', 'lenxel-plugin'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [

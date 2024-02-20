@@ -124,14 +124,14 @@ if ( ! class_exists( 'Redux_CDN', false ) ) {
 						}
 					} else {
 						if ( ! self::is_enqueued( $handle, 'enqueued', $is_script ) ) {
-							$msg = esc_html__( 'Please wait a few minutes, then try refreshing the page. Unable to load some remotely hosted scripts.', 'lenxel-theme-support' );
+							$msg = esc_html__( 'Please wait a few minutes, then try refreshing the page. Unable to load some remotely hosted scripts.', 'lenxel-plugin' );
 							if ( self::$parent->args['dev_mode'] ) {
 								// translators: %s: URL.
-								$msg = sprintf( esc_html__( 'If you are developing offline, please download and install the %s plugin/extension to bypass our CDN and avoid this warning', 'lenxel-theme-support' ), '<a href="https://github.com/reduxframework/redux-vendor-support" target="_blank">Redux Vendor Support</a>' );
+								$msg = sprintf( esc_html__( 'If you are developing offline, please download and install the %s plugin/extension to bypass our CDN and avoid this warning', 'lenxel-plugin' ), '<a href="https://github.com/reduxframework/redux-vendor-support" target="_blank">Redux Vendor Support</a>' );
 							}
 
 							// translators: %s: CDN handle.
-							$msg = '<strong>' . esc_html__( 'Redux Framework Warning', 'lenxel-theme-support' ) . '</strong><br/>' . sprintf( esc_html__( '%s CDN unavailable.  Some controls may not render properly.', 'lenxel-theme-support' ), $handle ) . '  ' . $msg;
+							$msg = '<strong>' . esc_html__( 'Redux Framework Warning', 'lenxel-plugin' ) . '</strong><br/>' . sprintf( esc_html__( '%s CDN unavailable.  Some controls may not render properly.', 'lenxel-plugin' ), $handle ) . '  ' . $msg;
 
 							$data = array(
 								'parent'  => self::$parent,
@@ -179,7 +179,7 @@ if ( ! class_exists( 'Redux_CDN', false ) ) {
 			} else {
 				if ( ! self::$set ) {
 					// translators: %s: Vendor support URL. %s: Admin pluygins page.
-					$msg = sprintf( esc_html__( 'The %1$s (or extension) is either not installed or not activated and thus, some controls may not render properly.  Please ensure that it is installed and %2$s', 'lenxel-theme-support' ), '<a href="https://github.com/reduxframework/redux-vendor-support">Vendor Support plugin</a>', '<a href="' . admin_url( 'plugins.php' ) . '">' . esc_html__( 'activated.', 'lenxel-theme-support' ) . '</a>' );
+					$msg = sprintf( esc_html__( 'The %1$s (or extension) is either not installed or not activated and thus, some controls may not render properly.  Please ensure that it is installed and %2$s', 'lenxel-plugin' ), '<a href="https://github.com/reduxframework/redux-vendor-support">Vendor Support plugin</a>', '<a href="' . admin_url( 'plugins.php' ) . '">' . esc_html__( 'activated.', 'lenxel-plugin' ) . '</a>' );
 
 					$data = array(
 						'parent'  => self::$parent,

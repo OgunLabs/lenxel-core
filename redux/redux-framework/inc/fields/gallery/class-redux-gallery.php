@@ -45,8 +45,8 @@ if ( ! class_exists( 'Redux_Gallery', false ) ) {
 			}
 
 			echo '</div>';
-			echo '<a href="#" onclick="return false;" id="edit-gallery" class="gallery-attachments button button-primary">' . esc_html__( 'Add/Edit Gallery', 'lenxel-theme-support' ) . '</a> ';
-			echo '<a href="#" onclick="return false;" id="clear-gallery" class="gallery-attachments button">' . esc_html__( 'Clear Gallery', 'lenxel-theme-support' ) . '</a>';
+			echo '<a href="#" onclick="return false;" id="edit-gallery" class="gallery-attachments button button-primary">' . esc_html__( 'Add/Edit Gallery', 'lenxel-plugin' ) . '</a> ';
+			echo '<a href="#" onclick="return false;" id="clear-gallery" class="gallery-attachments button">' . esc_html__( 'Clear Gallery', 'lenxel-plugin' ) . '</a>';
 			echo '<input type="hidden" class="gallery_values ' . esc_attr( $this->field['class'] ) . '" value="' . esc_attr( $this->value ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '" />';
 		}
 

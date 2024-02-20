@@ -45,7 +45,7 @@ class LNXElement_Course_Filter_Form extends LNXElement_Base {
 	 */
 	public function get_title() {
 		$get_current_name = load_lenxel_widget_content_element('LNX Course Filter Form');
-		return __( $get_current_name, 'lenxel-theme-support' );
+		return __( $get_current_name, 'lenxel-plugin' );
 	}
 
 	/**
@@ -97,19 +97,19 @@ class LNXElement_Course_Filter_Form extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => __( 'Content', 'lenxel-theme-support' ),
+				'label' => __( 'Content', 'lenxel-plugin' ),
 			]
 		);
 
 		$this->add_control(
 			'style',
 			[
-				'label'  => __( 'Style', 'lenxel-theme-support' ),
+				'label'  => __( 'Style', 'lenxel-plugin' ),
 				'type'   => Controls_Manager::SELECT,
 				'options' => [
-				  'style-1' => esc_html__('Style I', 'lenxel-theme-support'),
-				  'style-2' => esc_html__('Style II', 'lenxel-theme-support'),
-				  'style-3'	=> esc_html__('Style III', 'lenxel-theme-support')	
+				  'style-1' => esc_html__('Style I', 'lenxel-plugin'),
+				  'style-2' => esc_html__('Style II', 'lenxel-plugin'),
+				  'style-3'	=> esc_html__('Style III', 'lenxel-plugin')	
 				],
 				'default' => 'style-1',
 			]
@@ -118,7 +118,7 @@ class LNXElement_Course_Filter_Form extends LNXElement_Base {
 		$this->add_control(
 			'link',
 			[
-				'label' => __( 'Link Courses Page', 'lenxel-theme-support' ),
+				'label' => __( 'Link Courses Page', 'lenxel-plugin' ),
 				'type' => Controls_Manager::URL,
 			]
 		);
@@ -127,7 +127,7 @@ class LNXElement_Course_Filter_Form extends LNXElement_Base {
 			$this->add_control(
 				'search_keyword',
 				[
-					'label' => esc_html__( 'Enable Search Keyword', 'lenxel-theme-support' ),
+					'label' => esc_html__( 'Enable Search Keyword', 'lenxel-plugin' ),
 					'type' => Elementor\Controls_Manager::SWITCHER,
 					'default' => 'yes',
 				]
@@ -138,7 +138,7 @@ class LNXElement_Course_Filter_Form extends LNXElement_Base {
 			$this->add_control(
 				'search_category',
 				[
-					'label' => esc_html__( 'Enable Search Category', 'lenxel-theme-support' ),
+					'label' => esc_html__( 'Enable Search Category', 'lenxel-plugin' ),
 					'type' => Elementor\Controls_Manager::SWITCHER,
 					'default' => 'yes',
 				]
@@ -149,7 +149,7 @@ class LNXElement_Course_Filter_Form extends LNXElement_Base {
 			$this->add_control(
 				'search_level',
 				[
-					'label' => esc_html__( 'Enable Search Level', 'lenxel-theme-support' ),
+					'label' => esc_html__( 'Enable Search Level', 'lenxel-plugin' ),
 					'type' => Elementor\Controls_Manager::SWITCHER,
 					'default' => 'yes',
 				]
@@ -159,7 +159,7 @@ class LNXElement_Course_Filter_Form extends LNXElement_Base {
 		$this->add_control(
 			'search_price',
 			[
-				'label' => esc_html__( 'Enable Search Price', 'lenxel-theme-support' ),
+				'label' => esc_html__( 'Enable Search Price', 'lenxel-plugin' ),
 				'type' => Elementor\Controls_Manager::SWITCHER,
 				'default' => 'yes',
 			]
@@ -169,9 +169,9 @@ class LNXElement_Course_Filter_Form extends LNXElement_Base {
 			$this->add_control(
 				'placeholder_keyword',
 				[
-					'label' => esc_html__( 'Placeholder keyword input', 'lenxel-theme-support' ),
+					'label' => esc_html__( 'Placeholder keyword input', 'lenxel-plugin' ),
 					'type' => Elementor\Controls_Manager::TEXT,
-					'default' => esc_html__('Search...', 'lenxel-theme-support'),
+					'default' => esc_html__('Search...', 'lenxel-plugin'),
 					'label_block' => true,
 					'condition' => [
 					  'search_keyword' => array('yes')
@@ -184,9 +184,9 @@ class LNXElement_Course_Filter_Form extends LNXElement_Base {
 			$this->add_control(
 				'placeholder_category',
 				[
-					'label' => esc_html__( 'Placeholder Category', 'lenxel-theme-support' ),
+					'label' => esc_html__( 'Placeholder Category', 'lenxel-plugin' ),
 					'type' => Elementor\Controls_Manager::TEXT,
-					'default' => esc_html__('All Categories', 'lenxel-theme-support'),
+					'default' => esc_html__('All Categories', 'lenxel-plugin'),
 					'label_block' => true,
 					'condition' => [
 					  'search_category' => array('yes')
@@ -199,9 +199,9 @@ class LNXElement_Course_Filter_Form extends LNXElement_Base {
 			$this->add_control(
 				'placeholder_level',
 				[
-					'label' => esc_html__( 'Placeholder Level', 'lenxel-theme-support' ),
+					'label' => esc_html__( 'Placeholder Level', 'lenxel-plugin' ),
 					'type' => Elementor\Controls_Manager::TEXT,
-					'default' => esc_html__('Level', 'lenxel-theme-support'),
+					'default' => esc_html__('Level', 'lenxel-plugin'),
 					'label_block' => true,
 					'condition' => [
 					  'search_level' => ('yes')
@@ -213,9 +213,9 @@ class LNXElement_Course_Filter_Form extends LNXElement_Base {
 		$this->add_control(
 			'placeholder_price',
 			[
-				'label' => esc_html__( 'Placeholder Price', 'lenxel-theme-support' ),
+				'label' => esc_html__( 'Placeholder Price', 'lenxel-plugin' ),
 				'type' => Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__('Price', 'lenxel-theme-support'),
+				'default' => esc_html__('Price', 'lenxel-plugin'),
 				'label_block' => true,
 				'condition' => [
 				  'search_price' => ('yes')
@@ -227,7 +227,7 @@ class LNXElement_Course_Filter_Form extends LNXElement_Base {
 		$this->add_control(
 			'label_input',
 			[
-				'label' => esc_html__( 'Enable Label Input', 'lenxel-theme-support' ),
+				'label' => esc_html__( 'Enable Label Input', 'lenxel-plugin' ),
 				'type' => Elementor\Controls_Manager::SWITCHER,
 				'default' => 'yes',
 			]
@@ -238,14 +238,14 @@ class LNXElement_Course_Filter_Form extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_box_style',
 			[
-				'label' => __( 'Box', 'lenxel-theme-support' ),
+				'label' => __( 'Box', 'lenxel-plugin' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 		$this->add_responsive_control(
 			'box_space',
 			[
-				'label' => __( 'Heading Element Space Bottom', 'lenxel-theme-support' ),
+				'label' => __( 'Heading Element Space Bottom', 'lenxel-plugin' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 26,

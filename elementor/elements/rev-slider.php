@@ -34,7 +34,7 @@ class LNXElement_Rev_Slider extends \Elementor\Widget_Shortcode{
      * @return string Widget title.
      */
     public function get_title() {
-        return __('LNX Revolution Slider', 'lenxel-theme-support');
+        return __('LNX Revolution Slider', 'lenxel-plugin');
     }
 
     /**
@@ -74,19 +74,19 @@ class LNXElement_Rev_Slider extends \Elementor\Widget_Shortcode{
                 $revsliders[ $slider->getAlias() ] = $slider->getTitle();
             }
         } else {
-            $revsliders[ __( 'No sliders found', 'lenxel-theme-support' ) ] = 0;
+            $revsliders[ __( 'No sliders found', 'lenxel-plugin' ) ] = 0;
         }
 
         $this->start_controls_section(
             'section_content',
             [
-                'label' => __('Content', 'lenxel-theme-support'),
+                'label' => __('Content', 'lenxel-plugin'),
             ]
         );
         $this->add_control(
             'alias_slider',
             [
-                'label'   => __( 'Choose Slider:', 'lenxel-theme-support' ),
+                'label'   => __( 'Choose Slider:', 'lenxel-plugin' ),
                 'type'    => Controls_Manager::SELECT,
                 'label_block' => true,
                 'options' => $revsliders

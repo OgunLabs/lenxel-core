@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: Lenxel Theme Support
+ * Plugin Name: Lenxel Plugin
  * Description: LMS, Header builder, Footer builder, Teams, Portfolios, Lenxel Theme Settings ... for theme
  * Plugin URI: https://ogunlabs.com/products/lenxel 
  * Version: 1.0.1
@@ -36,7 +36,7 @@ class Lenxel_Theme_Support{
       add_action('wp_enqueue_scripts', array($this, 'register_scripts'));
       add_action('admin_enqueue_scripts', array($this, 'register_scripts_admin'));
       register_activation_hook(__FILE__, array($this, 'lnx_create_page_activate'));
-      load_plugin_textdomain('lenxel-theme-support', false, 'lenxel-plugin/languages/');
+      load_plugin_textdomain('lenxel-plugin', false, 'lenxel-plugin/languages/');
       add_action('wp_ajax_lenxel_deactivate_plugin', array($this,'handle_lenxel_deactivate_plugin'));
       register_deactivation_hook(__FILE__, array($this, 'lenxel_plugin_deactivation'));
       add_action('admin_footer',array($this,'lenxel_deactivate_plugin_modal'));
@@ -106,8 +106,8 @@ class Lenxel_Theme_Support{
   
    public function register_scripts(){
       $js_dir = plugin_dir_url( __FILE__ ).'assets/js';
-      wp_register_script('lenxel-theme-support', $js_dir.'/main.js', array('jquery'), null, true);
-      wp_enqueue_script('lenxel-theme-support');
+      wp_register_script('lenxel-plugin', $js_dir.'/main.js', array('jquery'), null, true);
+      wp_enqueue_script('lenxel-plugin');
    }
 
 
@@ -123,7 +123,7 @@ class Lenxel_Theme_Support{
       Puc_v4_Factory::buildUpdateChecker(
          'https://lenxel.000webhostapp.com/plugins/dummy_data/lenxel-theme-support-update-plugin.json',
          __FILE__,
-         'lenxel-theme-support'
+         'lenxel-plugin'
       );
    }
 

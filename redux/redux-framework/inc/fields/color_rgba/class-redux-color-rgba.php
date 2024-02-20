@@ -39,10 +39,10 @@ if ( ! class_exists( 'Redux_Color_Rgba', false ) ) {
 				'show_selection_palette' => false,
 				'allow_empty'            => true,
 				'clickout_fires_change'  => false,
-				'choose_text'            => esc_html__( 'Choose', 'lenxel-theme-support' ),
-				'cancel_text'            => esc_html__( 'Cancel', 'lenxel-theme-support' ),
+				'choose_text'            => esc_html__( 'Choose', 'lenxel-plugin' ),
+				'cancel_text'            => esc_html__( 'Cancel', 'lenxel-plugin' ),
 				'show_buttons'           => true,
-				'input_text'             => esc_html__( 'Select Color', 'lenxel-theme-support' ),
+				'input_text'             => esc_html__( 'Select Color', 'lenxel-plugin' ),
 				'palette'                => null,
 			);
 

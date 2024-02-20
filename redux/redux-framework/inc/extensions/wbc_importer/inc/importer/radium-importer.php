@@ -253,7 +253,7 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
       // File exists?
       if ( ! file_exists( $file ) ) {
         wp_die(
-          __( 'Theme options Import file could not be found. Please try again.', 'lenxel-theme-support' ),
+          __( 'Theme options Import file could not be found. Please try again.', 'lenxel-plugin' ),
           '',
           array( 'back_link' => true )
         );
@@ -328,7 +328,7 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
       // File exists?
       if ( ! file_exists( $file ) ) {
         wp_die(
-          __( 'Widget Import file could not be found. Please try again.', 'lenxel-theme-support' ),
+          __( 'Widget Import file could not be found. Please try again.', 'lenxel-plugin' ),
           '',
           array( 'back_link' => true )
         );
@@ -402,7 +402,7 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
           $sidebar_available = false;
           $use_sidebar_id = 'wp_inactive_widgets'; // add to inactive if sidebar does not exist in theme
           $sidebar_message_type = 'error';
-          $sidebar_message = __( 'Sidebar does not exist in theme (using Inactive)', 'lenxel-theme-support' );
+          $sidebar_message = __( 'Sidebar does not exist in theme (using Inactive)', 'lenxel-plugin' );
         }
 
         // Result for sidebar
@@ -424,7 +424,7 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
           if ( ! $fail && ! isset( $available_widgets[$id_base] ) ) {
             $fail = true;
             $widget_message_type = 'error';
-            $widget_message = __( 'Site does not support widget', 'lenxel-theme-support' ); // explain why widget not imported
+            $widget_message = __( 'Site does not support widget', 'lenxel-plugin' ); // explain why widget not imported
           }
 
           // Filter to modify settings before import
@@ -447,7 +447,7 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
 
                 $fail = true;
                 $widget_message_type = 'warning';
-                $widget_message = __( 'Widget already exists', 'lenxel-theme-support' ); // explain why widget not imported
+                $widget_message = __( 'Widget already exists', 'lenxel-plugin' ); // explain why widget not imported
 
                 break;
 
@@ -499,14 +499,14 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
               $widget_message = __( 'Imported', 'radium' );
             } else {
               $widget_message_type = 'warning';
-              $widget_message = __( 'Imported to Inactive', 'lenxel-theme-support' );
+              $widget_message = __( 'Imported to Inactive', 'lenxel-plugin' );
             }
 
           }
 
           // Result for widget instance
           $results[$sidebar_id]['widgets'][$widget_instance_id]['name'] = isset( $available_widgets[$id_base]['name'] ) ? $available_widgets[$id_base]['name'] : $id_base; // widget name or ID if name not available (not supported by site)
-          $results[$sidebar_id]['widgets'][$widget_instance_id]['title'] = $widget->title ? $widget->title : __( 'No Title', 'lenxel-theme-support' ); // show "No Title" if widget instance is untitled
+          $results[$sidebar_id]['widgets'][$widget_instance_id]['title'] = $widget->title ? $widget->title : __( 'No Title', 'lenxel-plugin' ); // show "No Title" if widget instance is untitled
           $results[$sidebar_id]['widgets'][$widget_instance_id]['message_type'] = $widget_message_type;
           $results[$sidebar_id]['widgets'][$widget_instance_id]['message'] = $widget_message;
 

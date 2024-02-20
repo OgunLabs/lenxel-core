@@ -44,7 +44,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 	 */
 	public function get_title() {
 		$get_current_name = load_lenxel_widget_content_element('LNX Search Box');
-		return __( $get_current_name, 'lenxel-theme-support' );
+		return __( $get_current_name, 'lenxel-plugin' );
 	}
 
 	/**
@@ -88,17 +88,17 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_layout',
 			[
-				'label' => __( 'Layout', 'lenxel-theme-support' ),
+				'label' => __( 'Layout', 'lenxel-plugin' ),
 			]
 		);
 
 		$this->add_control(
 			'style',
 			[
-				'label' => __( 'Style', 'lenxel-theme-support' ),
+				'label' => __( 'Style', 'lenxel-plugin' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'style-1' 		=> __( 'Style I', 'lenxel-theme-support' ),
+					'style-1' 		=> __( 'Style I', 'lenxel-plugin' ),
 				],
 				'default' => 'style-1',
 			]
@@ -109,7 +109,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_icon',
 			[
-				'label' => __( 'Icon', 'lenxel-theme-support' ),
+				'label' => __( 'Icon', 'lenxel-plugin' ),
 				'style' => ['style-1']
 			]
 		);
@@ -117,7 +117,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->add_control(
 			'selected_icon',
 			[
-				'label' => __( 'Icon', 'lenxel-theme-support' ),
+				'label' => __( 'Icon', 'lenxel-plugin' ),
 				'type' => Controls_Manager::ICONS,
 				'fa4compatibility' => 'icon',
 				'default' => [
@@ -132,7 +132,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_icon_style',
 			[
-				'label' => __( 'Icon', 'lenxel-theme-support' ),
+				'label' => __( 'Icon', 'lenxel-plugin' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -140,19 +140,19 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->add_control(
 			'align',
 			[
-				'label' => __( 'Alignment', 'lenxel-theme-support' ),
+				'label' => __( 'Alignment', 'lenxel-plugin' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => __( 'Left', 'lenxel-theme-support' ),
+						'title' => __( 'Left', 'lenxel-plugin' ),
 						'icon' => 'fa fa-align-left',
 					],
 					'center' => [
-						'title' => __( 'Center', 'lenxel-theme-support' ),
+						'title' => __( 'Center', 'lenxel-plugin' ),
 						'icon' => 'fa fa-align-center',
 					],
 					'right' => [
-						'title' => __( 'Right', 'lenxel-theme-support' ),
+						'title' => __( 'Right', 'lenxel-plugin' ),
 						'icon' => 'fa fa-align-right',
 					],
 				],
@@ -169,7 +169,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->add_responsive_control(
 			'icon_size',
 			[
-				'label' => __( 'Icon Size', 'lenxel-theme-support' ),
+				'label' => __( 'Icon Size', 'lenxel-plugin' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 24,
@@ -190,7 +190,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->add_control(
 			'icon_color',
 			[
-				'label' => __( 'Color', 'lenxel-theme-support' ),
+				'label' => __( 'Color', 'lenxel-plugin' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .gsc-search-box .control-search i' => 'color: {{VALUE}}', 
@@ -202,7 +202,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->add_control(
 			'icon_color_hover',
 			[
-				'label' => __( 'Color Hover', 'lenxel-theme-support' ),
+				'label' => __( 'Color Hover', 'lenxel-plugin' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .gsc-search-box .control-search:hover i' => 'color: {{VALUE}}', 
@@ -214,7 +214,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->add_control(
 			'icon_background',
 			[
-				'label' => __( 'Background', 'lenxel-theme-support' ),
+				'label' => __( 'Background', 'lenxel-plugin' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .gsc-search-box .control-search' => 'background: {{VALUE}}', 
@@ -225,7 +225,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->add_control(
 			'icon_background_hover',
 			[
-				'label' => __( 'Background Hover', 'lenxel-theme-support' ),
+				'label' => __( 'Background Hover', 'lenxel-plugin' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .gsc-search-box .control-search:hover' => 'background: {{VALUE}}', 
@@ -236,7 +236,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->add_responsive_control(
 			'icon_padding',
 			[
-				'label' => __( 'Padding', 'lenxel-theme-support' ),
+				'label' => __( 'Padding', 'lenxel-plugin' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
@@ -248,7 +248,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->add_control(
 			'border_radius',
 			[
-				'label' => __( 'Border Radius', 'lenxel-theme-support' ),
+				'label' => __( 'Border Radius', 'lenxel-plugin' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
@@ -262,7 +262,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_content_style',
 			[
-				'label' => __( 'Content', 'lenxel-theme-support' ),
+				'label' => __( 'Content', 'lenxel-plugin' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -270,7 +270,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->add_responsive_control(
 			'content_padding',
 			[
-				'label' => __( 'Padding', 'lenxel-theme-support' ),
+				'label' => __( 'Padding', 'lenxel-plugin' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'default' => [
@@ -290,7 +290,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->add_responsive_control(
 			'content_size',
 			[
-				'label' => __( 'Content Width', 'lenxel-theme-support' ),
+				'label' => __( 'Content Width', 'lenxel-plugin' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 200,

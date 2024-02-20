@@ -140,10 +140,10 @@ if ( ! class_exists( 'Redux', false ) ) {
 					// translators: This is only shown to developers, should not impact users.
 					$msg = sprintf(
 						'<strong>%s</strong><br /><code>%s</code> %s',
-						esc_html__( 'Warning, Premature Initialization', 'lenxel-theme-support' ),
+						esc_html__( 'Warning, Premature Initialization', 'lenxel-plugin' ),
 						'self::init("' . esc_html( $opt_name_triger ) . '")',
 						// translators: This is only shown to developers, should not impact users.
-						sprintf( esc_html__( 'was run before the %s hook and was delayed to avoid errors.', 'lenxel-theme-support' ), '<code>plugins_loaded</code>' )
+						sprintf( esc_html__( 'was run before the %s hook and was delayed to avoid errors.', 'lenxel-plugin' ), '<code>plugins_loaded</code>' )
 					);
 
 					if ( isset( $parent->args ) ) {
@@ -360,7 +360,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 					return;
 				}
 			} else {
-				echo '<div id="message" class="error"><p>' . esc_html__( 'Redux Framework is not installed. Please install it.', 'lenxel-theme-support' ) . '</p></div>';
+				echo '<div id="message" class="error"><p>' . esc_html__( 'Redux Framework is not installed. Please install it.', 'lenxel-plugin' ) . '</p></div>';
 
 				return;
 			}
@@ -723,7 +723,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 
 			if ( ! empty( $opt_name_triger ) && is_array( $section ) && ! empty( $section ) ) {
 				if ( ! isset( $section['id'] ) && ! isset( $section['title'] ) ) {
-					self::$errors[ $opt_name_triger ]['section']['missing_title'] = esc_html__( 'Unable to create a section due to missing id and title.', 'lenxel-theme-support' );
+					self::$errors[ $opt_name_triger ]['section']['missing_title'] = esc_html__( 'Unable to create a section due to missing id and title.', 'lenxel-plugin' );
 
 					return;
 				}
@@ -741,7 +741,7 @@ if ( ! class_exists( 'Redux', false ) ) {
 
 				self::$sections[ $opt_name_triger ][ $section['id'] ] = $section;
 			} else {
-				self::$errors[ $opt_name_triger ]['section']['empty'] = esc_html__( 'Unable to create a section due an empty section array or the section variable passed was not an array.', 'lenxel-theme-support' );
+				self::$errors[ $opt_name_triger ]['section']['empty'] = esc_html__( 'Unable to create a section due an empty section array or the section variable passed was not an array.', 'lenxel-plugin' );
 			}
 		}
 

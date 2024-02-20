@@ -19,7 +19,7 @@ class LNXElement_Slider_Images extends LNXElement_Base{
 
 	public function get_title() {
 		$get_current_name = load_lenxel_widget_content_element('LNX Slider Images');
-		return __($get_current_name, 'lenxel-theme-support');
+		return __($get_current_name, 'lenxel-plugin');
 	}
 
 	 /**
@@ -57,7 +57,7 @@ class LNXElement_Slider_Images extends LNXElement_Base{
 		$this->start_controls_section(
 			'section_query',
 			[
-				'label' => __('Query & Layout', 'lenxel-theme-support'),
+				'label' => __('Query & Layout', 'lenxel-plugin'),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -66,7 +66,7 @@ class LNXElement_Slider_Images extends LNXElement_Base{
       $repeater->add_control(
          'image',
          [
-            'label'       => __('Image', 'lenxel-theme-support'),
+            'label'       => __('Image', 'lenxel-plugin'),
             'type'        => Controls_Manager::MEDIA,
             'show_label' => false,
             'default'    => [
@@ -77,7 +77,7 @@ class LNXElement_Slider_Images extends LNXElement_Base{
 		$this->add_control(
          'images',
          [
-            'label'       => __('Testimonials Content Item', 'lenxel-theme-support'),
+            'label'       => __('Testimonials Content Item', 'lenxel-plugin'),
             'type'        => Controls_Manager::REPEATER,
             'fields'      => $repeater->get_controls(),
             'title_field' => '{{{ title }}}',
@@ -86,13 +86,13 @@ class LNXElement_Slider_Images extends LNXElement_Base{
                   'image'    => [
                      'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/image-1.jpg',
                   ],
-                  'title' => esc_html__('The New Future of architecture', 'lenxel-theme-support'),
+                  'title' => esc_html__('The New Future of architecture', 'lenxel-plugin'),
               	),
                array(
                   'image'    => [
                      'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/image-2.jpg',
                   ],
-                  'title' => esc_html__('The New Future of architecture', 'lenxel-theme-support'),
+                  'title' => esc_html__('The New Future of architecture', 'lenxel-plugin'),
               	),
             )
          ]
@@ -101,7 +101,7 @@ class LNXElement_Slider_Images extends LNXElement_Base{
 		$this->add_control( // xx Layout
 			'layout_heading',
 			[
-				'label'   => __( 'Layout', 'lenxel-theme-support' ),
+				'label'   => __( 'Layout', 'lenxel-plugin' ),
 				'type'    => Controls_Manager::HEADING,
 			]
 		);
@@ -109,7 +109,7 @@ class LNXElement_Slider_Images extends LNXElement_Base{
 		$this->add_control(
 			'image_size',
 			[
-				'label'     => __('Style', 'lenxel-theme-support'),
+				'label'     => __('Style', 'lenxel-plugin'),
 				'type'      => \Elementor\Controls_Manager::SELECT,
 				'options'   => $this->get_thumbnail_size(),
 				'default'   => 'lenxel_medium'

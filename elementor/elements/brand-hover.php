@@ -40,7 +40,7 @@ class LNXElement_Brand_Hover extends LNXElement_Base{
      * @return string Widget title.
      */
     public function get_title() {
-        return __('LNX Brand Hover', 'lenxel-theme-support');
+        return __('LNX Brand Hover', 'lenxel-plugin');
     }
 
     /**
@@ -84,7 +84,7 @@ class LNXElement_Brand_Hover extends LNXElement_Base{
         $this->start_controls_section(
             'section_content',
             [
-                'label' => __('Layout & Content', 'lenxel-theme-support'),
+                'label' => __('Layout & Content', 'lenxel-plugin'),
             ]
         );
 
@@ -92,30 +92,30 @@ class LNXElement_Brand_Hover extends LNXElement_Base{
         $this->add_control( 
             'layout_heading',
             [
-                'label'   => __( 'Layout', 'lenxel-theme-support' ),
+                'label'   => __( 'Layout', 'lenxel-plugin' ),
                 'type'    => Controls_Manager::HEADING,
             ]
         );
          $this->add_control(
             'style',
             array(
-                'label'   => esc_html__( 'Style', 'lenxel-theme-support' ),
+                'label'   => esc_html__( 'Style', 'lenxel-plugin' ),
                 'type'    => Controls_Manager::SELECT,
                 'default' => 'style-1',
                 'options' => [
-                  'style-1' => esc_html__('Style I', 'lenxel-theme-support'),
+                  'style-1' => esc_html__('Style I', 'lenxel-plugin'),
                 ]
             )
         );
         $this->add_control(
             'layout',
             [
-                'label'   => __( 'Layout Display', 'lenxel-theme-support' ),
+                'label'   => __( 'Layout Display', 'lenxel-plugin' ),
                 'type'    => Controls_Manager::SELECT,
                 'default' => 'grid',
                 'options' => [
-                    'grid'      => __( 'Grid', 'lenxel-theme-support' ),
-                    'carousel'  => __( 'Carousel', 'lenxel-theme-support' ),
+                    'grid'      => __( 'Grid', 'lenxel-plugin' ),
+                    'carousel'  => __( 'Carousel', 'lenxel-plugin' ),
                 ]
             ]
         );
@@ -125,16 +125,16 @@ class LNXElement_Brand_Hover extends LNXElement_Base{
         $repeater->add_control(
             'title',
             [
-                'label'       => __('Title', 'lenxel-theme-support'),
+                'label'       => __('Title', 'lenxel-plugin'),
                 'type'        => Controls_Manager::TEXT,
-                'default'     => esc_html__('Brand', 'lenxel-theme-support'),
+                'default'     => esc_html__('Brand', 'lenxel-plugin'),
                 'label_block' => true,
             ]
         );
         $repeater->add_control(
             'image',
             [
-                'label'      => __('Choose Image', 'lenxel-theme-support'),
+                'label'      => __('Choose Image', 'lenxel-plugin'),
                 'default'    => [
                     'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/brand-hover-1.png',
                 ],
@@ -145,7 +145,7 @@ class LNXElement_Brand_Hover extends LNXElement_Base{
         $repeater->add_control(
             'image_hover',
             [
-                'label'      => __('Choose Image Hover', 'lenxel-theme-support'),
+                'label'      => __('Choose Image Hover', 'lenxel-plugin'),
                 'default'    => [
                     'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/brand-hover-white-1.png',
                 ],
@@ -156,15 +156,15 @@ class LNXElement_Brand_Hover extends LNXElement_Base{
         $repeater->add_control(
             'link',
             [
-                'label'      => __('Link', 'lenxel-theme-support'),
-                'placeholder' => __( 'https://your-link.com', 'lenxel-theme-support' ),
+                'label'      => __('Link', 'lenxel-plugin'),
+                'placeholder' => __( 'https://your-link.com', 'lenxel-plugin' ),
                 'type'       => Controls_Manager::URL,
             ]
         );
         $repeater->add_control(
           'active',
           [
-            'label' => __( 'Active', 'lenxel-theme-support' ),
+            'label' => __( 'Active', 'lenxel-plugin' ),
             'type' => Controls_Manager::SWITCHER,
             'default' => 'no'
           ]
@@ -172,22 +172,22 @@ class LNXElement_Brand_Hover extends LNXElement_Base{
         $this->add_control(
             'brands',
             [
-                'label'       => __('Brand Content Item', 'lenxel-theme-support'),
+                'label'       => __('Brand Content Item', 'lenxel-plugin'),
                 'type'        => Controls_Manager::REPEATER,
                 'fields'      => $repeater->get_controls(),
                 'title_field' => '{{{ title }}}',
                 'default'     => array(
                     array(
-                        'title'  => esc_html__( 'Brand 1', 'lenxel-theme-support' )
+                        'title'  => esc_html__( 'Brand 1', 'lenxel-plugin' )
                     ),
                     array(
-                        'title'  => esc_html__( 'Brand 2', 'lenxel-theme-support' )
+                        'title'  => esc_html__( 'Brand 2', 'lenxel-plugin' )
                     ),
                     array(
-                        'title'  => esc_html__( 'Brand 3', 'lenxel-theme-support' )
+                        'title'  => esc_html__( 'Brand 3', 'lenxel-plugin' )
                     ),
                     array(
-                        'title'  => esc_html__( 'Brand 4', 'lenxel-theme-support' )
+                        'title'  => esc_html__( 'Brand 4', 'lenxel-plugin' )
                     ),
                 ),
             ]
@@ -204,7 +204,7 @@ class LNXElement_Brand_Hover extends LNXElement_Base{
         $this->start_controls_section(
             'section_style_image',
             [
-                'label'     => __('Image', 'lenxel-theme-support'),
+                'label'     => __('Image', 'lenxel-plugin'),
                 'tab'       => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -220,7 +220,7 @@ class LNXElement_Brand_Hover extends LNXElement_Base{
         $this->add_control(
             'image_border_radius',
             [
-                'label'      => __('Border Radius', 'lenxel-theme-support'),
+                'label'      => __('Border Radius', 'lenxel-plugin'),
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors'  => [

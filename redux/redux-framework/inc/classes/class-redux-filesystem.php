@@ -139,7 +139,7 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 				echo '<div class="error">';
 				echo '<p>';
 				// translators: %1$s: Upload URL.  %2$s: Codex URL.
-				echo '<strong>' . esc_html__( 'File Permission Issues', 'lenxel-theme-support' ) . '</strong><br/>' . sprintf( esc_html__( 'We were unable to modify required files. Please ensure that %1$s has the proper read-write permissions, or modify your wp-config.php file to contain your FTP login credentials as %2$s.', 'lenxel-theme-support' ), '<code>' . esc_url( Redux_Functions_Ex::wp_normalize_path( trailingslashit( WP_CONTENT_DIR ) ) . '/uploads/' ) . '</code>', ' <a href="https://codex.wordpress.org/Editing_wp-config.php#WordPress_Upgrade_Constants" target="_blank">' . esc_html__( 'outlined here', 'lenxel-theme-support' ) . '</a>' );
+				echo '<strong>' . esc_html__( 'File Permission Issues', 'lenxel-plugin' ) . '</strong><br/>' . sprintf( esc_html__( 'We were unable to modify required files. Please ensure that %1$s has the proper read-write permissions, or modify your wp-config.php file to contain your FTP login credentials as %2$s.', 'lenxel-plugin' ), '<code>' . esc_url( Redux_Functions_Ex::wp_normalize_path( trailingslashit( WP_CONTENT_DIR ) ) . '/uploads/' ) . '</code>', ' <a href="https://codex.wordpress.org/Editing_wp-config.php#WordPress_Upgrade_Constants" target="_blank">' . esc_html__( 'outlined here', 'lenxel-plugin' ) . '</a>' );
 				echo '</p>';
 				echo '</div>';
 				echo '<h2></h2>';
@@ -429,7 +429,7 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 				$this->killswitch = true;
 
 				// translators: %1$s: Upload URL.  %2$s: Codex URL.
-				$msg = '<strong>' . esc_html__( 'File Permission Issues', 'lenxel-theme-support' ) . '</strong><br/>' . sprintf( esc_html__( 'We were unable to modify required files. Please ensure that %1$s has the proper read-write permissions, or modify your wp-config.php file to contain your FTP login credentials as %2$s.', 'lenxel-theme-support' ), '<code>' . esc_url( Redux_Functions_Ex::wp_normalize_path( trailingslashit( WP_CONTENT_DIR ) ) ) . '/uploads/</code>', '<a href="https://codex.wordpress.org/Editing_wp-config.php#WordPress_Upgrade_Constants" target="_blank">' . esc_html__( 'outlined here', 'lenxel-theme-support' ) . '</a>' );
+				$msg = '<strong>' . esc_html__( 'File Permission Issues', 'lenxel-plugin' ) . '</strong><br/>' . sprintf( esc_html__( 'We were unable to modify required files. Please ensure that %1$s has the proper read-write permissions, or modify your wp-config.php file to contain your FTP login credentials as %2$s.', 'lenxel-plugin' ), '<code>' . esc_url( Redux_Functions_Ex::wp_normalize_path( trailingslashit( WP_CONTENT_DIR ) ) ) . '/uploads/</code>', '<a href="https://codex.wordpress.org/Editing_wp-config.php#WordPress_Upgrade_Constants" target="_blank">' . esc_html__( 'outlined here', 'lenxel-plugin' ) . '</a>' );
 
 				$data = array(
 					'parent'  => self::$instance->parent,

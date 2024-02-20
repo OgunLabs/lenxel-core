@@ -43,7 +43,7 @@ class LNXElement_Logo extends LNXElement_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'LNX Logo', 'lenxel-theme-support' );
+		return __( 'LNX Logo', 'lenxel-plugin' );
 	}
 
 	/**
@@ -86,23 +86,23 @@ class LNXElement_Logo extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_title',
 			[
-				'label' => __( 'Content', 'lenxel-theme-support' ),
+				'label' => __( 'Content', 'lenxel-plugin' ),
 			]
 		);
 		$this->add_control(
 			'title_text',
 			[
-				'label' => __( 'Title', 'lenxel-theme-support' ),
+				'label' => __( 'Title', 'lenxel-plugin' ),
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __( 'Enter your title', 'lenxel-theme-support' ),
-				'default' => __( 'Home', 'lenxel-theme-support' ),
+				'placeholder' => __( 'Enter your title', 'lenxel-plugin' ),
+				'default' => __( 'Home', 'lenxel-plugin' ),
 				'label_block' => true
 			]
 		);
 		$this->add_control(
 			'image',
 			[
-				'label' => __( 'Choose Logo Image', 'lenxel-theme-support' ),
+				'label' => __( 'Choose Logo Image', 'lenxel-plugin' ),
 				'type' => Controls_Manager::MEDIA,
 				'label_block' => true,
 				'default' => [
@@ -113,28 +113,28 @@ class LNXElement_Logo extends LNXElement_Base {
 		$this->add_control(
 			'link',
 			[
-				'label' => __( 'Link', 'lenxel-theme-support' ),
+				'label' => __( 'Link', 'lenxel-plugin' ),
 				'type' => Controls_Manager::URL,
-				'placeholder' => __( 'https://your-link.com', 'lenxel-theme-support' ),
+				'placeholder' => __( 'https://your-link.com', 'lenxel-plugin' ),
 				'label_block' => true
 			]
 		);
 		$this->add_control(
 			'align',
 			[
-				'label' => __( 'Alignment', 'lenxel-theme-support' ),
+				'label' => __( 'Alignment', 'lenxel-plugin' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => __( 'Left', 'lenxel-theme-support' ),
+						'title' => __( 'Left', 'lenxel-plugin' ),
 						'icon' => 'fa fa-align-left',
 					],
 					'center' => [
-						'title' => __( 'Center', 'lenxel-theme-support' ),
+						'title' => __( 'Center', 'lenxel-plugin' ),
 						'icon' => 'fa fa-align-center',
 					],
 					'right' => [
-						'title' => __( 'Right', 'lenxel-theme-support' ),
+						'title' => __( 'Right', 'lenxel-plugin' ),
 						'icon' => 'fa fa-align-right',
 					],
 				],
@@ -144,7 +144,7 @@ class LNXElement_Logo extends LNXElement_Base {
 		$this->add_control(
 			'max_width',
 			[
-				'label' => __( 'Max Width', 'lenxel-theme-support' ),
+				'label' => __( 'Max Width', 'lenxel-plugin' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -162,14 +162,14 @@ class LNXElement_Logo extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_box_style',
 			[
-				'label' => __( 'Logo Styling', 'lenxel-theme-support' ),
+				'label' => __( 'Logo Styling', 'lenxel-plugin' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 		$this->add_responsive_control(
 			'logo_padding',
 			[
-				'label' => __( 'Padding', 'lenxel-theme-support' ),
+				'label' => __( 'Padding', 'lenxel-plugin' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
@@ -180,7 +180,7 @@ class LNXElement_Logo extends LNXElement_Base {
 		$this->add_responsive_control(
 			'logo_margin',
 			[
-				'label' => __( 'Margin', 'lenxel-theme-support' ),
+				'label' => __( 'Margin', 'lenxel-plugin' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
@@ -200,7 +200,7 @@ class LNXElement_Logo extends LNXElement_Base {
        $this->add_control(
          'image_border_radius',
          [
-            'label'      => __('Border Radius', 'lenxel-theme-support'),
+            'label'      => __('Border Radius', 'lenxel-plugin'),
             'type'       => Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%'],
             'selectors'  => [

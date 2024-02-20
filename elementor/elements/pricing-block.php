@@ -46,7 +46,7 @@ class LNXElement_Pricing_Block extends LNXElement_Base {
 	 */
 	public function get_title() {
 		$get_current_name = load_lenxel_widget_content_element('LNX Pricing Block');
-		return __( $get_current_name, 'lenxel-theme-support' );
+		return __( $get_current_name, 'lenxel-plugin' );
 	}
 
 	/**
@@ -89,17 +89,17 @@ class LNXElement_Pricing_Block extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => __( 'Content', 'lenxel-theme-support' ),
+				'label' => __( 'Content', 'lenxel-plugin' ),
 			]
 		);
 		$this->add_control(
 			'style',
 			[
-				'label' => __( 'Style', 'lenxel-theme-support' ),
+				'label' => __( 'Style', 'lenxel-plugin' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'style-1' 		=> __( 'Style I: Default', 'lenxel-theme-support' ),
-					'style-2' 		=> __( 'Style II: Scale 0.95', 'lenxel-theme-support' )
+					'style-1' 		=> __( 'Style I: Default', 'lenxel-plugin' ),
+					'style-2' 		=> __( 'Style II: Scale 0.95', 'lenxel-plugin' )
 				],
 				'default' => 'style-1',
 			]
@@ -107,57 +107,57 @@ class LNXElement_Pricing_Block extends LNXElement_Base {
 		$this->add_control(
 			'title_text',
 			[
-				'label' => __( 'Title', 'lenxel-theme-support' ),
+				'label' => __( 'Title', 'lenxel-plugin' ),
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __( 'Enter your title', 'lenxel-theme-support' ),
-				'default' => __( 'Standard', 'lenxel-theme-support' ),
+				'placeholder' => __( 'Enter your title', 'lenxel-plugin' ),
+				'default' => __( 'Standard', 'lenxel-plugin' ),
 				'label_block' => true
 			]
 		);
 		$this->add_control(
 			'subtitle_text',
 			[
-				'label' => __( 'Sub Title', 'lenxel-theme-support' ),
+				'label' => __( 'Sub Title', 'lenxel-plugin' ),
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __( 'Private amenities', 'lenxel-theme-support' ),
-				'default' => __( 'Private amenities', 'lenxel-theme-support' ),
+				'placeholder' => __( 'Private amenities', 'lenxel-plugin' ),
+				'default' => __( 'Private amenities', 'lenxel-plugin' ),
 				'label_block' => true,
 			]
 		);
 		$this->add_control(
 			'desc_text',
 			[
-				'label' => __( 'Description', 'lenxel-theme-support' ),
+				'label' => __( 'Description', 'lenxel-plugin' ),
 				'type' => Controls_Manager::TEXTAREA,
-				'placeholder' => __( 'Your Description', 'lenxel-theme-support' ),
-				'default' => __( 'There are many new variatns of pasages of available text.', 'lenxel-theme-support' ),
+				'placeholder' => __( 'Your Description', 'lenxel-plugin' ),
+				'default' => __( 'There are many new variatns of pasages of available text.', 'lenxel-plugin' ),
 			]
 		);
 		$this->add_control(
 			'price',
 			[
-				'label' => __( 'Price', 'lenxel-theme-support' ),
+				'label' => __( 'Price', 'lenxel-plugin' ),
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __( '60.00', 'lenxel-theme-support' ),
-				'default' => __( '60.00', 'lenxel-theme-support' ),
+				'placeholder' => __( '60.00', 'lenxel-plugin' ),
+				'default' => __( '60.00', 'lenxel-plugin' ),
 			]
 		);
 		$this->add_control(
 			'currency',
 			[
-				'label' => __( 'Currency', 'lenxel-theme-support' ),
+				'label' => __( 'Currency', 'lenxel-plugin' ),
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __( 'Currency', 'lenxel-theme-support' ),
-				'default' => __( '$', 'lenxel-theme-support' ),
+				'placeholder' => __( 'Currency', 'lenxel-plugin' ),
+				'default' => __( '$', 'lenxel-plugin' ),
 			]
 		);
 		$this->add_control(
 			'period',
 			[
-				'label' => __( 'Period', 'lenxel-theme-support' ),
+				'label' => __( 'Period', 'lenxel-plugin' ),
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __( 'Monthly', 'lenxel-theme-support' ),
-				'default' => __( 'Monthly', 'lenxel-theme-support' ),
+				'placeholder' => __( 'Monthly', 'lenxel-plugin' ),
+				'default' => __( 'Monthly', 'lenxel-plugin' ),
 			]
 		);
 
@@ -165,7 +165,7 @@ class LNXElement_Pricing_Block extends LNXElement_Base {
       $repeater->add_control(
          'pricing_features',
 			[
-	         'label'       => __('Pricing Features', 'lenxel-theme-support'),
+	         'label'       => __('Pricing Features', 'lenxel-plugin'),
 	         'type'        => Controls_Manager::TEXT,
 	         'default'     => 'Free text goes here',
 	         'label_block' => true,
@@ -175,22 +175,22 @@ class LNXElement_Pricing_Block extends LNXElement_Base {
 		$this->add_control(
          'pricing_content',
          [
-            'label'       => __('Pricing Features', 'lenxel-theme-support'),
+            'label'       => __('Pricing Features', 'lenxel-plugin'),
             'type'        => Controls_Manager::REPEATER,
             'fields'      => $repeater->get_controls(),
             'title_field' => '{{{ pricing_features }}}',
             'default'     => array(
                array(
-                  'pricing_features'  => esc_html__( '3D Visualization', 'lenxel-theme-support' )
+                  'pricing_features'  => esc_html__( '3D Visualization', 'lenxel-plugin' )
                ),
                array(
-                  'pricing_features'  => esc_html__( 'Planning Solution', 'lenxel-theme-support' )
+                  'pricing_features'  => esc_html__( 'Planning Solution', 'lenxel-plugin' )
                ),
                array(
-                  'pricing_features'  => esc_html__( 'Selection of Materials', 'lenxel-theme-support' )
+                  'pricing_features'  => esc_html__( 'Selection of Materials', 'lenxel-plugin' )
                ),
                array(
-                  'pricing_features'  => esc_html__( '10 Construction Drawings', 'lenxel-theme-support' )
+                  'pricing_features'  => esc_html__( '10 Construction Drawings', 'lenxel-plugin' )
                )
             ),
          ]
@@ -201,14 +201,14 @@ class LNXElement_Pricing_Block extends LNXElement_Base {
 		$this->start_controls_section( //** Section Icon
 			'section_Button',
 			[
-				'label' => __( 'Button', 'lenxel-theme-support' ),
+				'label' => __( 'Button', 'lenxel-plugin' ),
 			]
 		);
 
 		$this->add_control(
 			'button_url',
 			[
-				'label' => __( 'Button URL', 'lenxel-theme-support' ),
+				'label' => __( 'Button URL', 'lenxel-plugin' ),
 				'type' => Controls_Manager::URL,
 			]
 		);
@@ -216,7 +216,7 @@ class LNXElement_Pricing_Block extends LNXElement_Base {
 		$this->add_control(
 			'button_text',
 			[
-				'label' => __( 'Button Text', 'lenxel-theme-support' ),
+				'label' => __( 'Button Text', 'lenxel-plugin' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => 'Read More'
 			]
@@ -225,13 +225,13 @@ class LNXElement_Pricing_Block extends LNXElement_Base {
 		$this->add_control(
 			'button_style',
 			[
-				'label' => __( 'Button Style', 'lenxel-theme-support' ),
+				'label' => __( 'Button Style', 'lenxel-plugin' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'btn-theme' 		=> esc_html__('Button Theme', 'lenxel-theme-support'),
-					'btn-theme-2' 		=> esc_html__('Button Theme Second', 'lenxel-theme-support'),
-					'btn-white' 		=> esc_html__('Button White', 'lenxel-theme-support'),
-					'btn-black' 		=> esc_html__('Button Black', 'lenxel-theme-support')
+					'btn-theme' 		=> esc_html__('Button Theme', 'lenxel-plugin'),
+					'btn-theme-2' 		=> esc_html__('Button Theme Second', 'lenxel-plugin'),
+					'btn-white' 		=> esc_html__('Button White', 'lenxel-plugin'),
+					'btn-black' 		=> esc_html__('Button Black', 'lenxel-plugin')
 				],
 				'default' => 'btn-white',
 			]
@@ -242,7 +242,7 @@ class LNXElement_Pricing_Block extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_title_style',
 			[
-				'label' => __( 'Title', 'lenxel-theme-support' ),
+				'label' => __( 'Title', 'lenxel-plugin' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -250,7 +250,7 @@ class LNXElement_Pricing_Block extends LNXElement_Base {
 		$this->add_control(
 			'title_color',
 			[
-				'label' => __( 'Text Color', 'lenxel-theme-support' ),
+				'label' => __( 'Text Color', 'lenxel-plugin' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-pricing .title' => 'color: {{VALUE}};',
@@ -271,7 +271,7 @@ class LNXElement_Pricing_Block extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_price_style',
 			[
-				'label' => __( 'Price Text', 'lenxel-theme-support' ),
+				'label' => __( 'Price Text', 'lenxel-plugin' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -279,7 +279,7 @@ class LNXElement_Pricing_Block extends LNXElement_Base {
 		$this->add_control(
 			'sub_title_color',
 			[
-				'label' => __( 'Text Color', 'lenxel-theme-support' ),
+				'label' => __( 'Text Color', 'lenxel-plugin' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-pricing .content-inner .plan-price .price-value' => 'color: {{VALUE}};',
@@ -300,7 +300,7 @@ class LNXElement_Pricing_Block extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_content_style',
 			[
-				'label' => __( 'Content', 'lenxel-theme-support' ),
+				'label' => __( 'Content', 'lenxel-plugin' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -308,7 +308,7 @@ class LNXElement_Pricing_Block extends LNXElement_Base {
 		$this->add_control(
 			'content_color',
 			[
-				'label' => __( 'Text Color', 'lenxel-theme-support' ),
+				'label' => __( 'Text Color', 'lenxel-plugin' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-pricing .content-inner .plan-list li .text' => 'color: {{VALUE}};',
@@ -327,7 +327,7 @@ class LNXElement_Pricing_Block extends LNXElement_Base {
 		$this->add_control(
 			'icon_color',
 			[
-				'label' => __( 'Icon Color', 'lenxel-theme-support' ),
+				'label' => __( 'Icon Color', 'lenxel-plugin' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-pricing .content-inner .plan-list li .icon' => 'color: {{VALUE}};',

@@ -65,7 +65,7 @@ class Redux_Rest_Api_Builder {
 			array(
 				'args'                => array(
 					'type' => array(
-						'description' => __( 'The field type', 'lenxel-theme-support' ),
+						'description' => __( 'The field type', 'lenxel-plugin' ),
 						'type'        => 'string',
 					),
 				),
@@ -80,7 +80,7 @@ class Redux_Rest_Api_Builder {
 			array(
 				'args'                => array(
 					'name' => array(
-						'description' => __( 'The field type', 'lenxel-theme-support' ),
+						'description' => __( 'The field type', 'lenxel-plugin' ),
 						'type'        => 'string',
 					),
 				),

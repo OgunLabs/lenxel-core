@@ -131,7 +131,7 @@ if ( ! class_exists( 'Redux_Admin_Notices', false ) ) {
 										echo '<p>' . wp_kses_post( $notice['msg'] ) . '</p>';
 										echo '</div>';
 									} else {
-										echo '<div ' . esc_html( $add_style ) . ' class="' . esc_attr( $notice['type'] ) . ' notice is-dismissable"><p>' . wp_kses_post( $notice['msg'] ) . '&nbsp;&nbsp;<a href="?dismiss=true&amp;id=' . esc_attr( $css_id ) . '">' . esc_html__( 'Dismiss', 'lenxel-theme-support' ) . '</a>.</p></div>';
+										echo '<div ' . esc_html( $add_style ) . ' class="' . esc_attr( $notice['type'] ) . ' notice is-dismissable"><p>' . wp_kses_post( $notice['msg'] ) . '&nbsp;&nbsp;<a href="?dismiss=true&amp;id=' . esc_attr( $css_id ) . '">' . esc_html__( 'Dismiss', 'lenxel-plugin' ) . '</a>.</p></div>';
 									}
 								}
 							} else {

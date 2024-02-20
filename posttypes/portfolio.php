@@ -2,18 +2,18 @@
 if(!function_exists('lenxel_post_type_portfolio')  ){
     function lenxel_post_type_portfolio(){
       $labels = array(
-          'name'               => __( 'Portfolios', "lenxel-theme-support" ),
-          'singular_name'      => __( 'Portfolio', "lenxel-theme-support" ),
-          'add_new'            => __( 'Add New Portfolio', "lenxel-theme-support" ),
-          'add_new_item'       => __( 'Add New Portfolio', "lenxel-theme-support" ),
-          'edit_item'          => __( 'Edit Portfolio', "lenxel-theme-support" ),
-          'new_item'           => __( 'New Portfolio', "lenxel-theme-support" ),
-          'view_item'          => __( 'View Portfolio', "lenxel-theme-support" ),
-          'search_items'       => __( 'Search Portfolios', "lenxel-theme-support" ),
-          'not_found'          => __( 'No Portfolios found', "lenxel-theme-support" ),
-          'not_found_in_trash' => __( 'No Portfolios found in Trash', "lenxel-theme-support" ),
-          'parent_item_colon'  => __( 'Parent Portfolio:', "lenxel-theme-support" ),
-          'menu_name'          => __( 'Portfolios', "lenxel-theme-support" ),
+          'name'               => __( 'Portfolios', "lenxel-plugin" ),
+          'singular_name'      => __( 'Portfolio', "lenxel-plugin" ),
+          'add_new'            => __( 'Add New Portfolio', "lenxel-plugin" ),
+          'add_new_item'       => __( 'Add New Portfolio', "lenxel-plugin" ),
+          'edit_item'          => __( 'Edit Portfolio', "lenxel-plugin" ),
+          'new_item'           => __( 'New Portfolio', "lenxel-plugin" ),
+          'view_item'          => __( 'View Portfolio', "lenxel-plugin" ),
+          'search_items'       => __( 'Search Portfolios', "lenxel-plugin" ),
+          'not_found'          => __( 'No Portfolios found', "lenxel-plugin" ),
+          'not_found_in_trash' => __( 'No Portfolios found in Trash', "lenxel-plugin" ),
+          'parent_item_colon'  => __( 'Parent Portfolio:', "lenxel-plugin" ),
+          'menu_name'          => __( 'Portfolios', "lenxel-plugin" ),
       );
 
       $args = array(
@@ -45,17 +45,17 @@ if(!function_exists('lenxel_post_type_portfolio')  ){
       register_post_type( 'portfolio', $args );
 
       $labels = array(
-        'name'              => __( 'Categories', "lenxel-theme-support" ),
-        'singular_name'     => __( 'Category', "lenxel-theme-support" ),
-        'search_items'      => __( 'Search Category', "lenxel-theme-support" ),
-        'all_items'         => __( 'All Categories', "lenxel-theme-support" ),
-        'parent_item'       => __( 'Parent Category', "lenxel-theme-support" ),
-        'parent_item_colon' => __( 'Parent Category:', "lenxel-theme-support" ),
-        'edit_item'         => __( 'Edit Category', "lenxel-theme-support" ),
-        'update_item'       => __( 'Update Category', "lenxel-theme-support" ),
-        'add_new_item'      => __( 'Add New Category', "lenxel-theme-support" ),
-        'new_item_name'     => __( 'New Category Name', "lenxel-theme-support" ),
-        'menu_name'         => __( 'Categories', "lenxel-theme-support" ),
+        'name'              => __( 'Categories', "lenxel-plugin" ),
+        'singular_name'     => __( 'Category', "lenxel-plugin" ),
+        'search_items'      => __( 'Search Category', "lenxel-plugin" ),
+        'all_items'         => __( 'All Categories', "lenxel-plugin" ),
+        'parent_item'       => __( 'Parent Category', "lenxel-plugin" ),
+        'parent_item_colon' => __( 'Parent Category:', "lenxel-plugin" ),
+        'edit_item'         => __( 'Edit Category', "lenxel-plugin" ),
+        'update_item'       => __( 'Update Category', "lenxel-plugin" ),
+        'add_new_item'      => __( 'Add New Category', "lenxel-plugin" ),
+        'new_item_name'     => __( 'New Category Name', "lenxel-plugin" ),
+        'menu_name'         => __( 'Categories', "lenxel-plugin" ),
       );
       // Now register the taxonomy
       register_taxonomy('category_portfolio',array('portfolio'),
@@ -162,7 +162,7 @@ if(!function_exists('lenxel_post_type_portfolio')  ){
       foreach ( $post_meta_infos as $value ) {
         $data = array();
         $data['value'] = $value['ID'];
-        $data['label'] = __( 'Id', 'lenxelframework' ) . ': ' . $value['ID']  . __( ' - Title', 'lenxel-theme-support' ) . ': ' . $value['post_title'];
+        $data['label'] = __( 'Id', 'lenxelframework' ) . ': ' . $value['ID']  . __( ' - Title', 'lenxel-plugin' ) . ': ' . $value['post_title'];
         $result[] = $data;
       }
     }
@@ -178,9 +178,9 @@ if(!function_exists('lenxel_post_type_portfolio')  ){
         $post_id = $post_object->ID();
         $post_title_display = '';
         if ( ! empty( $post_title ) ) {
-          $post_title_display = ' - ' . __( 'Title', 'lenxel-theme-support' ) . ': ' . $post_title;
+          $post_title_display = ' - ' . __( 'Title', 'lenxel-plugin' ) . ': ' . $post_title;
         }
-        $post_id_display = __( 'Id', 'lenxel-theme-support' ) . ': ' . $post_id;
+        $post_id_display = __( 'Id', 'lenxel-plugin' ) . ': ' . $post_id;
         $data = array();
         $data['value'] = $post_id;
         $data['label'] = $post_id_display . $post_title_display;
@@ -197,7 +197,7 @@ if(!function_exists('lenxel_post_type_portfolio')  ){
   function lenxelthemesupport_portfolio_information() {
       add_meta_box(
           'lenxelthemesupport_portfolio_information',
-          __( 'Information', 'lenxel-theme-support' ),
+          __( 'Information', 'lenxel-plugin' ),
           'lenxelthemesupport_portfolio_inner_custom_box',
           'portfolio');
   }
@@ -214,7 +214,7 @@ if(!function_exists('lenxel_post_type_portfolio')  ){
       if ( ($pinformations) && count( $pinformations ) > 0 ) {
           foreach( $pinformations as $information ) {
               if ( isset( $information['label'] ) || isset( $information['value'] ) ) {
-                  printf( '<p><input size="40" type="text" placeholder="Label" name="pinformations[%1$s][label]" value="%2$s" /><input size="80" type="text" placeholder="Value" name="pinformations[%1$s][value]" value="%3$s" /><a class="button remove">%4$s</a></p>', $c, $information['label'], $information['value'], __( 'Remove', 'lenxel-theme-support' ) );
+                  printf( '<p><input size="40" type="text" placeholder="Label" name="pinformations[%1$s][label]" value="%2$s" /><input size="80" type="text" placeholder="Value" name="pinformations[%1$s][value]" value="%3$s" /><a class="button remove">%4$s</a></p>', $c, $information['label'], $information['value'], __( 'Remove', 'lenxel-plugin' ) );
                   $c = $c +1;
               }
           }
@@ -222,7 +222,7 @@ if(!function_exists('lenxel_post_type_portfolio')  ){
 
       ?>
   <span id="pinformations-list"></span>
-  <a class="add-information-item"><?php _e('Add Information', 'lenxel-theme-support'); ?></a>
+  <a class="add-information-item"><?php _e('Add Information', 'lenxel-plugin'); ?></a>
   <script>
       var $ =jQuery.noConflict();
       $(document).ready(function() {

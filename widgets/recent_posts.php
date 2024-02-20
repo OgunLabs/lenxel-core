@@ -20,10 +20,10 @@ class Lenxel_Theme_Support_Widget_Recent_Posts extends WP_Widget {
    public function __construct() {
       $widget_ops = array(
          'classname'                   => 'lnx_widget_recent_entries',
-         'description'                 => __( 'Your site&#8217;s most recent Posts.', 'lenxel-theme-support' ),
+         'description'                 => __( 'Your site&#8217;s most recent Posts.', 'lenxel-plugin' ),
          'customize_selective_refresh' => true,
       );
-      parent::__construct( 'lnx-recent-posts', __( 'LNX Recent Posts','lenxel-theme-support' ), $widget_ops );
+      parent::__construct( 'lnx-recent-posts', __( 'LNX Recent Posts','lenxel-plugin' ), $widget_ops );
       $this->alt_option_name = 'lnx_widget_recent_entries';
    }
 
@@ -41,7 +41,7 @@ class Lenxel_Theme_Support_Widget_Recent_Posts extends WP_Widget {
       if ( ! isset( $args['widget_id'] ) ) {
          $args['widget_id'] = $this->id;
       }
-      $default_title = esc_html__( 'Recent Posts', 'lenxel-theme-support' );
+      $default_title = esc_html__( 'Recent Posts', 'lenxel-plugin' );
       $title         = ( ! empty( $instance['title'] ) ) ? $instance['title'] : $default_title;
 
       /** This filter is documented in wp-includes/widgets/class-wp-widget-pages.php */
@@ -106,7 +106,7 @@ class Lenxel_Theme_Support_Widget_Recent_Posts extends WP_Widget {
          <?php foreach ( $r->posts as $recent_post ) : ?>
             <?php
             $post_title   = get_the_title( $recent_post->ID );
-            $title        = ( ! empty( $post_title ) ) ? $post_title : __( '(no title)', 'lenxel-theme-support' );
+            $title        = ( ! empty( $post_title ) ) ? $post_title : __( '(no title)', 'lenxel-plugin' );
             $aria_current = '';
 
             if ( get_queried_object_id() === $recent_post->ID ) {
@@ -124,7 +124,7 @@ class Lenxel_Theme_Support_Widget_Recent_Posts extends WP_Widget {
                   <?php } ?>   
                   <div class="post-content">
                      <?php
-                        $comments_number = get_comments_number_text( esc_html__('0 Comments', 'lenxel-theme-support'), esc_html__('1 Comment', 'lenxel-theme-support'), esc_html__('% Comments', 'lenxel-theme-support'), $recent_post->ID);
+                        $comments_number = get_comments_number_text( esc_html__('0 Comments', 'lenxel-plugin'), esc_html__('1 Comment', 'lenxel-plugin'), esc_html__('% Comments', 'lenxel-plugin'), $recent_post->ID);
                         printf( 
                            '<span class="post-comments"><i class="icon far fa-comments"></i>%1$s</span>',
                            $comments_number
@@ -169,18 +169,18 @@ class Lenxel_Theme_Support_Widget_Recent_Posts extends WP_Widget {
       $show_date = isset( $instance['show_date'] ) ? (bool) $instance['show_date'] : false;
       ?>
       <p>
-         <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'lenxel-theme-support' ); ?></label>
+         <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'lenxel-plugin' ); ?></label>
          <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
       </p>
 
       <p>
-         <label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts to show:', 'lenxel-theme-support' ); ?></label>
+         <label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts to show:', 'lenxel-plugin' ); ?></label>
          <input class="tiny-text" id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="number" step="1" min="1" value="<?php echo $number; ?>" size="3" />
       </p>
 
       <p>
          <input class="checkbox" type="checkbox"<?php checked( $show_date ); ?> id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" />
-         <label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php _e( 'Display post date?', 'lenxel-theme-support' ); ?></label>
+         <label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php _e( 'Display post date?', 'lenxel-plugin' ); ?></label>
       </p>
       <?php
    }

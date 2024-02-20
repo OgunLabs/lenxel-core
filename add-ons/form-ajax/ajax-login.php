@@ -43,7 +43,7 @@ class Lenxel_Addons_Login_Ajax{
 		  	
 		  	wp_set_current_user($user_signon->ID);
 		  	wp_set_auth_cookie($user_signon->ID);
-			$message = esc_html__('Login successful, redirecting...', 'lenxel-theme-support');
+			$message = esc_html__('Login successful, redirecting...', 'lenxel-plugin');
 			if(class_exists('WpFastestCache')){
           	$wpfc = new WpFastestCache();
           	$wpfc->deleteCache();
@@ -67,7 +67,7 @@ class Lenxel_Addons_Login_Ajax{
 		  		echo wp_json_encode(array('logged_in' => false, 'message' => '<div class="alert alert-warning">' . $message . '</div>'));
 		  		die();
 			}else{
-				$message = esc_html__('Login unsuccessful, plese try again!', 'lenxel-theme-support');
+				$message = esc_html__('Login unsuccessful, plese try again!', 'lenxel-plugin');
 				echo wp_json_encode(array('logged_in' => false, 'message' => '<div class="alert alert-warning">' . $message . '</div>'));
 				die();
 			}
@@ -86,19 +86,19 @@ class Lenxel_Addons_Login_Ajax{
 			<?php echo html_entity_decode($login_form_top); ?>
 		   <div class="form-status"></div>
 		   <div class="form-group">
-			   <label for="username"><?php echo esc_html__('Username', 'lenxel-theme-support') ?></label>
-			   <input id="username" type="text" placeholder="<?php echo esc_html__('Username', 'lenxel-theme-support') ?>" name="username" autocomplete='off' class="form-control">
+			   <label for="username"><?php echo esc_html__('Username', 'lenxel-plugin') ?></label>
+			   <input id="username" type="text" placeholder="<?php echo esc_html__('Username', 'lenxel-plugin') ?>" name="username" autocomplete='off' class="form-control">
 			</div>
 		   <div class="form-group">
-			   <label for="password"><?php echo esc_html__('Password', 'lenxel-theme-support') ?></label>
+			   <label for="password"><?php echo esc_html__('Password', 'lenxel-plugin') ?></label>
 			   <input id="password" type="password" placeholder="******" name="password" autocomplete='off' class="form-control">
 			</div>   
 			<?php echo html_entity_decode($login_form_middle); ?>
 		   <div class="form-group form-action">
-			   <input class="btn-theme btn-fw" type="submit" value="<?php echo esc_html__('Login', 'lenxel-theme-support') ?>" name="submit">
+			   <input class="btn-theme btn-fw" type="submit" value="<?php echo esc_html__('Login', 'lenxel-plugin') ?>" name="submit">
 			</div>   
 			<div class="lost-password">
-		   	<a class="lost-popup" data-toggle="modal" data-target="#form-ajax-lost-password-popup"><?php esc_html_e('Lost your password?', 'lenxel-theme-support') ?></a>
+		   	<a class="lost-popup" data-toggle="modal" data-target="#form-ajax-lost-password-popup"><?php esc_html_e('Lost your password?', 'lenxel-plugin') ?></a>
 		   </div>
 			<?php echo html_entity_decode($login_form_bottom); ?>
 		</form>

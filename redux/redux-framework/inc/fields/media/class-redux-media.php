@@ -86,7 +86,7 @@ if ( ! class_exists( 'Redux_Media', false ) ) {
 				'preview_size' => 'thumbnail',
 				'url'          => true,
 				'alt'          => '',
-				'placeholder'  => esc_html__( 'No media selected', 'lenxel-theme-support' ),
+				'placeholder'  => esc_html__( 'No media selected', 'lenxel-plugin' ),
 				'readonly'     => true,
 				'class'        => '',
 				'filter' => array(
@@ -241,14 +241,14 @@ if ( ! class_exists( 'Redux_Media', false ) ) {
 			echo '<div class="upload_button_div">';
 
 			// If the user has WP3.5+ show upload/remove button.
-			echo '<span class="button media_upload_button" id="' . esc_attr( $this->field['id'] ) . '-media">' . esc_html__( 'Upload', 'lenxel-theme-support' ) . '</span>';
+			echo '<span class="button media_upload_button" id="' . esc_attr( $this->field['id'] ) . '-media">' . esc_html__( 'Upload', 'lenxel-plugin' ) . '</span>';
 
 			$hide = '';
 			if ( empty( $this->value['url'] ) || '' === $this->value['url'] ) {
 				$hide = ' hide';
 			}
 
-			echo '<span class="button remove-image' . esc_attr( $hide ) . '" id="reset_' . esc_attr( $this->field['id'] ) . '" rel="' . esc_attr( $this->field['id'] ) . '">' . esc_html__( 'Remove', 'lenxel-theme-support' ) . '</span>';
+			echo '<span class="button remove-image' . esc_attr( $hide ) . '" id="reset_' . esc_attr( $this->field['id'] ) . '" rel="' . esc_attr( $this->field['id'] ) . '">' . esc_html__( 'Remove', 'lenxel-plugin' ) . '</span>';
 			echo '</div>';
 
 			if ( $this->filters_enabled ) {

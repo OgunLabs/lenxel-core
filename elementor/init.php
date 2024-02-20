@@ -82,7 +82,7 @@ if(!class_exists('Lenxel_Elementor_Addons')){
 			Elementor\Plugin::instance()->elements_manager->add_category(
 				'lenxel_elements',
 				array(
-			  		'title' => __('Lenxel Elements', 'lenxel-theme-support'),
+			  		'title' => __('Lenxel Elements', 'lenxel-plugin'),
 			  		'icon'  => 'fa fa-plug',
 				),
 			9);

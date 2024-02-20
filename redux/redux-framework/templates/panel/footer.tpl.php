@@ -55,16 +55,16 @@ defined( 'ABSPATH' ) || exit;
 			<span class="spinner"></span>
 			<?php
 			if ( false === $this->parent->args['hide_save'] ) {
-				submit_button( esc_html__( 'Save Changes', 'lenxel-theme-support' ), 'primary', 'redux_save', false, array( 'id' => 'redux_bottom_save' ) );
+				submit_button( esc_html__( 'Save Changes', 'lenxel-plugin' ), 'primary', 'redux_save', false, array( 'id' => 'redux_bottom_save' ) );
 			}
 
 			if ( false === $this->parent->args['hide_reset'] ) {
-				submit_button( esc_html__( 'Reset Section', 'lenxel-theme-support' ), 'secondary', $this->parent->args['opt_name_triger'] . '[defaults-section]', false, array( 'id' => 'redux-defaults-section-bottom' ) );
-				submit_button( esc_html__( 'Reset All', 'lenxel-theme-support' ), 'secondary', $this->parent->args['opt_name_triger'] . '[defaults]', false, array( 'id' => 'redux-defaults-bottom' ) );
+				submit_button( esc_html__( 'Reset Section', 'lenxel-plugin' ), 'secondary', $this->parent->args['opt_name_triger'] . '[defaults-section]', false, array( 'id' => 'redux-defaults-section-bottom' ) );
+				submit_button( esc_html__( 'Reset All', 'lenxel-plugin' ), 'secondary', $this->parent->args['opt_name_triger'] . '[defaults]', false, array( 'id' => 'redux-defaults-bottom' ) );
 			}
 			?>
 		</div>
-		<div class="redux-ajax-loading" alt="<?php esc_html_e( 'Working...', 'lenxel-theme-support' ); ?>">&nbsp;</div>
+		<div class="redux-ajax-loading" alt="<?php esc_html_e( 'Working...', 'lenxel-plugin' ); ?>">&nbsp;</div>
 		<div class="clear"></div>
 	</div>
 </div>
