@@ -1,0 +1,19 @@
+{
+    "name": "Lenxel Theme Support",
+    "slug": "lenxel-theme-support",
+    "homepage": "http://lenxel.ogunlabs.com/",
+    "version": "1.0.0",
+    "requires": "5.5",
+    "author": "Ogunlabs",
+    "author_homepage": "http://lenxel.ogunlabs.com/",
+    "download_url": "https://lenxel.ogunlabs.com/plugins/lenxel-theme-support-wp.zip",
+    "sections": {
+        "description": "This theme support plugin enhances the Lenxel theme template, providing the flexibility to create a custom header, custom footer, team pages, and portfolio. This is essential to unlock the full range of features available in the Lenxel theme.",
+        "installation": "Upload or install this plugin to your site, then activate it from the 'Required Plugins' section of the theme.",
+        "changelog": ""
+    },
+    "banners": {
+        "low": "http://lenxel.ogunlabs.com/tf/lenxel_banner.png", 
+        "high": "http://lenxel.ogunlabs.com/tf/lenxel_banner.png"
+    }
+}
