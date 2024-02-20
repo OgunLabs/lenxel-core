@@ -3,10 +3,10 @@ Tags: LMS, Header builder, Footer builder, Teams, Portfolios, Lenxel Theme Setti
 Requires at least Wordpress: 5.0
 Tested up to Wordpress: 6.3
 Requires PHP: 7.1 or above
-Stable tag: 1.0.0
+Stable tag: 1.0.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
-Version: 1.0.0
+Version: 1.0.2
 
 Lenxel Plugin is an extension of the Lenxel theme template that features Team post-type, Portfolio post-type, Header builder, Footer builder, and Lenxel Theme settings. 
 

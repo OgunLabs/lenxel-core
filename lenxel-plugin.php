@@ -4,7 +4,7 @@
  * Plugin Name: Lenxel Plugin
  * Description: LMS, Header builder, Footer builder, Teams, Portfolios, Lenxel Theme Settings ... for theme
  * Plugin URI: https://ogunlabs.com/products/lenxel 
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Ogun Labs
  * Author URI: https://ogunlabs.com/
  * Text Domain: lenxel-plugin
