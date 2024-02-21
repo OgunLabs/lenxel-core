@@ -19,7 +19,7 @@
 
 				<?php if($item['link']['url']){ ?>
 					<div class="read-more">
-						<?php echo $this->lnx_render_link_html(esc_html__('Read more', 'lenxel-plugin'), $item['link'], 'btn-inline' ) ?>
+						<?php echo $this->lnx_render_link_html(esc_html__('Read more', 'lenxel-core'), $item['link'], 'btn-inline' ) ?>
 					</div>
 				<?php } ?>
 			</div>

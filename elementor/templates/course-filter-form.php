@@ -1,13 +1,13 @@
 <?php
    $filter_object = new \TUTOR\Course_Filter();
    $filter_levels = array(
-      'beginner'=> __('Beginner', 'lenxel-plugin'),
-      'intermediate'=> __('Intermediate', 'lenxel-plugin'),
-      'expert'=> __('Expert', 'lenxel-plugin')
+      'beginner'=> __('Beginner', 'lenxel-core'),
+      'intermediate'=> __('Intermediate', 'lenxel-core'),
+      'expert'=> __('Expert', 'lenxel-core')
    );
    $filter_prices=array(
-      'free'=> __('Free', 'lenxel-plugin'),
-      'paid'=> __('Paid', 'lenxel-plugin')
+      'free'=> __('Free', 'lenxel-core'),
+      'paid'=> __('Paid', 'lenxel-core')
    );
 
    $supported_filters = tutor_utils()->get_option('supported_course_filters', array());
@@ -32,7 +32,7 @@
             <?php if(in_array('search', $supported_filters) && $settings['search_keyword'] == 'yes'){ ?>
                <div class="course-filter_search">
                   <div class="content-inner">
-                     <input type="text" name="keyword" placeholder="<?php echo esc_html__('Search...', 'lenxel-plugin'); ?>"/>
+                     <input type="text" name="keyword" placeholder="<?php echo esc_html__('Search...', 'lenxel-core'); ?>"/>
                      <i class="tutor-icon-magnifying-glass-1"></i>
                   </div>   
                </div>
@@ -88,7 +88,7 @@
          <div class="form-action">
             <button class="btn-theme btn-action" type="submit">
                <i class="fi flaticon-magnifying-glass"></i>
-               <?php echo esc_html__('Search', 'lenxel-plugin') ?> 
+               <?php echo esc_html__('Search', 'lenxel-core') ?> 
             </button>
          </div>   
       </div>

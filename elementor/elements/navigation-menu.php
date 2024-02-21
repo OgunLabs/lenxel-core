@@ -44,7 +44,7 @@ class LNXElement_Navigation_Menu extends LNXElement_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'LNX Navigation Menu', 'lenxel-plugin' );
+		return __( 'LNX Navigation Menu', 'lenxel-core' );
 	}
 
 	/**
@@ -96,14 +96,14 @@ class LNXElement_Navigation_Menu extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => __( 'Content', 'lenxel-plugin' ),
+				'label' => __( 'Content', 'lenxel-core' ),
 			]
 		);
 
 		$this->add_control(
 			'menu',
 			[
-				'label' 			=> __( 'Menu', 'lenxel-plugin' ),
+				'label' 			=> __( 'Menu', 'lenxel-core' ),
 				'type' 			=> Controls_Manager::SELECT,
 				'options' 		=> $this->get_all_menus(),
 				'label_block' 	=> true,
@@ -114,19 +114,19 @@ class LNXElement_Navigation_Menu extends LNXElement_Base {
 		$this->add_control(
 			'align',
 			[
-				'label' => __( 'Alignment', 'lenxel-plugin' ),
+				'label' => __( 'Alignment', 'lenxel-core' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => __( 'Left', 'lenxel-plugin' ),
+						'title' => __( 'Left', 'lenxel-core' ),
 						'icon' => 'fa fa-align-left',
 					],
 					'center' => [
-						'title' => __( 'Center', 'lenxel-plugin' ),
+						'title' => __( 'Center', 'lenxel-core' ),
 						'icon' => 'fa fa-align-center',
 					],
 					'right' => [
-						'title' => __( 'Right', 'lenxel-plugin' ),
+						'title' => __( 'Right', 'lenxel-core' ),
 						'icon' => 'fa fa-align-right',
 					],
 				],
@@ -137,7 +137,7 @@ class LNXElement_Navigation_Menu extends LNXElement_Base {
 		$this->add_control(
 			'sub_menu_min_width',
 			[
-				'label' => __( 'Submenu Min Width (px)', 'lenxel-plugin' ),
+				'label' => __( 'Submenu Min Width (px)', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 250,
@@ -160,7 +160,7 @@ class LNXElement_Navigation_Menu extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_main_menu_style',
 			[
-				'label' => __( 'Main Menu', 'lenxel-plugin' ),
+				'label' => __( 'Main Menu', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -172,13 +172,13 @@ class LNXElement_Navigation_Menu extends LNXElement_Base {
       $this->start_controls_tab(
          'main_menu_style_normal',
          [
-            'label' => __('Normal', 'lenxel-plugin'),
+            'label' => __('Normal', 'lenxel-core'),
          ]
       );
       $this->add_control(
          'main_menu_text_color',
          [
-            'label'     => __('Text Color', 'lenxel-plugin'),
+            'label'     => __('Text Color', 'lenxel-core'),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .lnx-navigation-menu ul.lnx-nav-menu > li' => 'color: {{VALUE}}', 
@@ -188,7 +188,7 @@ class LNXElement_Navigation_Menu extends LNXElement_Base {
       $this->add_control(
          'main_menu_color',
          [
-            'label'     => __('Color', 'lenxel-plugin'),
+            'label'     => __('Color', 'lenxel-core'),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .lnx-navigation-menu ul.lnx-nav-menu > li > a' => 'color: {{VALUE}}',
@@ -200,13 +200,13 @@ class LNXElement_Navigation_Menu extends LNXElement_Base {
       $this->start_controls_tab(
          'main_menu_hover',
          [
-            'label' => __('Hover', 'lenxel-plugin'),
+            'label' => __('Hover', 'lenxel-core'),
          ]
       );
       $this->add_control(
          'main_menu_hover_color',
          [
-            'label'     => __('Color', 'lenxel-plugin'),
+            'label'     => __('Color', 'lenxel-core'),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .lnx-navigation-menu ul.lnx-nav-menu > li > a:hover' => 'color: {{VALUE}}', 
@@ -218,13 +218,13 @@ class LNXElement_Navigation_Menu extends LNXElement_Base {
       $this->start_controls_tab(
          'main_menu_active',
          [
-            'label' => __('Active', 'lenxel-plugin'),
+            'label' => __('Active', 'lenxel-core'),
          ]
       );
       $this->add_control(
          'main_menu_active_color',
          [
-            'label'     => __('Color', 'lenxel-plugin'),
+            'label'     => __('Color', 'lenxel-core'),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .lnx-navigation-menu ul.lnx-nav-menu > li.current_page_parent > a' => 'color: {{VALUE}}', 
@@ -238,7 +238,7 @@ class LNXElement_Navigation_Menu extends LNXElement_Base {
       $this->add_control(
          'menu_top_line_color',
          [
-            'label'     => __('Top Line Color', 'lenxel-plugin'),
+            'label'     => __('Top Line Color', 'lenxel-core'),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} ul.lnx-nav-menu > li > a .menu-title:after' => 'background-color: {{VALUE}}', 
@@ -257,7 +257,7 @@ class LNXElement_Navigation_Menu extends LNXElement_Base {
 		$this->add_responsive_control(
 			'main_menu_padding',
 			[
-				'label' => __( 'Menu Item Padding', 'lenxel-plugin' ),
+				'label' => __( 'Menu Item Padding', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
@@ -273,7 +273,7 @@ class LNXElement_Navigation_Menu extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_sub_menu_style',
 			[
-				'label' => __( 'Sub Menu', 'lenxel-plugin' ),
+				'label' => __( 'Sub Menu', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -284,13 +284,13 @@ class LNXElement_Navigation_Menu extends LNXElement_Base {
       $this->start_controls_tab(
          'sub_menu_style_normal',
          [
-            'label' => __('Normal', 'lenxel-plugin'),
+            'label' => __('Normal', 'lenxel-core'),
          ]
       );
       $this->add_control(
          'sub_menu_text_color',
          [
-            'label'     => __('Text Color', 'lenxel-plugin'),
+            'label'     => __('Text Color', 'lenxel-core'),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .lnx-navigation-menu ul.lnx-main-menu .submenu-inner' => 'color: {{VALUE}}', 
@@ -300,7 +300,7 @@ class LNXElement_Navigation_Menu extends LNXElement_Base {
       $this->add_control(
          'sub_menu_color',
          [
-            'label'     => __('Color', 'lenxel-plugin'),
+            'label'     => __('Color', 'lenxel-core'),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .lnx-navigation-menu ul.lnx-main-menu .submenu-inner a' => 'color: {{VALUE}}',
@@ -312,14 +312,14 @@ class LNXElement_Navigation_Menu extends LNXElement_Base {
       $this->start_controls_tab(
          'sub_menu_hover',
          [
-            'label' => __('Hover', 'lenxel-plugin'),
+            'label' => __('Hover', 'lenxel-core'),
          ]
       );
       
       $this->add_control(
          'sub_menu_hover_color',
          [
-            'label'     => __('Link Color', 'lenxel-plugin'),
+            'label'     => __('Link Color', 'lenxel-core'),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .lnx-navigation-menu ul.lnx-main-menu .submenu-inner a:hover' => 'color: {{VALUE}}', 
@@ -332,13 +332,13 @@ class LNXElement_Navigation_Menu extends LNXElement_Base {
       $this->start_controls_tab(
          'sub_menu_active',
          [
-            'label' => __('Active', 'lenxel-plugin'),
+            'label' => __('Active', 'lenxel-core'),
          ]
       );
       $this->add_control(
          'sub_menu_active_color',
          [
-            'label'     => __('Color', 'lenxel-plugin'),
+            'label'     => __('Color', 'lenxel-core'),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .lnx-navigation-menu ul.lnx-main-menu .submenu-inner li.current_page_parent a:hover' => 'color: {{VALUE}}', 
@@ -360,7 +360,7 @@ class LNXElement_Navigation_Menu extends LNXElement_Base {
 		$this->add_responsive_control(
 			'sub_menu_padding',
 			[
-				'label' => __( 'Menu Item Padding', 'lenxel-plugin' ),
+				'label' => __( 'Menu Item Padding', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [

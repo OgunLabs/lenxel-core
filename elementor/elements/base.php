@@ -19,7 +19,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 	  $this->start_controls_section(
 			'section_carousel_options',
 			 [
-				'label' => __('Carousel Options', 'lenxel-plugin'),
+				'label' => __('Carousel Options', 'lenxel-core'),
 				'type'  => Controls_Manager::SECTION,
 				'condition' => $condition,
 			 ]
@@ -29,7 +29,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		 $this->add_control(
 			 'ca_items_lg',
 			 [
-				'label'     => __('Columns for Large Screen', 'lenxel-plugin'),
+				'label'     => __('Columns for Large Screen', 'lenxel-core'),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => $single_item == true ? 1 : 3,
 				'options'   => array(1=>1, 2=>2, 3=>3, 4=>4, 5=>5, 6=>6)
@@ -39,7 +39,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'ca_items_md',
 			 [
-				'label'     => __('Columns for Medium Screen', 'lenxel-plugin'),
+				'label'     => __('Columns for Medium Screen', 'lenxel-core'),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => $single_item == true ? 1 : 3,
 				'options'   => array(1=>1, 2=>2, 3=>3, 4=>4, 5=>5, 6=>6)
@@ -49,7 +49,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 			 $this->add_control(
 				'ca_items_sm',
 				[
-				  'label'     => __('Columns for Small Screen', 'lenxel-plugin'),
+				  'label'     => __('Columns for Small Screen', 'lenxel-core'),
 				  'type'      => Controls_Manager::SELECT,
 				  'default'   => $single_item == true ? 1 : 2,
 				  'options'   => array(1=>1, 2=>2, 3=>3, 4=>4, 5=>5, 6=>6)
@@ -59,7 +59,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 			 $this->add_control(
 				'ca_items_xs',
 				[
-				  'label'     => __('Columns for Extra Small Screen', 'lenxel-plugin'),
+				  'label'     => __('Columns for Extra Small Screen', 'lenxel-core'),
 				  'type'      => Controls_Manager::SELECT,
 				  'default'   => 1,
 				  'options'   => array(1=>1, 2=>2, 3=>3, 4=>4, 5=>5, 6=>6)
@@ -68,7 +68,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 			 $this->add_control(
 				'ca_items_xx',
 				[
-				  'label'     => __('Columns for Very Extra Small Screen', 'lenxel-plugin'),
+				  'label'     => __('Columns for Very Extra Small Screen', 'lenxel-core'),
 				  'type'      => Controls_Manager::SELECT,
 				  'default'   => 1,
 				  'options'   => array(1=>1, 2=>2, 3=>3)
@@ -79,7 +79,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'ca_loop',
 			 [
-				'label'     => __('Loop', 'lenxel-plugin'),
+				'label'     => __('Loop', 'lenxel-core'),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes'
 			 ]
@@ -88,7 +88,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'ca_speed',
 			 [
-				'label'     => __('Speed', 'lenxel-plugin'),
+				'label'     => __('Speed', 'lenxel-core'),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 800,
 			 ]
@@ -97,7 +97,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'ca_auto_play',
 			 [
-				'label'     => __('Auto Play', 'lenxel-plugin'),
+				'label'     => __('Auto Play', 'lenxel-core'),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes'
 			 ]
@@ -106,7 +106,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'ca_auto_play_timeout',
 			 [
-				'label'     => __('Auto Play Timeout', 'lenxel-plugin'),
+				'label'     => __('Auto Play Timeout', 'lenxel-core'),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 6000,
 			 ]
@@ -115,7 +115,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'ca_auto_play_speed',
 			 [
-				'label'     => __('Auto Play Speed', 'lenxel-plugin'),
+				'label'     => __('Auto Play Speed', 'lenxel-core'),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 800,
 			 ]
@@ -124,7 +124,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'ca_play_hover',
 			 [
-				'label'     => __('Play Hover', 'lenxel-plugin'),
+				'label'     => __('Play Hover', 'lenxel-core'),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes'
 			 ]
@@ -133,7 +133,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'ca_navigation',
 			 [
-				'label'     => __('Navigation', 'lenxel-plugin'),
+				'label'     => __('Navigation', 'lenxel-core'),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes'
 			 ]
@@ -142,7 +142,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'ca_pagination',
 			 [
-				'label'     => __('Pagination', 'lenxel-plugin'),
+				'label'     => __('Pagination', 'lenxel-core'),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'no'
 			 ]
@@ -151,7 +151,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		$this->add_control(
 		  'ca_mouse_drag',
 		  [
-			 'label'     => __('Mouse Drag', 'lenxel-plugin'),
+			 'label'     => __('Mouse Drag', 'lenxel-core'),
 			 'type'      => Controls_Manager::SWITCHER,
 			 'default'   => 'yes',
 		  ]
@@ -160,7 +160,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		$this->add_control(
 		  'ca_touch_drag',
 		  [
-			 'label'     => __('Touch Drag', 'lenxel-plugin'),
+			 'label'     => __('Touch Drag', 'lenxel-core'),
 			 'type'      => Controls_Manager::SWITCHER,
 			 'default'   => 'yes'
 		  ]
@@ -168,7 +168,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		$this->add_responsive_control(
 		  'spacing_dots',
 		  [
-			 'label' => __( 'Dots Spacing', 'lenxel-plugin' ),
+			 'label' => __( 'Dots Spacing', 'lenxel-core' ),
 			 'type' => Controls_Manager::SLIDER,
 			 'default' => [
 				'size' => 10,
@@ -192,7 +192,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 	  $this->start_controls_section(
 		  'section_grid_options',
 		  [
-			 'label' => __('Grid Options', 'lenxel-plugin'),
+			 'label' => __('Grid Options', 'lenxel-core'),
 			 'type'  => Controls_Manager::SECTION,
 			 'condition' => $condition,
 		  ]
@@ -201,7 +201,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 	  $this->add_control(
 		  'grid_items_lg',
 		  [
-			 'label'     => __('Columns for Large Screen', 'lenxel-plugin'),
+			 'label'     => __('Columns for Large Screen', 'lenxel-core'),
 			 'type'      => Controls_Manager::SELECT,
 			 'default'   => 3,
 			 'options'   => array(1=>1, 2=>2, 3=>3, 4=>4, 5=>5, 6=>6)
@@ -211,7 +211,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		$this->add_control(
 		  'grid_items_md',
 		  [
-			 'label'     => __('Columns for Medium Screen', 'lenxel-plugin'),
+			 'label'     => __('Columns for Medium Screen', 'lenxel-core'),
 			 'type'      => Controls_Manager::SELECT,
 			 'default'   => 3,
 			 'options'   => array(1=>1, 2=>2, 3=>3, 4=>4, 5=>5, 6=>6)
@@ -221,7 +221,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'grid_items_sm',
 			 [
-				'label'     => __('Columns for Small Screen', 'lenxel-plugin'),
+				'label'     => __('Columns for Small Screen', 'lenxel-core'),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 2,
 				'options'   => array(1=>1, 2=>2, 3=>3, 4=>4, 5=>5, 6=>6)
@@ -231,7 +231,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'grid_items_xs',
 			 [
-				'label'     => __('Columns for Extra Small Screen', 'lenxel-plugin'),
+				'label'     => __('Columns for Extra Small Screen', 'lenxel-core'),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 1,
 				'options'   => array(1=>1, 2=>2, 3=>3, 4=>4, 5=>5, 6=>6)
@@ -241,7 +241,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'grid_items_xx',
 			 [
-				'label'     => __('Columns for Very Extra Small Screen', 'lenxel-plugin'),
+				'label'     => __('Columns for Very Extra Small Screen', 'lenxel-core'),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 1,
 				'options'   => array(1=>1, 2=>2, 3=>3)
@@ -251,7 +251,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'grid_remove_padding',
 			 [
-				'label'     => __('Remove Padding', 'lenxel-plugin'),
+				'label'     => __('Remove Padding', 'lenxel-core'),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'no',
 			 ]
@@ -461,9 +461,9 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 
 	 	if( ! $query ) $query = $wp_query;
 	 
-	 	$translate['prev'] =  esc_html__('Prev page', 'lenxel-plugin');
-	 	$translate['next'] =  esc_html__('Next page', 'lenxel-plugin');
-	 	$translate['load-more'] = esc_html__('Load more', 'lenxel-plugin');
+	 	$translate['prev'] =  esc_html__('Prev page', 'lenxel-core');
+	 	$translate['next'] =  esc_html__('Next page', 'lenxel-core');
+	 	$translate['load-more'] = esc_html__('Load more', 'lenxel-core');
 	 
 	 	$query->query_vars['paged'] > 1 ? $current = $query->query_vars['paged'] : $current = 1;  
 	 

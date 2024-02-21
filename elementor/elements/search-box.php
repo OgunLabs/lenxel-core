@@ -44,7 +44,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 	 */
 	public function get_title() {
 		$get_current_name = load_lenxel_widget_content_element('LNX Search Box');
-		return __( $get_current_name, 'lenxel-plugin' );
+		return __( $get_current_name, 'lenxel-core' );
 	}
 
 	/**
@@ -88,17 +88,17 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_layout',
 			[
-				'label' => __( 'Layout', 'lenxel-plugin' ),
+				'label' => __( 'Layout', 'lenxel-core' ),
 			]
 		);
 
 		$this->add_control(
 			'style',
 			[
-				'label' => __( 'Style', 'lenxel-plugin' ),
+				'label' => __( 'Style', 'lenxel-core' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'style-1' 		=> __( 'Style I', 'lenxel-plugin' ),
+					'style-1' 		=> __( 'Style I', 'lenxel-core' ),
 				],
 				'default' => 'style-1',
 			]
@@ -109,7 +109,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_icon',
 			[
-				'label' => __( 'Icon', 'lenxel-plugin' ),
+				'label' => __( 'Icon', 'lenxel-core' ),
 				'style' => ['style-1']
 			]
 		);
@@ -117,7 +117,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->add_control(
 			'selected_icon',
 			[
-				'label' => __( 'Icon', 'lenxel-plugin' ),
+				'label' => __( 'Icon', 'lenxel-core' ),
 				'type' => Controls_Manager::ICONS,
 				'fa4compatibility' => 'icon',
 				'default' => [
@@ -132,7 +132,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_icon_style',
 			[
-				'label' => __( 'Icon', 'lenxel-plugin' ),
+				'label' => __( 'Icon', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -140,19 +140,19 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->add_control(
 			'align',
 			[
-				'label' => __( 'Alignment', 'lenxel-plugin' ),
+				'label' => __( 'Alignment', 'lenxel-core' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => __( 'Left', 'lenxel-plugin' ),
+						'title' => __( 'Left', 'lenxel-core' ),
 						'icon' => 'fa fa-align-left',
 					],
 					'center' => [
-						'title' => __( 'Center', 'lenxel-plugin' ),
+						'title' => __( 'Center', 'lenxel-core' ),
 						'icon' => 'fa fa-align-center',
 					],
 					'right' => [
-						'title' => __( 'Right', 'lenxel-plugin' ),
+						'title' => __( 'Right', 'lenxel-core' ),
 						'icon' => 'fa fa-align-right',
 					],
 				],
@@ -169,7 +169,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->add_responsive_control(
 			'icon_size',
 			[
-				'label' => __( 'Icon Size', 'lenxel-plugin' ),
+				'label' => __( 'Icon Size', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 24,
@@ -190,7 +190,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->add_control(
 			'icon_color',
 			[
-				'label' => __( 'Color', 'lenxel-plugin' ),
+				'label' => __( 'Color', 'lenxel-core' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .gsc-search-box .control-search i' => 'color: {{VALUE}}', 
@@ -202,7 +202,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->add_control(
 			'icon_color_hover',
 			[
-				'label' => __( 'Color Hover', 'lenxel-plugin' ),
+				'label' => __( 'Color Hover', 'lenxel-core' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .gsc-search-box .control-search:hover i' => 'color: {{VALUE}}', 
@@ -214,7 +214,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->add_control(
 			'icon_background',
 			[
-				'label' => __( 'Background', 'lenxel-plugin' ),
+				'label' => __( 'Background', 'lenxel-core' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .gsc-search-box .control-search' => 'background: {{VALUE}}', 
@@ -225,7 +225,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->add_control(
 			'icon_background_hover',
 			[
-				'label' => __( 'Background Hover', 'lenxel-plugin' ),
+				'label' => __( 'Background Hover', 'lenxel-core' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .gsc-search-box .control-search:hover' => 'background: {{VALUE}}', 
@@ -236,7 +236,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->add_responsive_control(
 			'icon_padding',
 			[
-				'label' => __( 'Padding', 'lenxel-plugin' ),
+				'label' => __( 'Padding', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
@@ -248,7 +248,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->add_control(
 			'border_radius',
 			[
-				'label' => __( 'Border Radius', 'lenxel-plugin' ),
+				'label' => __( 'Border Radius', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
@@ -262,7 +262,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_content_style',
 			[
-				'label' => __( 'Content', 'lenxel-plugin' ),
+				'label' => __( 'Content', 'lenxel-core' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -270,7 +270,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->add_responsive_control(
 			'content_padding',
 			[
-				'label' => __( 'Padding', 'lenxel-plugin' ),
+				'label' => __( 'Padding', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'default' => [
@@ -290,7 +290,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 		$this->add_responsive_control(
 			'content_size',
 			[
-				'label' => __( 'Content Width', 'lenxel-plugin' ),
+				'label' => __( 'Content Width', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 200,

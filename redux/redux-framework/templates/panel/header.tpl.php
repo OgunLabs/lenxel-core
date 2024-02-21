@@ -8,7 +8,7 @@
  * @version:    4.0.0
  */
 
-$tip_title = esc_html__( 'Developer Mode Enabled', 'lenxel-plugin' );
+$tip_title = esc_html__( 'Developer Mode Enabled', 'lenxel-core' );
 
 if ( $this->parent->args_class->dev_mode_forced ) {
 	$is_debug     = false;
@@ -17,23 +17,23 @@ if ( $this->parent->args_class->dev_mode_forced ) {
 
 	if ( Redux_Helpers::is_wp_debug() ) {
 		$is_debug  = true;
-		$debug_bit = esc_html__( 'WP_DEBUG is enabled', 'lenxel-plugin' );
+		$debug_bit = esc_html__( 'WP_DEBUG is enabled', 'lenxel-core' );
 	}
 
 	$localhost_bit = '';
 	if ( Redux_Helpers::is_local_host() ) {
 		$is_localhost  = true;
-		$localhost_bit = esc_html__( 'you are working in a localhost environment', 'lenxel-plugin' );
+		$localhost_bit = esc_html__( 'you are working in a localhost environment', 'lenxel-core' );
 	}
 
 	$conjunction_bit = '';
 	if ( $is_localhost && $is_debug ) {
-		$conjunction_bit = ' ' . esc_html__( 'and', 'lenxel-plugin' ) . ' ';
+		$conjunction_bit = ' ' . esc_html__( 'and', 'lenxel-core' ) . ' ';
 	}
 
-	$tip_msg = esc_html__( 'This has been automatically enabled because', 'lenxel-plugin' ) . ' ' . $debug_bit . $conjunction_bit . $localhost_bit . '.';
+	$tip_msg = esc_html__( 'This has been automatically enabled because', 'lenxel-core' ) . ' ' . $debug_bit . $conjunction_bit . $localhost_bit . '.';
 } else {
-	$tip_msg = esc_html__( 'If you are not a developer, your theme/plugin author shipped with developer mode enabled. Contact them directly to fix it.', 'lenxel-plugin' );
+	$tip_msg = esc_html__( 'If you are not a developer, your theme/plugin author shipped with developer mode enabled. Contact them directly to fix it.', 'lenxel-core' );
 }
 
 ?>
@@ -45,7 +45,7 @@ if ( $this->parent->args_class->dev_mode_forced ) {
 					class="redux-dev-mode-notice-container redux-dev-qtip"
 					qtip-title="<?php echo esc_attr( $tip_title ); ?>"
 					qtip-content="<?php echo esc_attr( $tip_msg ); ?>">
-					<span class="redux-dev-mode-notice"><?php esc_html_e( 'Developer Mode Enabled', 'lenxel-plugin' ); ?></span>
+					<span class="redux-dev-mode-notice"><?php esc_html_e( 'Developer Mode Enabled', 'lenxel-core' ); ?></span>
 				</div>
 			<?php } ?>
 			<h2><?php echo wp_kses_post( $this->parent->args['display_name'] ); ?></h2>

@@ -34,10 +34,10 @@ if ( ! class_exists( 'Redux_Switch', false ) ) {
 			}
 
 			// Label ON.
-			$this->field['on'] = $this->field['on'] ?? esc_html__( 'On', 'lenxel-plugin' );
+			$this->field['on'] = $this->field['on'] ?? esc_html__( 'On', 'lenxel-core' );
 
 			// Label OFF.
-			$this->field['off'] = $this->field['off'] ?? esc_html__( 'Off', 'lenxel-plugin' );
+			$this->field['off'] = $this->field['off'] ?? esc_html__( 'Off', 'lenxel-core' );
 
 			echo '<div class="switch-options">';
 			echo '<label class="cb-enable' . esc_attr( $cb_enabled ) . '" data-id="' . esc_attr( $this->field['id'] ) . '"><span>' . esc_html( $this->field['on'] ) . '</span></label>';

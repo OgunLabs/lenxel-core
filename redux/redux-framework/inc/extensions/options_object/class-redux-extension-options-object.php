@@ -69,7 +69,7 @@ if ( ! class_exists( 'Redux_Extension_Options_Object', false ) ) {
 		public function add_section() {
 			$this->parent->sections[] = array(
 				'id'         => 'options-object',
-				'title'      => esc_html__( 'Options Object', 'lenxel-plugin' ),
+				'title'      => esc_html__( 'Options Object', 'lenxel-core' ),
 				'heading'    => '',
 				'icon'       => 'el el-info-circle',
 				'customizer' => false,

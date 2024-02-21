@@ -2,18 +2,18 @@
 if(!function_exists('lenxel_post_type_megamenu')   ){
   function lenxel_post_type_megamenu(){
     $labels = array(
-      'name' => __( 'Mega Menus', 'lenxel-plugin' ),
-      'singular_name' => __( 'Mega Menu', 'lenxel-plugin' ),
-      'add_new' => __( 'Add Profile Mega Menu', 'lenxel-plugin' ),
-      'add_new_item' => __( 'Add Profile Mega Menu', 'lenxel-plugin' ),
-      'edit_item' => __( 'Edit Mega Menu', 'lenxel-plugin' ),
-      'new_item' => __( 'New Profile', 'lenxel-plugin' ),
-      'view_item' => __( 'View Mega Menu Profile', 'lenxel-plugin' ),
-      'search_items' => __( 'Search Mega Menu Profiles', 'lenxel-plugin' ),
-      'not_found' => __( 'No Mega Menu Profiles found', 'lenxel-plugin' ),
-      'not_found_in_trash' => __( 'No Mega Menu Profiles found in Trash', 'lenxel-plugin' ),
-      'parent_item_colon' => __( 'Parent Mega Menu:', 'lenxel-plugin' ),
-      'menu_name' => __( 'Mega Menus', 'lenxel-plugin' ),
+      'name' => __( 'Mega Menus', 'lenxel-core' ),
+      'singular_name' => __( 'Mega Menu', 'lenxel-core' ),
+      'add_new' => __( 'Add Profile Mega Menu', 'lenxel-core' ),
+      'add_new_item' => __( 'Add Profile Mega Menu', 'lenxel-core' ),
+      'edit_item' => __( 'Edit Mega Menu', 'lenxel-core' ),
+      'new_item' => __( 'New Profile', 'lenxel-core' ),
+      'view_item' => __( 'View Mega Menu Profile', 'lenxel-core' ),
+      'search_items' => __( 'Search Mega Menu Profiles', 'lenxel-core' ),
+      'not_found' => __( 'No Mega Menu Profiles found', 'lenxel-core' ),
+      'not_found_in_trash' => __( 'No Mega Menu Profiles found in Trash', 'lenxel-core' ),
+      'parent_item_colon' => __( 'Parent Mega Menu:', 'lenxel-core' ),
+      'menu_name' => __( 'Mega Menus', 'lenxel-core' ),
     );
 
     $args = array(
@@ -67,7 +67,7 @@ if(!function_exists('lenxel_post_type_megamenu')   ){
       'post_status'    => 'publish',
     );
     $posts = new WP_Query($args);
-    $menu = array('default' => __('-- None --', 'lenxel-plugin') );
+    $menu = array('default' => __('-- None --', 'lenxel-core') );
     if( $posts->have_posts() ){
       while( $posts->have_posts() ){
         $posts->the_post();

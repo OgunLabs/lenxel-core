@@ -44,7 +44,7 @@ class LNXElement_Cart_Box extends LNXElement_Base {
 	 */
 	public function get_title() {
 		$get_current_name = $get_current_name = load_lenxel_widget_content_element('LNX Cart Box');
-		return __( $get_current_name, 'lenxel-plugin' );
+		return __( $get_current_name, 'lenxel-core' );
 	}
 
 	/**
@@ -88,7 +88,7 @@ class LNXElement_Cart_Box extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_icon_style',
 			[
-				'label' => __( 'Icon', 'lenxel-plugin' ),
+				'label' => __( 'Icon', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -96,7 +96,7 @@ class LNXElement_Cart_Box extends LNXElement_Base {
 		$this->add_control(
 			'icon_color',
 			[
-				'label' => __( 'Color', 'lenxel-plugin' ),
+				'label' => __( 'Color', 'lenxel-core' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .gsc-cart-box .mini-cart-header .mini-cart .title-cart' => 'color: {{VALUE}}', 
@@ -107,7 +107,7 @@ class LNXElement_Cart_Box extends LNXElement_Base {
 		$this->add_control(
 			'number_color',
 			[
-				'label' => __( 'Number Color', 'lenxel-plugin' ),
+				'label' => __( 'Number Color', 'lenxel-core' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .gsc-cart-box .mini-cart-header .mini-cart .mini-cart-items' => 'color: {{VALUE}}', 
@@ -117,7 +117,7 @@ class LNXElement_Cart_Box extends LNXElement_Base {
 		$this->add_control(
 			'number_background',
 			[
-				'label' => __( 'Number Background', 'lenxel-plugin' ),
+				'label' => __( 'Number Background', 'lenxel-core' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .gsc-cart-box .mini-cart-header .mini-cart .mini-cart-items' => 'background-color: {{VALUE}}', 

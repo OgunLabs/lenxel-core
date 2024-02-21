@@ -45,7 +45,7 @@ class LNXElement_User extends LNXElement_Base {
 	 */
 	public function get_title() {
       $get_current_name = load_lenxel_widget_content_element('LNX User');
-		return __( $get_current_name, 'lenxel-plugin' );
+		return __( $get_current_name, 'lenxel-core' );
 	}
 
 	/**
@@ -98,25 +98,25 @@ class LNXElement_User extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => __( 'Content', 'lenxel-plugin' ),
+				'label' => __( 'Content', 'lenxel-core' ),
 			]
 		);
       $this->add_control(
          'align',
          [
-            'label' => __( 'Alignment', 'lenxel-plugin' ),
+            'label' => __( 'Alignment', 'lenxel-core' ),
             'type' => Controls_Manager::CHOOSE,
             'options' => [
                'left' => [
-                  'title' => __( 'Left', 'lenxel-plugin' ),
+                  'title' => __( 'Left', 'lenxel-core' ),
                   'icon' => 'fa fa-align-left',
                ],
                'center' => [
-                  'title' => __( 'Center', 'lenxel-plugin' ),
+                  'title' => __( 'Center', 'lenxel-core' ),
                   'icon' => 'fa fa-align-center',
                ],
                'right' => [
-                  'title' => __( 'Right', 'lenxel-plugin' ),
+                  'title' => __( 'Right', 'lenxel-core' ),
                   'icon' => 'fa fa-align-right',
                ],
             ],
@@ -127,9 +127,9 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'text_login',
          [
-            'label'        => __('Login text', 'lenxel-plugin'),
+            'label'        => __('Login text', 'lenxel-core'),
             'type'         => Controls_Manager::TEXT,
-            'default'      => esc_html__('Login', 'lenxel-plugin'),
+            'default'      => esc_html__('Login', 'lenxel-core'),
             'label_block'  => true
          ]
       );
@@ -137,7 +137,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'link_login',
          [
-            'label'        => __('Custom Login Link Page', 'lenxel-plugin'),
+            'label'        => __('Custom Login Link Page', 'lenxel-core'),
             'type'         => Controls_Manager::TEXT,
             'label_block'  => true,
             'description'  => esc_html__('Empty = Popup Login Form', 'lenxel'),
@@ -150,7 +150,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'enable_register',
          [
-            'label' => __( 'Enable Register Link', 'lenxel-plugin' ),
+            'label' => __( 'Enable Register Link', 'lenxel-core' ),
             'type' => Controls_Manager::SWITCHER,
             'default' => 'yes'
          ]
@@ -159,9 +159,9 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'text_register',
          [
-            'label'        => __('Register Text', 'lenxel-plugin'),
+            'label'        => __('Register Text', 'lenxel-core'),
             'type'         => Controls_Manager::TEXT,
-            'default'      => esc_html__('Register', 'lenxel-plugin'),
+            'default'      => esc_html__('Register', 'lenxel-core'),
             'label_block'  => true,
             'condition' => [
                'enable_register' => 'yes'
@@ -172,7 +172,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'link_register',
          [
-            'label'        => __('Link Register', 'lenxel-plugin'),
+            'label'        => __('Link Register', 'lenxel-core'),
             'type'         => Controls_Manager::TEXT,
             'label_block'  => true,
             'description'  => esc_html__('Empty = default link', 'lenxel'),
@@ -185,7 +185,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'selected_icon',
          [
-            'label' => __( 'Icon', 'lenxel-plugin' ),
+            'label' => __( 'Icon', 'lenxel-core' ),
             'type' => Controls_Manager::ICONS,
             'fa4compatibility' => 'icon',
             'default' => [
@@ -198,7 +198,7 @@ class LNXElement_User extends LNXElement_Base {
 		$this->add_control(
 			'menu_width',
 			[
-				'label' => __( 'Menu Width (px)', 'lenxel-plugin' ),
+				'label' => __( 'Menu Width (px)', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 250,
@@ -220,7 +220,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->start_controls_section(
          'section_content_style',
          [
-            'label' => __( 'Text & Icon', 'lenxel-plugin' ),
+            'label' => __( 'Text & Icon', 'lenxel-core' ),
             'tab' => Controls_Manager::TAB_STYLE,
          ]
       );
@@ -228,7 +228,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'icon_style',
          [
-            'label' => __( 'Icon Style', 'lenxel-plugin' ),
+            'label' => __( 'Icon Style', 'lenxel-core' ),
             'type'      => Controls_Manager::HEADING,
          ]
       );
@@ -236,7 +236,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_responsive_control(
          'icon_size',
          [
-            'label' => __( 'Icon Size', 'lenxel-plugin' ),
+            'label' => __( 'Icon Size', 'lenxel-core' ),
             'type' => Controls_Manager::SLIDER,
             'default' => [
                'size' => 13,
@@ -257,7 +257,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'icon_color',
          [
-            'label' => __( 'Color', 'lenxel-plugin' ),
+            'label' => __( 'Color', 'lenxel-core' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .lnx-user .login-register i' => 'color: {{VALUE}}', 
@@ -269,7 +269,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'icon_color_hover',
          [
-            'label' => __( 'Color Hover', 'lenxel-plugin' ),
+            'label' => __( 'Color Hover', 'lenxel-core' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .lnx-user:hover .login-register .box-icon i' => 'color: {{VALUE}}', 
@@ -281,7 +281,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'text_style',
          [
-            'label' => __( 'Text Style', 'lenxel-plugin' ),
+            'label' => __( 'Text Style', 'lenxel-core' ),
             'type'      => Controls_Manager::HEADING,
          ]
       );
@@ -289,7 +289,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'text_color',
          [
-            'label' => __( 'Text Color', 'lenxel-plugin' ),
+            'label' => __( 'Text Color', 'lenxel-core' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .lnx-user .user-text' => 'color: {{VALUE}}', 
@@ -303,7 +303,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'text_color_hover',
          [
-            'label' => __( 'Text Color Hover', 'lenxel-plugin' ),
+            'label' => __( 'Text Color Hover', 'lenxel-core' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .lnx-user:hover .user-text' => 'color: {{VALUE}}', 
@@ -330,14 +330,14 @@ class LNXElement_User extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_account_menu_style',
 			[
-				'label' => __( 'Account Menu', 'lenxel-plugin' ),
+				'label' => __( 'Account Menu', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
       $this->add_control(
          'account_menu_color',
          [
-            'label'     => __('Color', 'lenxel-plugin'),
+            'label'     => __('Color', 'lenxel-core'),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .lnx-user .login-account .user-account .lnx-nav-menu > li > a' => 'color: {{VALUE}}',
@@ -347,7 +347,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'account_menu_color_hover',
          [
-            'label'     => __('Color Hover', 'lenxel-plugin'),
+            'label'     => __('Color Hover', 'lenxel-core'),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .lnx-user .login-account .user-account .lnx-nav-menu > li > a:hover' => 'color: {{VALUE}}',
@@ -366,7 +366,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_responsive_control(
          'main_menu_padding',
          [
-            'label' => __( 'Menu Item Padding', 'lenxel-plugin' ),
+            'label' => __( 'Menu Item Padding', 'lenxel-core' ),
             'type' => Controls_Manager::DIMENSIONS,
             'size_units' => [ 'px', '%' ],
             'selectors' => [

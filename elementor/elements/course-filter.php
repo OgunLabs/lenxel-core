@@ -45,7 +45,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 	 */
 	public function get_title() {
 		$get_current_name = load_lenxel_widget_content_element('LNX Course With Filter');
-		return __( $get_current_name, 'lenxel-plugin' );
+		return __( $get_current_name, 'lenxel-core' );
 	}
 
 	/**
@@ -97,18 +97,18 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => __( 'Content', 'lenxel-plugin' ),
+				'label' => __( 'Content', 'lenxel-core' ),
 			]
 		);
 
 		$this->add_control(
 			'filter_style',
 			[
-				'label'  => __( 'Filter Style', 'lenxel-plugin' ),
+				'label'  => __( 'Filter Style', 'lenxel-core' ),
 				'type'   => Controls_Manager::SELECT,
 				'options' => [
-				  'filter-dropdow' => esc_html__('Filter Dropdow', 'lenxel-plugin'),
-				  'filter-list'    => esc_html__('Filter List', 'lenxel-plugin'),
+				  'filter-dropdow' => esc_html__('Filter Dropdow', 'lenxel-core'),
+				  'filter-list'    => esc_html__('Filter List', 'lenxel-core'),
 				],
 				'default' => 'filter-dropdow',
 			]
@@ -117,12 +117,12 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->add_control(
 			'layout',
 			[
-				'label'  => __( 'Style', 'lenxel-plugin' ),
+				'label'  => __( 'Style', 'lenxel-core' ),
 				'type'   => Controls_Manager::SELECT,
 				'options' => [
-				  'filter-layout-top'   => esc_html__('Filter Top', 'lenxel-plugin'),
-				  'filter-layout-left' => esc_html__('Filter Left', 'lenxel-plugin'),
-				  'filter-layout-right' => esc_html__('Filter Right', 'lenxel-plugin'),
+				  'filter-layout-top'   => esc_html__('Filter Top', 'lenxel-core'),
+				  'filter-layout-left' => esc_html__('Filter Left', 'lenxel-core'),
+				  'filter-layout-right' => esc_html__('Filter Right', 'lenxel-core'),
 				],
 				'default' => 'filter-layout-top',
 			]
@@ -131,7 +131,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->add_control(
          'per_page',
          [
-            'label'     => __('Per Page', 'lenxel-plugin'),
+            'label'     => __('Per Page', 'lenxel-core'),
             'type'      => Controls_Manager::NUMBER,
             'default'   => '8',
          ]
@@ -141,7 +141,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 			$this->add_control(
 				'search_keyword',
 				[
-					'label' => esc_html__( 'Enable Search Keyword', 'lenxel-plugin' ),
+					'label' => esc_html__( 'Enable Search Keyword', 'lenxel-core' ),
 					'type' => Elementor\Controls_Manager::SWITCHER,
 					'default' => 'yes',
 				]
@@ -152,7 +152,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 			$this->add_control(
 				'search_category',
 				[
-					'label' => esc_html__( 'Enable Search Category', 'lenxel-plugin' ),
+					'label' => esc_html__( 'Enable Search Category', 'lenxel-core' ),
 					'type' => Elementor\Controls_Manager::SWITCHER,
 					'default' => 'yes',
 				]
@@ -163,7 +163,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 			$this->add_control(
 				'search_tags',
 				[
-					'label' => esc_html__( 'Enable Search Tags', 'lenxel-plugin' ),
+					'label' => esc_html__( 'Enable Search Tags', 'lenxel-core' ),
 					'type' => Elementor\Controls_Manager::SWITCHER,
 					'default' => 'no',
 				]
@@ -174,7 +174,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 			$this->add_control(
 				'search_level',
 				[
-					'label' => esc_html__( 'Enable Search Level', 'lenxel-plugin' ),
+					'label' => esc_html__( 'Enable Search Level', 'lenxel-core' ),
 					'type' => Elementor\Controls_Manager::SWITCHER,
 					'default' => 'yes',
 				]
@@ -184,7 +184,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->add_control(
 			'search_price',
 			[
-				'label' => esc_html__( 'Enable Search Price', 'lenxel-plugin' ),
+				'label' => esc_html__( 'Enable Search Price', 'lenxel-core' ),
 				'type' => Elementor\Controls_Manager::SWITCHER,
 				'default' => 'yes',
 			]
@@ -194,9 +194,9 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 			$this->add_control(
 				'placeholder_keyword',
 				[
-					'label' => esc_html__( 'Placeholder keyword input', 'lenxel-plugin' ),
+					'label' => esc_html__( 'Placeholder keyword input', 'lenxel-core' ),
 					'type' => Elementor\Controls_Manager::TEXT,
-					'default' => esc_html__('Search...', 'lenxel-plugin'),
+					'default' => esc_html__('Search...', 'lenxel-core'),
 					'label_block' => true,
 					'condition' => [
 					  'search_keyword' => array('yes')
@@ -209,9 +209,9 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 			$this->add_control(
 				'placeholder_category',
 				[
-					'label' => esc_html__( 'Placeholder Category', 'lenxel-plugin' ),
+					'label' => esc_html__( 'Placeholder Category', 'lenxel-core' ),
 					'type' => Elementor\Controls_Manager::TEXT,
-					'default' => esc_html__('All Categories', 'lenxel-plugin'),
+					'default' => esc_html__('All Categories', 'lenxel-core'),
 					'label_block' => true,
 					'condition' => [
 					  'search_category' => array('yes')
@@ -224,9 +224,9 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 			$this->add_control(
 				'placeholder_tags',
 				[
-					'label' => esc_html__( 'Placeholder Category', 'lenxel-plugin' ),
+					'label' => esc_html__( 'Placeholder Category', 'lenxel-core' ),
 					'type' => Elementor\Controls_Manager::TEXT,
-					'default' => esc_html__('All Tags', 'lenxel-plugin'),
+					'default' => esc_html__('All Tags', 'lenxel-core'),
 					'label_block' => true,
 					'condition' => [
 					  'search_tags' => ('yes')
@@ -239,9 +239,9 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 			$this->add_control(
 				'placeholder_level',
 				[
-					'label' => esc_html__( 'Placeholder Level', 'lenxel-plugin' ),
+					'label' => esc_html__( 'Placeholder Level', 'lenxel-core' ),
 					'type' => Elementor\Controls_Manager::TEXT,
-					'default' => esc_html__('Level', 'lenxel-plugin'),
+					'default' => esc_html__('Level', 'lenxel-core'),
 					'label_block' => true,
 					'condition' => [
 					  'search_level' => ('yes')
@@ -253,9 +253,9 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->add_control(
 			'placeholder_price',
 			[
-				'label' => esc_html__( 'Placeholder Price', 'lenxel-plugin' ),
+				'label' => esc_html__( 'Placeholder Price', 'lenxel-core' ),
 				'type' => Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__('Price', 'lenxel-plugin'),
+				'default' => esc_html__('Price', 'lenxel-core'),
 				'label_block' => true,
 				'condition' => [
 				  'search_price' => ('yes')
@@ -266,7 +266,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->add_control(
 			'label_input',
 			[
-				'label' => esc_html__( 'Enable Label Input', 'lenxel-plugin' ),
+				'label' => esc_html__( 'Enable Label Input', 'lenxel-core' ),
 				'type' => Elementor\Controls_Manager::SWITCHER,
 				'default' => 'yes',
 			]
@@ -275,7 +275,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->add_control(
 			'filter_order',
 			[
-				'label' => esc_html__( 'Disable Order', 'lenxel-plugin' ),
+				'label' => esc_html__( 'Disable Order', 'lenxel-core' ),
 				'type' => Elementor\Controls_Manager::SWITCHER,
 				'default' => 'yes',
 			]
@@ -284,7 +284,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->add_control(
          'pagination',
          [
-            'label'     => __('Pagination', 'lenxel-plugin'),
+            'label'     => __('Pagination', 'lenxel-core'),
             'type'      => Controls_Manager::SWITCHER,
             'default'   => 'no',
          ]
@@ -297,7 +297,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_video_style',
 			[
-				'label' => __( 'Video Button', 'lenxel-plugin' ),
+				'label' => __( 'Video Button', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'video' => 'yes',
@@ -307,7 +307,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->add_control(
 			'video_background_primary',
 			[
-				'label' => __( 'Primary Color', 'lenxel-plugin' ),
+				'label' => __( 'Primary Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-heading .heading-video .video-link' => 'background: {{VALUE}};',
@@ -317,7 +317,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->add_control(
 			'video_background_second',
 			[
-				'label' => __( 'Primary Color', 'lenxel-plugin' ),
+				'label' => __( 'Primary Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-heading .heading-video .video-link:after' => 'border-color: {{VALUE}};',
@@ -327,7 +327,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->add_control(
 			'video_color',
 			[
-				'label' => __( 'Text Button Video Color', 'lenxel-plugin' ),
+				'label' => __( 'Text Button Video Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-heading  .heading-video .video-link' => 'color: {{VALUE}};',
@@ -337,7 +337,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->add_responsive_control(
 			'video_size',
 			[
-				'label' => __( 'Video Button Size', 'lenxel-plugin' ),
+				'label' => __( 'Video Button Size', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 92,
@@ -356,7 +356,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->add_control(
 			'border_radius',
 			[
-				'label' => __( 'Border Radius', 'lenxel-plugin' ),
+				'label' => __( 'Border Radius', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
@@ -369,14 +369,14 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_box_style',
 			[
-				'label' => __( 'Box', 'lenxel-plugin' ),
+				'label' => __( 'Box', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 		$this->add_responsive_control(
 			'box_space',
 			[
-				'label' => __( 'Heading Element Space Bottom', 'lenxel-plugin' ),
+				'label' => __( 'Heading Element Space Bottom', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 26,
@@ -397,14 +397,14 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_title_style',
 			[
-				'label' => __( 'Title', 'lenxel-plugin' ),
+				'label' => __( 'Title', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 		$this->add_control(
 			'title_color',
 			[
-				'label' => __( 'Text Color', 'lenxel-plugin' ),
+				'label' => __( 'Text Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-heading .title' => 'color: {{VALUE}};',
@@ -421,7 +421,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->add_responsive_control(
 			'title_space',
 			[
-				'label' => __( 'Title Spacing', 'lenxel-plugin' ),
+				'label' => __( 'Title Spacing', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 0,
@@ -442,7 +442,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_sub_title_style',
 			[
-				'label' => __( 'Sub Title', 'lenxel-plugin' ),
+				'label' => __( 'Sub Title', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -450,7 +450,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->add_control(
 			'sub_title_color',
 			[
-				'label' => __( 'Text Color', 'lenxel-plugin' ),
+				'label' => __( 'Text Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-heading .sub-title' => 'color: {{VALUE}};',
@@ -461,7 +461,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->add_control(
 			'sub_title_line_color',
 			[
-				'label' => __( 'Line Color', 'lenxel-plugin' ),
+				'label' => __( 'Line Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-heading .sub-title:after' => 'background: {{VALUE}};',
@@ -472,7 +472,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->add_responsive_control(
 			'sub_title_space',
 			[
-				'label' => __( 'Sub Title Spacing', 'lenxel-plugin' ),
+				'label' => __( 'Sub Title Spacing', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 10,
@@ -502,7 +502,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_desc_style',
 			[
-				'label' => __( 'Description', 'lenxel-plugin' ),
+				'label' => __( 'Description', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -510,7 +510,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->add_control(
 			'desc_color',
 			[
-				'label' => __( 'Text Color', 'lenxel-plugin' ),
+				'label' => __( 'Text Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-heading .title-desc' => 'color: {{VALUE}};',
@@ -529,7 +529,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 		$this->add_responsive_control(
 			'description_space',
 			[
-				'label' => __( 'Description Spacing', 'lenxel-plugin' ),
+				'label' => __( 'Description Spacing', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px'],
 				'default' => [

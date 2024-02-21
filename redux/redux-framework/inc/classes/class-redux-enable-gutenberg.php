@@ -164,7 +164,7 @@ if ( ! class_exists( 'Redux_Enable_Gutenberg', false ) ) {
 			$data = array(
 				'url'     => '',
 				'content' => '',
-				'header'  => __( 'Gutenberg is currently disabled!', 'lenxel-plugin' ),
+				'header'  => __( 'Gutenberg is currently disabled!', 'lenxel-core' ),
 				'button'  => '',
 			);
 
@@ -172,24 +172,24 @@ if ( ! class_exists( 'Redux_Enable_Gutenberg', false ) ) {
 
 				if ( isset( $_GET[ $this->decativate_option ] ) ) {  // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					// That didn't work.
-					$data['header']  = __( 'Hmm, it seems something else is disabling Gutenberg...', 'lenxel-plugin' );
+					$data['header']  = __( 'Hmm, it seems something else is disabling Gutenberg...', 'lenxel-core' );
 					$data['content'] = sprintf( '<p>' . esc_html( "Well seems like we have more to do. Don't worry, we can still fix this! Click the $1%sEnable Gutenberg$2%s button and Redux will enable Gutenberg for you." ) . '</p>', '<strong>', '</strong>' );
 				} elseif ( self::$theme_disabled ) {
-					$data['header']   = __( 'Your theme author has disabled Gutenberg!', 'lenxel-plugin' );
+					$data['header']   = __( 'Your theme author has disabled Gutenberg!', 'lenxel-core' );
 					$data['content'] .= sprintf( '<p>' . esc_html( "It looks like your theme has disabled Gutenberg. Don\'t panic though! Click the $1%sEnable Gutenberg$2%s button to the right and Redux will enable Gutenberg for you." ) . '</p>', '<strong>', '</strong>' );
 				} else {
-					$data['header']   = __( 'Looks like something has disabled Gutenberg?', 'lenxel-plugin' );
+					$data['header']   = __( 'Looks like something has disabled Gutenberg?', 'lenxel-core' );
 					$data['content'] .= sprintf( '<p>' . esc_html( "Did you know that Gutenberg is disabled? If that\'s intended you can dismiss this notice, not what you intended? Click $1%sEnable Gutenberg$2%s and Redux will automatically fix this for you." ) . '</p>', '<strong>', '</strong>' );
 				}
 
 				$data['url']    = $auto_enable_url;
-				$data['button'] = __( 'Enable Gutenberg', 'lenxel-plugin' );
+				$data['button'] = __( 'Enable Gutenberg', 'lenxel-core' );
 
 			} elseif ( empty( self::$known_plugins ) ) {
 				// Disabled by the theme or other.
-				$data['header'] = __( 'Your theme', 'lenxel-plugin' );
+				$data['header'] = __( 'Your theme', 'lenxel-core' );
 				$data['url']    = $auto_enable_url;
-				$data['button'] = __( 'Enable Gutenberg', 'lenxel-plugin' );
+				$data['button'] = __( 'Enable Gutenberg', 'lenxel-core' );
 			} else {
 				// Disable Plugins!
 				$all_plugins = get_plugins();
@@ -207,10 +207,10 @@ if ( ! class_exists( 'Redux_Enable_Gutenberg', false ) ) {
 
 				$data['url'] = $deativate_url;
 				if ( 1 === count( self::$known_plugins ) ) {
-					$data['button']  = __( 'Disable Plugin', 'lenxel-plugin' );
+					$data['button']  = __( 'Disable Plugin', 'lenxel-core' );
 					$data['content'] = sprintf( '<p>The following plugin is preventing Gutenberg from working: %s. To automatically fix the issue click the <strong>Disable Plugin</strong> button on the right and Redux will enable it for you.</p>', $plugins, esc_url( 'https://kinsta.com/blog/gutenberg-wordpress-editor/' ) );
 				} else {
-					$data['button']  = __( 'Disable Plugins', 'lenxel-plugin' );
+					$data['button']  = __( 'Disable Plugins', 'lenxel-core' );
 					$data['content'] = sprintf( '<p>The following plugin is preventing Gutenberg from working: %s. To automatically fix the issue click the <strong>Disable Plugins</strong> button on the right and Redux will enable it for you.</p>', $plugins, esc_url( 'https://kinsta.com/blog/gutenberg-wordpress-editor/' ) );
 				}
 			}
@@ -329,7 +329,7 @@ if ( ! class_exists( 'Redux_Enable_Gutenberg', false ) ) {
 				<div class="redux-notice-inner">
 					<div class="redux-notice-icon">
 						<?php /* translators: 1. Name */ ?>
-						<img src="<?php echo esc_url( Redux_Core::$url . '/assets/img/icon--color.svg' ); ?>" alt="<?php echo esc_attr__( 'Redux WordPress Plugin', 'lenxel-plugin' ); ?>"/>
+						<img src="<?php echo esc_url( Redux_Core::$url . '/assets/img/icon--color.svg' ); ?>" alt="<?php echo esc_attr__( 'Redux WordPress Plugin', 'lenxel-core' ); ?>"/>
 					</div>
 					<div class="redux-notice-content">
 						<?php /* translators: 1. Name */ ?>
@@ -338,7 +338,7 @@ if ( ! class_exists( 'Redux_Enable_Gutenberg', false ) ) {
 					</div>
 					<div class="redux-install-now">
 						<?php printf( '<a href="%1$s" class="button button-primary redux-install-button">%2$s</a>', esc_url( $data['url'] ), esc_html( $data['button'] ) ); ?>
-						<a href="<?php echo esc_url( $no_bug_url ); ?>" class="no-thanks"><?php echo esc_html__( 'No Thanks', 'lenxel-plugin' ); ?></a>
+						<a href="<?php echo esc_url( $no_bug_url ); ?>" class="no-thanks"><?php echo esc_html__( 'No Thanks', 'lenxel-core' ); ?></a>
 					</div>
 				</div>
 			</div>
@@ -499,7 +499,7 @@ if ( ! class_exists( 'Redux_Enable_Gutenberg', false ) ) {
 	new Redux_Enable_Gutenberg(
 		array(
 			'slug' => 'redux-framework',
-			'name' => __( 'Redux', 'lenxel-plugin' ),
+			'name' => __( 'Redux', 'lenxel-core' ),
 		)
 	);
 

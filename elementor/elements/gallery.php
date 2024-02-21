@@ -19,7 +19,7 @@ class LNXElement_Gallery extends LNXElement_Base{
 
 	public function get_title() {
 		$get_current_name = load_lenxel_widget_content_element('LNX Gallery');
-		return __($get_current_name, 'lenxel-plugin');
+		return __($get_current_name, 'lenxel-core');
 	}
 
 	 /**
@@ -57,7 +57,7 @@ class LNXElement_Gallery extends LNXElement_Base{
 		$this->start_controls_section(
 			'section_query',
 			[
-				'label' => __('Query & Layout', 'lenxel-plugin'),
+				'label' => __('Query & Layout', 'lenxel-core'),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -66,7 +66,7 @@ class LNXElement_Gallery extends LNXElement_Base{
       $repeater->add_control(
          'image',
          [
-            'label'       => __('Image', 'lenxel-plugin'),
+            'label'       => __('Image', 'lenxel-core'),
             'type'        => Controls_Manager::MEDIA,
             'show_label' => false,
             'default'    => [
@@ -77,16 +77,16 @@ class LNXElement_Gallery extends LNXElement_Base{
      	$repeater->add_control(
          'title',
          [
-            'label'   => __('Title', 'lenxel-plugin'),
-            'default' => esc_html__('Luxury Interior', 'lenxel-plugin'),
+            'label'   => __('Title', 'lenxel-core'),
+            'default' => esc_html__('Luxury Interior', 'lenxel-core'),
             'type'    => Controls_Manager::TEXT,
          ]
      	);
 		$repeater->add_control(
          'sub_title',
          [
-            'label'   => __('Sub-Title', 'lenxel-plugin'),
-            'default' => esc_html__('Charity', 'lenxel-plugin'),
+            'label'   => __('Sub-Title', 'lenxel-core'),
+            'default' => esc_html__('Charity', 'lenxel-core'),
             'type'    => Controls_Manager::TEXT,
          ]
      	);
@@ -94,7 +94,7 @@ class LNXElement_Gallery extends LNXElement_Base{
 		$this->add_control(
          'images',
          [
-            'label'       => __('Testimonials Content Item', 'lenxel-plugin'),
+            'label'       => __('Testimonials Content Item', 'lenxel-core'),
             'type'        => Controls_Manager::REPEATER,
             'fields'      => $repeater->get_controls(),
             'title_field' => '{{{ title }}}',
@@ -103,36 +103,36 @@ class LNXElement_Gallery extends LNXElement_Base{
                   'image'    => [
                      'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/image-2.jpg',
                   ],
-                  'title' => esc_html__('Lenxel Education', 'lenxel-plugin'),
-                  'sub_title' => esc_html__('Learning', 'lenxel-plugin'),
+                  'title' => esc_html__('Lenxel Education', 'lenxel-core'),
+                  'sub_title' => esc_html__('Learning', 'lenxel-core'),
               	),
                array(
                   'image'    => [
                      'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/image-2.jpg',
                   ],
-                  'title' => esc_html__('Lenxel Education', 'lenxel-plugin'),
-                  'sub_title' => esc_html__('Learning', 'lenxel-plugin'),
+                  'title' => esc_html__('Lenxel Education', 'lenxel-core'),
+                  'sub_title' => esc_html__('Learning', 'lenxel-core'),
               	),
                array(
                   'image'    => [
                      'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/image-2.jpg',
                   ],
-                  'title' => esc_html__('Lenxel Education', 'lenxel-plugin'),
-                  'sub_title' => esc_html__('Learning', 'lenxel-plugin'),
+                  'title' => esc_html__('Lenxel Education', 'lenxel-core'),
+                  'sub_title' => esc_html__('Learning', 'lenxel-core'),
               	),
                array(
                   'image'    => [
                      'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/image-2.jpg',
                   ],
-                  'title' => esc_html__('Lenxel Education', 'lenxel-plugin'),
-                  'sub_title' => esc_html__('Learning', 'lenxel-plugin'),
+                  'title' => esc_html__('Lenxel Education', 'lenxel-core'),
+                  'sub_title' => esc_html__('Learning', 'lenxel-core'),
               	),
                array(
                   'image'    => [
                      'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/image-2.jpg',
                   ],
-                  'title' => esc_html__('Lenxel Education', 'lenxel-plugin'),
-                  'sub_title' => esc_html__('Learning', 'lenxel-plugin'),
+                  'title' => esc_html__('Lenxel Education', 'lenxel-core'),
+                  'sub_title' => esc_html__('Learning', 'lenxel-core'),
               	),
             )
          ]
@@ -141,29 +141,29 @@ class LNXElement_Gallery extends LNXElement_Base{
 		$this->add_control( // xx Layout
 			'layout_heading',
 			[
-				'label'   => __( 'Layout', 'lenxel-plugin' ),
+				'label'   => __( 'Layout', 'lenxel-core' ),
 				'type'    => Controls_Manager::HEADING,
 			]
 		);
 		$this->add_control(
 			'layout',
 			[
-				'label'   => __( 'Layout Display', 'lenxel-plugin' ),
+				'label'   => __( 'Layout Display', 'lenxel-core' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'grid',
 				'options' => [
-					'grid'      => __( 'Grid', 'lenxel-plugin' ),
-					'carousel'  => __( 'Carousel', 'lenxel-plugin' ),
+					'grid'      => __( 'Grid', 'lenxel-core' ),
+					'carousel'  => __( 'Carousel', 'lenxel-core' ),
 				]
 			]
 	  	);
 		$this->add_control(
 			'style',
 			[
-				'label'     => __('Style', 'lenxel-plugin'),
+				'label'     => __('Style', 'lenxel-core'),
 				'type'      => \Elementor\Controls_Manager::SELECT,
 				'options' => [
-					'gallery-style-1'           => __( 'Gallery Style I', 'lenxel-plugin' ),
+					'gallery-style-1'           => __( 'Gallery Style I', 'lenxel-core' ),
 				],
 				'default' => 'style-1',
 			]
@@ -171,7 +171,7 @@ class LNXElement_Gallery extends LNXElement_Base{
 		$this->add_control(
 			'image_size',
 			[
-				'label'     => __('Style', 'lenxel-plugin'),
+				'label'     => __('Style', 'lenxel-core'),
 				'type'      => \Elementor\Controls_Manager::SELECT,
 				'options'   => $this->get_thumbnail_size(),
 				'default'   => 'lenxel_medium'
@@ -180,7 +180,7 @@ class LNXElement_Gallery extends LNXElement_Base{
 	  	$this->add_control(
 			'pagination',
 			[
-				'label'     => __('Pagination', 'lenxel-plugin'),
+				'label'     => __('Pagination', 'lenxel-core'),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'no',
 				'condition' => [

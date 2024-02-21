@@ -692,9 +692,9 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 			wp_enqueue_script( 'redux-extension-previewer-js', $this->extension_url . 'assets/js/preview.js', array(), self::$version, true );
 
 			$localize = array(
-				'save_pending'   => esc_html__( 'You have changes that are not saved. Would you like to save them now?', 'lenxel-plugin' ),
-				'reset_confirm'  => esc_html__( 'Are you sure? Resetting will lose all custom values.', 'lenxel-plugin' ),
-				'preset_confirm' => esc_html__( 'Your current options will be replaced with the values of this preset. Would you like to proceed?', 'lenxel-plugin' ),
+				'save_pending'   => esc_html__( 'You have changes that are not saved. Would you like to save them now?', 'lenxel-core' ),
+				'reset_confirm'  => esc_html__( 'Are you sure? Resetting will lose all custom values.', 'lenxel-core' ),
+				'preset_confirm' => esc_html__( 'Your current options will be replaced with the values of this preset. Would you like to proceed?', 'lenxel-core' ),
 				'opt_name_triger'       => $this->args['opt_name_triger'],
 				'options'        => $this->parent->options,
 				'defaults'       => $this->parent->options_defaults,
@@ -718,9 +718,9 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 			global $wp_styles;
 
 			$localize = array(
-				'save_pending'   => esc_html__( 'You have changes that are not saved.  Would you like to save them now?', 'lenxel-plugin' ),
-				'reset_confirm'  => esc_html__( 'Are you sure?  Resetting will lose all custom values.', 'lenxel-plugin' ),
-				'preset_confirm' => esc_html__( 'Your current options will be replaced with the values of this preset.  Would you like to proceed?', 'lenxel-plugin' ),
+				'save_pending'   => esc_html__( 'You have changes that are not saved.  Would you like to save them now?', 'lenxel-core' ),
+				'reset_confirm'  => esc_html__( 'Are you sure?  Resetting will lose all custom values.', 'lenxel-core' ),
+				'preset_confirm' => esc_html__( 'Your current options will be replaced with the values of this preset.  Would you like to proceed?', 'lenxel-core' ),
 				'opt_name_triger'       => $this->args['opt_name_triger'],
 				'field'          => $this->parent->options,
 				'defaults'       => $this->parent->options_defaults,

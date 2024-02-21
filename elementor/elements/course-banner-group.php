@@ -41,7 +41,7 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 	*/
 	public function get_title() {
 		$get_current_name = load_lenxel_widget_content_element('LNX Course Banner Group');
-		 return __($get_current_name, 'lenxel-plugin');
+		 return __($get_current_name, 'lenxel-core');
 	}
 
 	/**
@@ -85,18 +85,18 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => __('Content', 'lenxel-plugin'),
+				'label' => __('Content', 'lenxel-core'),
 			]
 		);
 		$this->add_control(
 			'style',
 			[
-				'label' => __( 'Style', 'lenxel-plugin' ),
+				'label' => __( 'Style', 'lenxel-core' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-				  'style-1' => esc_html__('Style I', 'lenxel-plugin'),
-				  'style-2' => esc_html__('Style II', 'lenxel-plugin'),
-				  'style-3' => esc_html__('Style III', 'lenxel-plugin')
+				  'style-1' => esc_html__('Style I', 'lenxel-core'),
+				  'style-2' => esc_html__('Style II', 'lenxel-core'),
+				  'style-3' => esc_html__('Style III', 'lenxel-core')
 				],
 				'default' => 'style-1',
 			]
@@ -105,12 +105,12 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 		$this->add_control(
 			'taxonomy',
 			[
-				'label' => __( 'Style', 'lenxel-plugin' ),
+				'label' => __( 'Style', 'lenxel-core' ),
 				'type' => Controls_Manager::SELECT,
 				'label_block'	=> true,
 				'options' => [
-				  'course-category' => esc_html__('Course Catgegory Taxonomy', 'lenxel-plugin'),
-				  'course-tag' => esc_html__('Course Tag Taxonomy', 'lenxel-plugin'),
+				  'course-category' => esc_html__('Course Catgegory Taxonomy', 'lenxel-core'),
+				  'course-tag' => esc_html__('Course Tag Taxonomy', 'lenxel-core'),
 				],
 				'default' => 'course-category',
 			]
@@ -120,9 +120,9 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 		$repeater->add_control(
 			'title',
 		  	[
-			 	'label'       => __('Title', 'lenxel-plugin'),
+			 	'label'       => __('Title', 'lenxel-core'),
 			 	'type'        => Controls_Manager::TEXT,
-			 	'placeholder' => esc_html__( 'Add your Title', 'lenxel-plugin' ),
+			 	'placeholder' => esc_html__( 'Add your Title', 'lenxel-core' ),
 			 	'label_block' => true,
 			 	'default'     => 'Art & Design',
 		  	]
@@ -130,16 +130,16 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 		$repeater->add_control(
 			'term_slug',
 		  	[
-			 	'label'     => __( 'Category/Tag Course Slug', 'lenxel-plugin' ),
+			 	'label'     => __( 'Category/Tag Course Slug', 'lenxel-core' ),
 			 	'type'      => Controls_Manager::TEXT,
 			 	'label_block' => true,
-			 	'placeholder' => __( 'Add term slug here', 'lenxel-plugin' ),
+			 	'placeholder' => __( 'Add term slug here', 'lenxel-core' ),
 		  	]
 		);
 		$repeater->add_control(
 			'image',
 		  [
-			 'label'      => __('Choose Image', 'lenxel-plugin'),
+			 'label'      => __('Choose Image', 'lenxel-core'),
 			 'default'    => [
 				  'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/image-4.jpg',
 			 ],
@@ -154,7 +154,7 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 		$repeater->add_control(
 			'selected_icon',
 			[
-				'label'      => __('Choose Icon (Optional of Style II)', 'lenxel-plugin'),
+				'label'      => __('Choose Icon (Optional of Style II)', 'lenxel-core'),
 				'type'       => Controls_Manager::ICONS,
 				'default' => [
 				  	'value' => 'fas fa-home',
@@ -166,10 +166,10 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 		$repeater->add_control(
 			'sub_title',
 		  	[
-			 	'label'       => __('Sub Title (Optional of Style II)', 'lenxel-plugin'),
+			 	'label'       => __('Sub Title (Optional of Style II)', 'lenxel-core'),
 			 	'type'        => Controls_Manager::TEXT,
-			 	'placeholder' => esc_html__( 'Add your Sub-Title', 'lenxel-plugin' ),
-			 	'default'     => esc_html__('46 hours course time', 'lenxel-plugin'),
+			 	'placeholder' => esc_html__( 'Add your Sub-Title', 'lenxel-core' ),
+			 	'default'     => esc_html__('46 hours course time', 'lenxel-core'),
 			 	'label_block' => true,
 		  	]
 		);
@@ -177,46 +177,46 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 		$repeater->add_control(
 			'custom_link',
 		  	[
-			 	'label'       => __('Custom Link', 'lenxel-plugin'),
+			 	'label'       => __('Custom Link', 'lenxel-core'),
 			 	'type'        => Controls_Manager::URL,
-			 	'placeholder' => esc_html__( 'Add Your Custom Link', 'lenxel-plugin' ),
+			 	'placeholder' => esc_html__( 'Add Your Custom Link', 'lenxel-core' ),
 		  	]
 		);
 		
 		$this->add_control(
 			'content_banners',
 			[
-				'label'       => __('Course Banner Content Item', 'lenxel-plugin'),
+				'label'       => __('Course Banner Content Item', 'lenxel-core'),
 				'type'        => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'title_field' => '{{{ title }}}',
 				'default'     => array(
 				  	array(
-					 	'title'  		=> esc_html__('Art & Design', 'lenxel-plugin'),
+					 	'title'  		=> esc_html__('Art & Design', 'lenxel-core'),
 					 	'image'			=> [
 					 		'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/image-4.jpg',
 					 	]
 				  	),
 				  	array(
-					 	'title'       => esc_html__('Lifestyle', 'lenxel-plugin'),
+					 	'title'       => esc_html__('Lifestyle', 'lenxel-core'),
 					 	'image'			=> [
 					 		'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/image-5.jpg',
 					 	]
 				  	),
 				  	array(
-					 	'title'  		=> esc_html__('Photography', 'lenxel-plugin'),
+					 	'title'  		=> esc_html__('Photography', 'lenxel-core'),
 					 	'image'			=> [
 					 		'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/image-6.jpg',
 					 	]
 				  	),
 				  	array(
-					 	'title'  		=> esc_html__('Marketing', 'lenxel-plugin'),
+					 	'title'  		=> esc_html__('Marketing', 'lenxel-core'),
 					 	'image'			=> [
 					 		'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/image-5.jpg',
 					 	]
 				  	),
 				  	array(
-					 	'title'  		=> esc_html__('Business', 'lenxel-plugin'),
+					 	'title'  		=> esc_html__('Business', 'lenxel-core'),
 					 	'image'			=> [
 					 		'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/image-6.jpg',
 					 	]
@@ -228,7 +228,7 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 		$this->add_control( // xx Layout
 			'layout_heading',
 			[
-				'label'   => __( 'Layout', 'lenxel-plugin' ),
+				'label'   => __( 'Layout', 'lenxel-core' ),
 				'type'    => Controls_Manager::HEADING,
 			]
 	  	);
@@ -236,12 +236,12 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 		$this->add_control(
 			'layout',
 			[
-				 'label'   => __( 'Layout Display', 'lenxel-plugin' ),
+				 'label'   => __( 'Layout Display', 'lenxel-core' ),
 				 'type'    => Controls_Manager::SELECT,
 				 'default' => 'carousel',
 				 'options' => [
-					  'grid'      => __( 'Grid', 'lenxel-plugin' ),
-					  'carousel'  => __( 'Carousel', 'lenxel-plugin' ),
+					  'grid'      => __( 'Grid', 'lenxel-core' ),
+					  'carousel'  => __( 'Carousel', 'lenxel-core' ),
 				 ]
 			]
 	  	);
@@ -249,7 +249,7 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 	  	$this->add_control(
 		 	'show_number_content',
 		 	[
-				'label'   => __( 'Show number content', 'lenxel-plugin' ),
+				'label'   => __( 'Show number content', 'lenxel-core' ),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes'
 		 	]
@@ -258,9 +258,9 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 	  	$this->add_control(
 		 	'text_suffix_number',
 		 	[
-				'label'   => __( 'Text Suffix', 'lenxel-plugin' ),
+				'label'   => __( 'Text Suffix', 'lenxel-core' ),
 				'type'    => Controls_Manager::TEXT,
-				'default' => esc_html__('Full Courses', 'lenxel-plugin'),
+				'default' => esc_html__('Full Courses', 'lenxel-core'),
 				'condition' => [
 					'style' => ['style-1']
 				]
@@ -270,7 +270,7 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 	  	$this->add_control(
 			'image_size',
 			[
-				'label'     => __('Image Size', 'lenxel-plugin'),
+				'label'     => __('Image Size', 'lenxel-core'),
 				'type'      => \Elementor\Controls_Manager::SELECT,
 				'options'   => $this->get_thumbnail_size(),
 				'default'   => 'full'
@@ -279,7 +279,7 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 	  	$this->add_control(
 		 	'view',
 		 	[
-				'label'   => __('View', 'lenxel-plugin'),
+				'label'   => __('View', 'lenxel-core'),
 				'type'    => Controls_Manager::HIDDEN,
 				'default' => 'traditional',
 		 	]
@@ -295,7 +295,7 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 	  	$this->start_controls_section(
 		 	'section_style_icon',
 		 	[
-				'label' => __( 'Icon', 'lenxel-plugin' ),
+				'label' => __( 'Icon', 'lenxel-core' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 		 	]	
 	  	);
@@ -303,7 +303,7 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 		$this->add_control(
 			'icon_color',
 			[
-				'label' => __( 'Icon Color', 'lenxel-plugin' ),
+				'label' => __( 'Icon Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -316,7 +316,7 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 		  $this->add_responsive_control(
 			 'icon_size',
 			 [
-				'label' => __( 'Size', 'lenxel-plugin' ),
+				'label' => __( 'Size', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 				  'size' => 60
@@ -337,7 +337,7 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 		  $this->add_responsive_control(
 			 'icon_space',
 			 [
-				'label' => __( 'Spacing', 'lenxel-plugin' ),
+				'label' => __( 'Spacing', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 				  'size' => 0,
@@ -357,7 +357,7 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 		  $this->add_responsive_control(
 			 'icon_padding',
 			 [
-				'label' => __( 'Padding', 'lenxel-plugin' ),
+				'label' => __( 'Padding', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
@@ -371,7 +371,7 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 		  $this->start_controls_section(
 			 'section_style_content',
 			 [
-				'label' => __( 'Content', 'lenxel-plugin' ),
+				'label' => __( 'Content', 'lenxel-core' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			 ]
 		  );
@@ -379,7 +379,7 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 		  $this->add_control(
 			 'heading_title',
 			 [
-				'label' => __( 'Title', 'lenxel-plugin' ),
+				'label' => __( 'Title', 'lenxel-core' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			 ]
@@ -388,7 +388,7 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 		  $this->add_responsive_control(
 			 'title_bottom_space',
 			 [
-				'label' => __( 'Spacing', 'lenxel-plugin' ),
+				'label' => __( 'Spacing', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 				  'px' => [
@@ -408,7 +408,7 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 		  $this->add_control(
 			 'title_color',
 			 [
-				'label' => __( 'Color', 'lenxel-plugin' ),
+				'label' => __( 'Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -429,7 +429,7 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 		  $this->add_control(
 			 'heading_description',
 			 [
-				'label' => __( 'Description', 'lenxel-plugin' ),
+				'label' => __( 'Description', 'lenxel-core' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 				'condition' => [
@@ -441,7 +441,7 @@ class LNXElement_Course_Banner_Group extends LNXElement_Base{
 		  $this->add_control(
 			 'description_color',
 			 [
-				'label' => __( 'Color', 'lenxel-plugin' ),
+				'label' => __( 'Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [

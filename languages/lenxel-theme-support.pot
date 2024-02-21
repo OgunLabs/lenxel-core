@@ -1,8 +1,8 @@
 # Copyright (C) 2023 Dev Teams on Demand
-# This file is distributed under the same license as the Lenxel Plugin.
+# This file is distributed under the same license as the Lenxel Core.
 msgid ""
 msgstr ""
-"Project-Id-Version: Lenxel Plugin 1.0.0\n"
+"Project-Id-Version: Lenxel Core 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/lenxel-theme-support\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Domain: lenxel-theme-support\n"
 
 #. Plugin Name of the plugin
-msgid "Lenxel Plugin"
+msgid "Lenxel Core"
 msgstr ""
 
 #. Plugin URI of the plugin

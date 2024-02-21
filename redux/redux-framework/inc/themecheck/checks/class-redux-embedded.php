@@ -40,14 +40,14 @@ class Redux_Embedded implements themecheck {
 			checkcount();
 
 			if ( ! isset( $_POST['redux_wporg'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-				$this->error[] = '<div class="redux-error">' . sprintf( '<span class="tc-lead tc-recommended">' . esc_html__( 'RECOMMENDED', 'lenxel-plugin' ) . '</span>: ' . esc_html__( 'If you are submitting to WordPress.org Theme Repository, it is', 'lenxel-plugin' ) . ' <strong>' . esc_html__( 'strongly', 'lenxel-plugin' ) . '</strong> ' . esc_html__( 'suggested that you read', 'lenxel-plugin' ) . ' <a href="%s" target="_blank">' . esc_html__( 'this document', 'lenxel-plugin' ) . '</a>, ' . esc_html__( 'or your theme will be rejected because of Redux.', 'lenxel-plugin' ), 'https://docsv3.redux.io/core/wordpress-org-submissions/' ) . '</div>';
+				$this->error[] = '<div class="redux-error">' . sprintf( '<span class="tc-lead tc-recommended">' . esc_html__( 'RECOMMENDED', 'lenxel-core' ) . '</span>: ' . esc_html__( 'If you are submitting to WordPress.org Theme Repository, it is', 'lenxel-core' ) . ' <strong>' . esc_html__( 'strongly', 'lenxel-core' ) . '</strong> ' . esc_html__( 'suggested that you read', 'lenxel-core' ) . ' <a href="%s" target="_blank">' . esc_html__( 'this document', 'lenxel-core' ) . '</a>, ' . esc_html__( 'or your theme will be rejected because of Redux.', 'lenxel-core' ), 'https://docsv3.redux.io/core/wordpress-org-submissions/' ) . '</div>';
 				$ret           = false;
 			} else {
 				// TODO Granular WP.org tests!!!
 				// Check for Tracking.
 				$tracking = $redux['dir'] . 'inc/tracking.php';
 				if ( file_exists( $tracking ) ) {
-					$this->error[] = '<div class="redux-error">' . sprintf( '<span class="tc-lead tc-required">' . esc_html__( 'REQUIRED', 'lenxel-plugin' ) . '</span>: ' . esc_html__( 'You MUST delete', 'lenxel-plugin' ) . ' <strong> %s </strong>, ' . esc_html__( 'or your theme will be rejected by WP.org theme submission because of Redux.', 'lenxel-plugin' ), $tracking ) . '</div>';
+					$this->error[] = '<div class="redux-error">' . sprintf( '<span class="tc-lead tc-required">' . esc_html__( 'REQUIRED', 'lenxel-core' ) . '</span>: ' . esc_html__( 'You MUST delete', 'lenxel-core' ) . ' <strong> %s </strong>, ' . esc_html__( 'or your theme will be rejected by WP.org theme submission because of Redux.', 'lenxel-core' ), $tracking ) . '</div>';
 					$ret           = false;
 				}
 
@@ -58,9 +58,9 @@ class Redux_Embedded implements themecheck {
 				$args         .= "<li><code>'save_defaults' => false</code></li>";
 				$args         .= "<li><code>'use_cdn' => false</code></li>";
 				$args         .= "<li><code>'customizer_only' => true</code> Non-Customizer Based Panels are Prohibited within WP.org Themes</li>";
-				$args         .= "<li><code>'database' => 'theme_mods'</code> (' . esc_html__( 'Optional', 'lenxel-plugin' ) . ')</li>";
+				$args         .= "<li><code>'database' => 'theme_mods'</code> (' . esc_html__( 'Optional', 'lenxel-core' ) . ')</li>";
 				$args         .= '</ol>';
-				$this->error[] = '<div class="redux-error"><span class="tc-lead tc-recommended">' . esc_html__( 'RECOMMENDED', 'lenxel-plugin' ) . '</span>: ' . esc_html__( 'The following arguments MUST be used for WP.org submissions, or you will be rejected because of your Redux configuration.', 'lenxel-plugin' ) . $args . '</div>';
+				$this->error[] = '<div class="redux-error"><span class="tc-lead tc-recommended">' . esc_html__( 'RECOMMENDED', 'lenxel-core' ) . '</span>: ' . esc_html__( 'The following arguments MUST be used for WP.org submissions, or you will be rejected because of your Redux configuration.', 'lenxel-core' ) . $args . '</div>';
 			}
 		}
 

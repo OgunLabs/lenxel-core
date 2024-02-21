@@ -1,4 +1,4 @@
-=== Lenxel Plugin for Lenxel LMS ===
+=== Lenxel Core for Lenxel LMS ===
 Tags: LMS, Header builder, Footer builder, Teams, Portfolios, Lenxel Theme Settings
 Requires at least Wordpress: 5.0
 Tested up to Wordpress: 6.3
@@ -8,7 +8,7 @@ License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 Version: 1.0.2
 
-Lenxel Plugin is an extension of the Lenxel theme template that features Team post-type, Portfolio post-type, Header builder, Footer builder, and Lenxel Theme settings. 
+Lenxel Core is an extension of the Lenxel theme template that features Team post-type, Portfolio post-type, Header builder, Footer builder, and Lenxel Theme settings. 
 
 
 == Description ==
@@ -74,8 +74,8 @@ After activating the plugin, this will setup header page builder, footer page bu
 * 	Login to your WordPress Admin area
 *   Go to "Appearance > themes" and select Lenxel theme from the left-hand-menu
 *   Select the required plugin to be installed.
-*   Install all required plugins (Lenxel-plugin)
-* 	Activate all required plugins (Lenxel-plugin).
+*   Install all required plugins (lenxel-core)
+* 	Activate all required plugins (lenxel-core).
 *	After installation, activate the plugin.
 * 	Open the Header builder, Footer builder, Teams, and Portfolio will have been added to the left-hand menu wp-admin dashboard list.
 

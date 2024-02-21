@@ -111,7 +111,7 @@ if ( ! class_exists( 'Redux_Extension_Import_Export', false ) ) {
 		public function add_section() {
 			$this->parent->sections[] = array(
 				'id'         => 'import/export',
-				'title'      => esc_html__( 'Import / Export', 'lenxel-plugin' ),
+				'title'      => esc_html__( 'Import / Export', 'lenxel-core' ),
 				'heading'    => '',
 				'icon'       => 'el el-refresh',
 				'customizer' => false,

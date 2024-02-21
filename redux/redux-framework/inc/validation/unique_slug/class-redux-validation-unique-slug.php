@@ -26,7 +26,7 @@ if ( ! class_exists( 'Redux_Validation_Unique_Slug', false ) ) {
 		public function validate() {
 			global $wpdb, $wp_rewrite;
 
-			$this->field['msg']              = ( isset( $this->field['msg'] ) ) ? $this->field['msg'] : esc_html__( 'That URL slug is in use, please choose another.', 'lenxel-plugin' );
+			$this->field['msg']              = ( isset( $this->field['msg'] ) ) ? $this->field['msg'] : esc_html__( 'That URL slug is in use, please choose another.', 'lenxel-core' );
 			$this->field['flush_permalinks'] = ( isset( $this->field['flush_permalinks'] ) ) ? $this->field['flush_permalinks'] : false;
 
 			$slug = $this->value;

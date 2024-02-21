@@ -45,7 +45,7 @@ class LNXElement_Users extends LNXElement_Base {
 	 */
 	public function get_title() {
 		$get_current_name = load_lenxel_widget_content_element('LNX Instructor/Students');
-		return __( $get_current_name, 'lenxel-plugin' );
+		return __( $get_current_name, 'lenxel-core' );
 	}
 
 	/**
@@ -100,20 +100,20 @@ class LNXElement_Users extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => __( 'Content', 'lenxel-plugin' ),
+				'label' => __( 'Content', 'lenxel-core' ),
 			]
 		);
 		
 		$this->add_control(
 			'user_role',
 			[
-				'label'   => esc_html__('Filter by role', 'lenxel-plugin'),
+				'label'   => esc_html__('Filter by role', 'lenxel-core'),
 				'type'    => Controls_Manager::SELECT,
 				'options' => [
-					''       				=> esc_html__('All', 'lenxel-plugin'),
-					'tutor_instructor' 	=> esc_html__('Instructor', 'lenxel-plugin'),
-					'user'   				=> esc_html__('User', 'lenxel-plugin'),
-					'customer'   			=> esc_html__('Customer', 'lenxel-plugin'),
+					''       				=> esc_html__('All', 'lenxel-core'),
+					'tutor_instructor' 	=> esc_html__('Instructor', 'lenxel-core'),
+					'user'   				=> esc_html__('User', 'lenxel-core'),
+					'customer'   			=> esc_html__('Customer', 'lenxel-core'),
 				],
 				'default' => 'tutor_instructor',
 			]
@@ -121,7 +121,7 @@ class LNXElement_Users extends LNXElement_Base {
 		$this->add_control(
          'user_ids',
          [
-            'label' 				=> __( 'Select Individually (IDs)', 'lenxel-plugin' ),
+            'label' 				=> __( 'Select Individually (IDs)', 'lenxel-core' ),
             'type' 				=> Controls_Manager::TEXT,
             'default' 			=> '',
             'label_block' 		=> true,
@@ -131,7 +131,7 @@ class LNXElement_Users extends LNXElement_Base {
 		$this->add_control(
 			'per_page',
 			[
-				'label'   => esc_html__('Per page', 'lenxel-plugin'),
+				'label'   => esc_html__('Per page', 'lenxel-core'),
 				'type'    => \Elementor\Controls_Manager::TEXT,
 				'default' => '6',
 			]
@@ -140,15 +140,15 @@ class LNXElement_Users extends LNXElement_Base {
 		$this->add_control(
 			'orderby',
 			[
-				'label'   => esc_html__('Order By', 'lenxel-plugin'),
+				'label'   => esc_html__('Order By', 'lenxel-core'),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'registered',
 				'options' => [
-				  'registered'   => esc_html__('Registered date', 'lenxel-plugin'),
-				  'nicename'     => esc_html__('Nickname', 'lenxel-plugin'),
-				  'ID'           => esc_html__('ID', 'lenxel-plugin'),
-				  'display_name' => esc_html__('Display name', 'lenxel-plugin'),
-				  'post_count'   => esc_html__('Post count', 'lenxel-plugin'),
+				  'registered'   => esc_html__('Registered date', 'lenxel-core'),
+				  'nicename'     => esc_html__('Nickname', 'lenxel-core'),
+				  'ID'           => esc_html__('ID', 'lenxel-core'),
+				  'display_name' => esc_html__('Display name', 'lenxel-core'),
+				  'post_count'   => esc_html__('Post count', 'lenxel-core'),
 				],
 			]
 		);
@@ -156,12 +156,12 @@ class LNXElement_Users extends LNXElement_Base {
 		$this->add_control(
 			'order',
 			[
-				'label'   => esc_html__('Order', 'lenxel-plugin'),
+				'label'   => esc_html__('Order', 'lenxel-core'),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'desc',
 				'options' => [
-					'asc'  => esc_html__('ASC', 'lenxel-plugin'),
-					'desc' => esc_html__('DESC', 'lenxel-plugin'),
+					'asc'  => esc_html__('ASC', 'lenxel-core'),
+					'desc' => esc_html__('DESC', 'lenxel-core'),
 				],
 			]
 		);
@@ -169,7 +169,7 @@ class LNXElement_Users extends LNXElement_Base {
 		$this->add_control(
 			'show_paginate',
 			[
-				'label'   => esc_html__('Show Paginate', 'lenxel-plugin'),
+				'label'   => esc_html__('Show Paginate', 'lenxel-core'),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'no'
 			]
@@ -180,20 +180,20 @@ class LNXElement_Users extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_team_layout',
 			[
-				'label' => __('Layout', 'lenxel-plugin'),
+				'label' => __('Layout', 'lenxel-core'),
 				'type'  => Controls_Manager::SECTION,
 			]
 		);
 		$this->add_control(
 			'layout',
 			[
-				'label'   => __( 'Layout Display', 'lenxel-plugin' ),
+				'label'   => __( 'Layout Display', 'lenxel-core' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'carousel',
 				'options' => [
-					'grid'      => __( 'Grid', 'lenxel-plugin' ),
-					'carousel'  => __( 'Carousel', 'lenxel-plugin' ),
-					'list'  		=> __( 'List', 'lenxel-plugin' ),
+					'grid'      => __( 'Grid', 'lenxel-core' ),
+					'carousel'  => __( 'Carousel', 'lenxel-core' ),
+					'list'  		=> __( 'List', 'lenxel-core' ),
 				]
 			]
 		);

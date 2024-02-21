@@ -18,7 +18,7 @@ class LNXElement_Events extends LNXElement_Base{
 
     public function get_title() {
         $get_current_name = load_lenxel_widget_content_element('LNX Events');
-        return __($get_current_name, 'lenxel-plugin');
+        return __($get_current_name, 'lenxel-core');
     }
 
     /**
@@ -55,7 +55,7 @@ class LNXElement_Events extends LNXElement_Base{
     private function get_categories_list(){
         $categories = array();
 
-        $categories['none'] = __( 'None', 'lenxel-plugin' );
+        $categories['none'] = __( 'None', 'lenxel-core' );
         $taxonomy = 'tribe_events_cat';
         $tax_terms = get_terms( $taxonomy );
         if ( ! empty( $tax_terms ) && ! is_wp_error( $tax_terms ) ){
@@ -75,7 +75,7 @@ class LNXElement_Events extends LNXElement_Base{
             'post_status'=>array('publish'),
         ) );
 
-        $posts['none'] = __('None', 'lenxel-plugin');
+        $posts['none'] = __('None', 'lenxel-core');
 
         while ( $loop->have_posts() ) : $loop->the_post();
             $id = get_the_ID();
@@ -92,7 +92,7 @@ class LNXElement_Events extends LNXElement_Base{
         $this->start_controls_section(
             'section_query',
             [
-                'label' => __('Query & Layout', 'lenxel-plugin'),
+                'label' => __('Query & Layout', 'lenxel-core'),
                 'tab'   => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -100,7 +100,7 @@ class LNXElement_Events extends LNXElement_Base{
         $this->add_control(
             'category_ids',
             [
-                'label' => __( 'Select By Category', 'lenxel-plugin' ),
+                'label' => __( 'Select By Category', 'lenxel-core' ),
                 'type' => Controls_Manager::SELECT2,
                 'multiple'    => true,
                 'default' => '',
@@ -111,7 +111,7 @@ class LNXElement_Events extends LNXElement_Base{
         $this->add_control(
             'post_ids',
             [
-                'label' => __( 'Select Individually', 'lenxel-plugin' ),
+                'label' => __( 'Select Individually', 'lenxel-core' ),
                 'type' => Controls_Manager::SELECT2,
                 'default' => '',
                 'multiple'    => true,
@@ -123,7 +123,7 @@ class LNXElement_Events extends LNXElement_Base{
         $this->add_control(
             'posts_per_page',
             [
-                'label' => __( 'Posts Per Page', 'lenxel-plugin' ),
+                'label' => __( 'Posts Per Page', 'lenxel-core' ),
                 'type' => Controls_Manager::NUMBER,
                 'default' => 6,
             ]
@@ -132,14 +132,14 @@ class LNXElement_Events extends LNXElement_Base{
         $this->add_control(
             'orderby',
             [
-                'label'   => __( 'Order By', 'lenxel-plugin' ),
+                'label'   => __( 'Order By', 'lenxel-core' ),
                 'type'    => Controls_Manager::SELECT,
                 'default' => 'post_date',
                 'options' => [
-                    'post_date'  => __( 'Date', 'lenxel-plugin' ),
-                    'post_title' => __( 'Title', 'lenxel-plugin' ),
-                    'event_start_date' => __( 'Event Start Date', 'lenxel-plugin' ),
-                    'rand'       => __( 'Random', 'lenxel-plugin' ),
+                    'post_date'  => __( 'Date', 'lenxel-core' ),
+                    'post_title' => __( 'Title', 'lenxel-core' ),
+                    'event_start_date' => __( 'Event Start Date', 'lenxel-core' ),
+                    'rand'       => __( 'Random', 'lenxel-core' ),
                 ],
             ]
         );
@@ -147,12 +147,12 @@ class LNXElement_Events extends LNXElement_Base{
         $this->add_control(
             'order',
             [
-                'label'   => __( 'Order', 'lenxel-plugin' ),
+                'label'   => __( 'Order', 'lenxel-core' ),
                 'type'    => Controls_Manager::SELECT,
                 'default' => 'desc',
                 'options' => [
-                    'asc'  => __( 'ASC', 'lenxel-plugin' ),
-                    'desc' => __( 'DESC', 'lenxel-plugin' ),
+                    'asc'  => __( 'ASC', 'lenxel-core' ),
+                    'desc' => __( 'DESC', 'lenxel-core' ),
                 ],
             ]
         );
@@ -160,30 +160,30 @@ class LNXElement_Events extends LNXElement_Base{
         $this->add_control( // xx Layout
             'layout_heading',
             [
-                'label'   => __( 'Layout', 'lenxel-plugin' ),
+                'label'   => __( 'Layout', 'lenxel-core' ),
                 'type'    => Controls_Manager::HEADING,
             ]
         );
          $this->add_control(
             'layout',
             [
-                'label'   => __( 'Layout Display', 'lenxel-plugin' ),
+                'label'   => __( 'Layout Display', 'lenxel-core' ),
                 'type'    => Controls_Manager::SELECT,
                 'default' => 'list',
                 'options' => [
-                    'list'      => __( 'List', 'lenxel-plugin' ),
-                    'carousel'  => __( 'Carousel', 'lenxel-plugin' ),
-                    'grid'      => __( 'Grid', 'lenxel-plugin' )
+                    'list'      => __( 'List', 'lenxel-core' ),
+                    'carousel'  => __( 'Carousel', 'lenxel-core' ),
+                    'grid'      => __( 'Grid', 'lenxel-core' )
                 ]
             ]
         );
         $this->add_control(
             'style',
             [
-                'label'     => __('Style', 'lenxel-plugin'),
+                'label'     => __('Style', 'lenxel-core'),
                 'type'      => \Elementor\Controls_Manager::SELECT,
                 'options' => [
-                    'event-1'     => __( 'Event Item Style I', 'lenxel-plugin' )
+                    'event-1'     => __( 'Event Item Style I', 'lenxel-core' )
                 ],
                 'default' => 'event-1',
                 'condition' => [
@@ -194,7 +194,7 @@ class LNXElement_Events extends LNXElement_Base{
         $this->add_control(
             'image_size',
             [
-               'label'     => __('Image Size', 'lenxel-plugin'),
+               'label'     => __('Image Size', 'lenxel-core'),
                'type'      => \Elementor\Controls_Manager::SELECT,
                'options'   => $this->get_thumbnail_size(),
                'default'   => 'lenxel_medium'
@@ -204,7 +204,7 @@ class LNXElement_Events extends LNXElement_Base{
         $this->add_control(
             'pagination',
             [
-                'label'     => __('Pagination', 'lenxel-plugin'),
+                'label'     => __('Pagination', 'lenxel-core'),
                 'type'      => Controls_Manager::SWITCHER,
                 'default'   => 'no',
                 'condition' => [

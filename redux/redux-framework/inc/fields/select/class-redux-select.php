@@ -103,7 +103,7 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 					$name_brackets = '[]';
 				}
 
-				$placeholder = ( isset( $this->field['placeholder'] ) ) ? esc_attr( $this->field['placeholder'] ) : esc_html__( 'Select an item', 'lenxel-plugin' );
+				$placeholder = ( isset( $this->field['placeholder'] ) ) ? esc_attr( $this->field['placeholder'] ) : esc_html__( 'Select an item', 'lenxel-core' );
 
 				$select2_width = 'resolve';
 				if ( '' !== $multi ) {
@@ -180,7 +180,7 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 
 				echo '</select>';
 			} else {
-				echo '<strong>' . esc_html__( 'No items of this type were found.', 'lenxel-plugin' ) . '</strong>';
+				echo '<strong>' . esc_html__( 'No items of this type were found.', 'lenxel-core' ) . '</strong>';
 			}
 		}
 

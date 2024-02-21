@@ -34,17 +34,17 @@ if ( ! class_exists( 'Redux_Field', false ) ) {
 			$d                                       = new Redux_Descriptor( get_called_class() );
 			self::$descriptors[ get_called_class() ] = $d;
 
-			$d->add_field( 'id', __( 'Field ID', 'lenxel-plugin' ), RDT::TEXT )->set_order( 0 )->set_required();
-			$d->add_field( 'title', __( 'Title', 'lenxel-plugin' ), RDT::TEXT )->set_order( 1 );
-			$d->add_field( 'subtitle', __( 'Subtitle', 'lenxel-plugin' ), RDT::TEXT )->set_order( 2 );
-			$d->add_field( 'desc', __( 'Description', 'lenxel-plugin' ), RDT::TEXT )->set_order( 3 );
-			$d->add_field( 'class', __( 'Class', 'lenxel-plugin' ), RDT::TEXT )->set_order( 3 );
-			$d->add_field( 'compiler', __( 'Compiler', 'lenxel-plugin' ), RDT::BOOL, '', false )->set_order( 60 );
-			$d->add_field( 'default', __( 'Default', 'lenxel-plugin' ), RDT::OPTIONS, '', false )->set_order( 60 );
-			$d->add_field( 'disabled', __( 'Disabled', 'lenxel-plugin' ), RDT::BOOL, '', false )->set_order( 60 );
-			$d->add_field( 'hint', __( 'Hint', 'lenxel-plugin' ), RDT::OPTIONS, '', false )->set_order( 60 );
-			$d->add_field( 'hint', __( 'Permissions', 'lenxel-plugin' ), RDT::OPTIONS, '', false )->set_order( 60 );
-			$d->add_field( 'required', __( 'Required', 'lenxel-plugin' ), RDT::BOOL, '', false )->set_order( 60 );
+			$d->add_field( 'id', __( 'Field ID', 'lenxel-core' ), RDT::TEXT )->set_order( 0 )->set_required();
+			$d->add_field( 'title', __( 'Title', 'lenxel-core' ), RDT::TEXT )->set_order( 1 );
+			$d->add_field( 'subtitle', __( 'Subtitle', 'lenxel-core' ), RDT::TEXT )->set_order( 2 );
+			$d->add_field( 'desc', __( 'Description', 'lenxel-core' ), RDT::TEXT )->set_order( 3 );
+			$d->add_field( 'class', __( 'Class', 'lenxel-core' ), RDT::TEXT )->set_order( 3 );
+			$d->add_field( 'compiler', __( 'Compiler', 'lenxel-core' ), RDT::BOOL, '', false )->set_order( 60 );
+			$d->add_field( 'default', __( 'Default', 'lenxel-core' ), RDT::OPTIONS, '', false )->set_order( 60 );
+			$d->add_field( 'disabled', __( 'Disabled', 'lenxel-core' ), RDT::BOOL, '', false )->set_order( 60 );
+			$d->add_field( 'hint', __( 'Hint', 'lenxel-core' ), RDT::OPTIONS, '', false )->set_order( 60 );
+			$d->add_field( 'hint', __( 'Permissions', 'lenxel-core' ), RDT::OPTIONS, '', false )->set_order( 60 );
+			$d->add_field( 'required', __( 'Required', 'lenxel-core' ), RDT::BOOL, '', false )->set_order( 60 );
 
 			return $d;
 		}

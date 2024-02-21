@@ -89,7 +89,7 @@ if ( ! class_exists( 'Redux_Extensions', false ) ) {
 						}
 						if ( ! isset( $core->extensions[ $name ] ) ) {
 							/* translators: %s is the name of an extension */
-							$msg  = '<strong>' . sprintf( esc_html__( 'The `%s` extension was not located properly', 'lenxel-plugin' ), $name ) . '</strong>';
+							$msg  = '<strong>' . sprintf( esc_html__( 'The `%s` extension was not located properly', 'lenxel-core' ), $name ) . '</strong>';
 							$data = array(
 								'parent'  => $this->parent,
 								'type'    => 'error',

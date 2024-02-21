@@ -9,13 +9,13 @@ defined( 'ABSPATH' ) || exit;
 
 ?>
 <div class="wrap about-wrap" xmlns="http://www.w3.org/1999/html">
-	<h1><?php esc_html_e( 'Get Support', 'lenxel-plugin' ); ?></h1>
+	<h1><?php esc_html_e( 'Get Support', 'lenxel-core' ); ?></h1>
 	<div class="about-text">
-		<?php esc_html_e( 'Sometimes you just need some help. Use this form to submit a support URL and then provide that link to the product developer or our staff.', 'lenxel-plugin' ); ?>
+		<?php esc_html_e( 'Sometimes you just need some help. Use this form to submit a support URL and then provide that link to the product developer or our staff.', 'lenxel-core' ); ?>
 	</div>
 	<div class="redux-badge">
 		<i class="el el-redux"></i>
-		<span><?php printf( esc_html__( 'Version', 'lenxel-plugin' ) . ' %s', esc_html( Redux_Core::$version ) ); ?></span>
+		<span><?php printf( esc_html__( 'Version', 'lenxel-core' ) . ' %s', esc_html( Redux_Core::$version ) ); ?></span>
 	</div>
 
 	<?php $this->actions(); ?>
@@ -26,29 +26,29 @@ defined( 'ABSPATH' ) || exit;
 		<!-- multistep form -->
 		<form id="supportform">
 			<ul id="progressbar" class=" breadcrumb">
-				<li class="active"><?php esc_html_e( 'Generate a Support URL', 'lenxel-plugin' ); ?></li>
-				<li href="#"><?php esc_html_e( 'Select Support Type', 'lenxel-plugin' ); ?></li>
-				<li href="#"><?php esc_html_e( 'How to Get Support', 'lenxel-plugin' ); ?></li>
+				<li class="active"><?php esc_html_e( 'Generate a Support URL', 'lenxel-core' ); ?></li>
+				<li href="#"><?php esc_html_e( 'Select Support Type', 'lenxel-core' ); ?></li>
+				<li href="#"><?php esc_html_e( 'How to Get Support', 'lenxel-core' ); ?></li>
 			</ul>
 
 			<!-- fieldsets -->
 			<fieldset>
 				<h2 class="fs-title">
-					<?php esc_html_e( 'Submit a Support Request', 'lenxel-plugin' ); ?>
+					<?php esc_html_e( 'Submit a Support Request', 'lenxel-core' ); ?>
 				</h2>
 
 				<h3 class="fs-title" style="margin-top:0;">
-					<?php esc_html_e( 'To get started, we will need to generate a support hash.', 'lenxel-plugin' ); ?>
+					<?php esc_html_e( 'To get started, we will need to generate a support hash.', 'lenxel-core' ); ?>
 				</h3>
 
 				<p>
 					<?php // translators: %s: Redux Health page. ?>
-					<?php echo sprintf( wp_kses( __( 'This will provide to your developer all the information they may need to remedy your issue. This action WILL send information securely to a remote server. To see the type of information sent, please look at the  <a href="%s">Health Check</a> tab.', 'lenxel-plugin' ), array( 'a' => array( 'href' => array() ) ) ), esc_url( admin_url( 'tools.php?page=redux-health' ) ) ); ?>
+					<?php echo sprintf( wp_kses( __( 'This will provide to your developer all the information they may need to remedy your issue. This action WILL send information securely to a remote server. To see the type of information sent, please look at the  <a href="%s">Health Check</a> tab.', 'lenxel-core' ), array( 'a' => array( 'href' => array() ) ) ), esc_url( admin_url( 'tools.php?page=redux-health' ) ) ); ?>
 				</p>
 
 				<p>
 					<a href="#" class="docs button button-primary button-large redux_support_hash">
-						<?php esc_html_e( 'Generate a Support URL', 'lenxel-plugin' ); ?>
+						<?php esc_html_e( 'Generate a Support URL', 'lenxel-core' ); ?>
 					</a>
 				</p>
 				<input
@@ -61,27 +61,27 @@ defined( 'ABSPATH' ) || exit;
 
 			<fieldset>
 				<h2 class="fs-title">
-					<?php esc_html_e( 'Select Your Support Type', 'lenxel-plugin' ); ?>
+					<?php esc_html_e( 'Select Your Support Type', 'lenxel-core' ); ?>
 				</h2>
 
 				<h3 class="fs-subtitle" style="text-align: center;">
-					<?php esc_html_e( 'What type of user are you?', 'lenxel-plugin' ); ?>
+					<?php esc_html_e( 'What type of user are you?', 'lenxel-core' ); ?>
 				</h3>
 
 				<table id="user_type">
 					<tr>
 						<td id="is_user">
 							<i class="el el-user"></i><br/>
-							<?php esc_html_e( 'User', 'lenxel-plugin' ); ?><br/>
+							<?php esc_html_e( 'User', 'lenxel-core' ); ?><br/>
 							<small>
-								<?php esc_html_e( 'I am a user, using a pre-built product.', 'lenxel-plugin' ); ?>
+								<?php esc_html_e( 'I am a user, using a pre-built product.', 'lenxel-core' ); ?>
 							</small>
 						</td>
 						<td id="is_developer">
 							<i class="el el-github"></i><br/>
-							<?php esc_html_e( 'Developer', 'lenxel-plugin' ); ?><br/>
+							<?php esc_html_e( 'Developer', 'lenxel-core' ); ?><br/>
 							<small>
-								<?php esc_html_e( 'I am a developer, building a product using Redux.', 'lenxel-plugin' ); ?>
+								<?php esc_html_e( 'I am a developer, building a product using Redux.', 'lenxel-core' ); ?>
 							</small>
 						</td>
 					</tr>
@@ -97,12 +97,12 @@ defined( 'ABSPATH' ) || exit;
 
 			<fieldset id="final_support">
 				<h2 class="fs-title">
-					<?php esc_html_e( 'How to Get Support', 'lenxel-plugin' ); ?>
+					<?php esc_html_e( 'How to Get Support', 'lenxel-core' ); ?>
 				</h2>
 
 				<div class="is_developer">
 					<p>
-						<?php esc_html_e( 'Please proceed to the Redux Framework issue tracker and supply us with your support URL below. Please also provide any information that will help us to reproduce your issue.', 'lenxel-plugin' ); ?>
+						<?php esc_html_e( 'Please proceed to the Redux Framework issue tracker and supply us with your support URL below. Please also provide any information that will help us to reproduce your issue.', 'lenxel-core' ); ?>
 					</p>
 					<a href="<?php echo esc_url( 'https://github.com/reduxframework/redux-framework/issues' ); ?>" target="_blank">
 						<h4>https://github.com/reduxframework/redux-framework/issues</h4>
@@ -111,11 +111,11 @@ defined( 'ABSPATH' ) || exit;
 
 				<div class="is_user">
 					<p align="left">
-						<?php esc_html_e( 'Listed below are the WordPress plugins and/or theme installed on your site that utilize Redux Framework. We do not directly support products created with our framework.  It is the responsibility of the plugin or theme developer to support their work. You will need to contact the author(s) of the products listed below with your support questions.', 'lenxel-plugin' ); ?>
+						<?php esc_html_e( 'Listed below are the WordPress plugins and/or theme installed on your site that utilize Redux Framework. We do not directly support products created with our framework.  It is the responsibility of the plugin or theme developer to support their work. You will need to contact the author(s) of the products listed below with your support questions.', 'lenxel-core' ); ?>
 					</p>
 					<p>
 						<strong>
-							<?php esc_html_e( 'Please be sure to include for your developer - via cut and paste - the Support URL in the box below.', 'lenxel-plugin' ); ?>
+							<?php esc_html_e( 'Please be sure to include for your developer - via cut and paste - the Support URL in the box below.', 'lenxel-core' ); ?>
 						</strong>
 					</p>
 				</div>
@@ -131,7 +131,7 @@ defined( 'ABSPATH' ) || exit;
 				<p>
 					<em>
 						<?php // translators: %s: Support Defined URL. ?>
-						<?php echo sprintf( wp_kses( __( 'Should the developer not be responsive, read the <a href="%s" target="_blank">following article</a> before asking for support from us directly.', 'lenxel-plugin' ), array( 'a' => array( 'href' => array() ) ) ), esc_url( 'https://docsv3.redux.io/core/support-defined/' ) ); ?>
+						<?php echo sprintf( wp_kses( __( 'Should the developer not be responsive, read the <a href="%s" target="_blank">following article</a> before asking for support from us directly.', 'lenxel-core' ), array( 'a' => array( 'href' => array() ) ) ), esc_url( 'https://docsv3.redux.io/core/support-defined/' ) ); ?>
 					</em>
 				</p>
 				<input

@@ -37,7 +37,7 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 			if ( ! isset( $_REQUEST['nonce'] ) || ( isset( $_REQUEST['nonce'] ) && ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['nonce'] ) ), 'redux_ajax_nonce' . $this->args['opt_name_triger'] ) ) ) {
 				echo wp_json_encode(
 					array(
-						'status' => esc_html__( 'Invalid security credential.  Please reload the page and try again.', 'lenxel-plugin' ),
+						'status' => esc_html__( 'Invalid security credential.  Please reload the page and try again.', 'lenxel-core' ),
 						'action' => '',
 					)
 				);
@@ -47,7 +47,7 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 			if ( ! Redux_Helpers::current_user_can( $core->args['page_permissions'] ) ) {
 				echo wp_json_encode(
 					array(
-						'status' => esc_html__( 'Invalid user capability.  Please reload the page and try again.', 'lenxel-plugin' ),
+						'status' => esc_html__( 'Invalid user capability.  Please reload the page and try again.', 'lenxel-core' ),
 						'action' => '',
 					)
 				);
@@ -109,7 +109,7 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 					} else {
 						echo wp_json_encode(
 							array(
-								'status' => esc_html__( 'Your panel has no fields. Nothing to save.', 'lenxel-plugin' ),
+								'status' => esc_html__( 'Your panel has no fields. Nothing to save.', 'lenxel-core' ),
 							)
 						);
 						die();

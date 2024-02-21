@@ -41,7 +41,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
      */
     public function get_title() {
         $get_current_name = load_lenxel_widget_content_element('LNX Locations Map');
-        return __($get_current_name, 'lenxel-plugin');
+        return __($get_current_name, 'lenxel-core');
     }
 
     /**
@@ -86,7 +86,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $this->start_controls_section(
             'section_locations',
             [
-                'label' => __('Locations Content', 'lenxel-plugin'),
+                'label' => __('Locations Content', 'lenxel-core'),
             ]
         );
        
@@ -95,7 +95,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $repeater->add_control(
           'title',
           [
-            'label'   => __('Location Title', 'lenxel-plugin'),
+            'label'   => __('Location Title', 'lenxel-core'),
             'default' => 'New York',
             'type'    => Controls_Manager::TEXT,
             'label_block' => true
@@ -104,7 +104,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $repeater->add_control(
           'content',
           [
-              'label'       => __('Content', 'lenxel-plugin'),
+              'label'       => __('Content', 'lenxel-core'),
               'type'        => Controls_Manager::TEXTAREA,
               'placeholder' => '',
           ]
@@ -112,17 +112,17 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $repeater->add_control(
           'location_map',
           [
-              'label'   => __('Latitude, Longitude', 'lenxel-plugin'),
+              'label'   => __('Latitude, Longitude', 'lenxel-core'),
               'default' => '36.20485484481565,-115.20025440468748',
               'type'    => Controls_Manager::TEXT,
               'label_block' => true,
-              'description' => esc_html__( 'Latitude, Longitude for Map, eg: 21.0173222,105.78405279999993', 'lenxel-plugin' )
+              'description' => esc_html__( 'Latitude, Longitude for Map, eg: 21.0173222,105.78405279999993', 'lenxel-core' )
           ]
         );
         $repeater->add_control(
           'image',
           [
-              'label'       => __('Choose Image', 'lenxel-plugin'),
+              'label'       => __('Choose Image', 'lenxel-core'),
               'type'        => Controls_Manager::MEDIA,
               'default' => [
                   'url' => Elementor\Utils::get_placeholder_image_src(),
@@ -132,7 +132,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $repeater->add_control(
           'address',
           [
-              'label'       => __('Address', 'lenxel-plugin'),
+              'label'       => __('Address', 'lenxel-core'),
               'type'        => Controls_Manager::TEXT,
               'placeholder' => '',
               'label_block' => true,
@@ -141,7 +141,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $repeater->add_control(
           'link',
           [
-              'label'       => __('Link', 'lenxel-plugin'),
+              'label'       => __('Link', 'lenxel-core'),
               'type'        => Controls_Manager::URL,
           ]
         );
@@ -149,28 +149,28 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $this->add_control(
             'locations',
             [
-                'label'       => __('Location Content Item', 'lenxel-plugin'),
+                'label'       => __('Location Content Item', 'lenxel-core'),
                 'type'        => Controls_Manager::REPEATER,
                  'fields' => $repeater->get_controls(),
                 'title_field' => '{{{ title }}}',
                 'default'     => array(
                     array(
-                        'title'         => esc_html__( 'Singapore Office', 'lenxel-plugin' ),
+                        'title'         => esc_html__( 'Singapore Office', 'lenxel-core' ),
                         'content'       => 'Find all the entertainment you need for all ages on this island, where the fun doesn not cease and boredom retreats.',
                         'location_map'  => '36.20485484481565,-115.20025440468748',
-                        'address'   => esc_html__( 'Bugis Junction Towers Singapore 188024', 'lenxel-plugin' )
+                        'address'   => esc_html__( 'Bugis Junction Towers Singapore 188024', 'lenxel-core' )
                     ),
                     array(
-                        'title'         => esc_html__( 'Paris Office', 'lenxel-plugin' ),
+                        'title'         => esc_html__( 'Paris Office', 'lenxel-core' ),
                         'content'       => 'Find all the entertainment you need for all ages on this island, where the fun doesn not cease and boredom retreats.',
                         'location_map'  => '36.14346850708669, -115.1650638224121',
-                        'address'   => esc_html__( 'Office du Tourisme et des Congrès de Paris', 'lenxel-plugin' )
+                        'address'   => esc_html__( 'Office du Tourisme et des Congrès de Paris', 'lenxel-core' )
                     ),
                    array(
-                        'title'         => esc_html__( 'New York Office', 'lenxel-plugin' ),
+                        'title'         => esc_html__( 'New York Office', 'lenxel-core' ),
                         'content'       => 'Find all the entertainment you need for all ages on this island, where the fun doesn not cease and boredom retreats.',
                         'location_map'  => '36.100622034574165,-115.13605304970702',
-                        'address'   => esc_html__( '2 Queen Street,California, USA', 'lenxel-plugin' )
+                        'address'   => esc_html__( '2 Queen Street,California, USA', 'lenxel-core' )
                     ),
                 ),
             ]
@@ -184,7 +184,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $this->start_controls_section(
             'section_style_box',
             [
-                'label' => __('Box', 'lenxel-plugin'),
+                'label' => __('Box', 'lenxel-core'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -192,7 +192,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $this->add_control(
             'box_background',
             [
-                'label'     => __('Box Background', 'lenxel-plugin'),
+                'label'     => __('Box Background', 'lenxel-core'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [
@@ -207,7 +207,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $this->start_controls_section(
             'section_style_title',
             [
-                'label' => __('Title', 'lenxel-plugin'),
+                'label' => __('Title', 'lenxel-core'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -215,7 +215,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $this->add_control(
             'title_color',
             [
-                'label'     => __('Text Color', 'lenxel-plugin'),
+                'label'     => __('Text Color', 'lenxel-core'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [
@@ -238,7 +238,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $this->start_controls_section(
             'section_style_content',
             [
-                'label' => __('Content', 'lenxel-plugin'),
+                'label' => __('Content', 'lenxel-core'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -246,7 +246,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $this->add_control(
             'content_color',
             [
-                'label'     => __('Text Color', 'lenxel-plugin'),
+                'label'     => __('Text Color', 'lenxel-core'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [

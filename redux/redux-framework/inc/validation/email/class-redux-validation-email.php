@@ -24,7 +24,7 @@ if ( ! class_exists( 'Redux_Validation_Email', false ) ) {
 		 * @since ReduxFramework 1.0.0
 		 */
 		public function validate() {
-			$this->field['msg'] = ( isset( $this->field['msg'] ) ) ? $this->field['msg'] : esc_html__( 'You must provide a valid email for this option.', 'lenxel-plugin' );
+			$this->field['msg'] = ( isset( $this->field['msg'] ) ) ? $this->field['msg'] : esc_html__( 'You must provide a valid email for this option.', 'lenxel-core' );
 
 			if ( ! is_email( $this->value ) ) {
 				$this->value            = ( isset( $this->current ) ) ? $this->current : '';

@@ -74,34 +74,34 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 
 			$id = $this->parent->args['opt_name_triger'] . '-' . $this->field['id'];
 			?>
-			<h4><?php esc_html_e( 'Import Options', 'lenxel-plugin' ); ?></h4>
+			<h4><?php esc_html_e( 'Import Options', 'lenxel-core' ); ?></h4>
 			<p>
 				<a
 					href="javascript:void(0);"
 					id="redux-import-code-button"
 					class="button-secondary">
-					<?php esc_html_e( 'Import from Clipboard', 'lenxel-plugin' ); ?>
+					<?php esc_html_e( 'Import from Clipboard', 'lenxel-core' ); ?>
 				</a>
 
 				<a
 					href="javascript:void(0);"
 					id="redux-import-link-button"
 					class="button-secondary">
-					<?php esc_html_e( 'Import from URL', 'lenxel-plugin' ); ?>
+					<?php esc_html_e( 'Import from URL', 'lenxel-core' ); ?>
 				</a>
 
 				<a
 					href="#"
 					id="redux-import-upload"
 					class="button-secondary">
-					<?php esc_html_e( 'Upload file', 'lenxel-plugin' ); ?><span></span>
+					<?php esc_html_e( 'Upload file', 'lenxel-core' ); ?><span></span>
 				</a>
 				<input type="file" id="redux-import-upload-file" size="50">
 			</p>
 			<div id="redux-import-code-wrapper">
 				<p class="description" id="import-code-description">
 					<?php // phpcs:ignore WordPress.NamingConventions.ValidHookName ?>
-					<?php echo esc_html( apply_filters( 'redux-import-file-description', esc_html__( 'Paste your clipboard data here.', 'lenxel-plugin' ) ) ); ?>
+					<?php echo esc_html( apply_filters( 'redux-import-file-description', esc_html__( 'Paste your clipboard data here.', 'lenxel-core' ) ) ); ?>
 				</p>
 				<textarea
 					id="import-code-value"
@@ -111,7 +111,7 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 			<div id="redux-import-link-wrapper">
 				<p class="description" id="import-link-description">
 					<?php // phpcs:ignore WordPress.NamingConventions.ValidHookName ?>
-					<?php echo esc_html( apply_filters( 'redux-import-link-description', esc_html__( 'Input the URL to another sites options set and hit Import to load the options from that site.', 'lenxel-plugin' ) ) ); ?>
+					<?php echo esc_html( apply_filters( 'redux-import-link-description', esc_html__( 'Input the URL to another sites options set and hit Import to load the options from that site.', 'lenxel-core' ) ) ); ?>
 				</p>
 				<input
 					class="large-text no-update"
@@ -125,10 +125,10 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 					id="redux-import"
 					name="import"
 					class="button-primary"
-					value="<?php esc_html_e( 'Import', 'lenxel-plugin' ); ?>">&nbsp;&nbsp;
+					value="<?php esc_html_e( 'Import', 'lenxel-core' ); ?>">&nbsp;&nbsp;
 				<span>
 					<?php // phpcs:ignore WordPress.NamingConventions.ValidHookName ?>
-					<?php echo esc_html( apply_filters( 'redux-import-warning', esc_html__( 'WARNING! This will overwrite all existing option values, please proceed with caution!', 'lenxel-plugin' ) ) ); ?>
+					<?php echo esc_html( apply_filters( 'redux-import-warning', esc_html__( 'WARNING! This will overwrite all existing option values, please proceed with caution!', 'lenxel-core' ) ) ); ?>
 				</span>
 			</p>
 			<div class="hr">
@@ -136,29 +136,29 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 					<span>&nbsp;</span>
 				</div>
 			</div>
-			<h4><?php esc_html_e( 'Export Options', 'lenxel-plugin' ); ?></h4>
+			<h4><?php esc_html_e( 'Export Options', 'lenxel-core' ); ?></h4>
 			<div class="redux-section-desc">
 				<p class="description">
 					<?php // phpcs:ignore WordPress.NamingConventions.ValidHookName ?>
-					<?php echo esc_html( apply_filters( 'redux-backup-description', esc_html__( 'Here you can copy/download your current option settings. Keep this safe as you can use it as a backup should anything go wrong, or you can use it to restore your settings on this site (or any other site).', 'lenxel-plugin' ) ) ); ?>
+					<?php echo esc_html( apply_filters( 'redux-backup-description', esc_html__( 'Here you can copy/download your current option settings. Keep this safe as you can use it as a backup should anything go wrong, or you can use it to restore your settings on this site (or any other site).', 'lenxel-core' ) ) ); ?>
 				</p>
 			</div>
 			<?php $link = admin_url( 'admin-ajax.php?action=redux_download_options-' . $this->parent->args['opt_name_triger'] . '&secret=' . $secret ); ?>
 			<p>
 				<button id="redux-export-code-copy" class="button-secondary"
 						data-secret="<?php echo esc_attr( $secret ); ?>"
-						data-copy="<?php esc_attr_e( 'Copy to Clipboard', 'lenxel-plugin' ); ?>"
-						data-copied="<?php esc_attr_e( 'Copied!', 'lenxel-plugin' ); ?>">
-					<?php esc_html_e( 'Copy to Clipboard', 'lenxel-plugin' ); ?>
+						data-copy="<?php esc_attr_e( 'Copy to Clipboard', 'lenxel-core' ); ?>"
+						data-copied="<?php esc_attr_e( 'Copied!', 'lenxel-core' ); ?>">
+					<?php esc_html_e( 'Copy to Clipboard', 'lenxel-core' ); ?>
 				</button>
 				<a href="<?php echo esc_url( $link ); ?>" id="redux-export-code-dl" class="button-primary">
-					<?php esc_html_e( 'Export File', 'lenxel-plugin' ); ?>
+					<?php esc_html_e( 'Export File', 'lenxel-core' ); ?>
 				</a>
 				<a href="javascript:void(0);" id="redux-export-link" class="button-secondary"
-				   data-copy="<?php esc_attr_e( 'Copy Export URL', 'lenxel-plugin' ); ?>"
-				   data-copied="<?php esc_attr_e( 'Copied!', 'lenxel-plugin' ); ?>"
+				   data-copy="<?php esc_attr_e( 'Copy Export URL', 'lenxel-core' ); ?>"
+				   data-copied="<?php esc_attr_e( 'Copied!', 'lenxel-core' ); ?>"
 				   data-url="<?php echo esc_url( $link ); ?>">
-					<?php esc_html_e( 'Copy Export URL', 'lenxel-plugin' ); ?>
+					<?php esc_html_e( 'Copy Export URL', 'lenxel-core' ); ?>
 				</a>
 			</p>
 			<p></p>

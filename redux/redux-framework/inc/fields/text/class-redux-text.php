@@ -24,10 +24,10 @@ if ( ! class_exists( 'Redux_Text', false ) ) {
 		public static function make_descriptor() {
 			$d = static::make_base_descriptor();
 
-			$d->set_info( 'Text', __( 'The Text field accepts any form of text and optionally validates the text before saving the value.', 'lenxel-plugin' ) );
+			$d->set_info( 'Text', __( 'The Text field accepts any form of text and optionally validates the text before saving the value.', 'lenxel-core' ) );
 
-			$d->add_field( 'text_hint', __( 'Display a qTip div when active on the text field.', 'lenxel-plugin' ), RDT::TEXT )->set_order( 100 )->set_required();
-			$d->add_field( 'placeholder', __( 'Placeholder text.', 'lenxel-plugin' ), RDT::TEXT )->set_order( 100 )->set_required();
+			$d->add_field( 'text_hint', __( 'Display a qTip div when active on the text field.', 'lenxel-core' ), RDT::TEXT )->set_order( 100 )->set_required();
+			$d->add_field( 'placeholder', __( 'Placeholder text.', 'lenxel-core' ), RDT::TEXT )->set_order( 100 )->set_required();
 		}
 
 		/**

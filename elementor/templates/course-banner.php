@@ -34,7 +34,7 @@
       <?php 
          if ( $settings['show_number_content'] == 'yes' && $term ) {
             if(!empty($settings['term_slug'])){
-               echo '<span class="number-listings">' . sprintf(_n('%d Listing', '%d Courses', $term->count, 'lenxel-plugin'), $term->count) . '</span>';
+               echo '<span class="number-listings">' . sprintf(_n('%d Listing', '%d Courses', $term->count, 'lenxel-core'), $term->count) . '</span>';
             }
          } 
       ?>

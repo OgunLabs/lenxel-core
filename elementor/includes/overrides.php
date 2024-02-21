@@ -44,7 +44,7 @@ class LNX_Elementor_Override{
       $obj->start_controls_section(
          'lnx_column_style',
          array(
-            'label' => esc_html__( 'Lenxel Style Settings', 'lenxel-plugin' ),
+            'label' => esc_html__( 'Lenxel Style Settings', 'lenxel-core' ),
             'tab'   => Controls_Manager::TAB_STYLE,
          )
       );
@@ -52,12 +52,12 @@ class LNX_Elementor_Override{
       $obj->add_control(
          '_lnx_extra_classes',
          [
-            'label' => __( 'Style Available', 'lenxel-plugin' ),
+            'label' => __( 'Style Available', 'lenxel-core' ),
             'type' => Controls_Manager::SELECT,
             'options' => [
-               '' => __( '-- None --', 'lenxel-plugin' ),
-               'bg-overflow-left' => __( 'Background Overflow Left', 'lenxel-plugin' ),
-               'bg-overflow-right' => __( 'Background Overflow Right', 'lenxel-plugin' ),
+               '' => __( '-- None --', 'lenxel-core' ),
+               'bg-overflow-left' => __( 'Background Overflow Left', 'lenxel-core' ),
+               'bg-overflow-right' => __( 'Background Overflow Right', 'lenxel-core' ),
             ],
             'default' => 'top',
             'prefix_class' => 'column-style-',
@@ -72,7 +72,7 @@ class LNX_Elementor_Override{
       $obj->start_controls_section(
          'lnx_section_row',
          array(
-            'label' => esc_html__( 'Lenxel Extra Settings Row for Header Builder', 'lenxel-plugin' ),
+            'label' => esc_html__( 'Lenxel Extra Settings Row for Header Builder', 'lenxel-core' ),
             'tab'   => Controls_Manager::TAB_LAYOUT,
          )
       );
@@ -81,7 +81,7 @@ class LNX_Elementor_Override{
       $obj->add_control(
          'row_header_sticky',
          [
-            'label'  => esc_html__( 'Sticky Row Settings (Use only for row in header)', 'lenxel-plugin' ),
+            'label'  => esc_html__( 'Sticky Row Settings (Use only for row in header)', 'lenxel-core' ),
             'type'      => Controls_Manager::HEADING
          ]
       );
@@ -89,22 +89,22 @@ class LNX_Elementor_Override{
       $obj->add_control(
          '_lnx_sticky_menu',
          [
-            'label'     => __( 'Sticky Menu Row', 'lenxel-plugin' ),
+            'label'     => __( 'Sticky Menu Row', 'lenxel-core' ),
             'type'      => Controls_Manager::SELECT,
             'options'   => [
-               '' => __( '-- None --', 'lenxel-plugin' ),
-               'gv-sticky-menu' => __( 'Sticky Menu', 'lenxel-plugin' ),
+               '' => __( '-- None --', 'lenxel-core' ),
+               'gv-sticky-menu' => __( 'Sticky Menu', 'lenxel-core' ),
             ],
             'default'         => '',
             'prefix_class'    => '',
-            'description'     => __('You can only enable sticky menu for one row, please make sure display all sticky menu for other rows', 'lenxel-plugin')
+            'description'     => __('You can only enable sticky menu for one row, please make sure display all sticky menu for other rows', 'lenxel-core')
          ]
       );
 
       $obj->add_control(
          '_lnx_sticky_background',
          [
-            'label'     => __('Sticky Background Color', 'lenxel-plugin'),
+            'label'     => __('Sticky Background Color', 'lenxel-core'),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [ 
                '.gv-sticky-wrapper.is-fixed > .elementor-section' => 'background: {{VALUE}}!important;', 
@@ -117,7 +117,7 @@ class LNX_Elementor_Override{
       $obj->add_control(
          '_lnx_sticky_menu_text_color',
          [
-            'label'     => __('Sticky Text Color', 'lenxel-plugin'),
+            'label'     => __('Sticky Text Color', 'lenxel-core'),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '.gv-sticky-wrapper.is-fixed > .elementor-section' => 'color: {{VALUE}}', 
@@ -130,7 +130,7 @@ class LNX_Elementor_Override{
       $obj->add_control(
          '_lnx_sticky_menu_link_color',
          [
-            'label'     => __('Sticky Link Menu Color', 'lenxel-plugin'),
+            'label'     => __('Sticky Link Menu Color', 'lenxel-core'),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '.gv-sticky-wrapper.is-fixed > .elementor-section .lnx-navigation-menu ul.lnx-nav-menu > li > a' => 'color: {{VALUE}}',
@@ -143,7 +143,7 @@ class LNX_Elementor_Override{
       $obj->add_control(
          '_lnx_sticky_menu_link_hover_color',
          [
-            'label'     => __('Sticky Link Menu Hover Color', 'lenxel-plugin'),
+            'label'     => __('Sticky Link Menu Hover Color', 'lenxel-core'),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '.gv-sticky-wrapper.is-fixed > .elementor-section .lnx-navigation-menu ul.lnx-nav-menu > li > a:hover' => 'color: {{VALUE}}',
@@ -162,19 +162,19 @@ class LNX_Elementor_Override{
       $obj->start_controls_section(
          'lnx_extra_settings_row',
          array(
-            'label' => esc_html__( 'Lenxel Style Settings', 'lenxel-plugin' ),
+            'label' => esc_html__( 'Lenxel Style Settings', 'lenxel-core' ),
             'tab'   => Controls_Manager::TAB_STYLE,
          )
       );
       $obj->add_control(
          '_lnx_extra_row_style',
          [
-            'label'     => __( 'Style Available', 'lenxel-plugin' ),
+            'label'     => __( 'Style Available', 'lenxel-core' ),
             'type'      => Controls_Manager::SELECT,
             'options'   => [
-               '' => __( '-- None --', 'lenxel-plugin' ),
-               'style-1' => __( 'Background White Full To Left and Border Theme', 'lenxel-plugin' ),
-               'style-2' => __( 'Background Theme Full To Right', 'lenxel-plugin' ),
+               '' => __( '-- None --', 'lenxel-core' ),
+               'style-1' => __( 'Background White Full To Left and Border Theme', 'lenxel-core' ),
+               'style-2' => __( 'Background Theme Full To Right', 'lenxel-core' ),
             ],
             'label_block'  => true,
             'default'      => 'top',
@@ -184,13 +184,13 @@ class LNX_Elementor_Override{
       $obj->add_control(
          'lnx_row_color',
          [
-            'label' => __( 'Background Color', 'lenxel-plugin' ),
+            'label' => __( 'Background Color', 'lenxel-core' ),
             'type' => Controls_Manager::SELECT,
             'label_block'  => true,
             'options' => [
-               '' => __( '-- Default --', 'lenxel-plugin' ),
-               'theme'         => __( 'Background Color Theme', 'lenxel-plugin' ),
-               'theme-second'  => __( 'Background Color Theme Second', 'lenxel-plugin' ),
+               '' => __( '-- Default --', 'lenxel-core' ),
+               'theme'         => __( 'Background Color Theme', 'lenxel-core' ),
+               'theme-second'  => __( 'Background Color Theme Second', 'lenxel-core' ),
             ],
             'default' => '',
             'prefix_class' => 'bg-row-',
@@ -199,12 +199,12 @@ class LNX_Elementor_Override{
       $obj->add_control(
          'lnx_bg_row_effect',
          [
-            'label' => __( 'Background Effect', 'lenxel-plugin' ),
+            'label' => __( 'Background Effect', 'lenxel-core' ),
             'type' => Controls_Manager::SELECT,
             'label_block'  => true,
             'options' => [
-               '' => __( '-- Default --', 'lenxel-plugin' ),
-               'particles-js'  => __( 'Particles', 'lenxel-plugin' )
+               '' => __( '-- Default --', 'lenxel-core' ),
+               'particles-js'  => __( 'Particles', 'lenxel-core' )
             ],
             'default' => '',
             'prefix_class' => 'row-background-',
@@ -218,7 +218,7 @@ class LNX_Elementor_Override{
       $obj->start_controls_section(
          'lnx_section_icon_box',
          array(
-            'label' => esc_html__( 'LNX Theme Settings', 'lenxel-plugin' ),
+            'label' => esc_html__( 'LNX Theme Settings', 'lenxel-core' ),
             'tab'   => Controls_Manager::TAB_CONTENT,
          )
       );
@@ -226,12 +226,12 @@ class LNX_Elementor_Override{
       $obj->add_control(
          'lnx_icon_color',
          [
-            'label'     => __( 'Style', 'lenxel-plugin' ),
+            'label'     => __( 'Style', 'lenxel-core' ),
             'type'      => Controls_Manager::SELECT,
             'options'   => [
-               ''             => esc_html__( '-- Default --', 'lenxel-plugin' ),
-               'style-1'      => esc_html__( 'Style I', 'lenxel-plugin' ),
-               'style-2'      => esc_html__( 'Style II', 'lenxel-plugin' )
+               ''             => esc_html__( '-- Default --', 'lenxel-core' ),
+               'style-1'      => esc_html__( 'Style I', 'lenxel-core' ),
+               'style-2'      => esc_html__( 'Style II', 'lenxel-core' )
             ],
             'default'      => '',
             'prefix_class' => 'elementor-icon-box-',

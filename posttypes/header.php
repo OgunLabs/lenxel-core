@@ -21,24 +21,24 @@ class Lenxel_Theme_Support_Header{
 
   public function args_post_type_header(){
     $labels = array(
-      'name' => __( 'Header Builder', 'lenxel-plugin' ),
-      'singular_name' => __( 'Header Builder', 'lenxel-plugin' ),
-      'add_new' => __( 'Add Header Builder', 'lenxel-plugin' ),
-      'add_new_item' => __( 'Add Header Builder', 'lenxel-plugin' ),
-      'edit_item' => __( 'Edit Header', 'lenxel-plugin' ),
-      'new_item' => __( 'New Header Builder', 'lenxel-plugin' ),
-      'view_item' => __( 'View Header Builder', 'lenxel-plugin' ),
-      'search_items' => __( 'Search Header Profiles', 'lenxel-plugin' ),
-      'not_found' => __( 'No Header Profiles found', 'lenxel-plugin' ),
-      'not_found_in_trash' => __( 'No Header Profiles found in Trash', 'lenxel-plugin' ),
-      'parent_item_colon' => __( 'Parent Header:', 'lenxel-plugin' ),
-      'menu_name' => __( 'Header Builder', 'lenxel-plugin' ),
+      'name' => __( 'Header Builder', 'lenxel-core' ),
+      'singular_name' => __( 'Header Builder', 'lenxel-core' ),
+      'add_new' => __( 'Add Header Builder', 'lenxel-core' ),
+      'add_new_item' => __( 'Add Header Builder', 'lenxel-core' ),
+      'edit_item' => __( 'Edit Header', 'lenxel-core' ),
+      'new_item' => __( 'New Header Builder', 'lenxel-core' ),
+      'view_item' => __( 'View Header Builder', 'lenxel-core' ),
+      'search_items' => __( 'Search Header Profiles', 'lenxel-core' ),
+      'not_found' => __( 'No Header Profiles found', 'lenxel-core' ),
+      'not_found_in_trash' => __( 'No Header Profiles found in Trash', 'lenxel-core' ),
+      'parent_item_colon' => __( 'Parent Header:', 'lenxel-core' ),
+      'menu_name' => __( 'Header Builder', 'lenxel-core' ),
     );
 
     $args = array(
         'labels'              => $labels,
         'hierarchical'        => true,
-        'description'         => __('List Header', "lenxel-plugin"),
+        'description'         => __('List Header', "lenxel-core"),
         'public'              => true,
         'show_ui'             => true,
         'show_in_menu'        => true,
@@ -68,7 +68,7 @@ class Lenxel_Theme_Support_Header{
     $post_list = get_posts($args);
     $headers = array();
     if($default){
-      $headers['__default_option_theme'] = esc_html__('Default Option Theme', 'lenxel-plugin');
+      $headers['__default_option_theme'] = esc_html__('Default Option Theme', 'lenxel-core');
     }
     foreach ( $post_list as $post ) {
       $headers[$post->post_name] = $post->post_title;

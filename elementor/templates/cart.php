@@ -7,7 +7,7 @@
 		<?php if(class_exists('WooCommerce')){ ?>
 		 	<div class="mini-cart-header">
 			 	<div class="cart mini-cart-inner">
-					<a class="mini-cart" href="#" title="<?php echo esc_html__('View your shopping cart', 'lenxel-plugin'); ?>">
+					<a class="mini-cart" href="#" title="<?php echo esc_html__('View your shopping cart', 'lenxel-core'); ?>">
 						<span class="title-cart"><i class="flaticon-shopping-cart"></i></span>
 						<span class="mini-cart-items">
 							<?php 

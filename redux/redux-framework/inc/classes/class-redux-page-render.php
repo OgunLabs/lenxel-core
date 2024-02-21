@@ -169,31 +169,31 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 
 				// Default url values for enabling hints.
 				$dismiss = 'true';
-				$s       = esc_html__( 'Enable', 'lenxel-plugin' );
+				$s       = esc_html__( 'Enable', 'lenxel-core' );
 
 				// Values for disabling hints.
 				if ( 'true' === $hint_status ) {
 					$dismiss = 'false';
-					$s       = esc_html__( 'Disable', 'lenxel-plugin' );
+					$s       = esc_html__( 'Disable', 'lenxel-core' );
 				}
 
 				// Make URL.
 				$nonce = wp_create_nonce( 'redux_hint_toggle' );
 				$url   = '<a class="redux_hint_status" href="?nonce=' . $nonce . '&amp;dismiss=' . $dismiss . '&amp;id=hints&amp;page=' . esc_attr( $cur_page ) . '&amp;tab=' . esc_attr( $cur_tab ) . '">' . $s . ' hints</a>';
 
-				$event = esc_html__( 'moving the mouse over', 'lenxel-plugin' );
+				$event = esc_html__( 'moving the mouse over', 'lenxel-core' );
 				if ( 'click' === $core->args['hints']['tip_effect']['show']['event'] ) {
-					$event = esc_html__( 'clicking', 'lenxel-plugin' );
+					$event = esc_html__( 'clicking', 'lenxel-core' );
 				}
 
 				// Construct message.
 				// translators: %1$s: Mousr action.  %2$s: Hint status.
-				$msg = sprintf( esc_html__( 'Hints are tooltips that popup when %1$s the hint icon, offering addition information about the field in which they appear.  They can be %2$s by using the link below.', 'lenxel-plugin' ), $event, Redux_Core::strtolower( $s ) ) . '<br/><br/>' . $url;
+				$msg = sprintf( esc_html__( 'Hints are tooltips that popup when %1$s the hint icon, offering addition information about the field in which they appear.  They can be %2$s by using the link below.', 'lenxel-core' ), $event, Redux_Core::strtolower( $s ) ) . '<br/><br/>' . $url;
 
 				// Construct hint tab.
 				$tab = array(
 					'id'      => 'redux-hint-tab',
-					'title'   => esc_html__( 'Hints', 'lenxel-plugin' ),
+					'title'   => esc_html__( 'Hints', 'lenxel-core' ),
 					'content' => '<p>' . $msg . '</p>',
 				);
 
@@ -209,7 +209,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 				// If sidebar text is empty and hints are active, display text
 				// about hints.
 				if ( true === $this->show_hints ) {
-					$screen->set_help_sidebar( '<p><strong>Redux Framework</strong><br/><br/>' . esc_html__( 'Hint Tooltip Preferences', 'lenxel-plugin' ) . '</p>' );
+					$screen->set_help_sidebar( '<p><strong>Redux Framework</strong><br/><br/>' . esc_html__( 'Hint Tooltip Preferences', 'lenxel-core' ) . '</p>' );
 				}
 			}
 
@@ -510,7 +510,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 							$field_class = Redux_Functions::class_exists_ex( $field_classes );
 						} else {
 							// translators: %1$s is the field ID, %2$s is the field type.
-							echo sprintf( esc_html__( 'Field %1$s could not be displayed. Field type %2$s was not found.', 'lenxel-plugin' ), '<code>' . esc_attr( $field['id'] ) . '</code>', '<code>' . esc_attr( $field['type'] ) . '</code>' );
+							echo sprintf( esc_html__( 'Field %1$s could not be displayed. Field type %2$s was not found.', 'lenxel-core' ), '<code>' . esc_attr( $field['id'] ) . '</code>', '<code>' . esc_attr( $field['type'] ) . '</code>' );
 						}
 					}
 				}
@@ -985,7 +985,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 			}
 
 			if ( ! empty( $default_output ) ) {
-				$default_output = esc_html__( 'Default', 'lenxel-plugin' ) . ': ' . substr( $default_output, 0, - 2 );
+				$default_output = esc_html__( 'Default', 'lenxel-core' ) . ': ' . substr( $default_output, 0, - 2 );
 			}
 
 			if ( ! empty( $default_output ) ) {

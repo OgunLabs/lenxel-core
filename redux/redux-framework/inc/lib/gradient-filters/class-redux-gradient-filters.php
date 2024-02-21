@@ -41,17 +41,17 @@ if ( ! class_exists( 'Redux_Gradient_Filters' ) ) {
 				$select2_data = Redux_Functions::create_data_string( $select2_default );
 
 				$output .= '<div class="redux-gradient-type">';
-				$output .= '<strong>' . esc_html__( 'Gradient Type ', 'lenxel-plugin' ) . '</strong>&nbsp;';
+				$output .= '<strong>' . esc_html__( 'Gradient Type ', 'lenxel-core' ) . '</strong>&nbsp;';
 				$output .= '<select ';
 				$output .= 'class="redux-gradient-select select2-container"';
-				$output .= 'data-placeholder="' . esc_attr__( 'Type', 'lenxel-plugin' ) . '" ' . $select2_data . ' ';
+				$output .= 'data-placeholder="' . esc_attr__( 'Type', 'lenxel-core' ) . '" ' . $select2_data . ' ';
 				$output .= 'name="' . esc_attr( $field['name'] . $field['name_suffix'] ) . '[gradient-type]"';
 				$output .= 'data-value="' . esc_attr( $value['gradient-type'] ) . '"';
 				$output .= 'data-id="' . esc_attr( $field['id'] ) . '">';
 
 				$arr = array(
-					esc_html__( 'linear', 'lenxel-plugin' ),
-					esc_html__( 'radial', 'lenxel-plugin' ),
+					esc_html__( 'linear', 'lenxel-core' ),
+					esc_html__( 'radial', 'lenxel-core' ),
 				);
 
 				foreach ( $arr as $v ) {
@@ -79,7 +79,7 @@ if ( ! class_exists( 'Redux_Gradient_Filters' ) ) {
 
 			if ( $field['gradient-reach'] ) {
 				$output .= '<div class="slider-from-reach">';
-				$output .= '<label>' . esc_html__( 'From Reach ', 'lenxel-plugin' ) . ':  <strong>' . esc_html( $value['gradient-reach']['from'] ) . '%</strong></label>';
+				$output .= '<label>' . esc_html__( 'From Reach ', 'lenxel-core' ) . ':  <strong>' . esc_html( $value['gradient-reach']['from'] ) . '%</strong></label>';
 				$output .= '<div ';
 				$output .= 'class="redux-gradient-slider redux-color-gradient redux-gradient-from-reach color-gradient-input ' . esc_attr( $field['class'] ) . '"';
 				$output .= 'id="' . esc_attr( $field['id'] ) . '"';
@@ -88,7 +88,7 @@ if ( ! class_exists( 'Redux_Gradient_Filters' ) ) {
 				$output .= 'data-max="100"';
 				$output .= 'data-step="1"';
 				$output .= 'data-rtl="' . esc_attr( is_rtl() ) . '"';
-				$output .= 'data-label="' . esc_attr__( 'From Reach', 'lenxel-plugin' ) . '"';
+				$output .= 'data-label="' . esc_attr__( 'From Reach', 'lenxel-core' ) . '"';
 				$output .= 'data-default = "' . esc_attr( $value['gradient-reach']['from'] ) . '">';
 				$output .= '</div>';
 				$output .= '<input ';
@@ -102,7 +102,7 @@ if ( ! class_exists( 'Redux_Gradient_Filters' ) ) {
 				$output .= '</div>';
 
 				$output .= '<div class="slider-to-reach">';
-				$output .= '<label>' . esc_html__( 'To Reach', 'lenxel-plugin' ) . ':  <strong>' . esc_html( $value['gradient-reach']['to'] ) . '%</strong></label>';
+				$output .= '<label>' . esc_html__( 'To Reach', 'lenxel-core' ) . ':  <strong>' . esc_html( $value['gradient-reach']['to'] ) . '%</strong></label>';
 				$output .= '<div ';
 				$output .= 'class="redux-gradient-slider redux-color-gradient redux-gradient-reach-to color-gradient-input ' . esc_attr( $field['class'] ) . '"';
 				$output .= 'id="' . esc_attr( $field['id'] ) . '"';
@@ -111,7 +111,7 @@ if ( ! class_exists( 'Redux_Gradient_Filters' ) ) {
 				$output .= 'data-max="100"';
 				$output .= 'data-step="1"';
 				$output .= 'data-rtl="' . esc_attr( is_rtl() ) . '"';
-				$output .= 'data-label="' . esc_attr__( 'To Reach', 'lenxel-plugin' ) . '"';
+				$output .= 'data-label="' . esc_attr__( 'To Reach', 'lenxel-core' ) . '"';
 				$output .= 'data-default = "' . esc_attr( $value['gradient-reach']['to'] ) . '">';
 				$output .= '</div>';
 				$output .= '<input ';
@@ -132,7 +132,7 @@ if ( ! class_exists( 'Redux_Gradient_Filters' ) ) {
 				}
 
 				$output .= '<div class="slider-gradient-angle" ' . $style . '>';
-				$output .= '<label>' . esc_html__( 'Gradient Angle', 'lenxel-plugin' ) . ':  <strong>' . $value['gradient-angle'] . '&deg;</strong></label>';
+				$output .= '<label>' . esc_html__( 'Gradient Angle', 'lenxel-core' ) . ':  <strong>' . $value['gradient-angle'] . '&deg;</strong></label>';
 				$output .= '<div ';
 				$output .= 'class="redux-gradient-slider redux-color-gradient redux-gradient-angle color-gradient-input ' . esc_attr( $field['class'] ) . '"';
 				$output .= 'id="' . esc_attr( $field['id'] ) . '"';
@@ -141,7 +141,7 @@ if ( ! class_exists( 'Redux_Gradient_Filters' ) ) {
 				$output .= 'data-max="360"';
 				$output .= 'data-step="1"';
 				$output .= 'data-rtl="' . esc_attr( is_rtl() ) . '"';
-				$output .= 'data-label="' . esc_attr__( 'Gradient Angle', 'lenxel-plugin' ) . '"';
+				$output .= 'data-label="' . esc_attr__( 'Gradient Angle', 'lenxel-core' ) . '"';
 				$output .= 'data-default = "' . esc_attr( $value['gradient-angle'] ) . '">';
 				$output .= '</div>';
 				$output .= '<input ';

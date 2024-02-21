@@ -30,13 +30,13 @@ class Lenxel_Addons_Forget_Pwd_Ajax{
 		$user_login = $_POST['user_login'];
 	 
 		if ( empty($user_login) ) {
-		  	$mess = esc_html__('Error: Enter a username or e-mail address.', 'lenxel-plugin');
+		  	$mess = esc_html__('Error: Enter a username or e-mail address.', 'lenxel-core');
 			echo wp_json_encode(array('loggedin' => false, 'message'=>'<div class="alert alert-warning">' . $mess . '</div>'));
 		  	die();
 		} else if ( strpos( $user_login, '@' ) ) {
 			$user = get_user_by( 'email', trim( $user_login ) );
 			if ( empty( $user ) ){
-				$mess = esc_html__('Error: There is no user registered with that email address.', 'lenxel-plugin');
+				$mess = esc_html__('Error: There is no user registered with that email address.', 'lenxel-core');
 				echo wp_json_encode(array('loggedin' => false, 'message'=>'<div class="alert alert-warning">' . $mess . '</div>'));
 				die();
 			}
@@ -45,7 +45,7 @@ class Lenxel_Addons_Forget_Pwd_Ajax{
 			$user = get_user_by('login', $login);
 		}
 		if ( !$user ) {
-			$mess = esc_html__('Error: Invalid username or email.', 'lenxel-plugin');
+			$mess = esc_html__('Error: Invalid username or email.', 'lenxel-core');
 			echo wp_json_encode(array('loggedin' => false, 'message'=>'<div class="alert alert-warning">' . $mess . '</div>'));
 			die();
 		}
@@ -57,13 +57,13 @@ class Lenxel_Addons_Forget_Pwd_Ajax{
 		if ( is_wp_error( $key ) ) {
 			return $key;
 		}
-		$message = esc_html__('Hi ', 'lenxel-plugin') . $user_login . '!' . "\r\n";
-		$message .= '<br>' . esc_html__('Someone requested that the password be reset for the following account', 'lenxel-plugin') . ' ' . network_home_url( '/' ). "\r\n";
-		$message .= sprintf(esc_html__(' with username: %s', 'lenxel-plugin'), $user_login). "\r\n";
-		$message .= '<br>' . esc_html__('If this was a mistake, just ignore this email and nothing will happen.', 'lenxel-plugin'). "\r\n";
-		$message .= '<br>' . esc_html__('To reset your password, visit the following address:', 'lenxel-plugin'). "\r\n";
+		$message = esc_html__('Hi ', 'lenxel-core') . $user_login . '!' . "\r\n";
+		$message .= '<br>' . esc_html__('Someone requested that the password be reset for the following account', 'lenxel-core') . ' ' . network_home_url( '/' ). "\r\n";
+		$message .= sprintf(esc_html__(' with username: %s', 'lenxel-core'), $user_login). "\r\n";
+		$message .= '<br>' . esc_html__('If this was a mistake, just ignore this email and nothing will happen.', 'lenxel-core'). "\r\n";
+		$message .= '<br>' . esc_html__('To reset your password, visit the following address:', 'lenxel-core'). "\r\n";
 		$message .= network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') . "\r\n";
-		$message .= '<br>' . esc_html__('Thank you!', 'lenxel-plugin');
+		$message .= '<br>' . esc_html__('Thank you!', 'lenxel-core');
 		//$message .= esc_url( get_permalink( 113 ) . "?action=rp&key=$key&login=" . rawurlencode($user_login) );
 		
 		$blogname = is_multisite() ?  $GLOBALS['current_site']->site_name : wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
@@ -82,11 +82,11 @@ class Lenxel_Addons_Forget_Pwd_Ajax{
 		$mail = wp_mail( $to, $subject, $message, $headers );
 
 		if ( $mail ){
-			$mess = esc_html__('Success: Check your e-mail for the confirmation link.', 'lenxel-plugin');
+			$mess = esc_html__('Success: Check your e-mail for the confirmation link.', 'lenxel-core');
 			echo wp_json_encode(array('message'=> '<div class="alert alert-success">' . $mess . '</div>'));
 			die();
 		}else{
-			$mess = esc_html__('The e-mail could not be sent.', 'lenxel-plugin') . "<br/>" . esc_html__('Possible reason: your host may have disabled the mail() function.', 'lenxel-plugin');
+			$mess = esc_html__('The e-mail could not be sent.', 'lenxel-core') . "<br/>" . esc_html__('Possible reason: your host may have disabled the mail() function.', 'lenxel-core');
 			echo wp_json_encode(array('message'=>'<div class="alert alert-warning">' . $mess . '</div>'));
 			die();
 		}
@@ -102,11 +102,11 @@ class Lenxel_Addons_Forget_Pwd_Ajax{
 				}
 			?>
 			<div class="form-group">
-				<label for="forget_pwd_user_login"><?php echo esc_html__('Username or E-mail:', 'lenxel-plugin') ?></label>
-				<input type="text" name="user_login" class="control-form input-fw" id="forget_pwd_user_login" placeholder="<?php echo esc_html__('Username', 'lenxel-plugin') ?>" value="" size="20" />
+				<label for="forget_pwd_user_login"><?php echo esc_html__('Username or E-mail:', 'lenxel-core') ?></label>
+				<input type="text" name="user_login" class="control-form input-fw" id="forget_pwd_user_login" placeholder="<?php echo esc_html__('Username', 'lenxel-core') ?>" value="" size="20" />
 			</div>
 			<div class="form-group form-action">
-				<input type="submit" name="wp-submit" class="btn-theme btn-fw" value="<?php echo esc_attr__('Get New Password', 'lenxel-plugin'); ?>" />
+				<input type="submit" name="wp-submit" class="btn-theme btn-fw" value="<?php echo esc_attr__('Get New Password', 'lenxel-core'); ?>" />
 			</div>
 		</form>
 	<?php   

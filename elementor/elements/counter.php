@@ -44,7 +44,7 @@ class LNXElement_Counter extends LNXElement_Base {
 	 */
 	public function get_title() {
 		$get_current_name = load_lenxel_widget_content_element('LNX Counter');
-		return __( $get_current_name, 'lenxel-plugin' );
+		return __( $get_current_name, 'lenxel-core' );
 	}
 
 	/**
@@ -94,13 +94,13 @@ class LNXElement_Counter extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => __( 'Content', 'lenxel-plugin' ),
+				'label' => __( 'Content', 'lenxel-core' ),
 			]
 		);
 		$this->add_control(
 			'selected_icon',
 			[
-				'label' => __( 'Icon Class', 'lenxel-plugin' ),
+				'label' => __( 'Icon Class', 'lenxel-core' ),
 				'type' => Controls_Manager::ICONS,
 				'fa4compatibility' => 'icon',
 				'default' => [
@@ -112,7 +112,7 @@ class LNXElement_Counter extends LNXElement_Base {
 		$this->add_control(
 			'number',
 			[
-				'label' => __( 'Number', 'lenxel-plugin' ),
+				'label' => __( 'Number', 'lenxel-core' ),
 				'type' => Controls_Manager::NUMBER,
 				'default' => 110
 			]
@@ -120,39 +120,39 @@ class LNXElement_Counter extends LNXElement_Base {
 		$this->add_control(
 			'text_before',
 			[
-				'label' => __( 'Text Before Number', 'lenxel-plugin' ),
+				'label' => __( 'Text Before Number', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXT,
 			]
 		);
 		$this->add_control(
 			'text_after',
 			[
-				'label' => __( 'Text After Number', 'lenxel-plugin' ),
+				'label' => __( 'Text After Number', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXT,
 			]
 		);
 		$this->add_control(
 			'title_text',
 			[
-				'label' => __( 'Title & Description', 'lenxel-plugin' ),
+				'label' => __( 'Title & Description', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'This is the heading', 'lenxel-plugin' ),
-				'placeholder' => __( 'Enter your title', 'lenxel-plugin' ),
+				'default' => __( 'This is the heading', 'lenxel-core' ),
+				'placeholder' => __( 'Enter your title', 'lenxel-core' ),
 				'label_block' => true,
 			]
 		);
 		$this->add_control(
 			'link',
 			[
-				'label' => __( 'Link', 'lenxel-plugin' ),
+				'label' => __( 'Link', 'lenxel-core' ),
 				'type' => Controls_Manager::URL,
-				'placeholder' => __( 'https://your-link.com', 'lenxel-plugin' ),
+				'placeholder' => __( 'https://your-link.com', 'lenxel-core' ),
 			]
 		);
 		$this->add_control(
 			'title_size',
 			[
-				'label' => __( 'Title HTML Tag', 'lenxel-plugin' ),
+				'label' => __( 'Title HTML Tag', 'lenxel-core' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
 					'h1' => 'H1',
@@ -171,12 +171,12 @@ class LNXElement_Counter extends LNXElement_Base {
 		$this->add_control(
 			'style',
 			[
-				'label' => __( 'Style', 'lenxel-plugin' ),
+				'label' => __( 'Style', 'lenxel-core' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'style-1' 		=> __( 'Style I', 'lenxel-plugin' ),
-					'style-2' 		=> __( 'Style II', 'lenxel-plugin' ),
-					'style-3' 		=> __( 'Style III', 'lenxel-plugin' ),
+					'style-1' 		=> __( 'Style I', 'lenxel-core' ),
+					'style-2' 		=> __( 'Style II', 'lenxel-core' ),
+					'style-3' 		=> __( 'Style III', 'lenxel-core' ),
 				],
 				'default' => 'style-1',
 			]
@@ -188,7 +188,7 @@ class LNXElement_Counter extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_style_icon',
 			[
-				'label' => __( 'Icon', 'lenxel-plugin' ),
+				'label' => __( 'Icon', 'lenxel-core' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -196,7 +196,7 @@ class LNXElement_Counter extends LNXElement_Base {
 		$this->add_control(
 			'icon_color',
 			[
-				'label' => __( 'Icon Color', 'lenxel-plugin' ),
+				'label' => __( 'Icon Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -209,7 +209,7 @@ class LNXElement_Counter extends LNXElement_Base {
 		$this->add_control(
 			'icon_color_hover',
 			[
-				'label' => __( 'Hover | Icon Color', 'lenxel-plugin' ),
+				'label' => __( 'Hover | Icon Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -222,7 +222,7 @@ class LNXElement_Counter extends LNXElement_Base {
 		$this->add_responsive_control(
 			'icon_size',
 			[
-				'label' => __( 'Icon Size', 'lenxel-plugin' ),
+				'label' => __( 'Icon Size', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 60
@@ -243,7 +243,7 @@ class LNXElement_Counter extends LNXElement_Base {
 		$this->add_responsive_control(
 			'icon_space',
 			[
-				'label' => __( 'Spacing', 'lenxel-plugin' ),
+				'label' => __( 'Spacing', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 20,
@@ -268,7 +268,7 @@ class LNXElement_Counter extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_title_style',
 			[
-				'label' => __( 'Title', 'lenxel-plugin' ),
+				'label' => __( 'Title', 'lenxel-core' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -276,7 +276,7 @@ class LNXElement_Counter extends LNXElement_Base {
 		$this->add_responsive_control(
 			'title_top_space',
 			[
-				'label' => __( 'Spacing', 'lenxel-plugin' ),
+				'label' => __( 'Spacing', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -293,7 +293,7 @@ class LNXElement_Counter extends LNXElement_Base {
 		$this->add_control(
 			'title_color',
 			[
-				'label' => __( 'Color', 'lenxel-plugin' ),
+				'label' => __( 'Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -316,7 +316,7 @@ class LNXElement_Counter extends LNXElement_Base {
 		$this->start_controls_section(
 			'sectionn_number_style',
 			[
-				'label' => __( 'Number Text', 'lenxel-plugin' ),
+				'label' => __( 'Number Text', 'lenxel-core' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -324,7 +324,7 @@ class LNXElement_Counter extends LNXElement_Base {
 		$this->add_responsive_control(
 			'number_bottom_space',
 			[
-				'label' => __( 'Spacing', 'lenxel-plugin' ),
+				'label' => __( 'Spacing', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -341,7 +341,7 @@ class LNXElement_Counter extends LNXElement_Base {
 		$this->add_control(
 			'number_text_color',
 			[
-				'label' => __( 'Color', 'lenxel-plugin' ),
+				'label' => __( 'Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [

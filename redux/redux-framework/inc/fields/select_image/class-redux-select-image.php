@@ -23,7 +23,7 @@ if ( ! class_exists( 'Redux_Select_Image', false ) ) {
 		public function set_defaults() {
 			$defaults = array(
 				'options'     => array(),
-				'placeholder' => esc_html__( 'Select an item', 'lenxel-plugin' ),
+				'placeholder' => esc_html__( 'Select an item', 'lenxel-core' ),
 			);
 
 			$this->field = wp_parse_args( $this->field, $defaults );
@@ -142,7 +142,7 @@ if ( ! class_exists( 'Redux_Select_Image', false ) ) {
 			} else {
 
 				// No options specified.  Really?
-				echo '<strong>' . esc_html__( 'No items of this type were found.', 'lenxel-plugin' ) . '</strong>';
+				echo '<strong>' . esc_html__( 'No items of this type were found.', 'lenxel-core' ) . '</strong>';
 			}
 		}
 
