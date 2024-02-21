@@ -312,12 +312,12 @@
 		},
 
 		deactivate: function() {
-			$('a#deactivate-lenxel-theme-support-2').on('click', function(e) {
+			$('a#deactivate-lenxel-core-2').on('click', function(e) {
 				e.preventDefault();
 				$('.deactivateLenxel').click()[0];
 				
 			});
-			$('a#deactivate-lenxel-theme-support').on('click', function(e) {
+			$('a#deactivate-lenxel-core').on('click', function(e) {
 				e.preventDefault();
 				$('.deactivateLenxel').click()[0];
 				

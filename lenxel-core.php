@@ -120,8 +120,9 @@ class Lenxel_Theme_Support{
    public function lenxel_plugin_update()
    {
       require 'plugin-update/plugin-update-checker.php';
+      $updateRoute = plugin_dir_url( __FILE__ ).'lenxel-core-update-plugin.json';
       Puc_v4_Factory::buildUpdateChecker(
-         'https://lenxel.000webhostapp.com/plugins/dummy_data/lenxel-theme-support-update-plugin.json',
+         "${$updateRoute}",
          __FILE__,
          'lenxel-core'
       );
