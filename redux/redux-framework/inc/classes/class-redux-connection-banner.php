@@ -133,7 +133,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$nonce = isset( $_REQUEST['nonce'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['nonce'] ) ) : '';
 			if ( empty( $nonce ) || ! wp_verify_nonce( $nonce, $this->nonce ) ) {
-				die( __( 'Security check failed.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				die( __( 'Security check failed.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 			if ( 'true' === $_REQUEST['activate'] ) {
 				Redux_Functions_Ex::set_activated( sanitize_text_field( wp_unslash( $_REQUEST['activate'] ) ) );
@@ -248,7 +248,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 					'registrationNonce'     => wp_create_nonce( 'Redux-registration-nonce' ),
 					'apiNonce'              => wp_create_nonce( 'wp_rest' ),
 					'apiSiteDataNonce'      => wp_create_nonce( 'wp_rest' ),
-					'buttonTextRegistering' => __( 'Loading...', 'lenxel-theme-support' ),
+					'buttonTextRegistering' => __( 'Loading...', 'lenxel-core' ),
 					'ReduxApiDomain'        => $ReduxApiUrl['scheme'] . '://' . $ReduxApiUrl['host'],
 					'forceVariation'        => $force_variation,
 					'connectInPlaceUrl'     => Redux::admin_url( 'page=Redux#/setup' ),
@@ -277,20 +277,20 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 				// if ( isset( $args['display_name'] ) && !empty( $args['display_name'] )) {
 				// $name = $name . ' & '.$args['display_name'];
 				// }
-				$notice = sprintf( __( 'Register <strong>%1$s</strong> to enable automatic Google Font updates service. Plus unlock all free block templates in the Redux template library.', 'lenxel-theme-support' ), $name );
+				$notice = sprintf( __( 'Register <strong>%1$s</strong> to enable automatic Google Font updates service. Plus unlock all free block templates in the Redux template library.', 'lenxel-core' ), $name );
 			} else {
 				$notice = $this->notice;
 			}
 
-			$notice .= ' (<a class="redux-insights-data-we-collect" href="#" style="white-space: nowrap;">' . __( 'learn more', 'lenxel-theme-support' ) . '</a>)';
+			$notice .= ' (<a class="redux-insights-data-we-collect" href="#" style="white-space: nowrap;">' . __( 'learn more', 'lenxel-core' ) . '</a>)';
 
 			$notice .= '<p class="description" style="display:none;">' . self::tos_blurb( 'option_panel' ) . ' </p>';
 
 			echo '<div class="updated" id="redux-connect-message" data-nonce="' . wp_create_nonce( $this->nonce ) . '" style="border-left-color: #24b0a6;"><p>';
 			echo $notice;
 			echo '</p><p class="submit">';
-			echo '&nbsp;<a href="' . esc_url( $urls['register'] ) . '" class="button-primary button-large redux-activate-connection redux-connection-banner-action" data-url="' . admin_url( 'admin-ajax.php' ) . '" data-activate="panel_banner">' . __( 'Register Now', 'lenxel-theme-support' ) . '</a>';
-			echo '&nbsp;&nbsp;&nbsp;<a href="' . esc_url( $urls['dismiss'] ) . '" style="color: #aaa;" class="redux-connection-banner-action" data-activate="false" data-url="' . admin_url( 'admin-ajax.php' ) . '">' . __( 'No thanks', 'lenxel-theme-support' ) . '</a>';
+			echo '&nbsp;<a href="' . esc_url( $urls['register'] ) . '" class="button-primary button-large redux-activate-connection redux-connection-banner-action" data-url="' . admin_url( 'admin-ajax.php' ) . '" data-activate="panel_banner">' . __( 'Register Now', 'lenxel-core' ) . '</a>';
+			echo '&nbsp;&nbsp;&nbsp;<a href="' . esc_url( $urls['dismiss'] ) . '" style="color: #aaa;" class="redux-connection-banner-action" data-activate="false" data-url="' . admin_url( 'admin-ajax.php' ) . '">' . __( 'No thanks', 'lenxel-core' ) . '</a>';
 			echo '</p></div>';
 			echo '<style>.wp-core-ui .button-primary.redux-activate-connection{background: #24b0a6;}.wp-core-ui .button-primary.redux-activate-connection:hover{background: #19837c;}</style>';
 
@@ -334,13 +334,13 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 				<div class="redux-banner-container-top-text">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="0" fill="none" width="24" height="24"/><g><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 15h-2v-2h2v2zm0-4h-2l-.5-6h3l-.5 6z"/></g></svg>
 					<span>
-						<?php esc_html_e( 'You’re almost done. Register for our service to unlock even more tools to help you build better sites faster in WordPress.', 'lenxel-theme-support' ); ?>
+						<?php esc_html_e( 'You’re almost done. Register for our service to unlock even more tools to help you build better sites faster in WordPress.', 'lenxel-core' ); ?>
 					</span>
 				</div>
 				<div class="redux-banner-inner-container">
 					<a href="<?php echo esc_url( $urls['dismiss'] ); ?>" data-url="<?php echo admin_url( 'admin-ajax.php' ); ?>"
 					   class="notice-dismiss redux-banner-svg-dismiss redux-connection-banner-action"
-					   title="<?php esc_attr_e( 'Dismiss this notice', 'lenxel-theme-support' ); ?>" data-activate="false">
+					   title="<?php esc_attr_e( 'Dismiss this notice', 'lenxel-core' ); ?>" data-activate="false">
 					</a>
 
 					<div class="redux-banner-content-container">
@@ -356,7 +356,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 									<?php
 										esc_attr_e(
 											'Visit our website to learn more!',
-											'lenxel-theme-support'
+											'lenxel-core'
 										);
 									?>
 									"
@@ -368,7 +368,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 									<?php
 									esc_attr_e(
 										'Redux helps you to take your site to the next level with tools that greatly enhance your WordPress experience.',
-										'lenxel-theme-support'
+										'lenxel-core'
 									);
 									?>
 									"
@@ -377,12 +377,12 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 							</div>
 
 							<div class="redux-banner-slide-text">
-								<h2><?php esc_html_e( 'Build better sites faster with Redux', 'lenxel-theme-support' ); ?></h2>
+								<h2><?php esc_html_e( 'Build better sites faster with Redux', 'lenxel-core' ); ?></h2>
 								<p>
 									<?php
 									esc_html_e(
 										'The Redux block library service allows you to build any site you want in minutes with a click of a button. With over 1,000+ templates, Redux helps you build sites fast!',
-										'lenxel-theme-support'
+										'lenxel-core'
 									);
 									?>
 								</p>
@@ -391,7 +391,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 										<?php
 										esc_html_e(
 											'No registration is required to use Redux as you always have. By registering for our service you gain access to Google Font updates as well as access to all free templates in our block template library.',
-											'lenxel-theme-support'
+											'lenxel-core'
 										);
 										?>
 										</em>
@@ -402,11 +402,11 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 
 									<a href="<?php echo esc_url( $urls['dismiss'] ); ?>" data-url="<?php echo admin_url( 'admin-ajax.php' ); ?>"
 									   class="button button-tiny button-link redux-connection-banner-action"
-									   title="<?php esc_attr_e( 'No thanks', 'lenxel-theme-support' ); ?>" data-activate="false"><?php esc_html_e( 'No Thanks', 'lenxel-theme-support' ); ?></a>&nbsp;&nbsp;
+									   title="<?php esc_attr_e( 'No thanks', 'lenxel-core' ); ?>" data-activate="false"><?php esc_html_e( 'No Thanks', 'lenxel-core' ); ?></a>&nbsp;&nbsp;
 
 									<a href="<?php echo esc_url( $urls['register'] ); ?>" data-url="<?php echo admin_url( 'admin-ajax.php' ); ?>" data-activate="main_banner"
 									   class="button button-primary button-large redux-alt-connect-button redux-connection-banner-action">
-										<?php esc_html_e( 'Register', 'lenxel-theme-support' ); ?>
+										<?php esc_html_e( 'Register', 'lenxel-core' ); ?>
 									</a>
 								</div>
 
@@ -445,7 +445,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 						/>
 
 						<div class="redux-banner-full-step-header">
-							<h2 class="redux-banner-full-step-header-title"><?php esc_html_e( 'Activate essential WordPress security and performance tools by setting up Redux', 'lenxel-theme-support' ); ?></h2>
+							<h2 class="redux-banner-full-step-header-title"><?php esc_html_e( 'Activate essential WordPress security and performance tools by setting up Redux', 'lenxel-core' ); ?></h2>
 						</div>
 						<p class="redux-banner-full-tos-blurb">
 							<?php self::tos_blurb( 'fullscreen' ); ?>
@@ -453,7 +453,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 						<p class="redux-banner-button-container">
 							<a href=""
 							   class="dops-button is-primary redux-button">
-								<?php esc_html_e( 'Register', 'lenxel-theme-support' ); ?>
+								<?php esc_html_e( 'Register', 'lenxel-core' ); ?>
 							</a>
 						</p>
 
@@ -462,7 +462,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 								<div class="redux-banner-full-slide-card illustration">
 									<img
 										src="<?php echo esc_url( Redux_Core::$url ); ?>assets/img/security.svg"
-										alt="<?php esc_attr_e( 'Security & Backups', 'lenxel-theme-support' ); ?>"
+										alt="<?php esc_attr_e( 'Security & Backups', 'lenxel-core' ); ?>"
 									/>
 								</div>
 								<div class="redux-banner-full-slide-card">
@@ -472,7 +472,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 											'Redux protects you against brute force attacks and unauthorized logins. ' .
 											'Basic protection is always free, while premium plans add unlimited backups of your whole site, ' .
 											'spam protection, malware scanning, and automated fixes.',
-											'lenxel-theme-support'
+											'lenxel-core'
 										);
 										?>
 									</p>
@@ -482,7 +482,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 								<div class="redux-banner-full-slide-card illustration">
 									<img
 										src="<?php echo esc_url( Redux_Core::$url ); ?>assets/img/redux-speed.svg"
-										alt="<?php esc_attr_e( 'Built-in Performance', 'lenxel-theme-support' ); ?>"
+										alt="<?php esc_attr_e( 'Built-in Performance', 'lenxel-core' ); ?>"
 									/>
 								</div>
 								<div class="redux-banner-full-slide-card">
@@ -492,7 +492,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 											'Activate site accelerator tools and watch your page load times decrease—' .
 											"we'll optimize your images and serve them from our own powerful global network of servers, " .
 											'and speed up your mobile site to reduce bandwidth usage.',
-											'lenxel-theme-support'
+											'lenxel-core'
 										);
 										?>
 									</p>
@@ -506,7 +506,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 								echo esc_html_x(
 									'Not now, thank you.',
 									'a link that closes the modal window that offers to connect Redux',
-									'lenxel-theme-support'
+									'lenxel-core'
 								);
 								?>
 							</a>
@@ -529,7 +529,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 						echo wp_kses(
 							__(
 								'<strong>Redux is activated!</strong> Each site on your network must be connected individually by an admin on that site.',
-								'lenxel-theme-support'
+								'lenxel-core'
 							),
 							array( 'strong' => array() )
 						);
@@ -550,7 +550,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 		 */
 		public static function tos_blurb( $campaign = 'options_panel' ): string {
 			return sprintf(
-				__( 'By clicking the <strong>Register</strong> button, you agree to our <a href="%1$s" target="_blank">terms of service</a>, to create an account, and to share details of your usage metrics with Redux.io.', 'lenxel-theme-support' ),
+				__( 'By clicking the <strong>Register</strong> button, you agree to our <a href="%1$s" target="_blank">terms of service</a>, to create an account, and to share details of your usage metrics with Redux.io.', 'lenxel-core' ),
 				Redux_Functions_Ex::get_site_utm_url( 'terms', 'appsero', 'activate', $campaign )
 			);
 		}

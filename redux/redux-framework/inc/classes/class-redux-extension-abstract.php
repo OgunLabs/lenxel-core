@@ -222,7 +222,7 @@ abstract class Redux_Extension_Abstract {
 		if ( '' !== $min_version ) {
 			if ( version_compare( $redux_ver, $min_version ) < 0 ) {
 				// translators: %1$s Extension friendly name. %2$s: minimum Redux version.
-				$msg = '<strong>' . sprintf( esc_html__( 'The %1$s extension requires Redux Framework version %2$s or higher.', 'lenxel-theme-support' ), $friendly_name, $min_version ) . '</strong>&nbsp;&nbsp;' . esc_html__( 'You are currently running Redux Framework version ', 'lenxel-theme-support' ) . ' ' . $redux_ver . '.<br/><br/>' . esc_html__( 'This field will not render in your option panel, and featuress of this extension will not be available until the latest version of Redux Framework has been installed.', 'lenxel-theme-support' );
+				$msg = '<strong>' . sprintf( esc_html__( 'The %1$s extension requires Redux Framework version %2$s or higher.', 'lenxel-core' ), $friendly_name, $min_version ) . '</strong>&nbsp;&nbsp;' . esc_html__( 'You are currently running Redux Framework version ', 'lenxel-core' ) . ' ' . $redux_ver . '.<br/><br/>' . esc_html__( 'This field will not render in your option panel, and featuress of this extension will not be available until the latest version of Redux Framework has been installed.', 'lenxel-core' );
 
 				$data = array(
 					'parent'  => $this->parent,

@@ -103,7 +103,7 @@ if ( ! class_exists( 'Redux_Border', false ) ) {
 			echo '<input type="hidden" class="field-units" value="px">';
 
 			if ( isset( $this->field['all'] ) && true === $this->field['all'] ) {
-				echo '<div class="field-border-input input-prepend"><span class="add-on"><i class="el el-fullscreen icon-large"></i></span><input type="text" class="redux-border-all redux-border-input mini ' . esc_attr( $this->field['class'] ) . '" placeholder="' . esc_html__( 'All', 'lenxel-theme-support' ) . '" rel="' . esc_attr( $this->field['id'] ) . '-all" value="' . esc_attr( $this->value['top'] ) . '"></div>';
+				echo '<div class="field-border-input input-prepend"><span class="add-on"><i class="el el-fullscreen icon-large"></i></span><input type="text" class="redux-border-all redux-border-input mini ' . esc_attr( $this->field['class'] ) . '" placeholder="' . esc_html__( 'All', 'lenxel-core' ) . '" rel="' . esc_attr( $this->field['id'] ) . '-all" value="' . esc_attr( $this->value['top'] ) . '"></div>';
 			}
 
 			echo '<input type="hidden" class="redux-border-value" id="' . esc_attr( $this->field['id'] ) . '-top" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[border-top]" value="' . ( isset( $this->value['top'] ) && '' !== $this->value['top'] ? esc_attr( $this->value['top'] ) . 'px' : '' ) . '">';
@@ -120,7 +120,7 @@ if ( ! class_exists( 'Redux_Border', false ) ) {
                             <span class="add-on">
                                 <i class="el el-arrow-up icon-large"></i>
                             </span>
-                            <input type="text" class="redux-border-top redux-border-input mini ' . esc_attr( $this->field['class'] ) . '" placeholder="' . esc_html__( 'Top', 'lenxel-theme-support' ) . '" rel="' . esc_attr( $this->field['id'] ) . '-top" value="' . esc_attr( $this->value['top'] ) . '">
+                            <input type="text" class="redux-border-top redux-border-input mini ' . esc_attr( $this->field['class'] ) . '" placeholder="' . esc_html__( 'Top', 'lenxel-core' ) . '" rel="' . esc_attr( $this->field['id'] ) . '-top" value="' . esc_attr( $this->value['top'] ) . '">
                          </div>';
 				}
 
@@ -132,7 +132,7 @@ if ( ! class_exists( 'Redux_Border', false ) ) {
                             <span class="add-on">
                                 <i class="el el-arrow-right icon-large"></i>
                             </span>
-                            <input type="text" class="redux-border-right redux-border-input mini ' . esc_attr( $this->field['class'] ) . '" placeholder="' . esc_html__( 'Right', 'lenxel-theme-support' ) . '" rel="' . esc_attr( $this->field['id'] ) . '-right" value="' . esc_attr( $this->value['right'] ) . '">
+                            <input type="text" class="redux-border-right redux-border-input mini ' . esc_attr( $this->field['class'] ) . '" placeholder="' . esc_html__( 'Right', 'lenxel-core' ) . '" rel="' . esc_attr( $this->field['id'] ) . '-right" value="' . esc_attr( $this->value['right'] ) . '">
                         </div>';
 				}
 
@@ -144,7 +144,7 @@ if ( ! class_exists( 'Redux_Border', false ) ) {
                             <span class="add-on">
                                 <i class="el el-arrow-down icon-large"></i>
                             </span>
-                            <input type="text" class="redux-border-bottom redux-border-input mini ' . esc_attr( $this->field['class'] ) . '" placeholder="' . esc_html__( 'Bottom', 'lenxel-theme-support' ) . '" rel="' . esc_attr( $this->field['id'] ) . '-bottom" value="' . esc_attr( $this->value['bottom'] ) . '">
+                            <input type="text" class="redux-border-bottom redux-border-input mini ' . esc_attr( $this->field['class'] ) . '" placeholder="' . esc_html__( 'Bottom', 'lenxel-core' ) . '" rel="' . esc_attr( $this->field['id'] ) . '-bottom" value="' . esc_attr( $this->value['bottom'] ) . '">
                         </div>';
 				}
 
@@ -156,7 +156,7 @@ if ( ! class_exists( 'Redux_Border', false ) ) {
                             <span class="add-on">
                                 <i class="el el-arrow-left icon-large"></i>
                             </span>
-                            <input type="text" class="redux-border-left redux-border-input mini ' . esc_attr( $this->field['class'] ) . '" placeholder="' . esc_html__( 'Left', 'lenxel-theme-support' ) . '" rel="' . esc_attr( $this->field['id'] ) . '-left" value="' . esc_attr( $this->value['left'] ) . '">
+                            <input type="text" class="redux-border-left redux-border-input mini ' . esc_attr( $this->field['class'] ) . '" placeholder="' . esc_html__( 'Left', 'lenxel-core' ) . '" rel="' . esc_attr( $this->field['id'] ) . '-left" value="' . esc_attr( $this->value['left'] ) . '">
                         </div>';
 				}
 			}
@@ -166,14 +166,14 @@ if ( ! class_exists( 'Redux_Border', false ) ) {
 			 * */
 			if ( false !== $this->field['style'] ) {
 				$options = array(
-					'solid'  => esc_html__( 'Solid', 'lenxel-theme-support' ),
-					'dashed' => esc_html__( 'Dashed', 'lenxel-theme-support' ),
-					'dotted' => esc_html__( 'Dotted', 'lenxel-theme-support' ),
-					'double' => esc_html__( 'Double', 'lenxel-theme-support' ),
-					'none'   => esc_html__( 'None', 'lenxel-theme-support' ),
+					'solid'  => esc_html__( 'Solid', 'lenxel-core' ),
+					'dashed' => esc_html__( 'Dashed', 'lenxel-core' ),
+					'dotted' => esc_html__( 'Dotted', 'lenxel-core' ),
+					'double' => esc_html__( 'Double', 'lenxel-core' ),
+					'none'   => esc_html__( 'None', 'lenxel-core' ),
 				);
 
-				echo '<select data-placeholder="' . esc_html__( 'Border style', 'lenxel-theme-support' ) . '" id="' . esc_attr( $this->field['id'] ) . '[border-style]" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[border-style]" class="tips redux-border-style ' . esc_attr( $this->field['class'] ) . '" rows="6" data-id="' . esc_attr( $this->field['id'] ) . '"' . esc_attr( $select2_data ) . '>';
+				echo '<select data-placeholder="' . esc_html__( 'Border style', 'lenxel-core' ) . '" id="' . esc_attr( $this->field['id'] ) . '[border-style]" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[border-style]" class="tips redux-border-style ' . esc_attr( $this->field['class'] ) . '" rows="6" data-id="' . esc_attr( $this->field['id'] ) . '"' . esc_attr( $select2_data ) . '>';
 
 				foreach ( $options as $k => $v ) {
 					echo '<option value="' . esc_attr( $k ) . '" ' . selected( $value['style'], $k, false ) . '>' . esc_html( $v ) . '</option>';

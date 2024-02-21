@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Plugin Name: Lenxel Theme Support
+ * Plugin Name: Lenxel Core
  * Description: LMS, Header builder, Footer builder, Teams, Portfolios, Lenxel Theme Settings ... for theme
  * Plugin URI: https://ogunlabs.com/products/lenxel 
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Ogun Labs
  * Author URI: https://ogunlabs.com/
- * Text Domain: lenxel-plugin
+ * Text Domain: lenxel-core
  * Copyright: © 2023 Lenxel
  */
 
@@ -36,7 +36,7 @@ class Lenxel_Theme_Support{
       add_action('wp_enqueue_scripts', array($this, 'register_scripts'));
       add_action('admin_enqueue_scripts', array($this, 'register_scripts_admin'));
       register_activation_hook(__FILE__, array($this, 'lnx_create_page_activate'));
-      load_plugin_textdomain('lenxel-theme-support', false, 'lenxel-plugin/languages/');
+      load_plugin_textdomain('lenxel-core', false, 'lenxel-core/languages/');
       add_action('wp_ajax_lenxel_deactivate_plugin', array($this,'handle_lenxel_deactivate_plugin'));
       register_deactivation_hook(__FILE__, array($this, 'lenxel_plugin_deactivation'));
       add_action('admin_footer',array($this,'lenxel_deactivate_plugin_modal'));
@@ -106,8 +106,8 @@ class Lenxel_Theme_Support{
   
    public function register_scripts(){
       $js_dir = plugin_dir_url( __FILE__ ).'assets/js';
-      wp_register_script('lenxel-theme-support', $js_dir.'/main.js', array('jquery'), null, true);
-      wp_enqueue_script('lenxel-theme-support');
+      wp_register_script('lenxel-core', $js_dir.'/main.js', array('jquery'), null, true);
+      wp_enqueue_script('lenxel-core');
    }
 
 
@@ -123,7 +123,7 @@ class Lenxel_Theme_Support{
       Puc_v4_Factory::buildUpdateChecker(
          'https://lenxel.000webhostapp.com/plugins/dummy_data/lenxel-theme-support-update-plugin.json',
          __FILE__,
-         'lenxel-theme-support'
+         'lenxel-core'
       );
    }
 
@@ -131,7 +131,7 @@ class Lenxel_Theme_Support{
       // Perform your custom deactivation logic here
       // For example, remove custom database tables, options, or other cleanup tasks
       if(!isset($_POST['skip']) && wp_verify_nonce($_POST['_nonce'], 'lnx_deactivate_plugin')){
-        $message = "Lenxel plugin deactivated for this purpose\nFeedback: ".$_POST['feedback'] .",\nSite_url: " .home_url().",\nEmail: " . $_POST['email'] .",\nComment: ". $_POST['comment'];
+        $message = "Lenxel core deactivated for this purpose\nFeedback: ".$_POST['feedback'] .",\nSite_url: " .home_url().",\nEmail: " . $_POST['email'] .",\nComment: ". $_POST['comment'];
          $params = array("text" => $message);
         $response = $this->api_request(
             '3Qm2bZy6kfLB7nouhC7I52L9',

@@ -75,7 +75,7 @@ if ( ! class_exists( 'Redux_Welcome', false ) ) {
 		 */
 		public function do_redirect() {
 			if ( ! defined( 'WP_CLI' ) ) {
-				wp_safe_redirect( esc_url( admin_url( add_query_arg( array( 'page' => 'lenxel-theme-support' ), 'tools.php' ) ) ) );
+				wp_safe_redirect( esc_url( admin_url( add_query_arg( array( 'page' => 'lenxel-core' ), 'tools.php' ) ) ) );
 				exit();
 			}
 		}
@@ -84,7 +84,7 @@ if ( ! class_exists( 'Redux_Welcome', false ) ) {
 		 * Change Footer.
 		 */
 		public function change_wp_footer_lenxel() {
-			echo esc_html__( 'If you like', 'lenxel-theme-support' ) . ' <strong>Redux</strong> ' . esc_html__( 'please leave us a', 'lenxel-theme-support' ) . ' <a href="https://wordpress.org/support/view/plugin-reviews/redux-framework?filter=5#postform" target="_blank" class="redux-rating-link" data-rated="Thanks :)">&#9733;&#9733;&#9733;&#9733;&#9733;</a> ' . esc_html__( 'rating. A huge thank you in advance!', 'lenxel-theme-support' );
+			echo esc_html__( 'If you like', 'lenxel-core' ) . ' <strong>Redux</strong> ' . esc_html__( 'please leave us a', 'lenxel-core' ) . ' <a href="https://wordpress.org/support/view/plugin-reviews/redux-framework?filter=5#postform" target="_blank" class="redux-rating-link" data-rated="Thanks :)">&#9733;&#9733;&#9733;&#9733;&#9733;</a> ' . esc_html__( 'rating. A huge thank you in advance!', 'lenxel-core' );
 		}
 
 
@@ -101,13 +101,13 @@ if ( ! class_exists( 'Redux_Welcome', false ) ) {
 			$page = 'add_management_page';
 
 			// About Page.
-			$page( esc_html__( 'What is Redux Framework?', 'lenxel-theme-support' ), esc_html__( 'Redux Framework', 'lenxel-theme-support' ), $this->minimum_capability, 'redux-framework', array( $this, 'about_screen' ) );
+			$page( esc_html__( 'What is Redux Framework?', 'lenxel-core' ), esc_html__( 'Redux Framework', 'lenxel-core' ), $this->minimum_capability, 'redux-framework', array( $this, 'about_screen' ) );
 
 			// Support Page.
-			$page( esc_html__( 'Get Support', 'lenxel-theme-support' ), esc_html__( 'Get Support', 'lenxel-theme-support' ), $this->minimum_capability, 'redux-support', array( $this, 'get_support' ) );
+			$page( esc_html__( 'Get Support', 'lenxel-core' ), esc_html__( 'Get Support', 'lenxel-core' ), $this->minimum_capability, 'redux-support', array( $this, 'get_support' ) );
 
 			// Status Page.
-			$page( esc_html__( 'Redux Health Check', 'lenxel-theme-support' ), esc_html__( 'Redux Health Check', 'lenxel-theme-support' ), $this->minimum_capability, 'redux-health', array( $this, 'heath_check' ) );
+			$page( esc_html__( 'Redux Health Check', 'lenxel-core' ), esc_html__( 'Redux Health Check', 'lenxel-core' ), $this->minimum_capability, 'redux-health', array( $this, 'heath_check' ) );
 
 			remove_submenu_page( 'tools.php', 'redux-status' );
 			remove_submenu_page( 'tools.php', 'redux-health' );
@@ -203,17 +203,17 @@ if ( ! class_exists( 'Redux_Welcome', false ) ) {
 				<a
 					class="nav-tab <?php echo( 'redux-framework' === $selected ? 'nav-tab-active' : '' ); ?>"
 					href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'redux-framework' ), 'tools.php' ) ) ); ?>">
-					<?php esc_attr_e( 'What is Redux?', 'lenxel-theme-support' ); ?>
+					<?php esc_attr_e( 'What is Redux?', 'lenxel-core' ); ?>
 				</a>
 				<a
 					class="nav-tab <?php echo( 'redux-status' === $selected || 'redux-health' === $selected ? 'nav-tab-active' : '' ); ?>"
 					href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'redux-health' ), 'tools.php' ) ) ); ?>">
-					<?php esc_attr_e( 'Health Check', 'lenxel-theme-support' ); ?>
+					<?php esc_attr_e( 'Health Check', 'lenxel-core' ); ?>
 				</a>
 				<a
 					class="nav-tab <?php echo( 'redux-support' === $selected ? 'nav-tab-active' : '' ); ?>"
 					href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'redux-support' ), 'tools.php' ) ) ); ?>">
-					<?php esc_attr_e( 'Get Support', 'lenxel-theme-support' ); ?>
+					<?php esc_attr_e( 'Get Support', 'lenxel-core' ); ?>
 				</a>
 
 				<?php // phpcs:ignore WordPress.NamingConventions.ValidHookName ?>
@@ -296,13 +296,13 @@ if ( ! class_exists( 'Redux_Welcome', false ) ) {
 					?>
 					<a
 						href="<?php echo esc_url( admin_url( add_query_arg( $query_args, 'tools.php' ) ) ); ?>"
-						class=" button-text button-demo"><?php echo esc_html__( 'Disable Panel Demo', 'lenxel-theme-support' ); ?></a>
+						class=" button-text button-demo"><?php echo esc_html__( 'Disable Panel Demo', 'lenxel-core' ); ?></a>
 					<?php
 				} else {
 					?>
 					<a
 						href="<?php echo esc_url( admin_url( add_query_arg( $query_args, 'tools.php' ) ) ); ?>"
-						class=" button-text button-demo active"><?php echo esc_html__( 'Enable Panel Demo', 'lenxel-theme-support' ); ?></a>
+						class=" button-text button-demo active"><?php echo esc_html__( 'Enable Panel Demo', 'lenxel-core' ); ?></a>
 					<?php
 				}
 

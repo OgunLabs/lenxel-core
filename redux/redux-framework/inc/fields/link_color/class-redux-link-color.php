@@ -62,7 +62,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 		public function render() {
 			if ( true === $this->field['regular'] && false !== $this->field['default']['regular'] ) {
 				echo '<span class="linkColor">';
-				echo '<strong>' . esc_html__( 'Regular', 'lenxel-theme-support' ) . '</strong>&nbsp;';
+				echo '<strong>' . esc_html__( 'Regular', 'lenxel-core' ) . '</strong>&nbsp;';
 				echo '<input ';
 				echo 'id="' . esc_attr( $this->field['id'] ) . '-regular" ';
 				echo 'name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[regular]"';
@@ -84,7 +84,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 
 			if ( true === $this->field['hover'] && false !== $this->field['default']['hover'] ) {
 				echo '<span class="linkColor">';
-				echo '<strong>' . esc_html__( 'Hover', 'lenxel-theme-support' ) . '</strong>&nbsp;';
+				echo '<strong>' . esc_html__( 'Hover', 'lenxel-core' ) . '</strong>&nbsp;';
 				echo '<input ';
 				echo 'id="' . esc_attr( $this->field['id'] ) . '-hover"';
 				echo 'name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[hover]"';
@@ -106,7 +106,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 
 			if ( true === $this->field['visited'] && false !== $this->field['default']['visited'] ) {
 				echo '<span class="linkColor">';
-				echo '<strong>' . esc_html__( 'Visited', 'lenxel-theme-support' ) . '</strong>&nbsp;';
+				echo '<strong>' . esc_html__( 'Visited', 'lenxel-core' ) . '</strong>&nbsp;';
 				echo '<input ';
 				echo 'id="' . esc_attr( $this->field['id'] ) . '-visited"';
 				echo 'name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[visited]"';
@@ -128,7 +128,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 
 			if ( true === $this->field['active'] && false !== $this->field['default']['active'] ) {
 				echo '<span class="linkColor">';
-				echo '<strong>' . esc_html__( 'Active', 'lenxel-theme-support' ) . '</strong>&nbsp;';
+				echo '<strong>' . esc_html__( 'Active', 'lenxel-core' ) . '</strong>&nbsp;';
 				echo '<input ';
 				echo 'id="' . esc_attr( $this->field['id'] ) . '-active"';
 				echo 'name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[active]"';
@@ -150,7 +150,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 
 			if ( true === $this->field['focus'] && false !== $this->field['default']['focus'] ) {
 				echo '<span class="linkColor">';
-				echo '<strong>' . esc_html__( 'Focus', 'lenxel-theme-support' ) . '</strong>&nbsp;';
+				echo '<strong>' . esc_html__( 'Focus', 'lenxel-core' ) . '</strong>&nbsp;';
 				echo '<input ';
 				echo 'id="' . esc_attr( $this->field['id'] ) . '-focus"';
 				echo 'name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[focus]"';

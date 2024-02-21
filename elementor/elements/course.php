@@ -45,7 +45,7 @@ class LNXElement_Course extends LNXElement_Base {
 	 */
 	public function get_title() {
 		$get_current_name = load_lenxel_widget_content_element('LNX Course');
-		return __( $get_current_name, 'lenxel-theme-support' );
+		return __( $get_current_name, 'lenxel-core' );
 	}
 
 	/**
@@ -92,7 +92,7 @@ class LNXElement_Course extends LNXElement_Base {
 	private function get_categories_list(){
       $categories = array();
 
-      $categories['none'] = __( 'None', 'lenxel-theme-support' );
+      $categories['none'] = __( 'None', 'lenxel-core' );
       $taxonomy = 'course-category';
       $tax_terms = get_terms( $taxonomy );
       if ( ! empty( $tax_terms ) && ! is_wp_error( $tax_terms ) ){
@@ -115,20 +115,20 @@ class LNXElement_Course extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => __( 'Layout & Content', 'lenxel-theme-support' ),
+				'label' => __( 'Layout & Content', 'lenxel-core' ),
 			]
 		);
 
 		$this->add_control(
          'layout',
          [
-             'label'   => __( 'Layout Display', 'lenxel-theme-support' ),
+             'label'   => __( 'Layout Display', 'lenxel-core' ),
              'type'    => Controls_Manager::SELECT,
              'default' => 'carousel',
              'options' => [
-                 'grid'          => __( 'Grid', 'lenxel-theme-support' ),
-                 'carousel'      => __( 'Carousel', 'lenxel-theme-support' ),
-                 'list'          => __( 'List', 'lenxel-theme-support' )
+                 'grid'          => __( 'Grid', 'lenxel-core' ),
+                 'carousel'      => __( 'Carousel', 'lenxel-core' ),
+                 'list'          => __( 'List', 'lenxel-core' )
              ]
          ]
       );
@@ -136,13 +136,13 @@ class LNXElement_Course extends LNXElement_Base {
       $this->add_control(
          'style',
          [
-             'label'     => __('Style', 'lenxel-theme-support'),
+             'label'     => __('Style', 'lenxel-core'),
              'type'      => \Elementor\Controls_Manager::SELECT,
              'default' => 'course-1',
              'options' => [
-                 'course-1'         => __( 'Item Course Style I', 'lenxel-theme-support' ),
-                 'course-2'         => __( 'Item Course Style II', 'lenxel-theme-support' ),
-                 'course-3'   	 	=> __( 'Item Course Style III', 'lenxel-theme-support' ),
+                 'course-1'         => __( 'Item Course Style I', 'lenxel-core' ),
+                 'course-2'         => __( 'Item Course Style II', 'lenxel-core' ),
+                 'course-3'   	 	=> __( 'Item Course Style III', 'lenxel-core' ),
              ],
              'condition' => [
                  'layout' => array('grid', 'carousel')
@@ -153,7 +153,7 @@ class LNXElement_Course extends LNXElement_Base {
       $this->add_control(
          'image_size',
          [
-            'label'     => __('Image Style', 'lenxel-theme-support'),
+            'label'     => __('Image Style', 'lenxel-core'),
             'type'      => \Elementor\Controls_Manager::SELECT,
             'options'   => $this->get_thumbnail_size(),
             'default'   => 'post-thumbnail'
@@ -163,14 +163,14 @@ class LNXElement_Course extends LNXElement_Base {
 		$this->add_control( // xx Layout
          'query_heading',
          [
-            'label'   => __( 'Query', 'lenxel-theme-support' ),
+            'label'   => __( 'Query', 'lenxel-core' ),
             'type'    => Controls_Manager::HEADING,
          ]
       );
       $this->add_control(
          'category_ids',
          [
-            'label' 			=> __( 'Select By Category', 'lenxel-theme-support' ),
+            'label' 			=> __( 'Select By Category', 'lenxel-core' ),
             'type' 			=> Controls_Manager::SELECT2,
             'multiple'    	=> true,
             'default' 		=> '',
@@ -181,7 +181,7 @@ class LNXElement_Course extends LNXElement_Base {
       $this->add_control(
          'post_ids',
          [
-            'label' 				=> __( 'Select Individually (IDs)', 'lenxel-theme-support' ),
+            'label' 				=> __( 'Select Individually (IDs)', 'lenxel-core' ),
             'type' 				=> Controls_Manager::TEXT,
             'default' 			=> '',
             'label_block' 		=> true,
@@ -191,34 +191,34 @@ class LNXElement_Course extends LNXElement_Base {
       $this->add_control(
          'price',
          [
-            'label' 			=> __( 'Price Type', 'lenxel-theme-support' ),
+            'label' 			=> __( 'Price Type', 'lenxel-core' ),
             'type' 			=> Controls_Manager::SELECT2,
             'multiple'    	=> true,
             'label_block' 	=> true,
             'options'   	=> array(
-            	'free'=> __('Free', 'lenxel-theme-support'),
-					'paid'=> __('Paid', 'lenxel-theme-support')
+            	'free'=> __('Free', 'lenxel-core'),
+					'paid'=> __('Paid', 'lenxel-core')
             )
          ]
       );
       $this->add_control(
          'level',
          [
-            'label' 			=> __( 'Level', 'lenxel-theme-support' ),
+            'label' 			=> __( 'Level', 'lenxel-core' ),
             'type' 			=> Controls_Manager::SELECT2,
             'multiple'    	=> true,
             'label_block' 	=> true,
             'options'   	=> array(
-            	'beginner'		=> __('Beginner', 'lenxel-theme-support'),
-					'intermediate'	=> __('Intermediate', 'lenxel-theme-support'),
-					'expert'			=> __('Expert', 'lenxel-theme-support')
+            	'beginner'		=> __('Beginner', 'lenxel-core'),
+					'intermediate'	=> __('Intermediate', 'lenxel-core'),
+					'expert'			=> __('Expert', 'lenxel-core')
             )
          ]
       );
       $this->add_control(
          'featured',
          [
-            'label' => __( 'Only show Course Featured', 'lenxel-theme-support' ),
+            'label' => __( 'Only show Course Featured', 'lenxel-core' ),
             'type' => Controls_Manager::SWITCHER,
             'default' => 'no'
          ]
@@ -226,7 +226,7 @@ class LNXElement_Course extends LNXElement_Base {
       $this->add_control(
          'posts_per_page',
          [
-            'label' => __( 'Posts Per Page', 'lenxel-theme-support' ),
+            'label' => __( 'Posts Per Page', 'lenxel-core' ),
             'type' => Controls_Manager::NUMBER,
             'default' => 6,
          ]
@@ -234,14 +234,14 @@ class LNXElement_Course extends LNXElement_Base {
      	$this->add_control(
          'orderby',
          [
-            'label'   => __( 'Order By', 'lenxel-theme-support' ),
+            'label'   => __( 'Order By', 'lenxel-core' ),
             'type'    => Controls_Manager::SELECT,
             'default' => 'post_date',
             'options' => [
-              	'post_date'  => __( 'Date', 'lenxel-theme-support' ),
-              	'post_title' => __( 'Title', 'lenxel-theme-support' ),
-              	'menu_order' => __( 'Menu Order', 'lenxel-theme-support' ),
-              	'rand'       => __( 'Random', 'lenxel-theme-support' ),
+              	'post_date'  => __( 'Date', 'lenxel-core' ),
+              	'post_title' => __( 'Title', 'lenxel-core' ),
+              	'menu_order' => __( 'Menu Order', 'lenxel-core' ),
+              	'rand'       => __( 'Random', 'lenxel-core' ),
             ]
          ]
       );
@@ -249,12 +249,12 @@ class LNXElement_Course extends LNXElement_Base {
       $this->add_control(
          'order',
          [
-            'label'   => __( 'Order', 'lenxel-theme-support' ),
+            'label'   => __( 'Order', 'lenxel-core' ),
             'type'    => Controls_Manager::SELECT,
             'default' => 'desc',
             'options' => [
-             	'asc'  => __( 'ASC', 'lenxel-theme-support' ),
-             	'desc' => __( 'DESC', 'lenxel-theme-support' )
+             	'asc'  => __( 'ASC', 'lenxel-core' ),
+             	'desc' => __( 'DESC', 'lenxel-core' )
             ]
          ]
      	);
@@ -262,7 +262,7 @@ class LNXElement_Course extends LNXElement_Base {
       $this->add_control(
          'pagination',
          [
-            'label'     => __('Pagination', 'lenxel-theme-support'),
+            'label'     => __('Pagination', 'lenxel-core'),
             'type'      => Controls_Manager::SWITCHER,
             'default'   => 'no',
             'condition' => [
@@ -280,7 +280,7 @@ class LNXElement_Course extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_video_style',
 			[
-				'label' => __( 'Video Button', 'lenxel-theme-support' ),
+				'label' => __( 'Video Button', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'video' => 'yes',
@@ -290,7 +290,7 @@ class LNXElement_Course extends LNXElement_Base {
 		$this->add_control(
 			'video_background_primary',
 			[
-				'label' => __( 'Primary Color', 'lenxel-theme-support' ),
+				'label' => __( 'Primary Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-heading .heading-video .video-link' => 'background: {{VALUE}};',
@@ -300,7 +300,7 @@ class LNXElement_Course extends LNXElement_Base {
 		$this->add_control(
 			'video_background_second',
 			[
-				'label' => __( 'Primary Color', 'lenxel-theme-support' ),
+				'label' => __( 'Primary Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-heading .heading-video .video-link:after' => 'border-color: {{VALUE}};',
@@ -310,7 +310,7 @@ class LNXElement_Course extends LNXElement_Base {
 		$this->add_control(
 			'video_color',
 			[
-				'label' => __( 'Text Button Video Color', 'lenxel-theme-support' ),
+				'label' => __( 'Text Button Video Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-heading  .heading-video .video-link' => 'color: {{VALUE}};',
@@ -320,7 +320,7 @@ class LNXElement_Course extends LNXElement_Base {
 		$this->add_responsive_control(
 			'video_size',
 			[
-				'label' => __( 'Video Button Size', 'lenxel-theme-support' ),
+				'label' => __( 'Video Button Size', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 92,
@@ -339,7 +339,7 @@ class LNXElement_Course extends LNXElement_Base {
 		$this->add_control(
 			'border_radius',
 			[
-				'label' => __( 'Border Radius', 'lenxel-theme-support' ),
+				'label' => __( 'Border Radius', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
@@ -352,14 +352,14 @@ class LNXElement_Course extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_box_style',
 			[
-				'label' => __( 'Box', 'lenxel-theme-support' ),
+				'label' => __( 'Box', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 		$this->add_responsive_control(
 			'box_space',
 			[
-				'label' => __( 'Heading Element Space Bottom', 'lenxel-theme-support' ),
+				'label' => __( 'Heading Element Space Bottom', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 26,
@@ -380,14 +380,14 @@ class LNXElement_Course extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_title_style',
 			[
-				'label' => __( 'Title', 'lenxel-theme-support' ),
+				'label' => __( 'Title', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 		$this->add_control(
 			'title_color',
 			[
-				'label' => __( 'Text Color', 'lenxel-theme-support' ),
+				'label' => __( 'Text Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-heading .title a,.gsc-heading .title' => 'color: {{VALUE}};',
@@ -404,7 +404,7 @@ class LNXElement_Course extends LNXElement_Base {
 		$this->add_responsive_control(
 			'title_space',
 			[
-				'label' => __( 'Title Spacing', 'lenxel-theme-support' ),
+				'label' => __( 'Title Spacing', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 0,
@@ -425,7 +425,7 @@ class LNXElement_Course extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_sub_title_style',
 			[
-				'label' => __( 'Sub Title', 'lenxel-theme-support' ),
+				'label' => __( 'Sub Title', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -433,7 +433,7 @@ class LNXElement_Course extends LNXElement_Base {
 		$this->add_control(
 			'sub_title_color',
 			[
-				'label' => __( 'Text Color', 'lenxel-theme-support' ),
+				'label' => __( 'Text Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-heading .sub-title' => 'color: {{VALUE}};',
@@ -444,7 +444,7 @@ class LNXElement_Course extends LNXElement_Base {
 		$this->add_control(
 			'sub_title_line_color',
 			[
-				'label' => __( 'Line Color', 'lenxel-theme-support' ),
+				'label' => __( 'Line Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-heading .sub-title:after' => 'background: {{VALUE}};',
@@ -455,7 +455,7 @@ class LNXElement_Course extends LNXElement_Base {
 		$this->add_responsive_control(
 			'sub_title_space',
 			[
-				'label' => __( 'Sub Title Spacing', 'lenxel-theme-support' ),
+				'label' => __( 'Sub Title Spacing', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 10,
@@ -485,7 +485,7 @@ class LNXElement_Course extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_desc_style',
 			[
-				'label' => __( 'Description', 'lenxel-theme-support' ),
+				'label' => __( 'Description', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -493,7 +493,7 @@ class LNXElement_Course extends LNXElement_Base {
 		$this->add_control(
 			'desc_color',
 			[
-				'label' => __( 'Text Color', 'lenxel-theme-support' ),
+				'label' => __( 'Text Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-heading .title-desc' => 'color: {{VALUE}};',
@@ -512,7 +512,7 @@ class LNXElement_Course extends LNXElement_Base {
 		$this->add_responsive_control(
 			'description_space',
 			[
-				'label' => __( 'Description Spacing', 'lenxel-theme-support' ),
+				'label' => __( 'Description Spacing', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px'],
 				'default' => [
@@ -637,6 +637,7 @@ class LNXElement_Course extends LNXElement_Base {
 				}
 			print '</div>';
 		}else {
+			$content='';
 			echo $content;
 		}
 	}

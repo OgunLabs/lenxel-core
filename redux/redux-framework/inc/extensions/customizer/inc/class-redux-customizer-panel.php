@@ -94,7 +94,7 @@ class Redux_Customizer_Panel extends WP_Customize_Panel {
 					)
 				);
 				?>
-				<span class="screen-reader-text"><?php esc_html_e( 'Press return or enter to open this panel', 'lenxel-theme-support' ); ?></span>
+				<span class="screen-reader-text"><?php esc_html_e( 'Press return or enter to open this panel', 'lenxel-core' ); ?></span>
 			</h3>
 			<ul class="accordion-sub-container control-panel-content">
 				<table class="form-table">
@@ -123,7 +123,7 @@ class Redux_Customizer_Panel extends WP_Customize_Panel {
 			<div class="accordion-section-title" tabindex="0">
 				<span class="preview-notice">
 					<?php /* translators: %s is the site/panel title in the Customizer */ ?>
-					<?php echo sprintf( esc_html__( 'You are customizing', 'lenxel-theme-support' ) . ' %s', '<strong class="panel-title">' . esc_html( $this->title ) . '</strong>' ); ?>
+					<?php echo sprintf( esc_html__( 'You are customizing', 'lenxel-core' ) . ' %s', '<strong class="panel-title">' . esc_html( $this->title ) . '</strong>' ); ?>
 				</span>
 			</div>
 			<?php if ( ! empty( $this->description ) ) { ?>
@@ -160,18 +160,18 @@ class Redux_Customizer_Panel extends WP_Customize_Panel {
 			class="panel-meta customize-info redux-customizer-opt-name redux-panel accordion-section <# if ( ! data.description ) { #> cannot-expand<# } #>"
 			data-opt-name="{{{ data.opt_name_triger }}}">
 			<button class="customize-panel-back" tabindex="-1">
-				<span class="screen-reader-text"><?php esc_attr_e( 'Back', 'lenxel-theme-support' ); ?></span></button>
+				<span class="screen-reader-text"><?php esc_attr_e( 'Back', 'lenxel-core' ); ?></span></button>
 			<div class="accordion-section-title">
 				<span class="preview-notice">
 					<?php /* translators: %s is the site/panel title in the Customizer */ ?>
-					<?php echo sprintf( esc_html__( 'You are customizing', 'lenxel-theme-support' ) . ' %s', '<strong class="panel-title">{{ data.title }}</strong>' ); ?>
+					<?php echo sprintf( esc_html__( 'You are customizing', 'lenxel-core' ) . ' %s', '<strong class="panel-title">{{ data.title }}</strong>' ); ?>
 				</span>
 				<# if ( data.description ) { #>
 				<button
 					class="customize-help-toggle dashicons dashicons-editor-help"
 					tabindex="0"
 					aria-expanded="false">
-					<span class="screen-reader-text"><?php esc_attr_e( 'Help', 'lenxel-theme-support' ); ?></span></button>
+					<span class="screen-reader-text"><?php esc_attr_e( 'Help', 'lenxel-core' ); ?></span></button>
 				<# } #>
 			</div>
 			<# if ( data.description ) { #>

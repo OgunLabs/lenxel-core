@@ -10,7 +10,7 @@
 global $post;
 ?>
 <ul class="social-networks-post clearfix">  
-	<li class="title-share"><?php echo esc_html__( "Share This Post: ", "lenxel-theme-support" ) ?></li>
+	<li class="title-share"><?php echo esc_html__( "Share This Post: ", "lenxel-core" ) ?></li>
 	<li class="facebook">
 		<a data-toggle="tooltip" data-placement="top" data-animation="true"  data-original-title="Facebook" href="http://www.facebook.com/sharer.php?s=100&p&#91;url&#93;=<?php the_permalink(); ?>&p&#91;title&#93;=<?php the_title(); ?>" target="_blank">
 			<i class="fab fa-facebook-f"></i>

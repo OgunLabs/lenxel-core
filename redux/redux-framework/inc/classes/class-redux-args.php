@@ -131,19 +131,19 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 				'font_weights'                     => array(
 					array(
 						'id'   => '400',
-						'name' => __( 'Regular 400', 'lenxel-theme-support' ),
+						'name' => __( 'Regular 400', 'lenxel-core' ),
 					),
 					array(
 						'id'   => '400italic',
-						'name' => __( 'Regular 400 Italic', 'lenxel-theme-support' ),
+						'name' => __( 'Regular 400 Italic', 'lenxel-core' ),
 					),
 					array(
 						'id'   => '700',
-						'name' => __( 'Bold 700', 'lenxel-theme-support' ),
+						'name' => __( 'Bold 700', 'lenxel-core' ),
 					),
 					array(
 						'id'   => '700italic',
-						'name' => __( 'Bold 700 Italic', 'lenxel-theme-support' ),
+						'name' => __( 'Bold 700 Italic', 'lenxel-core' ),
 					),
 				),
 				'show_import_export'               => true,
@@ -262,19 +262,19 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 
 				$footer_text = sprintf(
 				/* translators: 1: Redux, 2: Link to plugin review */
-					__( 'Enjoyed %1$s? Please leave us a %2$s rating. We really appreciate your support!', 'lenxel-theme-support' ),
-					'<strong>' . __( 'Redux', 'lenxel-theme-support' ) . '</strong>',
+					__( 'Enjoyed %1$s? Please leave us a %2$s rating. We really appreciate your support!', 'lenxel-core' ),
+					'<strong>' . __( 'Redux', 'lenxel-core' ) . '</strong>',
 					'<a href="https://wordpress.org/support/plugin/redux-framework/reviews/?filter=5/#new-post" target="_blank">&#9733;&#9733;&#9733;&#9733;&#9733;</a>'
 				);
 				$args['footer_credit'] = '<span id="footer-thankyou">' . $footer_text . '</span>';
 			}
 
 			if ( empty( $args['menu_title'] ) ) {
-				$args['menu_title'] = esc_html__( 'Options', 'lenxel-theme-support' );
+				$args['menu_title'] = esc_html__( 'Options', 'lenxel-core' );
 			}
 
 			if ( empty( $args['page_title'] ) ) {
-				$args['page_title'] = esc_html__( 'Options', 'lenxel-theme-support' );
+				$args['page_title'] = esc_html__( 'Options', 'lenxel-core' );
 			}
 
 			// Auto create the page_slug appropriately.
@@ -336,9 +336,9 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 						if ( is_array( $arr ) && ! empty( $arr ) ) {
 							foreach ( $arr as $x => $y ) {
 								if ( strpos( Redux_Core::strtolower( $y ), 'redux' ) !== false ) {
-									$msg = '<strong>' . esc_html__( 'Redux Framework Notice', 'lenxel-theme-support' ) . ' </strong>' .
-										esc_html__( 'There are references to the Redux Framework support site in your config\'s ', 'lenxel-theme-support' ) .
-										'<code>admin_bar_links</code> ' . esc_html__( 'argument.  This is sample data.  Please change or remove this data before shipping your product.', 'lenxel-theme-support' );
+									$msg = '<strong>' . esc_html__( 'Redux Framework Notice', 'lenxel-core' ) . ' </strong>' .
+										esc_html__( 'There are references to the Redux Framework support site in your config\'s ', 'lenxel-core' ) .
+										'<code>admin_bar_links</code> ' . esc_html__( 'argument.  This is sample data.  Please change or remove this data before shipping your product.', 'lenxel-core' );
 
 									$this->omit_items = true;
 									break;
@@ -353,9 +353,9 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 						if ( is_array( $arr ) && ! empty( $arr ) ) {
 							foreach ( $arr as $x => $y ) {
 								if ( strpos( Redux_Core::strtolower( $y ), 'redux' ) !== false ) {
-									$msg = '<strong>' . esc_html__( 'Redux Framework Notice:', 'lenxel-theme-support' ) . '</strong>' .
-										esc_html__( 'There are references to the Redux Framework support site in your config\'s', 'lenxel-theme-support' ) .
-										' <code>share_icons</code> ' . esc_html__( 'argument.  This is sample data.  Please change or remove this data before shipping your product.', 'lenxel-theme-support' );
+									$msg = '<strong>' . esc_html__( 'Redux Framework Notice:', 'lenxel-core' ) . '</strong>' .
+										esc_html__( 'There are references to the Redux Framework support site in your config\'s', 'lenxel-core' ) .
+										' <code>share_icons</code> ' . esc_html__( 'argument.  This is sample data.  Please change or remove this data before shipping your product.', 'lenxel-core' );
 
 									$this->omit_icons = true;
 								}

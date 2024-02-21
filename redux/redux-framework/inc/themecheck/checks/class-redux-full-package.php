@@ -40,14 +40,14 @@ class Redux_Full_Package implements themecheck {
 		if ( $redux ) {
 
 			$blacklist = array(
-				'.tx'                              => esc_html__( 'Redux localization utilities', 'lenxel-theme-support' ),
-				'bin'                              => esc_html__( 'Redux Resting Diles', 'lenxel-theme-support' ),
-				'codestyles'                       => esc_html__( 'Redux Code Styles', 'lenxel-theme-support' ),
-				'tests'                            => esc_html__( 'Redux Unit Testing', 'lenxel-theme-support' ),
-				'class-redux-framework-plugin.php' => esc_html__( 'Redux Plugin File', 'lenxel-theme-support' ),
-				'bootstrap_tests.php'              => esc_html__( 'Redux Boostrap Tests', 'lenxel-theme-support' ),
-				'.travis.yml'                      => esc_html__( 'CI Testing FIle', 'lenxel-theme-support' ),
-				'phpunit.xml'                      => esc_html__( 'PHP Unit Testing', 'lenxel-theme-support' ),
+				'.tx'                              => esc_html__( 'Redux localization utilities', 'lenxel-core' ),
+				'bin'                              => esc_html__( 'Redux Resting Diles', 'lenxel-core' ),
+				'codestyles'                       => esc_html__( 'Redux Code Styles', 'lenxel-core' ),
+				'tests'                            => esc_html__( 'Redux Unit Testing', 'lenxel-core' ),
+				'class-redux-framework-plugin.php' => esc_html__( 'Redux Plugin File', 'lenxel-core' ),
+				'bootstrap_tests.php'              => esc_html__( 'Redux Boostrap Tests', 'lenxel-core' ),
+				'.travis.yml'                      => esc_html__( 'CI Testing FIle', 'lenxel-core' ),
+				'phpunit.xml'                      => esc_html__( 'PHP Unit Testing', 'lenxel-core' ),
 			);
 
 			$errors = array();
@@ -60,7 +60,7 @@ class Redux_Full_Package implements themecheck {
 			}
 
 			if ( ! empty( $errors ) ) {
-				$error  = '<span class="tc-lead tc-required">REQUIRED</span> ' . esc_html__( 'It appears that you have embedded the full Redux package inside your theme. You need only embed the', 'lenxel-theme-support' ) . ' <strong>Redux_Core</strong> ' . esc_html__( 'folder. Embedding anything else will get your rejected from theme submission. Suspected Redux package file(s):', 'lenxel-theme-support' );
+				$error  = '<span class="tc-lead tc-required">REQUIRED</span> ' . esc_html__( 'It appears that you have embedded the full Redux package inside your theme. You need only embed the', 'lenxel-core' ) . ' <strong>Redux_Core</strong> ' . esc_html__( 'folder. Embedding anything else will get your rejected from theme submission. Suspected Redux package file(s):', 'lenxel-core' );
 				$error .= '<ol>';
 
 				foreach ( $errors as $key => $e ) {

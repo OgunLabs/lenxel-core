@@ -1,13 +1,13 @@
 <?php
 	$filter_object = new \TUTOR\Course_Filter();
 	$filter_levels = array(
-		'beginner'=> __('Beginner', 'lenxel-theme-support'),
-		'intermediate'=> __('Intermediate', 'lenxel-theme-support'),
-		'expert'=> __('Expert', 'lenxel-theme-support')
+		'beginner'=> __('Beginner', 'lenxel-core'),
+		'intermediate'=> __('Intermediate', 'lenxel-core'),
+		'expert'=> __('Expert', 'lenxel-core')
 	);
 	$filter_prices=array(
-		'free'=> __('Free', 'lenxel-theme-support'),
-		'paid'=> __('Paid', 'lenxel-theme-support')
+		'free'=> __('Free', 'lenxel-core'),
+		'paid'=> __('Paid', 'lenxel-core')
 	);
 
 	$supported_filters = tutor_utils()->get_option('supported_course_filters', array());
@@ -29,10 +29,10 @@
 	<?php if(in_array('search', $supported_filters) && $settings['search_keyword'] == 'yes'){ ?>
 		<div class="course-filter_search">
 			<?php if($settings['label_input'] == 'yes'){ ?>
-				<label class="title-field"><?php echo esc_html__('Search Keyword', 'lenxel-theme-support'); ?></label>
+				<label class="title-field"><?php echo esc_html__('Search Keyword', 'lenxel-core'); ?></label>
 			<?php } ?>
 			<div class="content-inner">
-				<input type="text" name="keyword" value="<?php echo esc_attr($keyword_value) ?>" placeholder="<?php echo esc_html__('Search...', 'lenxel-theme-support'); ?>"/>
+				<input type="text" name="keyword" value="<?php echo esc_attr($keyword_value) ?>" placeholder="<?php echo esc_html__('Search...', 'lenxel-core'); ?>"/>
 				<i class="tutor-icon-magnifying-glass-1"></i>
 			</div>	
 		</div>
@@ -41,7 +41,7 @@
 	<?php if(in_array('category', $supported_filters) && $settings['search_category'] == 'yes'){ ?>
 		<div class="course-filter_category course-checkbox-filter">
 			<?php if($settings['label_input'] == 'yes'){ ?>
-				<label class="title-field"><?php _e('Category', 'lenxel-theme-support'); ?></label>
+				<label class="title-field"><?php _e('Category', 'lenxel-core'); ?></label>
 			<?php } ?>	
 			<div class="show-results" data-placehoder="<?php echo esc_attr($settings['placeholder_category']) ?>">
 				<div class="content-inner"><?php echo esc_html($settings['placeholder_category']) ?></div>
@@ -73,7 +73,7 @@
 	<?php if(in_array('difficulty_level', $supported_filters) && $settings['search_level'] == 'yes'){ ?>
 		<div class="course-filter_level course-checkbox-filter">
 			<?php if($settings['label_input'] == 'yes'){ ?>
-				<label class="title-field"><?php _e('Level', 'lenxel-theme-support'); ?></label>
+				<label class="title-field"><?php _e('Level', 'lenxel-core'); ?></label>
 			<?php } ?>	
 			<div class="show-results" data-placehoder="<?php echo esc_attr($settings['placeholder_level']) ?>">
 				<div class="content-inner"><?php echo esc_html($settings['placeholder_level']) ?></div>
@@ -94,7 +94,7 @@
 	<?php if(!$is_membership && in_array('price_type', $supported_filters) && $settings['search_price'] == 'yes'){ ?>
 		<div class="course-filter-price_type course-checkbox-filter">
 			<?php if($settings['label_input'] == 'yes'){ ?>
-				<label class="title-field"><?php _e('Price', 'lenxel-theme-support'); ?></label>
+				<label class="title-field"><?php _e('Price', 'lenxel-core'); ?></label>
 			<?php } ?>	
 			<div class="show-results" data-placehoder="<?php echo esc_attr($settings['placeholder_price']) ?>">
 				<div class="content-inner"><?php echo esc_html($settings['placeholder_price']) ?></div>
@@ -135,7 +135,7 @@
 
 	<div class="tutor-clear-all-filter">
 		<a href="#" onclick="window.location.reload()">
-			<i class="tutor-icon-cross"></i> <?php echo esc_html__('Clear All Filter', 'lenxel-theme-support') ?>
+			<i class="tutor-icon-cross"></i> <?php echo esc_html__('Clear All Filter', 'lenxel-core') ?>
 		</a>
 	</div>
 

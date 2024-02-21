@@ -41,7 +41,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
      */
     public function get_title() {
         $get_current_name = load_lenxel_widget_content_element('LNX Testimonials');
-        return __($get_current_name, 'lenxel-theme-support');
+        return __($get_current_name, 'lenxel-core');
     }
 
     /**
@@ -87,20 +87,20 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->start_controls_section(
             'section_testimonial',
             [
-                'label' => __('Testimonials', 'lenxel-theme-support'),
+                'label' => __('Testimonials', 'lenxel-core'),
             ]
         );
         $this->add_control(
             'style',
             array(
-                'label'   => esc_html__( 'Style', 'lenxel-theme-support' ),
+                'label'   => esc_html__( 'Style', 'lenxel-core' ),
                 'type'    => Controls_Manager::SELECT,
                 'default' => 'style-1',
                 'options' => [
-                  'style-1' => esc_html__('Carousel Style 1', 'lenxel-theme-support'),
-                  'style-2' => esc_html__('Carousel Style 2', 'lenxel-theme-support'),
-                  'style-3' => esc_html__('Carousel Style 3', 'lenxel-theme-support'),
-                  'style-4' => esc_html__('Carousel Style 4', 'lenxel-theme-support'),
+                  'style-1' => esc_html__('Carousel Style 1', 'lenxel-core'),
+                  'style-2' => esc_html__('Carousel Style 2', 'lenxel-core'),
+                  'style-3' => esc_html__('Carousel Style 3', 'lenxel-core'),
+                  'style-4' => esc_html__('Carousel Style 4', 'lenxel-core'),
                 ]
             )
          );
@@ -109,7 +109,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $repeater->add_control(
             'testimonial_title',
             [
-                'label'   => __('Title', 'lenxel-theme-support'),
+                'label'   => __('Title', 'lenxel-core'),
                 'default' => 'Amazing Courses',
                 'type'    => Controls_Manager::TEXT,
             ]
@@ -117,7 +117,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $repeater->add_control(
             'testimonial_content',
             [
-                'label'       => __('Content', 'lenxel-theme-support'),
+                'label'       => __('Content', 'lenxel-core'),
                 'type'        => Controls_Manager::TEXTAREA,
                 'default'     => 'I was impresed by the moling services, not lorem ipsum is simply free text of used by refreshing. Neque porro este qui dolorem ipsum quia.',
                 'label_block' => true,
@@ -127,7 +127,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $repeater->add_control(
             'testimonial_image',
             [
-                'label'      => __('Choose Image', 'lenxel-theme-support'),
+                'label'      => __('Choose Image', 'lenxel-core'),
                 'default'    => [
                     'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/testimonial.png',
                 ],
@@ -139,7 +139,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $repeater->add_control(
             'testimonial_name',
             [
-                'label'   => __('Name', 'lenxel-theme-support'),
+                'label'   => __('Name', 'lenxel-core'),
                 'default' => 'John Doe',
                 'type'    => Controls_Manager::TEXT,
             ]
@@ -148,7 +148,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $repeater->add_control(
             'testimonial_job',
             [
-                'label'   => __('Job', 'lenxel-theme-support'),
+                'label'   => __('Job', 'lenxel-core'),
                 'default' => 'Designer',
                 'type'    => Controls_Manager::TEXT,
             ]
@@ -157,7 +157,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $repeater->add_control(
             'testimonial_rating',
             [
-                'label'   => __('Rating', 'lenxel-theme-support'),
+                'label'   => __('Rating', 'lenxel-core'),
                 'default' => 2,
                 'type'    => Controls_Manager::NUMBER,
             ]
@@ -166,38 +166,38 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_control(
             'testimonials',
             [
-                'label'       => __('Testimonials Content Item', 'lenxel-theme-support'),
+                'label'       => __('Testimonials Content Item', 'lenxel-core'),
                 'type'        => Controls_Manager::REPEATER,
                 'fields'      => $repeater->get_controls(),
                 'title_field' => '{{{ testimonial_title }}}',
                 'default'     => array(
                     array(
-                        'testimonial_title'    => esc_html__( 'Amazing Courses', 'lenxel-theme-support' ),
-                        'testimonial_content'  => esc_html__( 'Lorem ipsum is simply free text dolor sit amet, consectetur notted adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'lenxel-theme-support' ),
-                        'testimonial_name'     => esc_html__( 'Christine Eve', 'lenxel-theme-support' ),
-                        'testimonial_job'      => esc_html__( 'Founder & CEO', 'lenxel-theme-support' ),
-                        'testimonial_rating'      => esc_html__( '1', 'lenxel-theme-support' ),
+                        'testimonial_title'    => esc_html__( 'Amazing Courses', 'lenxel-core' ),
+                        'testimonial_content'  => esc_html__( 'Lorem ipsum is simply free text dolor sit amet, consectetur notted adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'lenxel-core' ),
+                        'testimonial_name'     => esc_html__( 'Christine Eve', 'lenxel-core' ),
+                        'testimonial_job'      => esc_html__( 'Founder & CEO', 'lenxel-core' ),
+                        'testimonial_rating'      => esc_html__( '1', 'lenxel-core' ),
                     ),
                     array(
-                        'testimonial_title'    => esc_html__( 'Amazing Courses', 'lenxel-theme-support' ),
-                        'testimonial_content'  => esc_html__( 'Lorem ipsum is simply free text dolor sit amet, consectetur notted adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'lenxel-theme-support' ),
-                        'testimonial_name'     => esc_html__( 'Kevin Smith', 'lenxel-theme-support' ),
-                        'testimonial_job'      => esc_html__( 'Customer', 'lenxel-theme-support' ),
-                        'testimonial_rating'      => esc_html__( '1', 'lenxel-theme-support' ),
+                        'testimonial_title'    => esc_html__( 'Amazing Courses', 'lenxel-core' ),
+                        'testimonial_content'  => esc_html__( 'Lorem ipsum is simply free text dolor sit amet, consectetur notted adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'lenxel-core' ),
+                        'testimonial_name'     => esc_html__( 'Kevin Smith', 'lenxel-core' ),
+                        'testimonial_job'      => esc_html__( 'Customer', 'lenxel-core' ),
+                        'testimonial_rating'      => esc_html__( '1', 'lenxel-core' ),
                     ),
                     array(
-                        'testimonial_title'    => esc_html__( 'Amazing Courses', 'lenxel-theme-support' ),
-                        'testimonial_content'  => esc_html__( 'Lorem ipsum is simply free text dolor sit amet, consectetur notted adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'lenxel-theme-support' ),
-                        'testimonial_name'     => esc_html__( 'Jessica Brown', 'lenxel-theme-support' ),
-                        'testimonial_job'      => esc_html__( 'Founder & CEO', 'lenxel-theme-support' ),
-                        'testimonial_rating'      => esc_html__( '1', 'lenxel-theme-support' ),
+                        'testimonial_title'    => esc_html__( 'Amazing Courses', 'lenxel-core' ),
+                        'testimonial_content'  => esc_html__( 'Lorem ipsum is simply free text dolor sit amet, consectetur notted adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'lenxel-core' ),
+                        'testimonial_name'     => esc_html__( 'Jessica Brown', 'lenxel-core' ),
+                        'testimonial_job'      => esc_html__( 'Founder & CEO', 'lenxel-core' ),
+                        'testimonial_rating'      => esc_html__( '1', 'lenxel-core' ),
                     ),
                     array(
-                        'testimonial_title'    => esc_html__( 'Amazing Courses', 'lenxel-theme-support' ),
-                        'testimonial_content'  => esc_html__( 'Lorem ipsum is simply free text dolor sit amet, consectetur notted adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'lenxel-theme-support' ),
-                        'testimonial_name'     => esc_html__( 'David Anderson', 'lenxel-theme-support' ),
-                        'testimonial_job'      => esc_html__( 'Customer', 'lenxel-theme-support' ),
-                        'testimonial_rating'      => esc_html__( '1', 'lenxel-theme-support' ),
+                        'testimonial_title'    => esc_html__( 'Amazing Courses', 'lenxel-core' ),
+                        'testimonial_content'  => esc_html__( 'Lorem ipsum is simply free text dolor sit amet, consectetur notted adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'lenxel-core' ),
+                        'testimonial_name'     => esc_html__( 'David Anderson', 'lenxel-core' ),
+                        'testimonial_job'      => esc_html__( 'Customer', 'lenxel-core' ),
+                        'testimonial_rating'      => esc_html__( '1', 'lenxel-core' ),
                     ),
                 ),
             ]
@@ -218,7 +218,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_control(
             'view',
             [
-                'label'   => __('View', 'lenxel-theme-support'),
+                'label'   => __('View', 'lenxel-core'),
                 'type'    => Controls_Manager::HIDDEN,
                 'default' => 'traditional',
             ]
@@ -235,7 +235,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->start_controls_section(
             'section_style_content',
             [
-                'label' => __('Content', 'lenxel-theme-support'),
+                'label' => __('Content', 'lenxel-core'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -243,7 +243,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_control(
             'content_content_color',
             [
-                'label'     => __('Text Color', 'lenxel-theme-support'),
+                'label'     => __('Text Color', 'lenxel-core'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [
@@ -264,7 +264,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_responsive_control(
 			'content_testimonial_pad',
 			[
-				'label' => __( 'Content Padding', 'lenxel-theme-support' ),
+				'label' => __( 'Content Padding', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px'],
 				'default' => [
@@ -286,7 +286,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->start_controls_section(
             'section_style_image',
             [
-                'label'     => __('Image', 'lenxel-theme-support'),
+                'label'     => __('Image', 'lenxel-core'),
                 'tab'       => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -294,7 +294,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_control(
             'image_size',
             [
-                'label'      => __('Image Size', 'lenxel-theme-support'),
+                'label'      => __('Image Size', 'lenxel-core'),
                 'type'       => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range'      => [
@@ -321,7 +321,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_control(
             'image_border_radius',
             [
-                'label'      => __('Border Radius', 'lenxel-theme-support'),
+                'label'      => __('Border Radius', 'lenxel-core'),
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors'  => [
@@ -336,7 +336,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->start_controls_section(
             'section_style_name',
             [
-                'label' => __('Name', 'lenxel-theme-support'),
+                'label' => __('Name', 'lenxel-core'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -344,7 +344,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_control(
             'name_text_color',
             [
-                'label'     => __('Text Color', 'lenxel-theme-support'),
+                'label'     => __('Text Color', 'lenxel-core'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [
@@ -365,7 +365,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_responsive_control(
 			'name_testimonial_pad',
 			[
-				'label' => __( 'Name Padding', 'lenxel-theme-support' ),
+				'label' => __( 'Name Padding', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px'],
 				'default' => [
@@ -387,7 +387,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->start_controls_section(
             'section_style_job',
             [
-                'label' => __('Job', 'lenxel-theme-support'),
+                'label' => __('Job', 'lenxel-core'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -395,7 +395,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_control(
             'job_text_color',
             [
-                'label'     => __('Text Color', 'lenxel-theme-support'),
+                'label'     => __('Text Color', 'lenxel-core'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [
@@ -415,7 +415,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_responsive_control(
 			'job_testimonial_pad',
 			[
-				'label' => __( 'Job Padding', 'lenxel-theme-support' ),
+				'label' => __( 'Job Padding', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px'],
 				'default' => [
@@ -436,7 +436,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->start_controls_section(
             'section_content_group',
             [
-                'label' => __('Grouped Content Spacing', 'lenxel-theme-support'),
+                'label' => __('Grouped Content Spacing', 'lenxel-core'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -444,7 +444,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_responsive_control(
 			'testimonial_group_pad',
 			[
-				'label' => __( 'Grouped Content Spacing', 'lenxel-theme-support' ),
+				'label' => __( 'Grouped Content Spacing', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px'],
 				'default' => [
@@ -462,7 +462,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_control(
             'testimonial_bg_color',
             [
-                'label'     => __('Background Color', 'lenxel-theme-support'),
+                'label'     => __('Background Color', 'lenxel-core'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [

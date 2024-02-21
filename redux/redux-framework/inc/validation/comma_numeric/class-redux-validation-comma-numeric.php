@@ -31,7 +31,7 @@ if ( ! class_exists( 'Redux_Validation_Comma_Numeric', false ) ) {
 				return;
 			}
 
-			$this->field['msg'] = ( isset( $this->field['msg'] ) ) ? $this->field['msg'] : esc_html__( 'You must provide a comma separated list of numerical values for this option.', 'lenxel-theme-support' );
+			$this->field['msg'] = ( isset( $this->field['msg'] ) ) ? $this->field['msg'] : esc_html__( 'You must provide a comma separated list of numerical values for this option.', 'lenxel-core' );
 
 			if ( ! is_numeric( str_replace( ',', '', $this->value ) ) || false === strpos( $this->value, ',' ) ) {
 				$this->value            = ( isset( $this->current ) ) ? $this->current : '';

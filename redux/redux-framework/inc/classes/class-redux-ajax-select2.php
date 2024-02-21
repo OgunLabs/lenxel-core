@@ -35,11 +35,11 @@ if ( ! class_exists( 'Redux_AJAX_Select2', false ) ) {
 
 			if ( isset( $_REQUEST['nonce'] ) && isset( $_REQUEST['action'] ) ) {
 				if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['nonce'] ) ), sanitize_text_field( wp_unslash( $_REQUEST['action'] ) ) ) ) {
-					wp_send_json_error( esc_html__( 'Invalid security credential.  Please reload the page and try again.', 'lenxel-theme-support' ) );
+					wp_send_json_error( esc_html__( 'Invalid security credential.  Please reload the page and try again.', 'lenxel-core' ) );
 				}
 
 				if ( ! Redux_Helpers::current_user_can( $this->parent->args['page_permissions'] ) ) {
-					wp_send_json_error( esc_html__( 'Invalid user capability.  Please reload the page and try again.', 'lenxel-theme-support' ) );
+					wp_send_json_error( esc_html__( 'Invalid user capability.  Please reload the page and try again.', 'lenxel-core' ) );
 				}
 
 				if ( isset( $_REQUEST['data'] ) ) {

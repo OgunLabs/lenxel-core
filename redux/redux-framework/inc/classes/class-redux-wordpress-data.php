@@ -355,7 +355,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 					foreach ( $_wp_registered_nav_menus as $k => $v ) {
 						$data[ $k ] = $v;
 						if ( ! has_nav_menu( $k ) ) {
-							$data[ $k ] .= ' ' . __( '[unassigned]', 'lenxel-theme-support' );
+							$data[ $k ] .= ' ' . __( '[unassigned]', 'lenxel-core' );
 						}
 					}
 					break;

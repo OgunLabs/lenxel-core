@@ -34,7 +34,7 @@
                                  <div class="desc"><?php echo $item['content']; ?></div>
                                  
                                  <?php if( isset($item['link']['url']) && $item['link']['url'] ){ ?>
-                                    <?php $this->lnx_render_link_html('<span>' . esc_html__( 'Read More', 'lenxel-theme-support' ) . '</span>', $item['link'], 'link-visit btn-inline'); ?>
+                                    <?php $this->lnx_render_link_html('<span>' . esc_html__( 'Read More', 'lenxel-core' ) . '</span>', $item['link'], 'link-visit btn-inline'); ?>
                                  <?php } ?>
 
                               </div>

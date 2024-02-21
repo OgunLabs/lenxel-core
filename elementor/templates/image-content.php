@@ -177,7 +177,7 @@
 			<div <?php echo $this->get_render_attribute_string( 'description_text' ); ?>><?php echo wp_kses($description_text, true); ?></div>
 			<?php if(!empty($settings['link']['url'])){ ?>
 			  <div class="read-more">
-				 <?php $this->lnx_render_link_html('<span>' . esc_html__( 'Read More', 'lenxel-theme-support' ) . '</span>', $settings['link'], 'btn-white'); ?>
+				 <?php $this->lnx_render_link_html('<span>' . esc_html__( 'Read More', 'lenxel-core' ) . '</span>', $settings['link'], 'btn-white'); ?>
 			  </div>
 			<?php } ?>
 		</div>

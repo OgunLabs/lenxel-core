@@ -73,7 +73,7 @@ if ( ! class_exists( 'Redux_Color', false ) ) {
 
 				echo '<label for="' . esc_attr( $this->field['id'] ) . '-transparency" class="color-transparency-check">';
 				echo '<input type="checkbox" class="checkbox color-transparency ' . esc_attr( $this->field['class'] ) . '" id="' . esc_attr( $this->field['id'] ) . '-transparency" data-id="' . esc_attr( $this->field['id'] ) . '-color" value="1"' . esc_html( $trans_checked ) . '>';
-				echo esc_html__( 'Transparent', 'lenxel-theme-support' );
+				echo esc_html__( 'Transparent', 'lenxel-core' );
 				echo '</label>';
 			}
 		}

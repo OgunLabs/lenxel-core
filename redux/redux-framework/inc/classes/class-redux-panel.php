@@ -83,7 +83,7 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 			echo '<div class="wrap redux-wrap-div" data-opt-name="' . esc_attr( $this->parent->args['opt_name_triger'] ) . '">';
 
 			// Do we support JS?
-			echo '<noscript><div class="no-js">' . esc_html__( 'Warning- This options panel will not work properly without javascript!', 'lenxel-theme-support' ) . '</div></noscript>';
+			echo '<noscript><div class="no-js">' . esc_html__( 'Warning- This options panel will not work properly without javascript!', 'lenxel-core' ) . '</div></noscript>';
 
 			// Security is vital!
 			echo '<input type="hidden" class="redux-ajax-security" data-opt-name="' . esc_attr( $this->parent->args['opt_name_triger'] ) . '" id="ajaxsecurity" name="security" value="' . esc_attr( wp_create_nonce( 'redux_ajax_nonce' . $this->parent->args['opt_name_triger'] ) ) . '" />';
@@ -152,7 +152,7 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 					 */
 
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					echo '<strong>' . esc_html( apply_filters( "redux-imported-text-{$this->parent->args['opt_name_triger']}", esc_html__( 'Settings Imported!', 'lenxel-theme-support' ) ) ) . '</strong>';
+					echo '<strong>' . esc_html( apply_filters( "redux-imported-text-{$this->parent->args['opt_name_triger']}", esc_html__( 'Settings Imported!', 'lenxel-core' ) ) ) . '</strong>';
 					echo '</div>';
 				} elseif ( 'defaults' === $this->parent->transients['last_save_mode'] ) {
 					/**
@@ -173,7 +173,7 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 					 */
 
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					echo '<strong>' . esc_html( apply_filters( "redux-defaults-text-{$this->parent->args['opt_name_triger']}", esc_html__( 'All Defaults Restored!', 'lenxel-theme-support' ) ) ) . '</strong>';
+					echo '<strong>' . esc_html( apply_filters( "redux-defaults-text-{$this->parent->args['opt_name_triger']}", esc_html__( 'All Defaults Restored!', 'lenxel-core' ) ) ) . '</strong>';
 					echo '</div>';
 				} elseif ( 'defaults_section' === $this->parent->transients['last_save_mode'] ) {
 					/**
@@ -194,7 +194,7 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 					 */
 
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					echo '<strong>' . esc_html( apply_filters( "redux-defaults-section-text-{$this->parent->args['opt_name_triger']}", esc_html__( 'Section Defaults Restored!', 'lenxel-theme-support' ) ) ) . '</strong>';
+					echo '<strong>' . esc_html( apply_filters( "redux-defaults-section-text-{$this->parent->args['opt_name_triger']}", esc_html__( 'Section Defaults Restored!', 'lenxel-core' ) ) ) . '</strong>';
 					echo '</div>';
 				} elseif ( 'normal' === $this->parent->transients['last_save_mode'] ) {
 					/**
@@ -215,7 +215,7 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 					 */
 
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					echo '<strong>' . esc_html( apply_filters( "redux-saved-text-{$this->parent->args['opt_name_triger']}", esc_html__( 'Settings Saved!', 'lenxel-theme-support' ) ) ) . '</strong>';
+					echo '<strong>' . esc_html( apply_filters( "redux-saved-text-{$this->parent->args['opt_name_triger']}", esc_html__( 'Settings Saved!', 'lenxel-core' ) ) ) . '</strong>';
 					echo '</div>';
 				}
 
@@ -242,7 +242,7 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 			 */
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			echo '<strong>' . esc_html( apply_filters( "redux-changed-text-{$this->parent->args['opt_name_triger']}", esc_html__( 'Settings have changed, you should save them!', 'lenxel-theme-support' ) ) ) . '</strong>';
+			echo '<strong>' . esc_html( apply_filters( "redux-changed-text-{$this->parent->args['opt_name_triger']}", esc_html__( 'Settings have changed, you should save them!', 'lenxel-core' ) ) ) . '</strong>';
 			echo '</div>';
 
 			/**
@@ -256,7 +256,7 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 
 			echo '<div class="redux-field-errors notice-red">';
 			echo '<strong>';
-			echo '<span></span> ' . esc_html__( 'error(s) were found!', 'lenxel-theme-support' );
+			echo '<span></span> ' . esc_html__( 'error(s) were found!', 'lenxel-core' );
 			echo '</strong>';
 			echo '</div>';
 
@@ -271,7 +271,7 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 
 			echo '<div class="redux-field-warnings notice-yellow">';
 			echo '<strong>';
-			echo '<span></span> ' . esc_html__( 'warning(s) were found!', 'lenxel-theme-support' );
+			echo '<span></span> ' . esc_html__( 'warning(s) were found!', 'lenxel-core' );
 			echo '</strong>';
 			echo '</div>';
 		}
@@ -391,7 +391,7 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 						?>
 						<div id="message" class="error redux-message">
 							<p>
-								<strong><?php esc_html_e( 'Your panel has bundled copies of Redux Framework template files that are outdated!', 'lenxel-theme-support' ); ?></strong>&nbsp;&nbsp;<?php esc_html_e( 'Please update them now as functionality issues could arise.', 'lenxel-theme-support' ); ?>
+								<strong><?php esc_html_e( 'Your panel has bundled copies of Redux Framework template files that are outdated!', 'lenxel-core' ); ?></strong>&nbsp;&nbsp;<?php esc_html_e( 'Please update them now as functionality issues could arise.', 'lenxel-core' ); ?>
 							</p>
 						</div>
 						<?php

@@ -1262,7 +1262,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 								$outdated_templates = true;
 							}
 
-							$found_files[ $plugin_name ][] = sprintf( '<code>%s</code> ' . esc_html__( 'version', 'lenxel-theme-support' ) . ' <strong style="color:red">%s</strong> ' . esc_html__( 'is out of date. The core version is', 'lenxel-theme-support' ) . ' %s', str_replace( WP_CONTENT_DIR . '/themes/', '', $theme_file ), $theme_version ? $theme_version : '-', $core_version );
+							$found_files[ $plugin_name ][] = sprintf( '<code>%s</code> ' . esc_html__( 'version', 'lenxel-core' ) . ' <strong style="color:red">%s</strong> ' . esc_html__( 'is out of date. The core version is', 'lenxel-core' ) . ' %s', str_replace( WP_CONTENT_DIR . '/themes/', '', $theme_file ), $theme_version ? $theme_version : '-', $core_version );
 						} else {
 							$found_files[ $plugin_name ][] = sprintf( '<code>%s</code>', str_replace( WP_CONTENT_DIR . '/themes/', '', $theme_file ) );
 						}

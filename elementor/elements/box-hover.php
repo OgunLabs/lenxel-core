@@ -41,7 +41,7 @@ class LNXElement_Box_Hover extends LNXElement_Base{
      * @return string Widget title.
      */
     public function get_title() {
-        return __('LNX Box Hover', 'lenxel-theme-support');
+        return __('LNX Box Hover', 'lenxel-core');
     }
 
     /**
@@ -85,17 +85,17 @@ class LNXElement_Box_Hover extends LNXElement_Base{
         $this->start_controls_section(
             'section_content',
             [
-                'label' => __('Content', 'lenxel-theme-support'),
+                'label' => __('Content', 'lenxel-core'),
             ]
         );
         $this->add_control(
             'style',
             array(
-                'label'   => esc_html__( 'Style', 'lenxel-theme-support' ),
+                'label'   => esc_html__( 'Style', 'lenxel-core' ),
                 'type'    => Controls_Manager::SELECT,
                 'default' => 'style-1',
                 'options' => [
-                  'style-1' => esc_html__('Style I - Carousel', 'lenxel-theme-support'),
+                  'style-1' => esc_html__('Style I - Carousel', 'lenxel-core'),
                 ]
             )
          );
@@ -104,7 +104,7 @@ class LNXElement_Box_Hover extends LNXElement_Base{
         $repeater->add_control(
             'box_title',
             [
-                'label'   => __('Name', 'lenxel-theme-support'),
+                'label'   => __('Name', 'lenxel-core'),
                 'default' => 'Box Title',
                 'type'    => Controls_Manager::TEXT,
             ]
@@ -112,7 +112,7 @@ class LNXElement_Box_Hover extends LNXElement_Base{
         $repeater->add_control(
             'box_image',
             [
-                'label'      => __('Background Image', 'lenxel-theme-support'),
+                'label'      => __('Background Image', 'lenxel-core'),
                 'dynamic' => [
                   'active' => true,
                 ],
@@ -126,7 +126,7 @@ class LNXElement_Box_Hover extends LNXElement_Base{
         $repeater->add_control(
             'selected_icon',
             [
-                'label'      => __('Choose Icon', 'lenxel-theme-support'),
+                'label'      => __('Choose Icon', 'lenxel-core'),
                 'type'       => Controls_Manager::ICONS,
                 'default' => [
                   'value' => 'fas fa-home',
@@ -137,7 +137,7 @@ class LNXElement_Box_Hover extends LNXElement_Base{
         $repeater->add_control(
             'box_content',
             [
-                'label'       => __('Content', 'lenxel-theme-support'),
+                'label'       => __('Content', 'lenxel-core'),
                 'type'        => Controls_Manager::TEXTAREA,
                 'default'     => 'I was impresed by the lenxel services, lorem ipsum is simply free text used by copytyping refreshing. Neque porro est qui dolorem ipsum quia.',
                 'label_block' => true,
@@ -147,9 +147,9 @@ class LNXElement_Box_Hover extends LNXElement_Base{
         $repeater->add_control(
             'link',
             [
-                'label'     => __( 'Link', 'lenxel-theme-support' ),
+                'label'     => __( 'Link', 'lenxel-core' ),
                 'type'      => Controls_Manager::URL,
-                'placeholder' => __( 'https://your-link.com', 'lenxel-theme-support' ),
+                'placeholder' => __( 'https://your-link.com', 'lenxel-core' ),
                 'label_block' => true
               ]
           );
@@ -157,7 +157,7 @@ class LNXElement_Box_Hover extends LNXElement_Base{
         $this->add_control(
             'content_items',
             [
-                'label'       => __('Content Item', 'lenxel-theme-support'),
+                'label'       => __('Content Item', 'lenxel-core'),
                 'type'        => Controls_Manager::REPEATER,
                 'fields'      => $repeater->get_controls(),
                 'title_field' => '{{{ box_title }}}',
@@ -167,28 +167,28 @@ class LNXElement_Box_Hover extends LNXElement_Base{
                         'box_image'    => [
                             'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/image-4.jpg',
                         ],
-                        'box_content'  => esc_html__( 'There are many variations of passages of available but the majority have suffered alter randomised words.', 'lenxel-theme-support' ),
+                        'box_content'  => esc_html__( 'There are many variations of passages of available but the majority have suffered alter randomised words.', 'lenxel-core' ),
                     ),
                     array(
                         'box_title'  => esc_html__('Civil Rights'),
                         'box_image'    => [
                             'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/image-5.jpg',
                         ],
-                        'box_content'  => esc_html__( 'There are many variations of passages of available but the majority have suffered alter randomised words.', 'lenxel-theme-support' ),
+                        'box_content'  => esc_html__( 'There are many variations of passages of available but the majority have suffered alter randomised words.', 'lenxel-core' ),
                     ),
                     array(
                         'box_title'  => esc_html__('Human Rights'),
                         'box_image'    => [
                             'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/image-6.jpg',
                         ],
-                        'box_content'  => esc_html__( 'There are many variations of passages of available but the majority have suffered alter randomised words.', 'lenxel-theme-support' ),
+                        'box_content'  => esc_html__( 'There are many variations of passages of available but the majority have suffered alter randomised words.', 'lenxel-core' ),
                     ),
                     array(
                         'box_title'  => esc_html__('Civil Rights'),
                         'box_image'    => [
                             'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/image-4.jpg',
                         ],
-                        'box_content'  => esc_html__( 'There are many variations of passages of available but the majority have suffered alter randomised words.', 'lenxel-theme-support' ),
+                        'box_content'  => esc_html__( 'There are many variations of passages of available but the majority have suffered alter randomised words.', 'lenxel-core' ),
                     ),
                 ),
             ]
@@ -205,7 +205,7 @@ class LNXElement_Box_Hover extends LNXElement_Base{
         $this->add_control(
             'box_height',
             [
-                'label'      => __('Box Height', 'lenxel-theme-support'),
+                'label'      => __('Box Height', 'lenxel-core'),
                 'type'       => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'default'    => [
@@ -225,7 +225,7 @@ class LNXElement_Box_Hover extends LNXElement_Base{
         $this->add_control(
             'view',
             [
-                'label'   => __('View', 'lenxel-theme-support'),
+                'label'   => __('View', 'lenxel-core'),
                 'type'    => Controls_Manager::HIDDEN,
                 'default' => 'traditional',
             ]
@@ -242,14 +242,14 @@ class LNXElement_Box_Hover extends LNXElement_Base{
         $this->start_controls_section(
             'section_style_icon',
             [
-                'label'     => __('Icon', 'lenxel-theme-support'),
+                'label'     => __('Icon', 'lenxel-core'),
                 'tab'       => Controls_Manager::TAB_STYLE,
             ]
         );
         $this->add_control(
             'icon_background',
             [
-                'label'     => __('Icon Background Color', 'lenxel-theme-support'),
+                'label'     => __('Icon Background Color', 'lenxel-core'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [
@@ -260,7 +260,7 @@ class LNXElement_Box_Hover extends LNXElement_Base{
         $this->add_control(
             'icon_color',
             [
-                'label'     => __('Icon Background Color', 'lenxel-theme-support'),
+                'label'     => __('Icon Background Color', 'lenxel-core'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [
@@ -272,7 +272,7 @@ class LNXElement_Box_Hover extends LNXElement_Base{
         $this->add_responsive_control(
           'icon_size',
           [
-            'label' => __( 'Size', 'lenxel-theme-support' ),
+            'label' => __( 'Size', 'lenxel-core' ),
             'type' => Controls_Manager::SLIDER,
             'default' => [
               'size' => 48
@@ -301,7 +301,7 @@ class LNXElement_Box_Hover extends LNXElement_Base{
         $this->add_control(
             'icon_border_radius',
             [
-                'label'      => __('Icon Border Radius', 'lenxel-theme-support'),
+                'label'      => __('Icon Border Radius', 'lenxel-core'),
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors'  => [
@@ -312,7 +312,7 @@ class LNXElement_Box_Hover extends LNXElement_Base{
         $this->add_responsive_control(
             'title_icon',
             [
-                'label' => __( 'Padding', 'lenxel-theme-support' ),
+                'label' => __( 'Padding', 'lenxel-core' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'default' => [
@@ -333,14 +333,14 @@ class LNXElement_Box_Hover extends LNXElement_Base{
         $this->start_controls_section(
             'section_style_title',
             [
-                'label' => __('Name', 'lenxel-theme-support'),
+                'label' => __('Name', 'lenxel-core'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
         $this->add_control(
             'title_text_color',
             [
-                'label'     => __('Text Color', 'lenxel-theme-support'),
+                'label'     => __('Text Color', 'lenxel-core'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [
@@ -359,7 +359,7 @@ class LNXElement_Box_Hover extends LNXElement_Base{
         $this->add_responsive_control(
             'title_padding',
             [
-                'label' => __( 'Padding', 'lenxel-theme-support' ),
+                'label' => __( 'Padding', 'lenxel-core' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'default' => [
@@ -380,14 +380,14 @@ class LNXElement_Box_Hover extends LNXElement_Base{
         $this->start_controls_section(
             'section_content_style',
             [
-                'label' => __('Content', 'lenxel-theme-support'),
+                'label' => __('Content', 'lenxel-core'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
         $this->add_control(
             'content_text_color',
             [
-                'label'     => __('Text Color', 'lenxel-theme-support'),
+                'label'     => __('Text Color', 'lenxel-core'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [
@@ -405,7 +405,7 @@ class LNXElement_Box_Hover extends LNXElement_Base{
         $this->add_responsive_control(
             'content_padding',
             [
-                'label' => __( 'Padding', 'lenxel-theme-support' ),
+                'label' => __( 'Padding', 'lenxel-core' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'default' => [

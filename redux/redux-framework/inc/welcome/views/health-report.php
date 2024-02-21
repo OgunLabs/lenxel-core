@@ -36,15 +36,15 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 ?>
 <div class="wrap about-wrap redux-status" style="max-width:initial;margin:10px 20px 0 2px;">
 	<h1>
-		<?php esc_html_e( 'Redux - Health Report', 'lenxel-theme-support' ); ?>
+		<?php esc_html_e( 'Redux - Health Report', 'lenxel-core' ); ?>
 	</h1>
 
 	<div class="about-text">
-		<?php esc_html_e( 'Our core mantra at Redux is backward compatibility. With millions instances worldwide, all we care about is keeping can be assured that we will take care of you.', 'lenxel-theme-support' ); ?></div>
+		<?php esc_html_e( 'Our core mantra at Redux is backward compatibility. With millions instances worldwide, all we care about is keeping can be assured that we will take care of you.', 'lenxel-core' ); ?></div>
 	<div class="redux-badge">
 		<i class="el el-redux"></i>
 		<span>
-			<?php printf( esc_html__( 'Version', 'lenxel-theme-support' ) . ' %s', esc_html( Redux_Core::$version ) ); ?>
+			<?php printf( esc_html__( 'Version', 'lenxel-core' ) . ' %s', esc_html( Redux_Core::$version ) ); ?>
 		</span>
 	</div>
 
@@ -53,18 +53,18 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 
 	<div class="updated redux-message hidden">
 		<p>
-			<?php esc_html_e( 'Please copy and paste this information in your ticket when contacting support:', 'lenxel-theme-support' ); ?>
+			<?php esc_html_e( 'Please copy and paste this information in your ticket when contacting support:', 'lenxel-core' ); ?>
 		</p>
 
 		<p class="submit">
 			<a href="#" class="button-primary debug-report">
-				<?php esc_html_e( 'Get System Report', 'lenxel-theme-support' ); ?>
+				<?php esc_html_e( 'Get System Report', 'lenxel-core' ); ?>
 			</a>
 			<a
 					class="skip button-primary"
 					href="https://devs.redux.io/core/support/understanding-the-redux-framework-system-status-report/"
 					target="_blank">
-				<?php esc_html_e( 'Understanding the Status Report', 'lenxel-theme-support' ); ?>
+				<?php esc_html_e( 'Understanding the Status Report', 'lenxel-core' ); ?>
 			</a>
 		</p>
 		<div id="debug-report">
@@ -74,8 +74,8 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 						id="copy-for-support"
 						class="button-primary redux-hint-qtip"
 						href="#"
-						qtip-content="<?php esc_html_e( 'Copied!', 'lenxel-theme-support' ); ?>">
-					<?php esc_html_e( 'Copy for Support', 'lenxel-theme-support' ); ?>
+						qtip-content="<?php esc_html_e( 'Copied!', 'lenxel-core' ); ?>">
+					<?php esc_html_e( 'Copy for Support', 'lenxel-core' ); ?>
 				</button>
 			</p>
 		</div>
@@ -85,26 +85,26 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 		<thead>
 		<tr>
 			<th colspan="3" data-export-label="WordPress Environment">
-				<?php esc_html_e( 'WordPress Environment', 'lenxel-theme-support' ); ?>
+				<?php esc_html_e( 'WordPress Environment', 'lenxel-core' ); ?>
 			</th>
 		</tr>
 		</thead>
 		<tbody>
 		<tr>
 			<td data-export-label="Home URL">
-				<?php esc_html_e( 'Home URL', 'lenxel-theme-support' ); ?>:
+				<?php esc_html_e( 'Home URL', 'lenxel-core' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The URL of your site\'s homepage.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'The URL of your site\'s homepage.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td><?php echo esc_url( $sysinfo['home_url'] ); ?></td>
 		</tr>
 		<tr>
 			<td data-export-label="Site URL">
-				<?php esc_html_e( 'Site URL', 'lenxel-theme-support' ); ?>:
+				<?php esc_html_e( 'Site URL', 'lenxel-core' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The root URL of your site.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'The root URL of your site.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php echo esc_url( $sysinfo['site_url'] ); ?>
@@ -112,10 +112,10 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 		</tr>
 		<tr>
 			<td data-export-label="Redux Version">
-				<?php esc_html_e( 'Redux Version', 'lenxel-theme-support' ); ?>:
+				<?php esc_html_e( 'Redux Version', 'lenxel-core' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The version of Redux Framework installed on your site.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'The version of Redux Framework installed on your site.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php echo esc_html( $sysinfo['redux_ver'] ); ?>
@@ -123,10 +123,10 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 		</tr>
 		<tr>
 			<td data-export-label="Redux Data Directory Writable">
-				<?php esc_html_e( 'Redux Data Directory Writable', 'lenxel-theme-support' ); ?>:
+				<?php esc_html_e( 'Redux Data Directory Writable', 'lenxel-core' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'Redux and its extensions write data to the <code>uploads</code> directory. This directory must be writable.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'Redux and its extensions write data to the <code>uploads</code> directory. This directory must be writable.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 			<?php
@@ -138,7 +138,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 			} else {
 				echo '<mark class="error">';
 				echo '<span class="dashicons dashicons-warning"></span>';
-				printf( esc_html__( 'To allow data saving, make', 'lenxel-theme-support' ) . ' <code>%s</code> ' . esc_html__( 'writable.', 'lenxel-theme-support' ), esc_html( $sysinfo['redux_data_dir'] ) );
+				printf( esc_html__( 'To allow data saving, make', 'lenxel-core' ) . ' <code>%s</code> ' . esc_html__( 'writable.', 'lenxel-core' ), esc_html( $sysinfo['redux_data_dir'] ) );
 				echo '</mark>';
 			}
 			?>
@@ -146,10 +146,10 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 		</tr>
 		<tr>
 			<td data-export-label="WP Content URL">
-				<?php esc_html_e( 'WP Content URL', 'lenxel-theme-support' ); ?>:
+				<?php esc_html_e( 'WP Content URL', 'lenxel-core' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'Redux and its extensions write data to the <code>uploads</code> directory. This directory must be writable.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'Redux and its extensions write data to the <code>uploads</code> directory. This directory must be writable.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php echo '<code>' . esc_url( $sysinfo['wp_content_url'] ) . '</code> '; ?>
@@ -157,10 +157,10 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 		</tr>
 		<tr>
 			<td data-export-label="WP Version">
-				<?php esc_html_e( 'WP Version', 'lenxel-theme-support' ); ?>:
+				<?php esc_html_e( 'WP Version', 'lenxel-core' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The version of WordPress installed on your site.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'The version of WordPress installed on your site.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php bloginfo( 'version' ); ?>
@@ -168,10 +168,10 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 		</tr>
 		<tr>
 			<td data-export-label="WP Multisite">
-				<?php esc_html_e( 'WP Multisite', 'lenxel-theme-support' ); ?>:
+				<?php esc_html_e( 'WP Multisite', 'lenxel-core' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'Whether or not you have WordPress Multisite enabled.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'Whether or not you have WordPress Multisite enabled.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 			<?php
@@ -185,10 +185,10 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 		</tr>
 		<tr>
 			<td data-export-label="Permalink Structure">
-				<?php esc_html_e( 'Permalink Structure', 'lenxel-theme-support' ); ?>:
+				<?php esc_html_e( 'Permalink Structure', 'lenxel-core' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The current permalink structure as defined in WordPress Settings->Permalinks.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'The current permalink structure as defined in WordPress Settings->Permalinks.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php echo esc_html( $sysinfo['permalink_structure'] ); ?>
@@ -197,10 +197,10 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 		<?php $sof = $sysinfo['front_page_display']; ?>
 		<tr>
 			<td data-export-label="Front Page Display">
-				<?php esc_html_e( 'Front Page Display', 'lenxel-theme-support' ); ?>:
+				<?php esc_html_e( 'Front Page Display', 'lenxel-core' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The current Reading mode of WordPress.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'The current Reading mode of WordPress.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td><?php echo esc_html( $sof ); ?></td>
 		</tr>
@@ -209,10 +209,10 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 			?>
 			<tr>
 				<td data-export-label="Front Page">
-					<?php esc_html_e( 'Front Page', 'lenxel-theme-support' ); ?>:
+					<?php esc_html_e( 'Front Page', 'lenxel-core' ); ?>:
 				</td>
 				<td class="help">
-					<?php echo redux_help_tip( esc_attr__( 'The currently selected page which acts as the site\'s Front Page.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+					<?php echo redux_help_tip( esc_attr__( 'The currently selected page which acts as the site\'s Front Page.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</td>
 				<td>
 					<?php echo esc_html( $sysinfo['front_page'] ); ?>
@@ -220,10 +220,10 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 			</tr>
 			<tr>
 				<td data-export-label="Posts Page">
-					<?php esc_html_e( 'Posts Page', 'lenxel-theme-support' ); ?>:
+					<?php esc_html_e( 'Posts Page', 'lenxel-core' ); ?>:
 				</td>
 				<td class="help">
-					<?php echo redux_help_tip( esc_attr__( 'The currently selected page in where blog posts are displayed.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+					<?php echo redux_help_tip( esc_attr__( 'The currently selected page in where blog posts are displayed.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</td>
 				<td>
 					<?php echo esc_html( $sysinfo['posts_page'] ); ?>
@@ -234,17 +234,17 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 		?>
 		<tr>
 			<td data-export-label="WP Memory Limit">
-				<?php esc_html_e( 'WP Memory Limit', 'lenxel-theme-support' ); ?>:
+				<?php esc_html_e( 'WP Memory Limit', 'lenxel-core' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The maximum amount of memory (RAM) that your site can use at one time.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'The maximum amount of memory (RAM) that your site can use at one time.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php
 				$memory = $sysinfo['wp_mem_limit']['raw'];
 
 				if ( $memory < 40000000 ) {
-					echo '<mark class="error">' . sprintf( '%s - ' . esc_html__( 'We recommend setting memory to at least 40MB. See:', 'lenxel-theme-support' ) . ' <a href="%s" target="_blank">' . esc_html__( 'Increasing memory allocated to PHP', 'lenxel-theme-support' ) . '</a>', esc_html( $sysinfo['wp_mem_limit']['size'] ), '//codex.wordpress.org/Editing_wp-config.php#Increasing_memory_allocated_to_PHP' ) . '</mark>';
+					echo '<mark class="error">' . sprintf( '%s - ' . esc_html__( 'We recommend setting memory to at least 40MB. See:', 'lenxel-core' ) . ' <a href="%s" target="_blank">' . esc_html__( 'Increasing memory allocated to PHP', 'lenxel-core' ) . '</a>', esc_html( $sysinfo['wp_mem_limit']['size'] ), '//codex.wordpress.org/Editing_wp-config.php#Increasing_memory_allocated_to_PHP' ) . '</mark>';
 				} else {
 					echo '<mark class="yes">' . esc_html( $sysinfo['wp_mem_limit']['size'] ) . '</mark>';
 				}
@@ -253,10 +253,10 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 		</tr>
 		<tr>
 			<td data-export-label="Database Table Prefix">
-				<?php esc_html_e( 'Database Table Prefix', 'lenxel-theme-support' ); ?>:
+				<?php esc_html_e( 'Database Table Prefix', 'lenxel-core' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The prefix structure of the current WordPress database.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'The prefix structure of the current WordPress database.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php echo esc_html( $sysinfo['db_table_prefix'] ); ?>
@@ -264,10 +264,10 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 		</tr>
 		<tr>
 			<td data-export-label="WP Debug Mode">
-				<?php esc_html_e( 'WP Debug Mode', 'lenxel-theme-support' ); ?>:
+				<?php esc_html_e( 'WP Debug Mode', 'lenxel-core' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'Displays whether or not WordPress is in Debug Mode.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'Displays whether or not WordPress is in Debug Mode.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php
@@ -281,10 +281,10 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 		</tr>
 		<tr>
 			<td data-export-label="Language">
-				<?php esc_html_e( 'Language', 'lenxel-theme-support' ); ?>:
+				<?php esc_html_e( 'Language', 'lenxel-core' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The current language used by WordPress. Default = English', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'The current language used by WordPress. Default = English', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php echo esc_html( $sysinfo['wp_lang'] ); ?>
@@ -296,17 +296,17 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 		<thead>
 		<tr>
 			<th colspan="3" data-export-label="Browser">
-				<?php esc_html_e( 'Browser', 'lenxel-theme-support' ); ?>
+				<?php esc_html_e( 'Browser', 'lenxel-core' ); ?>
 			</th>
 		</tr>
 		</thead>
 		<tbody>
 		<tr>
 			<td data-export-label="Browser Info">
-				<?php esc_html_e( 'Browser Info', 'lenxel-theme-support' ); ?>:
+				<?php esc_html_e( 'Browser Info', 'lenxel-core' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'Information about the current web browser.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'Information about the current web browser.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php
@@ -323,17 +323,17 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 		<thead>
 		<tr>
 			<th colspan="3" data-export-label="Server Environment">
-				<?php esc_html_e( 'Server Environment', 'lenxel-theme-support' ); ?>
+				<?php esc_html_e( 'Server Environment', 'lenxel-core' ); ?>
 			</th>
 		</tr>
 		</thead>
 		<tbody>
 		<tr>
 			<td data-export-label="Server Info">
-				<?php esc_html_e( 'Server Info', 'lenxel-theme-support' ); ?>:
+				<?php esc_html_e( 'Server Info', 'lenxel-core' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'Information about the web server that is currently hosting your site.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'Information about the web server that is currently hosting your site.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php echo esc_html( $sysinfo['server_info'] ); ?>
@@ -341,10 +341,10 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 		</tr>
 		<tr>
 			<td data-export-label="Localhost Environment">
-				<?php esc_html_e( 'Localhost Environment', 'lenxel-theme-support' ); ?>:
+				<?php esc_html_e( 'Localhost Environment', 'lenxel-core' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'Is the server running in a localhost environment.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'Is the server running in a localhost environment.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php
@@ -360,10 +360,10 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 		</tr>
 		<tr>
 			<td data-export-label="PHP Version">
-				<?php esc_html_e( 'PHP Version', 'lenxel-theme-support' ); ?>:
+				<?php esc_html_e( 'PHP Version', 'lenxel-core' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The version of PHP installed on your hosting server.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'The version of PHP installed on your hosting server.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php echo esc_html( $sysinfo['php_ver'] ); ?>
@@ -371,10 +371,10 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 		</tr>
 		<tr>
 			<td data-export-label="ABSPATH">
-				<?php esc_html_e( 'ABSPATH', 'lenxel-theme-support' ); ?>:
+				<?php esc_html_e( 'ABSPATH', 'lenxel-core' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The ABSPATH variable on the server.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'The ABSPATH variable on the server.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php echo '<code>' . esc_html( $sysinfo['abspath'] ) . '</code>'; ?>
@@ -383,45 +383,45 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 
 		<?php if ( function_exists( 'ini_get' ) ) { ?>
 			<tr>
-				<td data-export-label="PHP Memory Limit"><?php esc_html_e( 'PHP Memory Limit', 'lenxel-theme-support' ); ?>
+				<td data-export-label="PHP Memory Limit"><?php esc_html_e( 'PHP Memory Limit', 'lenxel-core' ); ?>
 					:
 				</td>
 				<td class="help">
-					<?php echo redux_help_tip( esc_attr__( 'The largest filesize that can be contained in one post.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+					<?php echo redux_help_tip( esc_attr__( 'The largest filesize that can be contained in one post.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</td>
 				<td><?php echo esc_html( $sysinfo['php_mem_limit'] ); ?></td>
 			</tr>
 			<tr>
-				<td data-export-label="PHP Post Max Size"><?php esc_html_e( 'PHP Post Max Size', 'lenxel-theme-support' ); ?>
+				<td data-export-label="PHP Post Max Size"><?php esc_html_e( 'PHP Post Max Size', 'lenxel-core' ); ?>
 					:
 				</td>
 				<td class="help">
-					<?php echo redux_help_tip( esc_attr__( 'The largest filesize that can be contained in one post.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+					<?php echo redux_help_tip( esc_attr__( 'The largest filesize that can be contained in one post.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</td>
 				<td><?php echo esc_html( $sysinfo['php_post_max_size'] ); ?></td>
 			</tr>
 			<tr>
-				<td data-export-label="PHP Time Limit"><?php esc_html_e( 'PHP Time Limit', 'lenxel-theme-support' ); ?>:</td>
+				<td data-export-label="PHP Time Limit"><?php esc_html_e( 'PHP Time Limit', 'lenxel-core' ); ?>:</td>
 				<td class="help">
-					<?php echo redux_help_tip( esc_attr__( 'The amount of time (in seconds) that your site will spend on a single operation before timing out (to avoid server lockups).', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+					<?php echo redux_help_tip( esc_attr__( 'The amount of time (in seconds) that your site will spend on a single operation before timing out (to avoid server lockups).', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</td>
 				<td><?php echo esc_html( $sysinfo['php_time_limit'] ); ?></td>
 			</tr>
 			<tr>
-				<td data-export-label="PHP Max Input Vars"><?php esc_html_e( 'PHP Max Input Vars', 'lenxel-theme-support' ); ?>
+				<td data-export-label="PHP Max Input Vars"><?php esc_html_e( 'PHP Max Input Vars', 'lenxel-core' ); ?>
 					:
 				</td>
 				<td class="help">
-					<?php echo redux_help_tip( esc_attr__( 'The maximum number of variables your server can use for a single function to avoid overloads.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+					<?php echo redux_help_tip( esc_attr__( 'The maximum number of variables your server can use for a single function to avoid overloads.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</td>
 				<td><?php echo esc_html( $sysinfo['php_max_input_var'] ); ?></td>
 			</tr>
 			<tr>
-				<td data-export-label="PHP Display Errors"><?php esc_html_e( 'PHP Display Errors', 'lenxel-theme-support' ); ?>
+				<td data-export-label="PHP Display Errors"><?php esc_html_e( 'PHP Display Errors', 'lenxel-core' ); ?>
 					:
 				</td>
 				<td class="help">
-					<?php echo redux_help_tip( esc_attr__( 'Determines if PHP will display errors within the browser.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+					<?php echo redux_help_tip( esc_attr__( 'Determines if PHP will display errors within the browser.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</td>
 				<td>
 				<?php
@@ -437,10 +437,10 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 			</tr>
 		<?php } ?>
 		<tr>
-			<td data-export-label="SUHOSIN Installed"><?php esc_html_e( 'SUHOSIN Installed', 'lenxel-theme-support' ); ?>:
+			<td data-export-label="SUHOSIN Installed"><?php esc_html_e( 'SUHOSIN Installed', 'lenxel-core' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'Suhosin is an advanced protection system for PHP installations. It was designed to protect your servers on the one hand against a number of well known problems in PHP applications and on the other hand against potential unknown vulnerabilities within these applications or the PHP core itself.  If enabled on your server, Suhosin may need to be configured to increase its data submission limits.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'Suhosin is an advanced protection system for PHP installations. It was designed to protect your servers on the one hand against a number of well known problems in PHP applications and on the other hand against potential unknown vulnerabilities within these applications or the PHP core itself.  If enabled on your server, Suhosin may need to be configured to increase its data submission limits.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 			<?php
@@ -458,25 +458,25 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 		</tr>
 
 		<tr>
-			<td data-export-label="MySQL Version"><?php esc_html_e( 'MySQL Version', 'lenxel-theme-support' ); ?>:</td>
+			<td data-export-label="MySQL Version"><?php esc_html_e( 'MySQL Version', 'lenxel-core' ); ?>:</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The version of MySQL installed on your hosting server.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'The version of MySQL installed on your hosting server.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td><?php echo esc_html( $sysinfo['mysql_ver'] ); ?></td>
 		</tr>
 		<tr>
-			<td data-export-label="Max Upload Size"><?php esc_html_e( 'Max Upload Size', 'lenxel-theme-support' ); ?>:</td>
+			<td data-export-label="Max Upload Size"><?php esc_html_e( 'Max Upload Size', 'lenxel-core' ); ?>:</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The largest filesize that can be uploaded to your WordPress installation.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'The largest filesize that can be uploaded to your WordPress installation.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td><?php echo esc_html( $sysinfo['max_upload_size'] ); ?></td>
 		</tr>
 		<tr>
 			<td data-export-label="Default Timezone is UTC">
-				<?php esc_html_e( 'Default Timezone is UTC', 'lenxel-theme-support' ); ?>:
+				<?php esc_html_e( 'Default Timezone is UTC', 'lenxel-core' ); ?>:
 			</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The default timezone for your server.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'The default timezone for your server.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php
@@ -484,7 +484,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 					echo '<mark class="error">';
 					echo '<span class="dashicons dashicons-no-alt"></span>';
 					// translators: %s default time zone.
-					printf( esc_html__( 'Default timezone is', 'lenxel-theme-support' ) . ' %s - ' . esc_html__( 'it should be UTC', 'lenxel-theme-support' ), esc_html( date_default_timezone_get() ) );
+					printf( esc_html__( 'Default timezone is', 'lenxel-core' ) . ' %s - ' . esc_html__( 'it should be UTC', 'lenxel-core' ), esc_html( date_default_timezone_get() ) );
 					echo '</mark>';
 				} else {
 					echo '<mark class="yes">';
@@ -499,41 +499,41 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 
 		// fsockopen/cURL.
 		$posting['fsockopen_curl']['name'] = 'fsockopen/cURL';
-		$posting['fsockopen_curl']['help'] = redux_help_tip( esc_attr__( 'Used when communicating with remote services with PHP.', 'lenxel-theme-support' ) );
+		$posting['fsockopen_curl']['help'] = redux_help_tip( esc_attr__( 'Used when communicating with remote services with PHP.', 'lenxel-core' ) );
 
 		if ( true === $sysinfo['fsockopen_curl'] ) {
 			$posting['fsockopen_curl']['success'] = true;
 		} else {
 			$posting['fsockopen_curl']['success'] = false;
-			$posting['fsockopen_curl']['note']    = esc_html__( 'Your server does not have fsockopen or cURL enabled - cURL is used to communicate with other servers. Please contact your hosting provider.', 'lenxel-theme-support' ) . '</mark>';
+			$posting['fsockopen_curl']['note']    = esc_html__( 'Your server does not have fsockopen or cURL enabled - cURL is used to communicate with other servers. Please contact your hosting provider.', 'lenxel-core' ) . '</mark>';
 		}
 
 		// WP Remote Post Check.
-		$posting['wp_remote_post']['name'] = esc_html__( 'Remote Post', 'lenxel-theme-support' );
-		$posting['wp_remote_post']['help'] = redux_help_tip( esc_attr__( 'Used to send data to remote servers.', 'lenxel-theme-support' ) );
+		$posting['wp_remote_post']['name'] = esc_html__( 'Remote Post', 'lenxel-core' );
+		$posting['wp_remote_post']['help'] = redux_help_tip( esc_attr__( 'Used to send data to remote servers.', 'lenxel-core' ) );
 
 		if ( true === $sysinfo['wp_remote_post'] ) {
 			$posting['wp_remote_post']['success'] = true;
 		} else {
-			$posting['wp_remote_post']['note'] = esc_html__( 'wp_remote_post() failed. Many advanced features may not function. Contact your hosting provider.', 'lenxel-theme-support' );
+			$posting['wp_remote_post']['note'] = esc_html__( 'wp_remote_post() failed. Many advanced features may not function. Contact your hosting provider.', 'lenxel-core' );
 
 			if ( $sysinfo['wp_remote_post_error'] ) {
-				$posting['wp_remote_post']['note'] .= ' ' . sprintf( esc_html__( 'Error:', 'lenxel-theme-support' ) . ' %s', redux_clean( $sysinfo['wp_remote_post_error'] ) );
+				$posting['wp_remote_post']['note'] .= ' ' . sprintf( esc_html__( 'Error:', 'lenxel-core' ) . ' %s', redux_clean( $sysinfo['wp_remote_post_error'] ) );
 			}
 
 			$posting['wp_remote_post']['success'] = false;
 		}
 
 		// WP Remote Get Check.
-		$posting['wp_remote_get']['name'] = esc_html__( 'Remote Get', 'lenxel-theme-support' );
-		$posting['wp_remote_get']['help'] = redux_help_tip( esc_attr__( 'Used to grab information from remote servers for updates updates.', 'lenxel-theme-support' ) );
+		$posting['wp_remote_get']['name'] = esc_html__( 'Remote Get', 'lenxel-core' );
+		$posting['wp_remote_get']['help'] = redux_help_tip( esc_attr__( 'Used to grab information from remote servers for updates updates.', 'lenxel-core' ) );
 
 		if ( true === $sysinfo['wp_remote_get'] ) {
 			$posting['wp_remote_get']['success'] = true;
 		} else {
-			$posting['wp_remote_get']['note'] = esc_html__( 'wp_remote_get() failed. This is needed to get information from remote servers. Contact your hosting provider.', 'lenxel-theme-support' );
+			$posting['wp_remote_get']['note'] = esc_html__( 'wp_remote_get() failed. This is needed to get information from remote servers. Contact your hosting provider.', 'lenxel-core' );
 			if ( $sysinfo['wp_remote_get_error'] ) {
-				$posting['wp_remote_get']['note'] .= ' ' . sprintf( esc_html__( 'Error:', 'lenxel-theme-support' ) . ' %s', redux_clean( $sysinfo['wp_remote_get_error'] ) );
+				$posting['wp_remote_get']['note'] .= ' ' . sprintf( esc_html__( 'Error:', 'lenxel-core' ) . ' %s', redux_clean( $sysinfo['wp_remote_get_error'] ) );
 			}
 
 			$posting['wp_remote_get']['success'] = false;
@@ -569,7 +569,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 			<th
 				colspan="3"
 				data-export-label="Active Plugins (<?php echo esc_html( count( (array) get_option( 'active_plugins' ) ) ); ?>)">
-				<?php esc_html_e( 'Active Plugins', 'lenxel-theme-support' ); ?>
+				<?php esc_html_e( 'Active Plugins', 'lenxel-core' ); ?>
 				(<?php echo esc_html( count( (array) get_option( 'active_plugins' ) ) ); ?>)
 			</th>
 		</tr>
@@ -582,7 +582,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				$plugin_name = $plugin_data['Name'];
 
 				if ( ! empty( $plugin_data['PluginURI'] ) ) {
-					$plugin_name = '<a href="' . esc_url( $plugin_data['PluginURI'] ) . '" title="' . esc_attr__( 'Visit plugin homepage', 'lenxel-theme-support' ) . '">' . esc_html( $plugin_name ) . '</a>';
+					$plugin_name = '<a href="' . esc_url( $plugin_data['PluginURI'] ) . '" title="' . esc_attr__( 'Visit plugin homepage', 'lenxel-core' ) . '">' . esc_html( $plugin_name ) . '</a>';
 				}
 				?>
 				<tr>
@@ -590,7 +590,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 					<td class="help">&nbsp;</td>
 					<td>
 						<?php // translators: %s Author name and URL. ?>
-						<?php echo sprintf( esc_html_x( 'by %s', 'by author', 'lenxel-theme-support' ), $plugin_data['Author'] ) . ' &ndash; ' . esc_html( $plugin_data['Version'] ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+						<?php echo sprintf( esc_html_x( 'by %s', 'by author', 'lenxel-core' ), $plugin_data['Author'] ) . ' &ndash; ' . esc_html( $plugin_data['Version'] ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</td>
 				</tr>
 				<?php
@@ -610,7 +610,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<tr>
 					<th colspan="3" data-export-label="Redux Instance: <?php echo esc_html( $inst_name ); ?>">
 						<?php
-						esc_html_e( 'Redux Instance: ', 'lenxel-theme-support' );
+						esc_html_e( 'Redux Instance: ', 'lenxel-core' );
 						echo esc_html( $inst_name );
 						?>
 					</th>
@@ -620,7 +620,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<tr>
 					<td data-export-label="opt_name_triger">opt_name_triger:</td>
 					<td class="help">
-						<?php echo redux_help_tip( esc_attr__( 'The opt_name_triger argument for this instance of Redux.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+						<?php echo redux_help_tip( esc_attr__( 'The opt_name_triger argument for this instance of Redux.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</td>
 					<td><?php echo esc_html( $args['opt_name_triger'] ); ?></td>
 				</tr>
@@ -630,7 +630,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 					<tr>
 						<td data-export-label="global_variable">global_variable:</td>
 						<td class="help">
-							<?php echo redux_help_tip( esc_attr__( 'The global_variable argument for this instance of Redux.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+							<?php echo redux_help_tip( esc_attr__( 'The global_variable argument for this instance of Redux.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 						</td>
 						<td><?php echo esc_html( $args['global_variable'] ); ?></td>
 					</tr>
@@ -640,7 +640,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<tr>
 					<td data-export-label="dev_mode">dev_mode:</td>
 					<td class="help">
-						<?php echo redux_help_tip( esc_attr__( 'Indicates if developer mode is enabled for this instance of Redux.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+						<?php echo redux_help_tip( esc_attr__( 'Indicates if developer mode is enabled for this instance of Redux.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</td>
 					<td>
 					<?php
@@ -659,7 +659,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<tr>
 					<td data-export-label="ajax_save">ajax_save:</td>
 					<td class="help">
-						<?php echo redux_help_tip( esc_attr__( 'Indicates if ajax based saving is enabled for this instance of Redux.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+						<?php echo redux_help_tip( esc_attr__( 'Indicates if ajax based saving is enabled for this instance of Redux.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</td>
 					<td>
 					<?php
@@ -678,28 +678,28 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<tr>
 					<td data-export-label="page_slug">page_slug:</td>
 					<td class="help">
-						<?php echo redux_help_tip( esc_attr__( 'The page slug denotes the string used for the options panel page for this instance of Redux.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+						<?php echo redux_help_tip( esc_attr__( 'The page slug denotes the string used for the options panel page for this instance of Redux.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</td>
 					<td><?php echo esc_html( $args['page_slug'] ); ?></td>
 				</tr>
 				<tr>
 					<td data-export-label="page_permissions">page_permissions:</td>
 					<td class="help">
-						<?php echo redux_help_tip( esc_attr__( 'The page permissions variable sets the permission level required to access the options panel for this instance of Redux.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+						<?php echo redux_help_tip( esc_attr__( 'The page permissions variable sets the permission level required to access the options panel for this instance of Redux.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</td>
 					<td><?php echo esc_html( $args['page_permissions'] ); ?></td>
 				</tr>
 				<tr>
 					<td data-export-label="menu_type">menu_type:</td>
 					<td class="help">
-						<?php echo redux_help_tip( esc_attr__( 'This variable set whether or not the menu is displayed as an admin menu item for this instance of Redux.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+						<?php echo redux_help_tip( esc_attr__( 'This variable set whether or not the menu is displayed as an admin menu item for this instance of Redux.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</td>
 					<td><?php echo esc_html( $args['menu_type'] ); ?></td>
 				</tr>
 				<tr>
 					<td data-export-label="page_parent">page_parent:</td>
 					<td class="help">
-						<?php echo redux_help_tip( esc_attr__( 'The page parent variable sets where the options menu will be placed on the WordPress admin sidebar for this instance of Redux.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+						<?php echo redux_help_tip( esc_attr__( 'The page parent variable sets where the options menu will be placed on the WordPress admin sidebar for this instance of Redux.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</td>
 					<td><?php echo esc_html( $args['page_parent'] ); ?></td>
 				</tr>
@@ -707,7 +707,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<tr>
 					<td data-export-label="compiler">compiler:</td>
 					<td class="help">
-						<?php echo redux_help_tip( esc_attr__( 'Indicates if the compiler flag is enabled for this instance of Redux.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+						<?php echo redux_help_tip( esc_attr__( 'Indicates if the compiler flag is enabled for this instance of Redux.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</td>
 					<td>
 					<?php
@@ -726,7 +726,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<tr>
 					<td data-export-label="output">output:</td>
 					<td class="help">
-						<?php echo redux_help_tip( esc_attr__( 'Indicates if output flag for globally shutting off all CSS output is enabled for this instance of Redux.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+						<?php echo redux_help_tip( esc_attr__( 'Indicates if output flag for globally shutting off all CSS output is enabled for this instance of Redux.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</td>
 					<td>
 					<?php
@@ -745,7 +745,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 				<tr>
 					<td data-export-label="output_tag">output_tag:</td>
 					<td class="help">
-						<?php echo redux_help_tip( esc_attr__( 'The output_tag variable sets whether or not dynamic CSS will be generated for the customizer and Google fonts for this instance of Redux.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+						<?php echo redux_help_tip( esc_attr__( 'The output_tag variable sets whether or not dynamic CSS will be generated for the customizer and Google fonts for this instance of Redux.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</td>
 					<td>
 					<?php
@@ -765,7 +765,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 					<tr>
 						<td data-export-label="output_tag">Calling Files</td>
 						<td class="help">
-							<?php echo redux_help_tip( esc_attr__( 'These files are calling this opt_name_triger. If you want to alter the config of this opt_name_triger, modify these files.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+							<?php echo redux_help_tip( esc_attr__( 'These files are calling this opt_name_triger. If you want to alter the config of this opt_name_triger, modify these files.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 						</td>
 						<td>
 							<?php
@@ -797,14 +797,14 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 					<tr>
 						<td data-export-label="template_path">template_path:</td>
 						<td class="help">
-							<?php echo redux_help_tip( esc_attr__( 'The specified template path containing custom template files for this instance of Redux.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+							<?php echo redux_help_tip( esc_attr__( 'The specified template path containing custom template files for this instance of Redux.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 						</td>
 						<td><?php echo '<code>' . esc_html( $args['templates_path'] ) . '</code>'; ?></td>
 					</tr>
 					<tr>
 						<td id="panel-templates" data-export-label="Templates">Templates:</td>
 						<td class="help">
-							<?php echo redux_help_tip( esc_attr__( 'List of template files overriding the default Redux template files.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+							<?php echo redux_help_tip( esc_attr__( 'List of template files overriding the default Redux template files.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 						</td>
 						<?php
 
@@ -832,7 +832,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 					<tr>
 						<td data-export-label="Extensions">Extensions</td>
 						<td class="help">
-							<?php echo redux_help_tip( esc_attr__( 'Indicates the installed Redux extensions and their version numbers.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+							<?php echo redux_help_tip( esc_attr__( 'Indicates the installed Redux extensions and their version numbers.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 						</td>
 						<td>
 							<?php
@@ -860,21 +860,21 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 	<table class="redux_status_table widefat" cellspacing="0" id="status">
 		<thead>
 		<tr>
-			<th colspan="3" data-export-label="Theme"><?php esc_html_e( 'Theme', 'lenxel-theme-support' ); ?></th>
+			<th colspan="3" data-export-label="Theme"><?php esc_html_e( 'Theme', 'lenxel-core' ); ?></th>
 		</tr>
 		</thead>
 		<tbody>
 		<tr>
-			<td data-export-label="Name"><?php esc_html_e( 'Name', 'lenxel-theme-support' ); ?>:</td>
+			<td data-export-label="Name"><?php esc_html_e( 'Name', 'lenxel-core' ); ?>:</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The name of the current active theme.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'The name of the current active theme.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td><?php echo esc_html( $sysinfo['theme']['name'] ); ?></td>
 		</tr>
 		<tr>
-			<td data-export-label="Version"><?php esc_html_e( 'Version', 'lenxel-theme-support' ); ?>:</td>
+			<td data-export-label="Version"><?php esc_html_e( 'Version', 'lenxel-core' ); ?>:</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The installed version of the current active theme.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'The installed version of the current active theme.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php
@@ -882,22 +882,22 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 
 				// phpcs:ignored WordPress.NamingConventions.ValidVariableName
 				if ( ! empty( $theme_version_data['version'] ) && version_compare( $theme_version_data['version'], $active_theme->Version, '!=' ) ) {
-					echo ' &ndash; <strong style="color:red;">' . esc_html( $theme_version_data['version'] ) . ' ' . esc_html__( 'is available', 'lenxel-theme-support' ) . '</strong>';
+					echo ' &ndash; <strong style="color:red;">' . esc_html( $theme_version_data['version'] ) . ' ' . esc_html__( 'is available', 'lenxel-core' ) . '</strong>';
 				}
 				?>
 			</td>
 		</tr>
 		<tr>
-			<td data-export-label="Author URL"><?php esc_html_e( 'Author URL', 'lenxel-theme-support' ); ?>:</td>
+			<td data-export-label="Author URL"><?php esc_html_e( 'Author URL', 'lenxel-core' ); ?>:</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'The theme developers URL.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'The theme developers URL.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td><?php echo esc_url( $sysinfo['theme']['author_uri'] ); ?></td>
 		</tr>
 		<tr>
-			<td data-export-label="Child Theme"><?php esc_html_e( 'Child Theme', 'lenxel-theme-support' ); ?>:</td>
+			<td data-export-label="Child Theme"><?php esc_html_e( 'Child Theme', 'lenxel-core' ); ?>:</td>
 			<td class="help">
-				<?php echo redux_help_tip( esc_attr__( 'Displays whether or not the current theme is a child theme.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo redux_help_tip( esc_attr__( 'Displays whether or not the current theme is a child theme.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</td>
 			<td>
 				<?php
@@ -905,7 +905,7 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 					echo '<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>';
 				} else {
 					/* Translators: %s docs link. */
-					echo '<span class="dashicons dashicons-no-alt"></span> &ndash; ' . wp_kses_post( sprintf( __( 'If you are modifying Redux Framework on a parent theme that you did not build personally we recommend using a child theme. See: <a href="%s" target="_blank">How to create a child theme</a>', 'lenxel-theme-support' ), '//codex.wordpress.org/Child_Themes' ) );
+					echo '<span class="dashicons dashicons-no-alt"></span> &ndash; ' . wp_kses_post( sprintf( __( 'If you are modifying Redux Framework on a parent theme that you did not build personally we recommend using a child theme. See: <a href="%s" target="_blank">How to create a child theme</a>', 'lenxel-core' ), '//codex.wordpress.org/Child_Themes' ) );
 				}
 				?>
 			</td>
@@ -914,29 +914,29 @@ $sysinfo = Redux_Helpers::compile_system_status( false, true );
 		if ( is_child_theme() ) {
 			?>
 			<tr>
-				<td data-export-label="Parent Theme Name"><?php esc_html_e( 'Parent Theme Name', 'lenxel-theme-support' ); ?>
+				<td data-export-label="Parent Theme Name"><?php esc_html_e( 'Parent Theme Name', 'lenxel-core' ); ?>
 					:
 				</td>
 				<td class="help">
-					<?php echo redux_help_tip( esc_attr__( 'The name of the parent theme.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+					<?php echo redux_help_tip( esc_attr__( 'The name of the parent theme.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</td>
 				<td><?php echo esc_html( $sysinfo['theme']['parent_name'] ); ?></td>
 			</tr>
 			<tr>
 				<td data-export-label="Parent Theme Version">
-					<?php esc_html_e( 'Parent Theme Version', 'lenxel-theme-support' ); ?>:
+					<?php esc_html_e( 'Parent Theme Version', 'lenxel-core' ); ?>:
 				</td>
 				<td class="help">
-					<?php echo redux_help_tip( esc_attr__( 'The installed version of the parent theme.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+					<?php echo redux_help_tip( esc_attr__( 'The installed version of the parent theme.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</td>
 				<td><?php echo esc_html( $sysinfo['theme']['parent_version'] ); ?></td>
 			</tr>
 			<tr>
 				<td data-export-label="Parent Theme Author URL">
-					<?php esc_html_e( 'Parent Theme Author URL', 'lenxel-theme-support' ); ?>:
+					<?php esc_html_e( 'Parent Theme Author URL', 'lenxel-core' ); ?>:
 				</td>
 				<td class="help">
-					<?php echo redux_help_tip( esc_attr__( 'The parent theme developers URL.', 'lenxel-theme-support' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+					<?php echo redux_help_tip( esc_attr__( 'The parent theme developers URL.', 'lenxel-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</td>
 				<td><?php echo esc_url( $sysinfo['theme']['parent_author_uri'] ); ?></td>
 			</tr>

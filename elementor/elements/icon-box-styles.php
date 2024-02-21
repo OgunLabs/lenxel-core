@@ -45,7 +45,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 	 */
 	public function get_title() {
 		$get_current_name = load_lenxel_widget_content_element('LNX Icon Box Styles');
-		return __( $get_current_name, 'lenxel-theme-support' );
+		return __( $get_current_name, 'lenxel-core' );
 	}
 
 	/**
@@ -88,20 +88,20 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_icon',
 			[
-				'label' => __( 'LNX Icon Box Style', 'lenxel-theme-support' ),
+				'label' => __( 'LNX Icon Box Style', 'lenxel-core' ),
 			]
 		);
 		
 		$this->add_control(
 			'style',
 			[
-				'label' => __( 'Style', 'lenxel-theme-support' ),
+				'label' => __( 'Style', 'lenxel-core' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'style-1' 		=> __( 'Style I', 'lenxel-theme-support' ),
-					'style-2' 		=> __( 'Style II', 'lenxel-theme-support' ),
-					'style-3' 		=> __( 'Style III', 'lenxel-theme-support' ),
-					'style-4' 		=> __( 'Style IV', 'lenxel-theme-support' )
+					'style-1' 		=> __( 'Style I', 'lenxel-core' ),
+					'style-2' 		=> __( 'Style II', 'lenxel-core' ),
+					'style-3' 		=> __( 'Style III', 'lenxel-core' ),
+					'style-4' 		=> __( 'Style IV', 'lenxel-core' )
 				],
 				'default' => 'style-1',
 			]
@@ -110,7 +110,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->add_control(
 			'selected_icon',
 			[
-				'label' => __( 'Icon', 'lenxel-theme-support' ),
+				'label' => __( 'Icon', 'lenxel-core' ),
 				'type' => Controls_Manager::ICONS,
 				'fa4compatibility' => 'icon',
 				'default' => [
@@ -122,7 +122,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->add_control(
 			'image',
 			[
-				'label' => __( 'Choose Image', 'lenxel-theme-support' ),
+				'label' => __( 'Choose Image', 'lenxel-core' ),
 				'type' => Controls_Manager::MEDIA,
 				'label_block' => true,
 				'default' => [
@@ -136,20 +136,20 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->add_control(
 			'title_text',
 			[
-				'label' => __( 'Title & Description', 'lenxel-theme-support' ),
+				'label' => __( 'Title & Description', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'This is the heading', 'lenxel-theme-support' ),
-				'placeholder' => __( 'Enter your title', 'lenxel-theme-support' ),
+				'default' => __( 'This is the heading', 'lenxel-core' ),
+				'placeholder' => __( 'Enter your title', 'lenxel-core' ),
 				'label_block' => true,
 			]
 		);
 		$this->add_control(
 			'number_text',
 			[
-				'label' => __( 'Number Text', 'lenxel-theme-support' ),
+				'label' => __( 'Number Text', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( '01', 'lenxel-theme-support' ),
-				'placeholder' => __( 'Enter number text', 'lenxel-theme-support' ),
+				'default' => __( '01', 'lenxel-core' ),
+				'placeholder' => __( 'Enter number text', 'lenxel-core' ),
 				'condition' => [
 					'style' => ['style-1', 'style-3']
 				]
@@ -160,8 +160,8 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 			[
 				'label' => '',
 				'type' => Controls_Manager::TEXTAREA,
-				'default' => __( 'There are many new variations of pasages of available text.', 'lenxel-theme-support' ),
-				'placeholder' => __( 'Enter your description', 'lenxel-theme-support' ),
+				'default' => __( 'There are many new variations of pasages of available text.', 'lenxel-core' ),
+				'placeholder' => __( 'Enter your description', 'lenxel-core' ),
 				'show_label' => false,
 				'condition' => [
 					'style' => ['style-2', 'style-3']
@@ -172,7 +172,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->add_control(
 			'header_tag',
 			[
-				'label' => __( 'Title HTML Tag', 'lenxel-theme-support' ),
+				'label' => __( 'Title HTML Tag', 'lenxel-core' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
 					'h1' => 'H1',
@@ -192,7 +192,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->add_control(
 			'active',
 			[
-				'label' => __( 'Active', 'lenxel-theme-support' ),
+				'label' => __( 'Active', 'lenxel-core' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => 'no'
 			]
@@ -203,13 +203,13 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->start_controls_section( //** Section Button
 			'section_button',
 			[
-				'label' => __( 'Button & Link', 'lenxel-theme-support' ),
+				'label' => __( 'Button & Link', 'lenxel-core' ),
 			]
 		);
 		$this->add_control(
 			'button_url',
 			[
-				'label' => __( 'Link', 'lenxel-theme-support' ),
+				'label' => __( 'Link', 'lenxel-core' ),
 				'type' => Controls_Manager::URL,
 			]
 		);
@@ -219,7 +219,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_box_style',
 			[
-				'label' => __( 'Box Style', 'lenxel-theme-support' ),
+				'label' => __( 'Box Style', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -227,7 +227,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->add_control(
 			'box_primary_color',
 			[
-				'label' => __( 'Primary Color', 'lenxel-theme-support' ),
+				'label' => __( 'Primary Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => [
@@ -240,7 +240,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->add_responsive_control(
 			'box_padding',
 			[
-				'label' => __( 'Padding', 'lenxel-theme-support' ),
+				'label' => __( 'Padding', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'default' => [
@@ -260,7 +260,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->add_responsive_control(
 			'box_height',
 			[
-				'label' => __( 'Min Height', 'lenxel-theme-support' ),
+				'label' => __( 'Min Height', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 100,
@@ -285,7 +285,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_style_icon',
 			[
-				'label' => __( 'Icon', 'lenxel-theme-support' ),
+				'label' => __( 'Icon', 'lenxel-core' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'selected_icon[value]!' => ''
@@ -296,7 +296,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->add_control(
 			'icon_color',
 			[
-				'label' => __( 'Icon Color', 'lenxel-theme-support' ),
+				'label' => __( 'Icon Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -309,7 +309,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->add_control(
 			'icon_background',
 			[
-				'label' => __( 'Icon Background', 'lenxel-theme-support' ),
+				'label' => __( 'Icon Background', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -322,7 +322,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->add_control(
 			'icon_color_hover',
 			[
-				'label' => __( 'Hover | Icon Color', 'lenxel-theme-support' ),
+				'label' => __( 'Hover | Icon Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -335,7 +335,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->add_control(
 			'icon_background_hover',
 			[
-				'label' => __( 'Hover | Icon Background', 'lenxel-theme-support' ),
+				'label' => __( 'Hover | Icon Background', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -348,7 +348,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->add_responsive_control(
 			'icon_size',
 			[
-				'label' => __( 'Size', 'lenxel-theme-support' ),
+				'label' => __( 'Size', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 60
@@ -369,7 +369,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->add_responsive_control(
 			'icon_space',
 			[
-				'label' => __( 'Spacing', 'lenxel-theme-support' ),
+				'label' => __( 'Spacing', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 20,
@@ -390,7 +390,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->add_responsive_control(
 			'icon_border_radius',
 			[
-				'label' => __( 'Border Radius', 'lenxel-theme-support' ),
+				'label' => __( 'Border Radius', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
@@ -405,7 +405,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_style_content',
 			[
-				'label' => __( 'Content', 'lenxel-theme-support' ),
+				'label' => __( 'Content', 'lenxel-core' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -413,7 +413,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->add_control(
 			'heading_title',
 			[
-				'label' => __( 'Title', 'lenxel-theme-support' ),
+				'label' => __( 'Title', 'lenxel-core' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -422,7 +422,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->add_responsive_control(
 			'title_bottom_space',
 			[
-				'label' => __( 'Spacing', 'lenxel-theme-support' ),
+				'label' => __( 'Spacing', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -443,7 +443,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->add_control(
 			'title_color',
 			[
-				'label' => __( 'Color', 'lenxel-theme-support' ),
+				'label' => __( 'Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -464,7 +464,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->add_control(
 			'heading_description',
 			[
-				'label' => __( 'Description', 'lenxel-theme-support' ),
+				'label' => __( 'Description', 'lenxel-core' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 				'condition' => [
@@ -476,7 +476,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 		$this->add_control(
 			'description_color',
 			[
-				'label' => __( 'Color', 'lenxel-theme-support' ),
+				'label' => __( 'Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [

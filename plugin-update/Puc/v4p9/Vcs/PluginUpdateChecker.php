@@ -95,7 +95,7 @@ if ( !class_exists('Puc_v4p9_Vcs_PluginUpdateChecker') ):
 			if ( empty($info->sections['changelog']) ) {
 				$info->sections['changelog'] = $api->getRemoteChangelog($ref, $this->package->getAbsoluteDirectoryPath());
 				if ( empty($info->sections['changelog']) ) {
-					$info->sections['changelog'] = __('There is no changelog available.', 'lenxel-theme-support');
+					$info->sections['changelog'] = __('There is no changelog available.', 'lenxel-core');
 				}
 			}
 

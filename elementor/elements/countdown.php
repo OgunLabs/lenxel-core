@@ -45,7 +45,7 @@ class LNXElement_Countdown extends LNXElement_Base {
 	 */
 	public function get_title() {
 		$get_current_name = load_lenxel_widget_content_element('LNX Countdown');
-		return __( $get_current_name, 'lenxel-theme-support' );
+		return __( $get_current_name, 'lenxel-core' );
 	}
 
 	/**
@@ -94,81 +94,81 @@ class LNXElement_Countdown extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => __( 'Content', 'lenxel-theme-support' ),
+				'label' => __( 'Content', 'lenxel-core' ),
 			]
 		);
 		$this->add_control(
 			'title_text',
 			[
-				'label' => __( 'Title', 'lenxel-theme-support' ),
+				'label' => __( 'Title', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXTAREA,
-				'placeholder' => __( 'Enter your title', 'lenxel-theme-support' ),
-				'default' => __( 'Add Your Heading Text Here', 'lenxel-theme-support' ),
+				'placeholder' => __( 'Enter your title', 'lenxel-core' ),
+				'default' => __( 'Add Your Heading Text Here', 'lenxel-core' ),
 				'label_block' => true
 			]
 		);
 		$this->add_control(
 			'year',
 			[
-				'label' => __( 'Year', 'lenxel-theme-support' ),
+				'label' => __( 'Year', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => gmdate('Y'),
-				'placeholder' => __( 'ex: 2019', 'lenxel-theme-support' ),
+				'placeholder' => __( 'ex: 2019', 'lenxel-core' ),
 				'label_block' => true
 			]
 		);
 		$this->add_control(
 			'month',
 			[
-				'label' => __( 'Month', 'lenxel-theme-support' ),
+				'label' => __( 'Month', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => '12',
-				'placeholder' => __( 'ex: 12', 'lenxel-theme-support' ),
+				'placeholder' => __( 'ex: 12', 'lenxel-core' ),
 			]
 		);
 		$this->add_control(
 			'day',
 			[
-				'label' => __( 'Day', 'lenxel-theme-support' ),
+				'label' => __( 'Day', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => '01',
-				'placeholder' => __( 'ex: 01', 'lenxel-theme-support' ),
+				'placeholder' => __( 'ex: 01', 'lenxel-core' ),
 			]
 		);
 		$this->add_control(
 			'hour',
 			[
-				'label' => __( 'Hour', 'lenxel-theme-support' ),
+				'label' => __( 'Hour', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => '00',
-				'placeholder' => __( 'ex: 00', 'lenxel-theme-support' ),
+				'placeholder' => __( 'ex: 00', 'lenxel-core' ),
 			]
 		);
 		$this->add_control(
 			'minutes',
 			[
-				'label' => __( 'Minutes', 'lenxel-theme-support' ),
+				'label' => __( 'Minutes', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => '00',
-				'placeholder' => __( 'ex: 00', 'lenxel-theme-support' ),
+				'placeholder' => __( 'ex: 00', 'lenxel-core' ),
 			]
 		);
 		$this->add_control(
 			'align',
 			[
-				'label' => __( 'Alignment', 'lenxel-theme-support' ),
+				'label' => __( 'Alignment', 'lenxel-core' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => __( 'Left', 'lenxel-theme-support' ),
+						'title' => __( 'Left', 'lenxel-core' ),
 						'icon' => 'fa fa-align-left',
 					],
 					'center' => [
-						'title' => __( 'Center', 'lenxel-theme-support' ),
+						'title' => __( 'Center', 'lenxel-core' ),
 						'icon' => 'fa fa-align-center',
 					],
 					'right' => [
-						'title' => __( 'Right', 'lenxel-theme-support' ),
+						'title' => __( 'Right', 'lenxel-core' ),
 						'icon' => 'fa fa-align-right',
 					],
 				],
@@ -181,14 +181,14 @@ class LNXElement_Countdown extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_box_style',
 			[
-				'label' => __( 'Box', 'lenxel-theme-support' ),
+				'label' => __( 'Box', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 		$this->add_responsive_control(
 			'box_padding',
 			[
-				'label' => __( 'Padding', 'lenxel-theme-support' ),
+				'label' => __( 'Padding', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'default' => [
@@ -206,7 +206,7 @@ class LNXElement_Countdown extends LNXElement_Base {
 		$this->add_control(
 			'box_background',
 			[
-				'label' => __( 'Background Color', 'lenxel-theme-support' ),
+				'label' => __( 'Background Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-countdown' => 'background: {{VALUE}};',
@@ -219,14 +219,14 @@ class LNXElement_Countdown extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_content_style',
 			[
-				'label' => __( 'Title', 'lenxel-theme-support' ),
+				'label' => __( 'Title', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 		$this->add_control(
 			'color',
 			[
-				'label' => __( 'Text Color', 'lenxel-theme-support' ),
+				'label' => __( 'Text Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-countdown .content-inner .title' => 'color: {{VALUE}};',
@@ -244,7 +244,7 @@ class LNXElement_Countdown extends LNXElement_Base {
 		$this->add_responsive_control(
 			'space',
 			[
-				'label' => __( 'Spacing', 'lenxel-theme-support' ),
+				'label' => __( 'Spacing', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 60,

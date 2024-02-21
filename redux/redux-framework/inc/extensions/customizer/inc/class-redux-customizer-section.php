@@ -88,7 +88,7 @@ class Redux_Customizer_Section extends WP_Customize_Section {
 					)
 				);
 				?>
-				<span class="screen-reader-text"><?php esc_attr_e( 'Press return or enter to expand', 'lenxel-theme-support' ); ?></span>
+				<span class="screen-reader-text"><?php esc_attr_e( 'Press return or enter to expand', 'lenxel-core' ); ?></span>
 			</h3>
 			<ul class="accordion-section-content redux-main">
 				<?php
@@ -137,14 +137,14 @@ class Redux_Customizer_Section extends WP_Customize_Section {
 			data-opt-name="{{ data.opt_name_triger }}">
 			<h3 class="accordion-section-title" tabindex="0">
 				{{ data.title }}
-				<span class="screen-reader-text"><?php esc_html_e( 'Press return or enter to open', 'lenxel-theme-support' ); ?></span>
+				<span class="screen-reader-text"><?php esc_html_e( 'Press return or enter to open', 'lenxel-core' ); ?></span>
 			</h3>
 			<ul class="accordion-section-content redux-main">
 
 				<li class="customize-section-description-container">
 					<div class="customize-section-title">
 						<button class="customize-section-back" tabindex="-1">
-							<span class="screen-reader-text"><?php esc_html_e( 'Back', 'lenxel-theme-support' ); ?></span>
+							<span class="screen-reader-text"><?php esc_html_e( 'Back', 'lenxel-core' ); ?></span>
 						</button>
 						<h3>
 							<span class="customize-action">

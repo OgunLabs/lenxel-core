@@ -17,7 +17,7 @@ class LNXElement_Posts extends LNXElement_Base{
     }
 
     public function get_title() {
-        return __('LNX Posts', 'lenxel-theme-support');
+        return __('LNX Posts', 'lenxel-core');
     }
 
     /**
@@ -54,7 +54,7 @@ class LNXElement_Posts extends LNXElement_Base{
     private function get_categories_list(){
         $categories = array();
 
-        $categories['none'] = __( 'None', 'lenxel-theme-support' );
+        $categories['none'] = __( 'None', 'lenxel-core' );
         $taxonomy = 'category';
         $tax_terms = get_terms( $taxonomy );
         if ( ! empty( $tax_terms ) && ! is_wp_error( $tax_terms ) ){
@@ -74,7 +74,7 @@ class LNXElement_Posts extends LNXElement_Base{
             'post_status'=>array('publish'),
         ) );
 
-        $posts['none'] = __('None', 'lenxel-theme-support');
+        $posts['none'] = __('None', 'lenxel-core');
 
         while ( $loop->have_posts() ) : $loop->the_post();
             $id = get_the_ID();
@@ -91,7 +91,7 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->start_controls_section(
             'section_query',
             [
-                'label' => __('Query & Layout', 'lenxel-theme-support'),
+                'label' => __('Query & Layout', 'lenxel-core'),
                 'tab'   => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -99,33 +99,33 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->add_control( // xx Layout
             'layout_heading',
             [
-                'label'   => __( 'Layout', 'lenxel-theme-support' ),
+                'label'   => __( 'Layout', 'lenxel-core' ),
                 'type'    => Controls_Manager::HEADING,
             ]
         );
          $this->add_control(
             'layout',
             [
-                'label'   => __( 'Layout Display', 'lenxel-theme-support' ),
+                'label'   => __( 'Layout Display', 'lenxel-core' ),
                 'type'    => Controls_Manager::SELECT,
                 'default' => 'carousel',
                 'options' => [
-                    'grid'          => __( 'Grid', 'lenxel-theme-support' ),
-                    'carousel'      => __( 'Carousel', 'lenxel-theme-support' ),
-                    'small_list'    => __( 'Small List', 'lenxel-theme-support' ),
-                    'sticky'        => __( 'Post Large & List', 'lenxel-theme-support' )
+                    'grid'          => __( 'Grid', 'lenxel-core' ),
+                    'carousel'      => __( 'Carousel', 'lenxel-core' ),
+                    'small_list'    => __( 'Small List', 'lenxel-core' ),
+                    'sticky'        => __( 'Post Large & List', 'lenxel-core' )
                 ]
             ]
         );
         $this->add_control(
             'style',
             [
-                'label'     => __('Style', 'lenxel-theme-support'),
+                'label'     => __('Style', 'lenxel-core'),
                 'type'      => \Elementor\Controls_Manager::SELECT,
                 'default' => 'post-style-1',
                 'options' => [
-                    'post-style-1'         => __( 'Item Post Style I', 'lenxel-theme-support' ),
-                    'post-style-2'         => __( 'Item Post Style II', 'lenxel-theme-support' ),
+                    'post-style-1'         => __( 'Item Post Style I', 'lenxel-core' ),
+                    'post-style-2'         => __( 'Item Post Style II', 'lenxel-core' ),
                 ],
                 'condition' => [
                     'layout' => array('grid', 'carousel')
@@ -135,7 +135,7 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->add_control(
             'image_size',
             [
-               'label'     => __('Image Style', 'lenxel-theme-support'),
+               'label'     => __('Image Style', 'lenxel-core'),
                'type'      => \Elementor\Controls_Manager::SELECT,
                'options'   => $this->get_thumbnail_size(),
                'default'   => 'lenxel_medium'
@@ -144,7 +144,7 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->add_control(
          'excerpt_words',
          [
-            'label'     => __('Excerpt Words', 'lenxel-theme-support'),
+            'label'     => __('Excerpt Words', 'lenxel-core'),
             'type'      => 'number',
             'default'   => 15
          ]
@@ -153,14 +153,14 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->add_control( // xx Layout
             'query_heading',
             [
-                'label'   => __( 'Query', 'lenxel-theme-support' ),
+                'label'   => __( 'Query', 'lenxel-core' ),
                 'type'    => Controls_Manager::HEADING,
             ]
         );
         $this->add_control(
             'category_ids',
             [
-                'label' => __( 'Select By Category', 'lenxel-theme-support' ),
+                'label' => __( 'Select By Category', 'lenxel-core' ),
                 'type' => Controls_Manager::SELECT2,
                 'multiple'    => true,
                 'default' => '',
@@ -172,7 +172,7 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->add_control(
             'post_ids',
             [
-                'label' => __( 'Select Individually', 'lenxel-theme-support' ),
+                'label' => __( 'Select Individually', 'lenxel-core' ),
                 'type' => Controls_Manager::SELECT2,
                 'default' => '',
                 'multiple'    => true,
@@ -184,7 +184,7 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->add_control(
             'posts_per_page',
             [
-                'label' => __( 'Posts Per Page', 'lenxel-theme-support' ),
+                'label' => __( 'Posts Per Page', 'lenxel-core' ),
                 'type' => Controls_Manager::NUMBER,
                 'default' => 6,
             ]
@@ -193,14 +193,14 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->add_control(
             'orderby',
             [
-                'label'   => __( 'Order By', 'lenxel-theme-support' ),
+                'label'   => __( 'Order By', 'lenxel-core' ),
                 'type'    => Controls_Manager::SELECT,
                 'default' => 'post_date',
                 'options' => [
-                    'post_date'  => __( 'Date', 'lenxel-theme-support' ),
-                    'post_title' => __( 'Title', 'lenxel-theme-support' ),
-                    'menu_order' => __( 'Menu Order', 'lenxel-theme-support' ),
-                    'rand'       => __( 'Random', 'lenxel-theme-support' ),
+                    'post_date'  => __( 'Date', 'lenxel-core' ),
+                    'post_title' => __( 'Title', 'lenxel-core' ),
+                    'menu_order' => __( 'Menu Order', 'lenxel-core' ),
+                    'rand'       => __( 'Random', 'lenxel-core' ),
                 ],
             ]
         );
@@ -208,12 +208,12 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->add_control(
             'order',
             [
-                'label'   => __( 'Order', 'lenxel-theme-support' ),
+                'label'   => __( 'Order', 'lenxel-core' ),
                 'type'    => Controls_Manager::SELECT,
                 'default' => 'desc',
                 'options' => [
-                    'asc'  => __( 'ASC', 'lenxel-theme-support' ),
-                    'desc' => __( 'DESC', 'lenxel-theme-support' ),
+                    'asc'  => __( 'ASC', 'lenxel-core' ),
+                    'desc' => __( 'DESC', 'lenxel-core' ),
                 ],
             ]
         );
@@ -221,7 +221,7 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->add_control(
             'pagination',
             [
-                'label'     => __('Pagination', 'lenxel-theme-support'),
+                'label'     => __('Pagination', 'lenxel-core'),
                 'type'      => Controls_Manager::SWITCHER,
                 'default'   => 'no',
                 'condition' => [
@@ -240,7 +240,7 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->start_controls_section(
             'section_styling_blog_sticky',
             [
-                'label' => __( 'Right List Posts Style', 'lenxel-theme-support' ),
+                'label' => __( 'Right List Posts Style', 'lenxel-core' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'layout' => 'stick'
@@ -251,7 +251,7 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->add_responsive_control(
             'stick_list_padding',
             [
-                'label' => __( 'Padding List Posts', 'lenxel-theme-support' ),
+                'label' => __( 'Padding List Posts', 'lenxel-core' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -263,7 +263,7 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->add_control(
             'stick_list_background',
             [
-                'label' => __( 'Background List Posts', 'lenxel-theme-support' ),
+                'label' => __( 'Background List Posts', 'lenxel-core' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
@@ -275,7 +275,7 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->add_control(
             'stick_list_post_title_color',
             [
-                'label' => __( 'List Posts Title Color', 'lenxel-theme-support' ),
+                'label' => __( 'List Posts Title Color', 'lenxel-core' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
@@ -295,7 +295,7 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->add_control(
             'stick_list_post_meta_color',
             [
-                'label' => __( 'List Posts Meta Color', 'lenxel-theme-support' ),
+                'label' => __( 'List Posts Meta Color', 'lenxel-core' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
@@ -310,7 +310,7 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->start_controls_section(
             'section_styling_post_content',
             [
-                'label' => __( 'Post Content', 'lenxel-theme-support' ),
+                'label' => __( 'Post Content', 'lenxel-core' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'layout' => ['grid', 'carousel']
@@ -321,7 +321,7 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->add_responsive_control(
             'post_box_padding',
             [
-                'label' => __( 'Padding Post Content', 'lenxel-theme-support' ),
+                'label' => __( 'Padding Post Content', 'lenxel-core' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
@@ -333,7 +333,7 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->add_control(
             'post_box_background',
             [
-                'label' => __( 'Background Post Content', 'lenxel-theme-support' ),
+                'label' => __( 'Background Post Content', 'lenxel-core' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
@@ -348,7 +348,7 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->start_controls_section(
             'section_styling_post_title',
             [
-                'label' => __( 'Post Title', 'lenxel-theme-support' ),
+                'label' => __( 'Post Title', 'lenxel-core' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'layout' => ['grid', 'carousel', 'small_list']
@@ -359,7 +359,7 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->add_control(
             'post_box_title_color',
             [
-                'label' => __( 'Color Title', 'lenxel-theme-support' ),
+                'label' => __( 'Color Title', 'lenxel-core' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
@@ -372,7 +372,7 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->add_control(
             'post_box_title_color_hover',
             [
-                'label' => __( 'Color Title Hover', 'lenxel-theme-support' ),
+                'label' => __( 'Color Title Hover', 'lenxel-core' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
@@ -395,7 +395,7 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->add_control(
             'post_box_meta_color',
             [
-                'label' => __( 'List Posts Meta Color', 'lenxel-theme-support' ),
+                'label' => __( 'List Posts Meta Color', 'lenxel-core' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
@@ -411,7 +411,7 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->start_controls_section(
             'section_styling_post_description',
             [
-                'label' => __( 'Post Description', 'lenxel-theme-support' ),
+                'label' => __( 'Post Description', 'lenxel-core' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'layout' => ['grid', 'carousel']
@@ -422,7 +422,7 @@ class LNXElement_Posts extends LNXElement_Base{
         $this->add_control(
             'post_box_description_color',
             [
-                'label' => __( 'Color', 'lenxel-theme-support' ),
+                'label' => __( 'Color', 'lenxel-core' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
