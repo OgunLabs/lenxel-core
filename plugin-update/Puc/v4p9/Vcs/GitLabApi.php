@@ -244,7 +244,8 @@ if ( !class_exists('Puc_v4p9_Vcs_GitLabApi', false) ):
 				return null;
 			}
 
-			return base64_decode($response->content);
+			//return base64_decode($response->content);
+			return json_decode($response->content, true);
 		}
 
 		/**

@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: plugin-update-checker\n"
+"Project-Id-Version: update-checker\n"
 "POT-Creation-Date: 2017-07-07 14:53+0200\n"
 "PO-Revision-Date: 2017-07-07 14:54+0200\n"
 "Language-Team: studio RVOLA <http://www.rvola.com>\n"

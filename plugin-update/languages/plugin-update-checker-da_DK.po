@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: plugin-update-checker\n"
+"Project-Id-Version: update-checker\n"
 "POT-Creation-Date: 2017-05-20 10:53+0300\n"
 "PO-Revision-Date: 2017-10-17 11:07+0200\n"
 "Last-Translator: Mikk3lRo\n"

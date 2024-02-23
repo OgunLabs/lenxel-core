@@ -30,7 +30,7 @@ if ( !class_exists('Puc_v4p9_Plugin_Package', false) ):
 
 			//Clear the version number cache when something - anything - is upgraded or WP clears the update cache.
 			add_filter('upgrader_post_install', array($this, 'clearCachedVersionLenxel'));
-			add_action('delete_site_transient_update_plugins', array($this, 'clearCachedVersionLenxel'));
+			add_action('delete_site_transient_update_', array($this, 'clearCachedVersionLenxel'));
 		}
 
 		public function getInstalledVersion() {
@@ -148,7 +148,7 @@ if ( !class_exists('Puc_v4p9_Plugin_Package', false) ):
 
 		public function removeHooks() {
 			remove_filter('upgrader_post_install', array($this, 'clearCachedVersionLenxel'));
-			remove_action('delete_site_transient_update_plugins', array($this, 'clearCachedVersionLenxel'));
+			remove_action('delete_site_transient_update_', array($this, 'clearCachedVersionLenxel'));
 		}
 
 		/**

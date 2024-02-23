@@ -32,7 +32,7 @@ Getting Started
 
 ### Self-hosted Plugins and Themes
 
-1. Download [the latest release](https://github.com/YahnisElsts/plugin-update-checker/releases/latest) and copy the `plugin-update-checker` directory to your plugin or theme.
+1. Download [the latest release](https://github.com/YahnisElsts/plugin-update-checker/releases/latest) and copy the `update-checker` directory to your plugin or theme.
 2. Go to the `examples` subdirectory and open the .json file that fits your project type. Replace the placeholder data with your plugin/theme details. 
 	- Plugin example:
 	
@@ -63,7 +63,7 @@ Getting Started
 4. Add the following code to the main plugin file or to the `functions.php` file:
 
 	```php
-	require 'path/to/plugin-update-checker/plugin-update-checker.php';
+	require 'path/to/plugin-update/update-checker.php';
 	$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 		'http://example.com/path/to/details.json',
 		__FILE__, //Full path to the main plugin file or functions.php.
@@ -91,11 +91,11 @@ By default, the library will check the specified URL for changes every 12 hours.
 
 ### GitHub Integration
 
-1. Download [the latest release](https://github.com/YahnisElsts/plugin-update-checker/releases/latest) and copy the `plugin-update-checker` directory to your plugin or theme.
+1. Download [the latest release](https://github.com/YahnisElsts/plugin-update-checker/releases/latest) and copy the `update-checker` directory to your plugin or theme.
 2. Add the following code to the main plugin file or `functions.php`:
 
 	```php
-	require 'plugin-update-checker/plugin-update-checker.php';
+	require 'plugin-update-checker/update-checker.php';
 	$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 		'https://github.com/user-name/repo-name/',
 		__FILE__,
@@ -170,11 +170,11 @@ The library will pull update details from the following parts of a release/tag/b
 	
 ### BitBucket Integration
 
-1. Download [the latest release](https://github.com/YahnisElsts/plugin-update-checker/releases/latest) and copy the `plugin-update-checker` directory to your plugin or theme.
+1. Download [the latest release](https://github.com/YahnisElsts/plugin-update-checker/releases/latest) and copy the `update-checker` directory to your plugin or theme.
 2. Add the following code to the main plugin file or `functions.php`:
 
 	```php
-	require 'plugin-update-checker/plugin-update-checker.php';
+	require 'plugin-update/update-checker.php';
 	$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 		'https://bitbucket.org/user-name/repo-name',
 		__FILE__,
@@ -226,11 +226,11 @@ BitBucket doesn't have an equivalent to GitHub's releases, so the process is sli
 
 ### GitLab Integration
 
-1. Download [the latest release](https://github.com/YahnisElsts/plugin-update-checker/releases/latest) and copy the `plugin-update-checker` directory to your plugin or theme.
+1. Download [the latest release](https://github.com/YahnisElsts/plugin-update-checker/releases/latest) and copy the `update-checker` directory to your plugin or theme.
 2. Add the following code to the main plugin file or `functions.php`:
 
 	```php
-	require 'plugin-update-checker/plugin-update-checker.php';
+	require 'plugin-update/update-checker.php';
 	$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 		'https://gitlab.com/user-name/repo-name/',
 		__FILE__,

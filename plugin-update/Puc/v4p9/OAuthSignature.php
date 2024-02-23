@@ -68,7 +68,8 @@ if ( !class_exists('Puc_v4p9_OAuthSignature', false) ):
 			//The signature is a hash of the consumer key and the base string. Note
 			//that we have to get the raw output from hash_hmac and base64 encode
 			//the binary data result.
-			$parameters['oauth_signature'] = base64_encode(hash_hmac('sha1', $stringToSign, $secret, true));
+			//$parameters['oauth_signature'] = base64_encode(hash_hmac('sha1', $stringToSign, $secret, true));
+			$parameters['oauth_signature'] = bin2hex(hash_hmac('sha1', $stringToSign, $secret, true));
 
 			return ($url . '?' . http_build_query($parameters));
 		}

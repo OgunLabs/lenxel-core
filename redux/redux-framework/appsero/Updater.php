@@ -39,7 +39,7 @@ class Updater {
 	 * @return void
 	 */
 	public function run_plugin_hooks() {
-		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'check_plugin_update_lenxel' ) );
+		add_filter( 'pre_set_site_transient_update_', array( $this, 'check_plugin_update_lenxel' ) );
 		add_filter( 'plugins_api', array( $this, 'plugins_api_filter_lenxel' ), 10, 3 );
 	}
 

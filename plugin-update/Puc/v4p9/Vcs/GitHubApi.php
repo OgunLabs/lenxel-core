@@ -271,7 +271,8 @@ if ( !class_exists('Puc_v4p9_Vcs_GitHubApi', false) ):
 			if ( is_wp_error($response) || !isset($response->content) || ($response->encoding !== 'base64') ) {
 				return null;
 			}
-			return base64_decode($response->content);
+			//return base64_decode($response->content);
+			return json_decode($response->content, true);
 		}
 
 		/**
@@ -427,7 +428,8 @@ if ( !class_exists('Puc_v4p9_Vcs_GitHubApi', false) ):
 				unset($headers['Authorization']);
 			}
 		}
-
+		
+		
 		/**
 		 * Generate the value of the "Authorization" header.
 		 *
