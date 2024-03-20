@@ -123,13 +123,13 @@
 
 	<?php if (isset($_GET['ajax_l_course_filter_ajax']) && check_admin_referer('ajax-l-course-filter-nonce', 'ajax_l_course_filter_ajax')) {	?>	
 	<?php if((isset($_GET['cat']) && $_GET['cat']) && check_ajax_referer('ajax-l-course-filter-nonce', 'ajax_l_course_filter_ajax')){ ?>
-	  	<input type="hidden" id="course_cat_filter" name="course_cat_filter" value="<?php echo esc_attr($_GET['cat']) ?>" />
+	  	<input type="hidden" id="course_cat_filter" name="course_cat_filter" value="<?php echo esc_attr(sanitize_text_field($_GET['cat'])) ?>" />
 	<?php } ?>
 	<?php if((isset($_GET['level']) && $_GET['level']) ){ ?>
-	  	<input type="hidden" id="course_level_filter" name="course_level_filter" value="<?php echo esc_attr($_GET['level']) ?>" />
+	  	<input type="hidden" id="course_level_filter" name="course_level_filter" value="<?php echo esc_attr(sanitize_text_field($_GET['level'])) ?>" />
 	<?php } ?>
 	<?php if(isset($_GET['price']) && $_GET['price']){ ?>
-	  	<input type="hidden" id="course_price_filter" name="course_price_filter" value="<?php echo esc_attr($_GET['price']) ?>" />
+	  	<input type="hidden" id="course_price_filter" name="course_price_filter" value="<?php echo esc_attr(sanitize_text_field($_GET['price'])) ?>" />
 	<?php } }?>
 
 

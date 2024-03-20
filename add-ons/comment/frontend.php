@@ -49,14 +49,14 @@ class Lenxel_Listing_Comment_FE extends Lenxel_Listing_Comment{
             <div class="comment-reviews-inner clearfix">
    			  	<?php foreach ( $review_categories as $key => $name) : ?>
       				<div class='review-item'>
-      					<label><?php echo $name ?></label>
-      					<div class='stars select-review' data-review-key='<?php echo $key; ?>'>
+      					<label><?php printf(__('%s','lenxel-core'), $name); ?></label>
+      					<div class='stars select-review' data-review-key='<?php echo esc_attr($key); ?>'>
       						<span data-star='5' class="star dashicons dashicons-star-filled"></span>
       						<span data-star='4' class="star dashicons dashicons-star-filled"></span>
       						<span data-star='3' class="star dashicons dashicons-star-filled"></span>
       						<span data-star='2' class="star dashicons dashicons-star-filled"></span>
       						<span data-star='1' class="star dashicons dashicons-star-filled"></span>
-      					  <input type="hidden" class="lt-review-val" id="lt-review-<?php echo $key ?>-val"  required="required" name="lt_review[<?php echo $key; ?>]" value="3">
+      					  <input type="hidden" class="lt-review-val" id="lt-review-<?php echo esc_attr($key); ?>-val"  required="required" name="lt_review[<?php echo esc_attr($key); ?>]" value="3">
       					</div>
       				</div>
    			  <?php endforeach; wp_nonce_field( 'lenxel_lt_save_data', 'lenxel_lt_meta_nonce' ); ?>
@@ -89,7 +89,7 @@ class Lenxel_Listing_Comment_FE extends Lenxel_Listing_Comment{
   public function lenxel_save_comment_review( $comment_id, $comment_approved, $data ) {
 	 	$post_id = $data['comment_post_ID']; 
 	 	$post = get_post($post_id);
-		if ( empty( $_POST['lenxel_lt_meta_nonce'] ) || ! wp_verify_nonce( $_POST['lenxel_lt_meta_nonce'], 'lenxel_lt_save_data' ) ) {
+		if ( empty( $_POST['lenxel_lt_meta_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash ($_POST['lenxel_lt_meta_nonce'])), 'lenxel_lt_save_data' ) ) {
 			return $comment_id;
 		}
 	 	if ( 'listing' !== $post->post_type || 0 !== intval( $data['comment_parent'] ) ) {
@@ -97,11 +97,13 @@ class Lenxel_Listing_Comment_FE extends Lenxel_Listing_Comment{
 	 	}
 	 
 	 	if(isset($_POST['lt_review'])){
-        	update_comment_meta( $comment_id, 'lt_review', $_POST['lt_review'] );
+			$lt_review = array_map('sanitize_text_field', $_POST['lt_review']);//filter_input(INPUT_POST, 'lt_review', FILTER_DEFAULT , FILTER_REQUIRE_ARRAY);
+        	update_comment_meta( $comment_id, 'lt_review', $lt_review ); //update_comment_meta( $comment_id, 'lt_review', $_POST['lt_review'] );
 	 	}
 
 	 	$reviews_total = $review_average = $count = 0;
-     	foreach ($_POST['lt_review'] as $key => $value) {
+		 $lt_review = array_map('sanitize_text_field', $_POST['lt_review']);
+     	foreach ($lt_review as $key => $value) {
          $reviews_total += intval($value);
          $count ++;
      	}

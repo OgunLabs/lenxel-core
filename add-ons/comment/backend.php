@@ -42,16 +42,16 @@ class Lenxel_Listing_Comment_BE extends Lenxel_Listing_Comment{
 				}
 			?>
 			<tr>
-			  <td style="width: 200px;"><strong><?php echo esc_attr( $name ); ?></strong></td>
+			  <td style="width: 200px;"><strong><?php printf(__('%s', 'lenxel-core'), esc_html($name )); ?></strong></td>
 			  <td>
-				 	<select name="lt_review[<?php echo $cat_key ?>]">
+				 	<select name="lt_review[<?php echo esc_attr($cat_key) ?>]">
 						<?php for ( $i = 0; $i <= 5; $i++ ) : ?>
-						  <option value="<?php echo $i; ?>" <?php selected( $current, $i ); ?>>
-							  	<?php echo ($i . ' star'); ?>
+						  <option value="<?php echo esc_attr($i); ?>" <?php selected( $current, $i ); ?>>
+							  	<?php echo esc_html($i . ' star'); ?>
 						  </option>
 						<?php endfor; ?>
 				 	</select>
-				 (<?php echo $current . ' star' ?>)
+				 (<?php printf(__('%s star', 'lenxel-core'), esc_html($current )); ?>)
 			  </td>
 			</tr>
 			 <?php endforeach; ?>
@@ -63,17 +63,17 @@ class Lenxel_Listing_Comment_BE extends Lenxel_Listing_Comment{
 					$current = $stars[ $cat ];
 				?>
 				<tr>
-				  	<td style="width: 200px;"><strong><?php echo $cat; ?></strong></td>
+				  	<td style="width: 200px;"><strong><?php printf(__('%s', 'lenxel-core' ), esc_html($cat)); ?></strong></td>
 				  	<td> 
-					  	<select name="lt_review[<?php echo $cat ?>]">
+					  	<select name="lt_review[<?php echo esc_attr($cat); ?>]">
 							<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
-							  	<option value="<?php echo $i; ?>" <?php selected( $current, $i ); ?>>
-								  	<?php echo ($i . ' star'); ?>
+							  	<option value="<?php echo esc_attr($i); ?>" <?php selected( $current, $i ); ?>>
+								  	<?php echo esc_html($i . ' star'); ?>
 							  	</option>
 							<?php endfor; ?>
 					 		<option value="delete"><?php echo esc_html__('Delete', 'lenxel-core') ?></option>
 					 	</select>
-					 	(<?php echo $stars[ $cat ] . ' star'; ?>)
+					 	(<?php printf(__('%s star', 'lenxel-core'), esc_html($stars[ $cat ])); ?>)
 				  </td>
 				</tr>
 				<?php } ?>
@@ -88,14 +88,14 @@ class Lenxel_Listing_Comment_BE extends Lenxel_Listing_Comment{
 	public function save_comment( $comment_id, $data ) {
 		$post_id = $data['comment_post_ID']; 
 		$post = get_post($post_id);
-		if ( empty( $_POST['lenxel_lt_meta_nonce'] ) || ! wp_verify_nonce( $_POST['lenxel_lt_meta_nonce'], 'lenxel_lt_save_data' ) ) {
+		if ( empty( $_POST['lenxel_lt_meta_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash ( $_POST['lenxel_lt_meta_nonce'])), 'lenxel_lt_save_data' ) ) {
 			return $comment_id;
 		}
 		if ( 'listing' !== $post->post_type || 0 !== intval( $data['comment_parent'] ) ) {
 			return $comment_id;
 		}
 		if(isset($_POST['lt_review'])){
-			$lt_review = $_POST['lt_review'];
+			$lt_review = array_map('sanitize_text_field', $_POST['lt_review']);//filter_input(INPUT_POST, 'lt_review', FILTER_DEFAULT , FILTER_REQUIRE_ARRAY); //filter_input_array(INPUT_POST, $_POST['lt_review']);
 			foreach ($lt_review as $key => $value) {
 				if($value == 'delete'){
 					unset($lt_review[$key]);

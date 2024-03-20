@@ -57,7 +57,7 @@ if ( !class_exists('Puc_v4p9_DebugBar_Extension', false) ):
 		 * the update checking process works as expected.
 		 */
 		public function ajaxCheckNow() {
-			if ( wp_verify_nonce($_POST['_wpnonce'], 'puc-ajax') &&
+			if ( wp_verify_nonce(sanitize_key( wp_unslash($_POST['_wpnonce'])), 'puc-ajax') &&
 			isset($_POST['uid']) && $_POST['uid'] !== $this->updateChecker->getUniqueName('uid') ) {
 				return;
 			}

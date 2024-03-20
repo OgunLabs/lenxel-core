@@ -15,7 +15,7 @@ if ( !class_exists('Puc_v4p9_DebugBar_PluginExtension', false) ):
 		 * Request plugin info and output it.
 		 */
 		public function ajaxRequestInfo() {
-			if ( wp_verify_nonce($_POST['_wpnonce'], 'puc-ajax') &&
+			if ( wp_verify_nonce(sanitize_key( wp_unslash($_POST['_wpnonce'])), 'puc-ajax') &&
 			isset($_POST['uid']) && $_POST['uid'] !== $this->updateChecker->getUniqueName('uid') ) {
 				return;
 			}

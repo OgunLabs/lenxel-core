@@ -65,9 +65,8 @@ class Lenxel_Theme_Support{
    }
 
    public function lenxelthemesupport_ajax_url(){
-     echo '<script> var ajaxurl = "' . admin_url('admin-ajax.php') . '";</script>';
-
-
+      $html_content = '<script> var ajaxurl = "'.esc_url($admin_url('admin-ajax.php')).'";</script>';
+      echo wp_kses($html_content, array( '<script>' ));
    }
 
 
@@ -131,8 +130,8 @@ class Lenxel_Theme_Support{
    function handle_lenxel_deactivate_plugin() {
       // Perform your custom deactivation logic here
       // For example, remove custom database tables, options, or other cleanup tasks
-      if(!isset($_POST['skip']) && wp_verify_nonce($_POST['_nonce'], 'lnx_deactivate_plugin')){
-        $message = "Lenxel core deactivated for this purpose\nFeedback: ".$_POST['feedback'] .",\nSite_url: " .home_url().",\nEmail: " . $_POST['email'] .",\nComment: ". $_POST['comment'];
+      if(!isset($_POST['skip']) && wp_verify_nonce(sanitize_text_field( wp_unslash ( $_POST['_nonce'])), 'lnx_deactivate_plugin')){
+        $message = "Lenxel core deactivated for this purpose\nFeedback: ".sanitize_title($_POST['feedback']) .",\nSite_url: " .home_url().",\nEmail: " . sanitize_email($_POST['email']) .",\nComment: ". sanitize_text_field($_POST['comment']);
          $params = array("text" => $message);
         $response = $this->api_request(
             '3Qm2bZy6kfLB7nouhC7I52L9',
@@ -208,9 +207,10 @@ class Lenxel_Theme_Support{
    }
 
    function lenxel_plugin_deactivation_notice() {
-      echo '<div class="notice notice-success is-dismissible">
+      $html_content = '<div class="notice notice-success is-dismissible">
                <p>plugin has been deactivated.</p>
             </div>';
+            echo wp_kses($html_content, array( '<div>','<p>' ));
    }
    
    function premiumContentDiv(){
@@ -240,7 +240,8 @@ class Lenxel_Theme_Support{
     </script>
     <?php
     $premiumContent = ob_get_clean();
-    echo $premiumContent;
+    //echo $premiumContent;
+    printf( '%s', $premiumContent);
    }
    
    function lnx_login_form() {
@@ -320,7 +321,7 @@ class Lenxel_Theme_Support{
 
                   <div class="footer">
                         <div class="include-email" style="margin-bottom: 20px;margin-top: 20px;">
-                           <input id="lenxel-include-email" type="checkbox" name="feedback[email]" value="<?php echo $user_email; ?>" checked="">
+                           <input id="lenxel-include-email" type="checkbox" name="feedback[email]" value="<?php echo esc_attr( $user_email ); ?>" checked="">
                            <label for="lenxel-include-email">
                               Include my email
                               <small>It will be used to follow up with you.</small>
@@ -448,7 +449,7 @@ class Lenxel_Theme_Support{
          
       <?php
       $contentModal = ob_get_clean();
-      echo $contentModal;
+      printf( '%s', $contentModal);
       
    }
 }

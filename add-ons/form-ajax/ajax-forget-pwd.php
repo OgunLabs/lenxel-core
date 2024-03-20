@@ -27,7 +27,7 @@ class Lenxel_Addons_Forget_Pwd_Ajax{
 		
 		check_ajax_referer( 'lenxel-ajax-security-nonce', 'security' );
 		
-		$user_login = $_POST['user_login'];
+		$user_login = sanitize_user( $_POST['user_login'] );
 	 
 		if ( empty($user_login) ) {
 		  	$mess = esc_html__('Error: Enter a username or e-mail address.', 'lenxel-core');

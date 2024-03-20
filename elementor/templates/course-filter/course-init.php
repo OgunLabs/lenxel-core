@@ -1,11 +1,11 @@
 <?php
    global $wp_query;
    if(isset($_GET['ajax_l_course_filter_ajax']) && check_admin_referer('ajax-l-course-filter-nonce', 'ajax_l_course_filter_ajax')){
-      $cat = isset($_GET['cat']) && $_GET['cat'] ? $_GET['cat'] : '';//filter_input(INPUT_GET, 'cat', FILTER_SANITIZE_STRING);
-      $tag = isset($_GET['tag']) && $_GET['tag'] ? $_GET['tag'] : '';//filter_input(INPUT_GET, 'tag', FILTER_SANITIZE_STRING);
-      $level = isset($_GET['level']) && $_GET['level'] ? $_GET['level'] : '';//filter_input(INPUT_GET, 'level', FILTER_SANITIZE_STRING);
-      $price = isset($_GET['price']) && $_GET['price'] ? $_GET['price'] : '';//filter_input(INPUT_GET, 'price', FILTER_SANITIZE_STRING);
-      $search_key = isset($_GET['keyword']) && $_GET['keyword'] ? $_GET['keyword'] : '';//filter_input(INPUT_GET, 'keyword', FILTER_SANITIZE_STRING);
+      $cat = isset($_GET['cat']) && $_GET['cat'] ? sanitize_text_field( $_GET['cat'] ): '';//filter_input(INPUT_GET, 'cat', FILTER_SANITIZE_STRING);
+      $tag = isset($_GET['tag']) && $_GET['tag'] ? sanitize_text_field($_GET['tag']) : '';//filter_input(INPUT_GET, 'tag', FILTER_SANITIZE_STRING);
+      $level = isset($_GET['level']) && $_GET['level'] ? sanitize_text_field($_GET['level']) : '';//filter_input(INPUT_GET, 'level', FILTER_SANITIZE_STRING);
+      $price = isset($_GET['price']) && $_GET['price'] ? sanitize_text_field($_GET['price']) : '';//filter_input(INPUT_GET, 'price', FILTER_SANITIZE_STRING);
+      $search_key = isset($_GET['keyword']) && $_GET['keyword'] ? sanitize_text_field($_GET['keyword']) : '';//filter_input(INPUT_GET, 'keyword', FILTER_SANITIZE_STRING);
    }else{
       $cat = '';
       $tag = '';

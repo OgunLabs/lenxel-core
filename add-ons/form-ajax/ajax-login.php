@@ -33,7 +33,7 @@ class Lenxel_Addons_Login_Ajax{
 
 	 	// Nonce is checked, get the POST data and sign user on
 	 	$info = array();
-	 	$info['user_login'] = $_POST['username'];
+	 	$info['user_login'] = sanitize_user($_POST['username']);
 	 	$info['user_password'] = $_POST['password'];
 	 	$info['remember'] = true;
 

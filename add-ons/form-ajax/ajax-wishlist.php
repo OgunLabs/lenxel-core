@@ -23,8 +23,8 @@ class Lenxel_Addons_Wishlist_Ajax{
 
 		check_ajax_referer( 'lenxel-ajax-security-nonce', 'security' );
 
-		$mode = $_POST['mode'];
-		$post_id = $_POST['post_id'];
+		$mode = sanitize_text_field( $_POST['mode']);
+		$post_id = absint($_POST['post_id']);
 		$user_id = get_current_user_id();
 		// Show Popup login of !user_logged
 		if (!is_user_logged_in()) {

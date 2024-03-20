@@ -116,9 +116,9 @@ if(!function_exists('lenxel_post_type_team')){
      if ( !isset( $_POST['dynamic_socials_noncename'] ) )
           return;
 
-     if ( !wp_verify_nonce( $_POST['dynamic_socials_noncename'], plugin_basename( __FILE__ ) ) )
+     if ( !wp_verify_nonce( sanitize_text_field( wp_unslash ($_POST['dynamic_socials_noncename'])), plugin_basename( __FILE__ ) ) )
           return;
-     $team_socials = $_POST['team_socials'];
+     $team_socials = sanitize_text_field($_POST['team_socials']);
      update_post_meta($post_id,'team_socials', $team_socials);
   }
 
@@ -177,9 +177,9 @@ if(!function_exists('lenxel_post_type_team')){
      if ( !isset( $_POST['dynamic_educations_noncename'] ) )
           return;
 
-     if ( !wp_verify_nonce( $_POST['dynamic_educations_noncename'], plugin_basename( __FILE__ ) ) )
+     if ( !wp_verify_nonce( sanitize_text_field( wp_unslash ($_POST['dynamic_educations_noncename'])), plugin_basename( __FILE__ ) ) )
           return;
-     $team_educations = $_POST['team_educations'];
+     $team_educations = sanitize_text_field($_POST['team_educations']);
      update_post_meta($post_id,'team_educations', $team_educations);
   }
 
@@ -238,9 +238,9 @@ if(!function_exists('lenxel_post_type_team')){
      if ( !isset( $_POST['dynamic_skills_noncename'] ) )
           return;
 
-     if ( !wp_verify_nonce( $_POST['dynamic_skills_noncename'], plugin_basename( __FILE__ ) ) )
+     if ( !wp_verify_nonce( sanitize_text_field( wp_unslash ($_POST['dynamic_skills_noncename'])), plugin_basename( __FILE__ ) ) )
           return;
-     $team_skills = $_POST['team_skills'];
+     $team_skills = sanitize_text_field($_POST['team_skills']);
      update_post_meta($post_id,'team_skills', $team_skills);
   }
 

@@ -86,7 +86,7 @@ class WP_Import extends WP_Importer {
 			case 2:
 				check_admin_referer( 'import-wordpress' );
 				$this->fetch_attachments = ( ! empty( $_POST['fetch_attachments'] ) && $this->allow_fetch_attachments() );
-				$this->id = (int) $_POST['import_id'];
+				$this->id = (int) absint($_POST['import_id']);
 				$file = get_attached_file( $this->id );
 				set_time_limit(0);
 				$this->import( $file );
@@ -367,7 +367,7 @@ class WP_Import extends WP_Importer {
 				}
 			} else if ( $create_users ) {
 				if ( ! empty($_POST['user_new'][$i]) ) {
-					$user_id = wp_create_user( $_POST['user_new'][$i], wp_generate_password() );
+					$user_id = wp_create_user( sanitize_user( $_POST['user_new'][$i]), wp_generate_password() );
 				} else if ( $this->version != '1.0' ) {
 					$user_data = array(
 						'user_login' => $old_login,

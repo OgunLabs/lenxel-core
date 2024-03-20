@@ -246,8 +246,8 @@ if(!function_exists('lenxel_post_type_portfolio')  ){
      if ( !isset( $_POST['dynamic_lenxelthemesupport_portfolio_noncename'] ) )
           return;
 
-     if ( !wp_verify_nonce( $_POST['dynamic_lenxelthemesupport_portfolio_noncename'], plugin_basename( __FILE__ ) ) )
+     if ( !wp_verify_nonce( sanitize_text_field( wp_unslash ($_POST['dynamic_lenxelthemesupport_portfolio_noncename'])), plugin_basename( __FILE__ ) ) )
           return;
-     $pinformations = $_POST['pinformations'];
+     $pinformations = sanitize_text_field($_POST['pinformations']);
      update_post_meta($post_id,'pinformations', $pinformations);
   }
