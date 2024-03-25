@@ -1,9 +1,10 @@
-=== Lenxel Core for Lenxel LMS ===
+=== Lenxel Core for Lenxel(LNX) LMS ===
+Contributors: (ogunlab)
 Tags: LMS, Header builder, Footer builder, Teams, Portfolios, Lenxel Theme Settings
-Requires at least Wordpress: 5.0
-Tested up to Wordpress: 6.3
+Requires at least: 5.0
+Tested up to: 6.3
 Requires PHP: 7.1 or above
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 Version: 1.0.2
@@ -105,12 +106,23 @@ After activating the plugin, this will setup header page builder, footer page bu
 12. Go ahead to take a test.
 
 = Plugin Configuration =
-1.  Setting up your Google Map API key
+1.  Setting up your Google Map API key.
+
+GPLv2 Licensed | Copyright © 2014-Today by Redux
+License: https://devs.redux.io/
+Source: https://devs.redux.io/
+
+GPLv2 Licensed | Copyright © 2014-Today by Elementor
+License: https://developers.elementor.com
+Source: https://developers.elementor.com/docs/controls/simple-example/
+
+= Feedback =
+1.  Deactivation feedback on Slack for better performance.
 
 == Frequently Asked Questions ==
 
 = Prerequisites for Using the Plugin =
 
 1.	You must install and activate the WooCommerce plugin on your WordPress website.
-2.  You need to install Tutor plugin to manage curriculum, quiz, and curriculum assignment
-3.	You need to install Lenxel theme template
+2.  You need to install Tutor plugin to manage curriculum, quiz, and curriculum assignment.
+3.	You need to install Lenxel theme template.
