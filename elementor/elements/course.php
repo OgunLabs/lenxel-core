@@ -638,7 +638,7 @@ class LNXElement_Course extends LNXElement_Base {
 			print '</div>';
 		}else {
 			$content='';
-			echo $content;
+			printf('%s', $content);
 		}
 	}
 }

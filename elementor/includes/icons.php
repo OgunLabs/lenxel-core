@@ -98,7 +98,7 @@
            'prefix'        => '',
            'displayPrefix' => '',
            'icons'         => $newicons,
-           'url'          => LENXEL_PLUGIN_URL . 'assets/icons/flaticon.css',
+           'url'          => esc_url(LENXEL_PLUGIN_URL . 'assets/icons/flaticon.css'),
            'ver'           => '1.0',
        );
 
@@ -107,7 +107,7 @@
 
    add_action( 'wp_print_footer_scripts', 'lenxel_insert_icons_footer_css'  );
    function lenxel_insert_icons_footer_css() {
-      echo '<link rel="stylesheet" type="text/css" href="' . LENXEL_PLUGIN_URL . 'assets/icons/flaticon.css">';
+      echo '<link rel="stylesheet" type="text/css" href="' . esc_url(LENXEL_PLUGIN_URL . 'assets/icons/flaticon.css').'">';
    }
 
    add_filter( 'elementor/icons_manager/additional_tabs', 'lenxel_lineawesome_icon' );  

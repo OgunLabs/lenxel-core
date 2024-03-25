@@ -383,7 +383,7 @@ class LNXElement_Image_Content extends LNXElement_Base {
 				include $this->get_template('image-content.php');
 			print '</div>';
 		}else {
-			echo $content;
+			printf('%s', $content);
 		}
 	}
 	

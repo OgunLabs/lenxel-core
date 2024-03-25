@@ -383,7 +383,7 @@ class LNXElement_Services_Group extends LNXElement_Base{
           }
         print '</div>';
       }else {
-				echo $content;
+			  printf('%s', $content);
 		  }
     }
 

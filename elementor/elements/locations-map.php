@@ -282,7 +282,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
                 include $this->get_template('locations-map.php');
             print '</div>';
         }else {
-            echo $content;
+			printf('%s', $content);
         }
     }
 

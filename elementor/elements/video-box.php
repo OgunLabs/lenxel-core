@@ -378,7 +378,7 @@ class LNXElement_Video_Box extends LNXElement_Base {
 				include $this->get_template('video-box.php');
 			print '</div>';
 		}else {
-			echo $content;
+			printf('%s', $content);
 		}
 	}
 }

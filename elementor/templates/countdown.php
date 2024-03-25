@@ -19,10 +19,10 @@
    <div class="content-inner">
       <?php if($title_text){ ?>
       <h3 <?php echo $this->get_render_attribute_string( 'title_text' ); ?>>
-         <span><?php echo $settings['title_text'] ?></span>
+         <span><?php echo esc_html($settings['title_text']); ?></span>
       </h3>
       <?php } ?>
-      <div class="lnx-countdown-inner clearfix" data-countdown="countdown" data-date="<?php print $date ?>"></div> 
+      <div class="lnx-countdown-inner clearfix" data-countdown="countdown" data-date="<?php print esc_attr($date); ?>"></div> 
    </div>
 </div>
 <div class="clearfix"></div>

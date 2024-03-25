@@ -295,7 +295,7 @@ class LNXElement_Events extends LNXElement_Base{
             }
             print '</div>'; 
 		}else {
-			echo $content;
+			printf('%s', $content);
 		}
 
     }

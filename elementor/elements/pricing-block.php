@@ -353,7 +353,7 @@ class LNXElement_Pricing_Block extends LNXElement_Base {
 			include $this->get_template('pricing-block.php');
 		print '</div>';
 		}else {
-			echo $content;
+			printf('%s', $content);
 		}
 	}
 

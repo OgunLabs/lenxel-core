@@ -518,7 +518,7 @@ class LNXElement_Icon_Box_Styles extends LNXElement_Base {
 			include $this->get_template('icon-box-styles.php');
 		print '</div>';
 		}else {
-			echo $content;
+			printf('%s', $content);
 		}
 	}
 }

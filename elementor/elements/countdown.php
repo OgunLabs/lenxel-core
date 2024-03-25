@@ -280,7 +280,8 @@ class LNXElement_Countdown extends LNXElement_Base {
 			print '</div>';
 		
 		}else {
-			echo $content;
+			$content = "";
+			printf('%s', $content);
 		}
 	}
 

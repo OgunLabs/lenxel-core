@@ -561,7 +561,7 @@ class LNXElement_Work_Process extends LNXElement_Base {
 				include $this->get_template('work-process.php');
 			print '</div>';
 		}else {
-				echo $content;
+			printf('%s', $content);
 		}
 	}
 }

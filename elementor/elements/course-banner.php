@@ -390,7 +390,7 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 				include $this->get_template('course-banner.php');
 			print '</div>';
 		}else {
-			echo $content;
+			printf('%s', $content);
 		}
 	 }
 

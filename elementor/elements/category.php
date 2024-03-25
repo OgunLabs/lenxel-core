@@ -641,7 +641,7 @@ class LNXElement_Course_category extends LNXElement_Base {
 	        	}
 			print '</div>';
 		}else {
-			echo $content;
+			printf( '%s', $content );
 		}
 	}
 }

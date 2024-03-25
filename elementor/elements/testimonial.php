@@ -492,7 +492,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
             }
             print '</div>';
         }else {
-            echo $content;
+			printf('%s', $content);
         }
     }
 

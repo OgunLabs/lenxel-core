@@ -143,7 +143,8 @@ class LNXElement_Cart_Box extends LNXElement_Base {
 			include $this->get_template('cart.php');
 			print '</div>';
 		}else {
-			echo $content;
+			$content = "";
+			printf('%s', $content);
 		}
 	}
 }

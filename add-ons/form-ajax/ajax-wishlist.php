@@ -80,10 +80,10 @@ class Lenxel_Addons_Wishlist_Ajax{
 		}
 	?>
 		<div class="wishlist-icon-content">
-			<a href="#" data-post_id="<?php echo esc_attr($post_id) ?>" class="ajax-wishlist-link <?php echo (!$check_wishlist ? 'wishlist-add' : 'wishlist-remove wishlist-added') ?>" title="<?php echo esc_attr__('Wishlist', 'lenxel-core') ?>">
+			<a href="#" data-post_id="<?php echo esc_attr($post_id) ?>" class="ajax-wishlist-link <?php echo esc_attr(!$check_wishlist ? 'wishlist-add' : 'wishlist-remove wishlist-added') ?>" title="<?php echo esc_attr__('Wishlist', 'lenxel-core') ?>">
 				<i class="icon far fa-heart"></i>
 				<?php if($text){ 
-					echo '<span>' . $text . '</span>';
+					echo '<span>' . esc_html($text) . '</span>';
 				} ?>
 			</a>
 	 </div> 

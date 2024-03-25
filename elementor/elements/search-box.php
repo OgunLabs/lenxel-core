@@ -326,7 +326,7 @@ class LNXElement_Search_Box extends LNXElement_Base {
 			include $this->get_template('search-box.php');
 		print '</div>';
 		}else {
-		echo $content;
+			printf('%s', $content);
 		}
 	}
 }

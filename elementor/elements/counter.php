@@ -377,7 +377,8 @@ class LNXElement_Counter extends LNXElement_Base {
 			include $this->get_template('counter.php');
 		print '</div>';
 		}else {
-			echo $content;
+			$content = "";
+			printf('%s', $content);
 		}
 	}
 }

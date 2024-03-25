@@ -280,7 +280,7 @@ class LNXElement_Course_Filter_Form extends LNXElement_Base {
 				include $this->get_template('course-filter-form.php');
 			print '</div>';
 		}else {
-			echo $content;
+			printf('%s', $content);
 		}
 	}
 }

@@ -389,7 +389,7 @@ class LNXElement_Icon_Box_Group extends LNXElement_Base{
 			}
 			print '</div>';
 		}else {
-			echo $content;
+			printf('%s', $content);
 		}
 	 }
 

@@ -397,7 +397,7 @@ class LNXElement_User extends LNXElement_Base {
          include $this->get_template('user.php');
          print '</div>';
       }else {
-         echo $content;
+			printf('%s', $content);
       }
 	}
 }

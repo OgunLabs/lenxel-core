@@ -563,7 +563,7 @@ class LNXElement_Course_Filter extends LNXElement_Base {
 				include $this->get_template('course-filter/course.php');
 			print '</div>';
 		}else {
-			echo $content;
+			printf('%s', $content);
 		}
 	}
 }

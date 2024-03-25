@@ -10,7 +10,7 @@ class Lenxel_Addon_Form_Ajax{
 	}
 
 	public function __construct(){
-		add_action( 'init', array($this, 'register_scripts') );
+		add_action( 'init', array($this, 'lenxel_core_register_scripts') );
 		$this->include_files();
 	}
 
@@ -28,7 +28,7 @@ class Lenxel_Addon_Form_Ajax{
 		return false;
 	}
 
-	public function register_scripts(){
+	public function lenxel_core_register_scripts(){
 		wp_register_script('ajax-form', LENXEL_PLUGIN_URL . 'assets/js/ajax-form.js', array('jquery') ); 
 		wp_enqueue_script('ajax-form');
 		$redirecturl = function_exists('tutor_utils') ? tutor_utils()->tutor_dashboard_url() : home_url();

@@ -302,7 +302,7 @@ class LNXElement_Portfolio extends LNXElement_Base{
             }
             print '</div>'; 
         }else {
-            echo $content;
+			printf('%s', $content);
         }
     }
 

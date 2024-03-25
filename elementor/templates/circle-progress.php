@@ -10,12 +10,12 @@
    ?>
    
    <div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
-      <div class="circle-progress" data-value="<?php echo $value ?>"  data-thickness="<?php echo $thickness ?>" data-empty-fill="<?php echo $empty_fill ?>" data-lineCap="square" data-size="128" data-fill="{ &quot;color&quot;: &quot;<?php echo $color ?>&quot; }">
+      <div class="circle-progress" data-value="<?php echo esc_attr($value); ?>"  data-thickness="<?php echo esc_attr($thickness); ?>" data-empty-fill="<?php echo esc_attr($empty_fill); ?>" data-lineCap="square" data-size="128" data-fill="{ &quot;color&quot;: &quot;<?php echo esc_attr($color); ?>&quot; }">
          <strong></strong>
       </div> 
       <?php if(!empty($settings['title'])){ ?>
          <div class="title">
-            <span><?php echo $settings['title'] ?></span>
+            <span><?php echo esc_html( $settings['title'] ); ?></span>
          </div>   
       <?php } ?>
    </div> 

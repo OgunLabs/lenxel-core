@@ -127,7 +127,7 @@ class LNXElement_Slider_Images extends LNXElement_Base{
 			include $this->get_template('slider-images.php');
 		  print '</div>'; 
 		}else {
-			echo $content;
+			printf('%s', $content);
 		}
 	 }
 }
