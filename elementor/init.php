@@ -13,7 +13,7 @@ if(!class_exists('Lenxel_Elementor_Addons')){
 			add_action('elementor/init', array($this, 'add_category'));
 			add_action('elementor/widgets/widgets_registered', array($this, 'include_elements'));
 			
-			add_action( 'elementor/frontend/after_register_scripts', [ $this, 'enqueue_frontend_scripts' ] );
+			add_action( 'elementor/frontend/after_register_scripts', [ $this, 'lenxel_core_enqueue_frontend_scripts' ] );
 			add_action( 'elementor/frontend/after_enqueue_styles', [ $this, 'enqueue_frontend_styles' ] );
 			add_action( 'elementor/preview/enqueue_styles', function() {
 		  		wp_enqueue_style( 'owl-carousel-css' );
@@ -88,7 +88,7 @@ if(!class_exists('Lenxel_Elementor_Addons')){
 			9);
 	 	}
 			
-	 	public function enqueue_frontend_scripts() {
+	 	public function lenxel_core_enqueue_frontend_scripts() {
 			wp_register_script('jquery.owl.carousel', LENXEL_PLUGIN_URL . 'elementor/assets/libs/owl-carousel/owl.carousel.js' , array(), '1.0.0', true);
 			wp_register_script('jquery.appear', LENXEL_PLUGIN_URL . 'elementor/assets/libs/jquery.appear.js' , array(), '1.0.0', true);
 			wp_register_script('jquery.count_to', LENXEL_PLUGIN_URL . 'elementor/assets/libs/count-to.js' , array(), '1.0.0', true);

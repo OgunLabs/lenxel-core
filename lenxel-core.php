@@ -4,11 +4,16 @@
  * Plugin Name: Lenxel Core
  * Description: LMS, Header builder, Footer builder, Teams, Portfolios, Lenxel Theme Settings ... for theme
  * Plugin URI: https://ogunlabs.com/products/lenxel 
- * Version: 1.0.2
+ * Version: 1.0.3
+ * Requires PHP: 7.1
  * Author: Ogun Labs
+ * Requires at least: 5.0
  * Author URI: https://ogunlabs.com/
+ * License:           GPL v3 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-3.0.en.html
  * Text Domain: lenxel-core
- * Copyright: © 2023 Lenxel
+ * Copyright: © 2024 Lenxel
+ * Domain Path:  /languages
  */
 
 define('LENXEL_PLUGIN_URL', plugin_dir_url(__FILE__));
@@ -32,18 +37,18 @@ class Lenxel_Theme_Support{
       $this->include_post_types();
       add_filter('single_template', array($this, 'lenxel_single_template'), 99, 1);
 
-      add_action('wp_head', array($this, 'lenxelthemesupport_ajax_url'));
-      add_action('wp_enqueue_scripts', array($this, 'register_scripts'));
-      add_action('admin_enqueue_scripts', array($this, 'register_scripts_admin'));
+      add_action('wp_head', array($this, 'lenxel_core_head_ajax_url'));
+      add_action('wp_enqueue_scripts', array($this, 'lenxel_core_register_scripts'));
+      add_action('admin_enqueue_scripts', array($this, 'lenxel_core_register_scripts_admin'));
       register_activation_hook(__FILE__, array($this, 'lnx_create_page_activate'));
       load_plugin_textdomain('lenxel-core', false, 'lenxel-core/languages/');
-      add_action('wp_ajax_lenxel_deactivate_plugin', array($this,'handle_lenxel_deactivate_plugin'));
-      register_deactivation_hook(__FILE__, array($this, 'lenxel_plugin_deactivation'));
-      add_action('admin_footer',array($this,'lenxel_deactivate_plugin_modal'));
-      add_action('elementor/editor/footer',array($this,'premiumContentDiv'), 99);
-      add_shortcode('lnx_login_form_shortcode', array($this,'lnx_login_form'));
-      add_shortcode('course_category', array($this, 'course_categories'));
-      $this->lenxel_plugin_update();
+      add_action('wp_ajax_lenxel_deactivate_plugin', array($this,'lenxel_core_handle_deactivate_plugin'));
+      register_deactivation_hook(__FILE__, array($this, 'lenxel_core_plugin_deactivation'));
+      add_action('admin_footer',array($this,'lenxel_core_deactivate_plugin_modal'));
+      add_action('elementor/editor/footer',array($this,'lenxel_core_premium_content_div'), 99);
+      add_shortcode('lenxel_core_login_form_shortcode', array($this,'lenxel_core_login_form'));
+      add_shortcode('lenxel_core_course_category', array($this, 'lenxel_core_course_categories'));
+      $this->lenxel_core_plugin_update();
 
 
 
@@ -51,7 +56,7 @@ class Lenxel_Theme_Support{
 
    function lnx_create_page_activate() {
       $page_title = 'Sign In';
-      $shortcode = '[lnx_login_form_shortcode]';
+      $shortcode = '[lenxel_core_login_form_shortcode]';
       if(get_option('sign_in_id')==false){
          $arg = array(
             'post_title' => $page_title,
@@ -64,9 +69,9 @@ class Lenxel_Theme_Support{
       }
    }
 
-   public function lenxelthemesupport_ajax_url(){
-      $html_content = '<script> var ajaxurl = "'.esc_url($admin_url('admin-ajax.php')).'";</script>';
-      echo wp_kses($html_content, array( '<script>' ));
+   public function lenxel_core_head_ajax_url(){
+      $html_content = '<script> var ajaxurl = "'.esc_url(admin_url('admin-ajax.php')).'";</script>';
+      echo wp_kses($html_content, array( 'script'=>array() ));
    }
 
 
@@ -103,20 +108,20 @@ class Lenxel_Theme_Support{
    }
 
   
-   public function register_scripts(){
+   public function lenxel_core_register_scripts(){
       $js_dir = plugin_dir_url( __FILE__ ).'assets/js';
       wp_register_script('lenxel-core', $js_dir.'/main.js', array('jquery'), null, true);
       wp_enqueue_script('lenxel-core');
    }
 
 
-   public function register_scripts_admin()
+   public function lenxel_core_register_scripts_admin()
    {
       $css_dir = plugin_dir_url(__FILE__) . 'assets/css';
       wp_enqueue_style('lenxel-icons-custom', LENXEL_PLUGIN_URL . 'assets/icons/flaticon.css');
    }
 
-   public function lenxel_plugin_update()
+   public function lenxel_core_plugin_update()
    {
       require 'plugin-update/update-checker.php';
       $updateRoute = plugin_dir_url( __FILE__ ).'lenxel-core-update-plugin.json';
@@ -127,13 +132,13 @@ class Lenxel_Theme_Support{
       );
    }
 
-   function handle_lenxel_deactivate_plugin() {
+   function lenxel_core_handle_deactivate_plugin() {
       // Perform your custom deactivation logic here
       // For example, remove custom database tables, options, or other cleanup tasks
       if(!isset($_POST['skip']) && wp_verify_nonce(sanitize_text_field( wp_unslash ( $_POST['_nonce'])), 'lnx_deactivate_plugin')){
         $message = "Lenxel core deactivated for this purpose\nFeedback: ".sanitize_title($_POST['feedback']) .",\nSite_url: " .home_url().",\nEmail: " . sanitize_email($_POST['email']) .",\nComment: ". sanitize_text_field($_POST['comment']);
          $params = array("text" => $message);
-        $response = $this->api_request(
+        $response = $this->lenxel_core_api_request(
             '3Qm2bZy6kfLB7nouhC7I52L9',
             $params
             );
@@ -154,7 +159,7 @@ class Lenxel_Theme_Support{
       wp_send_json_success();
    }
 
-    function api_request(
+    function lenxel_core_api_request(
     $endpoint,
     $args = array(),
     $method = 'POST', $token = NULL
@@ -165,7 +170,7 @@ class Lenxel_Theme_Support{
                  'method'      => $method,
                 'timeout'     => 45,
                 'sslverify'   => false,
-                'headers'     => $this->get_headers($token),
+                'headers'     => $this->lenxel_core_get_headers($token),
                 'body'        => wp_json_encode($args),
 
              );
@@ -183,7 +188,7 @@ class Lenxel_Theme_Support{
     /**
         * Generates the headers to pass to API request.
     */
-     function get_headers($token)
+     function lenxel_core_get_headers($token)
     {
         if(!empty($token)){
             $getHead = array(
@@ -198,22 +203,22 @@ class Lenxel_Theme_Support{
         
     }
 
-   function lenxel_plugin_deactivation() {
+   function lenxel_core_plugin_deactivation() {
       // Perform your deactivation logic here
       // For example, remove custom database tables, options, or other cleanup tasks
 
       // Display a message upon deactivation (optional)
-      add_action('admin_notices', array($this, 'lenxel_plugin_deactivation_notice'));
+      add_action('admin_notices', array($this, 'lenxel_core_plugin_deactivation_notice'));
    }
 
-   function lenxel_plugin_deactivation_notice() {
+   function lenxel_core_plugin_deactivation_notice() {
       $html_content = '<div class="notice notice-success is-dismissible">
                <p>plugin has been deactivated.</p>
             </div>';
             echo wp_kses($html_content, array( '<div>','<p>' ));
    }
    
-   function premiumContentDiv(){
+   function lenxel_core_premium_content_div(){
     ob_start();
     ?>
      <!-- <div class="dialog-widget dialog-buttons-widget dialog-type-buttons dialog-premium-lenxel" id="elementor-element--promotion__dialog" aria-modal="true" role="document" tabindex="0" style="top: 350px; left: 276px;"><div class="dialog-header dialog-buttons-header dialog-premium-lenxel-header"><div id="elementor-element--promotion__dialog__title" class="dialog-premium-lenxel-title">Testimonial Carousel Widget</div><i class="eicon-pro-icon"></i><i class="eicon-close"></i></div><div class="dialog-message dialog-buttons-message dialog-premium-lenxel-message">Use Testimonial Carousel widget and dozens more pro features to extend your toolbox and build sites faster and better.</div><div class="dialog-buttons-wrapper dialog-buttons-buttons-wrapper"><a href="https://ogunlabs.com/get-a-quote" target="_blank" class="elementor-button go-pro dialog-button dialog-action dialog-buttons-action">Upgrade Now</a></div></div> -->
@@ -244,7 +249,7 @@ class Lenxel_Theme_Support{
     printf( '%s', $premiumContent);
    }
    
-   function lnx_login_form() {
+   function lenxel_core_login_form() {
       ob_start();
       $file_path = LENXEL_THEME_DIR . '/templates/login-template-1.php'; // Adjust the path accordingly
 
@@ -253,7 +258,7 @@ class Lenxel_Theme_Support{
       }
       return ob_get_clean();
    }
-   function course_categories(){
+   function lenxel_core_course_categories(){
     $query_args = [
         'taxonomy' => 'course-category',
         'order' => 'ASC',
@@ -270,7 +275,7 @@ class Lenxel_Theme_Support{
 
    }  
 
-   function lenxel_deactivate_plugin_modal(){
+   function lenxel_core_deactivate_plugin_modal(){
       $current_user = wp_get_current_user();
       $user_email = $current_user->user_email;
       ob_start();
