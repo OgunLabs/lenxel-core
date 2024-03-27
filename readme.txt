@@ -2,12 +2,12 @@
 Contributors: (ogunlab)
 Tags: LMS, Header builder, Footer builder, Teams, Portfolios, Lenxel Theme Settings
 Requires at least: 5.0
-Tested up to: 6.3
-Requires PHP: 7.1 or above
-Stable tag: 1.0.3
+Tested up to: 6.4
+Requires PHP: 7.2 or above
+Stable tag: 1.0.4
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
-Version: 1.0.2
+Version: 1.0.4
 
 Lenxel Core is an extension of the Lenxel theme template that features Team post-type, Portfolio post-type, Header builder, Footer builder, and Lenxel Theme settings. 
 

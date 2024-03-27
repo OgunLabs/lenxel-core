@@ -4,8 +4,8 @@
  * Plugin Name: Lenxel Core
  * Description: LMS, Header builder, Footer builder, Teams, Portfolios, Lenxel Theme Settings ... for theme
  * Plugin URI: https://ogunlabs.com/products/lenxel 
- * Version: 1.0.3
- * Requires PHP: 7.1
+ * Version: 1.0.4
+ * Requires PHP: 7.2
  * Author: Ogun Labs
  * Requires at least: 5.0
  * Author URI: https://ogunlabs.com/
@@ -245,7 +245,7 @@ class Lenxel_Theme_Support{
     </script>
     <?php
     $premiumContent = ob_get_clean();
-    //echo $premiumContent;
+   
     printf( '%s', $premiumContent);
    }
    
@@ -274,7 +274,7 @@ class Lenxel_Theme_Support{
 	return "<div class='col-sm-12 col-md-3'><h2>Categories</h2>{$cat_data}</div>";
 
    }  
-
+   
    function lenxel_core_deactivate_plugin_modal(){
       $current_user = wp_get_current_user();
       $user_email = $current_user->user_email;
