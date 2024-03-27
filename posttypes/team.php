@@ -157,7 +157,7 @@ if(!function_exists('lenxel_post_type_team')){
   <a class="add-education-item"><?php _e('Add Education','lenxel-core'); ?></a>
   <script>
       jQuery(document).ready(function() {
-          var count = <?php echo $c; ?>;
+          var count = <?php echo esc_js($c); ?>;
           jQuery(".add-education-item").click(function() {
               count = count + 1;
               jQuery('#team-education-list').append('<p><input size="120" type="text" placeholder="Title: MBA, Rotterdam School of Management, Erasmus University" name="team_educations['+count+'][title]" value="" /> <a class="remove button">Remove</a></p>' );

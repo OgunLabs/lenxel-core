@@ -10,16 +10,15 @@
 ?>
 
 <?php if($style == 'style-1'): ?>
-   <div <?php echo $this->get_render_attribute_string('wrapper'); ?>>
-      <div <?php echo $this->get_render_attribute_string('carousel') ?> <?php echo $this->get_carousel_settings() ?>>
+   <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('wrapper'))); ?>">
+      <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>" <?php echo esc_attr($this->lenxel_str_replace_action(array('"'), $this->get_carousel_settings())); ?>>
          <?php foreach ($settings['brands'] as $brand): ?>
             <div class="item brand-item">
                <div class="brand-item-content">
                   <?php
                      $image_url = $brand['image']['url']; 
-                     $image_html = '<img src="' . esc_url($image_url) .'" alt="" class="brand-img"/>';
-                     echo $image_html;
                   ?>
+                  <img src="<?php echo esc_url($image_url); ?>" alt="" class="brand-img"/>
                   <?php echo $this->lnx_render_link_overlay($brand['link']) ?>
                </div>
             </div>

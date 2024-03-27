@@ -9,7 +9,7 @@
    $color = !empty($settings['color']) ? $settings['color'] : '#CB9D54';
    ?>
    
-   <div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+   <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
       <div class="circle-progress" data-value="<?php echo esc_attr($value); ?>"  data-thickness="<?php echo esc_attr($thickness); ?>" data-empty-fill="<?php echo esc_attr($empty_fill); ?>" data-lineCap="square" data-size="128" data-fill="{ &quot;color&quot;: &quot;<?php echo esc_attr($color); ?>&quot; }">
          <strong></strong>
       </div> 

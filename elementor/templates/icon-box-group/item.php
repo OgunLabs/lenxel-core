@@ -21,10 +21,10 @@ $has_icon = ! empty( $item['selected_icon']['value']);
 
 					<div class="box-content">
 						<?php if($item['title']){ ?>
-							<h4 class="title"><?php echo $item['title'] ?></h4>
+							<h4 class="title"><?php echo esc_html($item['title']); ?></h4>
 						<?php } ?>
 						<?php if($item['desc']){ ?>
-							<div class="desc"><?php echo $item['desc'] ?></div>
+							<div class="desc"><?php echo esc_html($item['desc']); ?></div>
 						<?php } ?>
 					</div>	
 				</div>	
@@ -43,6 +43,6 @@ $has_icon = ! empty( $item['selected_icon']['value']);
 	<?php } ?>
 
 	<?php if($item['title']){ ?>
-		<h3 class="title"><?php echo $item['title'] ?></h3>
+		<h3 class="title"><?php echo esc_html($item['title']); ?></h3>
 	<?php } ?>
 <?php endif; ?>	

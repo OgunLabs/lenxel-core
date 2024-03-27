@@ -18,7 +18,7 @@
 
 ?>
    
-<div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
    <div class="content-inner">
 
       <div class="plan-price">
@@ -33,7 +33,7 @@
 
       <?php if($title_text){ ?>
          <<?php echo esc_attr($header_tag) ?> <?php echo $this->get_render_attribute_string( 'title_text' ); ?>>
-            <span><?php echo $settings['title_text'] ?></span>
+            <span><?php echo esc_html($settings['title_text']); ?></span>
          </<?php echo esc_attr($header_tag) ?>>
       <?php } ?>
 
@@ -41,7 +41,7 @@
          <ul class="plan-list">
             <?php foreach ($settings['pricing_content'] as $key => $item) { ?>
                <li>
-                  <span class="text"><?php echo $item['pricing_features'] ?></span>
+                  <span class="text"><?php echo esc_html($item['pricing_features']); ?></span>
                </li>  
             <?php } ?>
          </ul>

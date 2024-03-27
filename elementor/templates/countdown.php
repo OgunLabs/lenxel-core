@@ -15,7 +15,7 @@
    $date = $month . '-' . $day . '-' . $year . '-' . $hour . '-' . $minutes . '-00';
 ?>
 
-<div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
    <div class="content-inner">
       <?php if($title_text){ ?>
       <h3 <?php echo $this->get_render_attribute_string( 'title_text' ); ?>>

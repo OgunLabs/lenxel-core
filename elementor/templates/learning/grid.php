@@ -17,7 +17,7 @@
     $username = wp_get_current_user(); 
 ?>
   
-  <div <?php echo $this->get_render_attribute_string('wrapper'); ?>>
+  <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('wrapper'))); ?>">
   <script>
     // $( document ).ready(function() {
     //   $("a.active").parents('section').css('display','none');

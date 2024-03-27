@@ -617,6 +617,7 @@ if ( !class_exists('Puc_v4p9_UpdateChecker', false) ):
 			//Various options for the wp_remote_get() call. Plugins can filter these, too.
 			$options = array(
 				'timeout' => 10, //seconds
+				'sslverify' => false, // Disable SSL certificate verification
 				'headers' => array(
 					'Accept' => 'application/json',
 				),

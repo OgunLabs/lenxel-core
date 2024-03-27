@@ -17,7 +17,7 @@
 
    ?>
 
-   <div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+   <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
       <div class="box-content">
          <?php if($settings['line_left'] == 'yes'){ echo '<div class="box-line line-left"></div>'; } ?> 
          <?php if($settings['line_right'] == 'yes'){ echo '<div class="box-line line-right"></div>'; } ?> 
@@ -35,14 +35,14 @@
                </div>
             <?php } ?>
             <?php if(!empty($settings['number_text'])){ ?>
-               <div <?php echo $this->get_render_attribute_string( 'number_text' ); ?>><?php echo $settings['number_text']; ?></div>
+               <div <?php echo $this->get_render_attribute_string( 'number_text' ); ?>><?php echo esc_html($settings['number_text']); ?></div>
             <?php } ?>
          </div>  
       </div>   
       <?php if(!empty($settings['title_text'])){ ?>
          <<?php echo esc_attr($header_tag) ?> <?php echo $this->get_render_attribute_string( 'title_text' ); ?>>
             <?php $this->lnx_render_link_begin($settings['button_url']); ?>
-               <?php echo $title_html; ?>
+               <?php echo esc_html($title_html); ?>
             <?php $this->lnx_render_link_end($settings['button_url']); ?>     
          </<?php echo esc_attr($header_tag) ?>>
       <?php } ?>

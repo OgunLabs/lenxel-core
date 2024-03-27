@@ -82,8 +82,8 @@
 				<div class="content-inner">
 					<?php foreach($filter_levels as $value=>$title){ ?>
 					  	<label>
-							<input type="checkbox" name="tutor-course-filter-level" value="<?php echo $value; ?>"/>&nbsp;
-							<?php echo $title; ?>
+							<input type="checkbox" name="tutor-course-filter-level" value="<?php echo esc_attr($value); ?>"/>&nbsp;
+							<?php echo esc_html($title); ?>
 					  	</label>
 				 	<?php } ?>
 				</div>
@@ -103,8 +103,8 @@
 				<div class="content-inner">
 					<?php foreach($filter_prices as $value=>$title){ ?>
 					  	<label>
-							<input type="checkbox" name="tutor-course-filter-price" value="<?php echo $value; ?>"/>&nbsp;
-							<?php echo $title; ?>
+							<input type="checkbox" name="tutor-course-filter-price" value="<?php echo esc_html($value); ?>"/>&nbsp;
+							<?php echo esc_html($title); ?>
 					  	</label>
 				 	<?php } ?>
 				</div>

@@ -5,7 +5,7 @@
 	$style = $settings['style'];
 ?>
   
-  	<div <?php echo $this->get_render_attribute_string('wrapper'); ?>>
+  	<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('wrapper'))); ?>">
 		<div class="lnx-content-items"> 
 		  	<div <?php echo $this->get_render_attribute_string('grid') ?>>
 			 	<?php

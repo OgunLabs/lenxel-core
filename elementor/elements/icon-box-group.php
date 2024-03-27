@@ -40,7 +40,8 @@ class LNXElement_Icon_Box_Group extends LNXElement_Base{
 	*/
 	public function get_title() {
 		$get_current_name = load_lenxel_widget_content_element('LNX Icon Box Group');
-		return __($get_current_name, 'lenxel-core');
+		$filter_name = 'lenxel/element/'.$this->get_name();
+		return apply_filters( $filter_name, $get_current_name);
 	}
 
 	 /**

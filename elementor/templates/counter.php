@@ -18,7 +18,7 @@
    ?>
 
    <?php if($style == 'style-1' || $style == 'style-2' || $style == 'style-3'){ ?>
-      <div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+      <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
          <div class="box-content">
             <?php if ( $has_icon ){ ?>
                <div class="milestone-icon">
@@ -36,7 +36,7 @@
                </div>
                <?php if(!empty($title_html)){ ?>
                   <<?php echo esc_attr($header_tag) ?> <?php echo $this->get_render_attribute_string( 'title_text' ); ?>>
-                      <?php echo $title_html ?>
+                      <?php echo esc_html($title_html); ?>
                   </<?php echo esc_attr($header_tag) ?>>
                <?php } ?>
             </div>

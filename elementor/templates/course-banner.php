@@ -28,7 +28,7 @@
    if( !empty($settings['link_custom']) ) $link = $settings['link_custom'];
 ?>
 
-<div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
    <div class="listings-banner-content">
       
       <?php 
@@ -52,7 +52,7 @@
          <?php } ?>
 
          <?php if($title_text){ ?>
-            <h3 class="title"><?php echo $title_text ?></h3>
+            <h3 class="title"><?php echo esc_html($title_text); ?></h3>
          <?php } ?>
 
       </div>

@@ -5,7 +5,7 @@
 	$this->get_grid_settings();
 ?>
   
-<div <?php echo $this->get_render_attribute_string('wrapper'); ?>>
+<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('wrapper'))); ?>">
 	<div class="lnx-content-items clearfix"> 
 		<div class="users-list">
 			<?php 

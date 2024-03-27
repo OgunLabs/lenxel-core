@@ -24,7 +24,7 @@
    $this->add_inline_editing_attributes( 'description_text' );
    $btn_classes = "btn-cta {$button_style} {$button_size}";
    ?>
-   <div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+   <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
       <div class="content-inner">
          
          <?php if($icon_image){ ?>
@@ -42,7 +42,7 @@
          
          <?php if($title_text){ ?>
             <<?php echo esc_attr($header_tag) ?> <?php echo $this->get_render_attribute_string( 'title_text' ); ?>>
-               <span><?php echo $settings['title_text'] ?></span>
+               <span><?php echo esc_html($settings['title_text']); ?></span>
             </<?php echo esc_attr($header_tag) ?>>
          <?php } ?>
          <?php if( $description_text && !empty(trim($description_text)) ){ ?>

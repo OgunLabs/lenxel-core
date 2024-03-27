@@ -45,12 +45,12 @@
          ?>
          <div class="clearfix"></div>
          <?php if($banner['title']){ ?>
-            <h3 class="title"><?php echo $banner['title'] ?></h3>
+            <h3 class="title"><?php echo esc_html($banner['title']); ?></h3>
          <?php } ?>
       </div>
 
       <?php if($link_term){ ?>
-         <a class="link-term-overlay" href="<?php echo esc_url($link_term); ?>" <?php echo $target ?>></a>
+         <a class="link-term-overlay" href="<?php echo esc_url($link_term); ?>" <?php echo esc_attr($target); ?>></a>
       <?php } ?>
                
    </div>

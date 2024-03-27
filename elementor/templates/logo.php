@@ -29,11 +29,11 @@
 
 ?>
       
-  <div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+  <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
     <?php if (!empty($settings['image']['url'])) : ?>
 
-      <<?php echo $html_tags ?> <?php echo $this->get_render_attribute_string( 'link' ) ?>>
+      <<?php printf('%1$s', $html_tags); ?> <?php echo $this->get_render_attribute_string( 'link' ) ?>>
         <img src="<?php echo esc_url($settings['image']['url'])?>" alt="<?php echo esc_attr($settings['title_text']) ?>" />
-      </<?php echo $html_tags ?>>
+      </<?php printf('%1$s', $html_tags); ?>>
     <?php endif; ?>
   </div>

@@ -12,8 +12,8 @@
 	$this->add_render_attribute('carousel', 'class', 'init-carousel-owl owl-carousel stag'.$_random);
     $style = (isset($settings['style'])) ? $settings['style'] : '' ;
   ?>
-	<div <?php echo $this->get_render_attribute_string('wrapper'); ?>>
-		<div <?php echo $this->get_render_attribute_string('carousel') ?> <?php echo 'stag'.$_random; ?><?php echo $this->get_carousel_settings() ?>>
+	<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('wrapper'))); ?>">
+		<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>" <?php echo esc_attr('stag'.$_random); ?> <?php echo esc_attr($this->lenxel_str_replace_action(array('"'), $this->get_carousel_settings())); ?>>
                 
                 <?php
                     foreach ( $query as $category ): ?>
@@ -47,7 +47,10 @@
                 <?php $category_count++; endforeach; ?>
         </div>
 	</div>
-    <script>var owl = jQuery('.owl-carousel.stag<?php echo esc_html($_random); ?>');
+    <script>
+    getCorouselCat = setInterval(function(){
+        var owl = jQuery('.owl-carousel.stag<?php echo esc_html($_random); ?>');
+        if(owl !== undefined){
                     owl.owlCarousel({
                         items:3,
                         loop:true,
@@ -86,8 +89,10 @@
                         },
                         autoplaySpeed:500
                     }); jQuery('.owl-carousel.stag<?php echo esc_html($_random ); ?> .owl-nav .owl-prev').html('<i class=\"las la-arrow-left\"></i>'); 
-                    jQuery('.owl-carousel.stag<?php echo esc_html($_random); ?> .owl-nav .owl-next').html('<i class=\"las la-arrow-right\"></i>')</script> <style>
+                    jQuery('.owl-carousel.stag<?php echo esc_html($_random); ?> .owl-nav .owl-next').html('<i class=\"las la-arrow-right\"></i>')
+                    clearInterval(getCorouselCat);}},3000); </script> <style>
                     .owl-carousel.stag<?php echo esc_html($_random); ?> .owl-nav{display: block !important;}</style>
+
             
   <?php
   wp_reset_postdata();

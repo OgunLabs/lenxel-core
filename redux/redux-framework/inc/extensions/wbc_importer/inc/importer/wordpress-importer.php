@@ -260,7 +260,7 @@ class WP_Import extends WP_Importer {
 ?>
 <form action="<?php echo admin_url( 'admin.php?import=wordpress&amp;step=2' ); ?>" method="post">
 	<?php wp_nonce_field( 'import-wordpress' ); ?>
-	<input type="hidden" name="import_id" value="<?php echo $this->id; ?>" />
+	<input type="hidden" name="import_id" value="<?php echo esc_attr($this->id); ?>" />
 
 <?php if ( ! empty( $this->authors ) ) : ?>
 	<h3><?php _e( 'Assign Authors', 'lenxel-core' ); ?></h3>

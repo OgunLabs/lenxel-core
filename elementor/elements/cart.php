@@ -43,8 +43,9 @@ class LNXElement_Cart_Box extends LNXElement_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		$get_current_name = $get_current_name = load_lenxel_widget_content_element('LNX Cart Box');
-		return __( $get_current_name, 'lenxel-core' );
+		$get_current_name = load_lenxel_widget_content_element('LNX Cart Box');
+		$filter_name = 'lenxel/element/'.$this->get_name();
+		return apply_filters( $filter_name, $get_current_name);
 	}
 
 	/**

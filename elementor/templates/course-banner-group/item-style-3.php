@@ -36,25 +36,25 @@
 
       <div class="banner-content">
          <?php if($banner['title']){ ?>
-            <h3 class="title"><?php echo $banner['title'] ?></h3>
+            <h3 class="title"><?php echo esc_html($banner['title']); ?></h3>
          <?php } ?>
       </div>
 
       <div class="banner-hover">
          <?php if($banner['sub_title']){ ?>
-            <h5 class="subtitle"><?php echo $banner['sub_title'] ?></h5>
+            <h5 class="subtitle"><?php echo esc_html($banner['sub_title']); ?></h5>
          <?php } ?>
          <?php 
             if ( $settings['show_number_content'] == 'yes' && $term ) {
                if(!empty($banner['term_slug'])){
-                  echo '<div class="number-course">' . sprintf(_n('%d Course', '%d Courses', $term->count, 'lenxel-core'), $term->count) . '</div>';
+                  echo '<div class="number-course">' . sprintf(_n('%d Course', '%d Courses', esc_html($term->count), 'lenxel-core'), esc_html($term->count)) . '</div>';
                }
             }
          ?>
       </div>
 
       <?php if($link_term){ ?>
-         <a class="link-term-overlay" href="<?php echo esc_url($link_term); ?>" <?php echo $target ?>></a>
+         <a class="link-term-overlay" href="<?php echo esc_url($link_term); ?>" <?php echo esc_attr($target); ?>></a>
       <?php } ?>
                
    </div>

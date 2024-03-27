@@ -10,11 +10,11 @@
 
 			<div class="service-content">
 				<?php if($item['title']){ ?>
-					<h3 class="title"><span><?php echo $item['title'] ?></span></h3>
+					<h3 class="title"><span><?php echo esc_html($item['title']); ?></span></h3>
 				<?php } ?>
 
 				<?php if($item['desc']){ ?>
-					<div class="desc"><?php echo $item['desc'] ?></div>
+					<div class="desc"><?php echo esc_html($item['desc']); ?></div>
 				<?php } ?>
 
 				<?php if($item['link']['url']){ ?>

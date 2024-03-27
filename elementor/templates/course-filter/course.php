@@ -14,7 +14,7 @@
    $course_filter = (bool) tutor_utils()->get_option('course_archive_filter', false);
    $supported_filters = tutor_utils()->get_option('supported_course_filters', array());
 ?>
-   <div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+   <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
       <div class="content-inner">
          
          <?php if($course_filter && count($supported_filters)){ ?>

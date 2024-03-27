@@ -82,11 +82,36 @@ class Lenxel_Theme_Support_Widget_Recent_Posts extends WP_Widget {
       }
       ?>
 
-     <?php echo $args['before_widget']; ?>
+     <?php echo wp_kses( $args['before_widget'],array(
+         'div'=>array(
+            'class='=>array(),
+            'id'=>array(),
+         ),
+         'h3'=>array(
+            'class='=>array(),
+            'id'=>array(),
+         ),
+         'h2'=>array(
+            'class='=>array(),
+            'id'=>array(),
+         ),
+         'h1'=>array(
+            'class='=>array(),
+            'id'=>array(),
+         ),
+         'span'=>array(
+            'class='=>array(),
+            'id'=>array(),
+         ),
+         'p'=>array(
+            'class='=>array(),
+            'id'=>array(),
+         ),
+      ) ); ?>
 
       <?php
       if ( $title ) {
-         echo $args['before_title'] . $title . $args['after_title'];
+         echo esc_html($args['before_title'] . $title . $args['after_title']);
       }
 
       $format = current_theme_supports( 'html5', 'navigation-widgets' ) ? 'html5' : 'xhtml';
@@ -130,7 +155,7 @@ class Lenxel_Theme_Support_Widget_Recent_Posts extends WP_Widget {
                            $comments_number
                         ); 
                      ?>
-                     <h3 class="post-title"><a href="<?php the_permalink( $recent_post->ID ); ?>"<?php echo $aria_current; ?>><?php echo $title; ?></a></h3>
+                     <h3 class="post-title"><a href="<?php the_permalink( $recent_post->ID ); ?>"<?php echo esc_attr($aria_current); ?>><?php echo esc_html($title); ?></a></h3>
                      <?php if ( $show_date ) : ?>
                         <span class="post-date"><?php echo get_the_date( '', $recent_post->ID ); ?></span>
                      <?php endif; ?>
@@ -145,7 +170,32 @@ class Lenxel_Theme_Support_Widget_Recent_Posts extends WP_Widget {
          echo '</nav>';
       }
 
-      echo $args['after_widget'];
+      echo wp_kses( $args['after_widget'],array(
+         'div'=>array(
+            'class='=>array(),
+            'id'=>array(),
+         ),
+         'h3'=>array(
+            'class='=>array(),
+            'id'=>array(),
+         ),
+         'h2'=>array(
+            'class='=>array(),
+            'id'=>array(),
+         ),
+         'h1'=>array(
+            'class='=>array(),
+            'id'=>array(),
+         ),
+         'span'=>array(
+            'class='=>array(),
+            'id'=>array(),
+         ),
+         'p'=>array(
+            'class='=>array(),
+            'id'=>array(),
+         ),
+      ) );
    }
 
    public function update( $new_instance, $old_instance ) {
@@ -169,18 +219,18 @@ class Lenxel_Theme_Support_Widget_Recent_Posts extends WP_Widget {
       $show_date = isset( $instance['show_date'] ) ? (bool) $instance['show_date'] : false;
       ?>
       <p>
-         <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'lenxel-core' ); ?></label>
-         <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
+         <label for="<?php echo esc_attr($this->get_field_id( 'title' )); ?>"><?php esc_html_e( 'Title:', 'lenxel-core' ); ?></label>
+         <input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'title' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'title' )); ?>" type="text" value="<?php echo esc_attr($title); ?>" />
       </p>
 
       <p>
-         <label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts to show:', 'lenxel-core' ); ?></label>
-         <input class="tiny-text" id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="number" step="1" min="1" value="<?php echo $number; ?>" size="3" />
+         <label for="<?php echo esc_attr($this->get_field_id( 'number' )); ?>"><?php esc_html_e( 'Number of posts to show:', 'lenxel-core' ); ?></label>
+         <input class="tiny-text" id="<?php echo esc_attr($this->get_field_id( 'number' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'number' )); ?>" type="number" step="1" min="1" value="<?php echo esc_attr($number); ?>" size="3" />
       </p>
 
       <p>
-         <input class="checkbox" type="checkbox"<?php checked( $show_date ); ?> id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" />
-         <label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php _e( 'Display post date?', 'lenxel-core' ); ?></label>
+         <input class="checkbox" type="checkbox"<?php checked( $show_date ); ?> id="<?php echo esc_attr($this->get_field_id( 'show_date' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'show_date' )); ?>" />
+         <label for="<?php echo esc_attr($this->get_field_id( 'show_date' )); ?>"><?php esc_html_e( 'Display post date?', 'lenxel-core' ); ?></label>
       </p>
       <?php
    }

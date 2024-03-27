@@ -226,7 +226,7 @@ if(!function_exists('lenxel_post_type_portfolio')  ){
   <script>
       var $ =jQuery.noConflict();
       $(document).ready(function() {
-          var count = <?php echo $c; ?>;
+          var count = <?php echo esc_js($c); ?>;
           $(".add-information-item").click(function() {
               count = count + 1;
               $('#pinformations-list').append('<p> <input size="40" type="text" placeholder="Label" name="pinformations['+count+'][label]" value="" /><input size="80" type="text" placeholder="Value" name="pinformations['+count+'][value]" value="" /> <a class="remove button">Remove</a></p>' );

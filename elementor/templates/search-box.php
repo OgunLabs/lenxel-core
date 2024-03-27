@@ -12,7 +12,7 @@
    $this->add_render_attribute( 'block', 'class', [ $settings['style'], 'widget gsc-search-box' ] );
 
    ?>
-   <div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+   <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
       <div class="content-inner">
          
          <div class="main-search lnx-search">

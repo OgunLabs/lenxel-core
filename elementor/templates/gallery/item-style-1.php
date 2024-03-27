@@ -24,10 +24,10 @@
       <div class="image-content">
          <div class="content-inner">
             <?php if($image['title']){ ?>
-               <h3 class="title"><?php echo $image['title'] ?></h3>
+               <h3 class="title"><?php echo esc_html($image['title']); ?></h3>
             <?php } ?>
             <?php if($image['sub_title']){ ?>
-               <div class="sub-title"><?php echo $image['sub_title'] ?></div>
+               <div class="sub-title"><?php echo esc_html($image['sub_title']); ?></div>
             <?php } ?>
          </div>   
       </div>

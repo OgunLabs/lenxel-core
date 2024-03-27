@@ -17,7 +17,7 @@ class LNX_Elementor_Override{
       if(!get_option('elementor_disable_color_schemes', '')) update_option( 'elementor_disable_color_schemes', 'yes' );
       if(!get_option('elementor_disable_typography_schemes', '')) update_option( 'elementor_disable_typography_schemes', 'yes' );
       if(!get_option('elementor_container_width', '')) update_option( 'elementor_container_width', '1200' );
-      $cpt_support = get_option( 'elementor_cpt_support' );
+      $cpt_support = get_option( 'elementor_cpt_support', null );
       if( empty($cpt_support) ){
          $cpt_support[] = 'page';
          $cpt_support[] = 'footer';

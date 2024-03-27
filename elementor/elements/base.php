@@ -301,7 +301,9 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		
 		return $ouput;
 	 }
-
+	 protected function lenxel_str_replace_action( array $replace_value, string $rep_data_value){
+		return str_replace($replace_value, '', $rep_data_value);
+	 }
 	 protected function get_grid_settings($classes = '') {
 		$settings = $this->get_settings_for_display();
 		if($classes){
@@ -386,11 +388,11 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  }
 		  ?>
 		  <a <?php echo $this->get_render_attribute_string( '_base_link_1' . $r ); ?>>
-			 <?php echo $html; ?>
+			 <?php echo esc_html($html); ?>
 		  </a>
 		  <?php
 		}else{
-		  echo $html;
+		  echo esc_html($html);
 		}
 	}
 

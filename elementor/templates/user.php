@@ -8,7 +8,7 @@
 
 ?>
 
-<div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
    <?php if(is_user_logged_in()){ ?>
       <?php
          $user_id = get_current_user_id();

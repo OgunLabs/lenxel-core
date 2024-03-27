@@ -108,7 +108,7 @@
                      'show_pagination'    => 1,
                      'only_course_items'  => 1
                   );
-                  $current_url = wp_doing_ajax() ? $_SERVER['HTTP_REFERER'] : tutor()->current_url;
+                  $current_url = wp_doing_ajax() ? esc_url(sanitize_text_field($_SERVER['HTTP_REFERER'])) : esc_url(tutor()->current_url);
                   $push_link = add_query_arg( array_merge( $_POST, $GLOBALS['tutor_course_archive_arg'] ), $current_url );
 
                   $data = wp_doing_ajax(  ) ? $_POST : $_GET;

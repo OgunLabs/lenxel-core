@@ -20,7 +20,7 @@
    ?>
 
    <?php if($style == 'style-1'){ ?>
-      <div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+      <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
          <div class="icon-box-content">
             <?php if ( $has_icon ){ ?>
                <div class="box-icon">
@@ -34,7 +34,7 @@
             <div class="box-content">
                <?php if(!empty($settings['title_text'])){ ?>
                   <<?php echo esc_attr($header_tag) ?> <?php echo $this->get_render_attribute_string( 'title_text' ); ?>>
-                     <?php echo $title_html; ?>
+                     <?php echo esc_html($title_html); ?>
                   </<?php echo esc_attr($header_tag) ?>>
                <?php } ?>
             </div>
@@ -45,12 +45,12 @@
 
 
    <?php if($style == 'style-2'){ ?>
-      <div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+      <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
          
          <div class="content-inner">
             <?php if(!empty($settings['title_text'])){ ?>
                <<?php echo esc_attr($header_tag) ?> <?php echo $this->get_render_attribute_string( 'title_text' ); ?>>
-                  <?php echo $title_html ?>
+                  <?php echo esc_html($title_html); ?>
                </<?php echo esc_attr($header_tag) ?>>
             <?php } ?>
             <?php if(!empty($settings['description_text'])){ ?>
@@ -83,7 +83,7 @@
    <?php } ?>   
 
    <?php if( $style == 'style-3'){ ?>
-      <div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+      <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
          <?php if ( $has_icon ){ ?>
             <div class="icon-inner">
                <?php if ( $has_icon ){ ?>
@@ -114,7 +114,7 @@
    <?php } ?>   
 
    <?php if( $style == 'style-4'){ ?>
-      <div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+      <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
          <?php if ( $has_icon ){ ?>
             <div class="icon-inner">
                <?php if ( $has_icon ){ ?>

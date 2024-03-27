@@ -19,14 +19,14 @@
 ?>
 		
 	<?php if($skin == 'skin-v1'){ ?>
-		<div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+		<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
 		  
 		  <div class="images">
 				<?php if (!empty($settings['image']['url'])) : ?>
 					<div class="image-first">
 						<?php
-							$image_html = Group_Control_Image_Size::get_attachment_image_html($settings, 'image');
-							echo $image_html;
+						//	$image_html = Group_Control_Image_Size::get_attachment_image_html($settings, 'image');
+						echo Group_Control_Image_Size::get_attachment_image_html($settings, 'image');
 						?>
 					</div>
 				<?php endif; ?>
@@ -51,7 +51,7 @@
 			 			<?php Icons_Manager::render_icon( $settings['selected_icon'], [ 'aria-hidden' => 'true' ] ); ?>
 			 		</div>	
 					<<?php echo esc_attr($header_tag) ?> <?php echo $this->get_render_attribute_string( 'title_text' ); ?>>
-						<span><?php echo $title_text; ?></span>
+						<span><?php echo esc_html($title_text); ?></span>
 					</<?php echo esc_attr($header_tag) ?>>
 			</div>
 			 </div>
@@ -64,13 +64,13 @@
 	<?php } ?>  
 	 
 	<?php if($skin == 'skin-v2'){ ?>
-		<div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+		<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
 		  
 			<?php if (!empty($settings['image']['url'])) : ?>
 				<div class="image">
 					<?php
-						$image_html = Group_Control_Image_Size::get_attachment_image_html($settings, 'image');
-						echo $image_html;
+					//	$image_html = Group_Control_Image_Size::get_attachment_image_html($settings, 'image');
+						echo Group_Control_Image_Size::get_attachment_image_html($settings, 'image');
 					?>
 				</div>
 			<?php endif; ?>
@@ -78,7 +78,7 @@
 		  <?php if(!empty($settings['title_text'])) : ?>
 			 <div class="box-content">
 					<<?php echo esc_attr($header_tag) ?> <?php echo $this->get_render_attribute_string( 'title_text' ); ?>>
-						<span><?php echo $title_text; ?></span>
+						<span><?php echo esc_html($title_text); ?></span>
 					</<?php echo esc_attr($header_tag) ?>>
 			</div>
 		  <?php endif; ?>
@@ -88,7 +88,7 @@
 	<?php } ?>  
 
 	<?php if($skin == 'skin-v3'){ ?>
-		<div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+		<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
 			<?php if (!empty($settings['image']['url'])) : ?>
 				<div class="image">
 					<?php
@@ -103,7 +103,7 @@
 <?php } ?>
 
 <?php if($skin == 'skin-v4'){ ?>
-	<div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+	<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
 	  
 	  <?php if (!empty($settings['image']['url'])) : ?>
 		 <div class="image">
@@ -134,7 +134,7 @@
 <?php } ?> 
 
 <?php if($skin == 'skin-v5'){ ?>
-	<div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+	<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
 	  
 	  <?php if (!empty($settings['image']['url'])) : ?>
 		 <div class="image">
@@ -150,7 +150,7 @@
 			<div class="content-inner">
 	  			<?php if(!empty($settings['title_text'])){ ?>
 					<<?php echo esc_attr($header_tag) ?> <?php echo $this->get_render_attribute_string( 'title_text' ); ?>>
-						<span><?php echo $title_text; ?></span>
+						<span><?php echo esc_html($title_text); ?></span>
 					</<?php echo esc_attr($header_tag) ?>>
 		  		<?php } ?>
 
@@ -166,7 +166,7 @@
 <?php } ?>  
 
 <?php if($skin == 'skin-v6'){ ?>
-  <div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+  <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
 	 <div class="box-content">
 		<div class="content-inner">
 			<?php if($title_text){ ?>
@@ -182,14 +182,14 @@
 			<?php } ?>
 		</div>
 		<?php if(!empty($settings['image']['url'])){ ?>
-			<span class="bg-image" style="background-image:url('<?php echo $settings['image']['url']; ?>')"></span>
+			<span class="bg-image" style="background-image:url('<?php echo esc_url($settings['image']['url']); ?>')"></span>
 		<?php } ?>
 	 </div>  
   </div>
 <?php } ?> 
 
 <?php if($skin == 'skin-v7'){ ?>
-  <div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+  <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
 	 <?php if (!empty($settings['image']['url'])) : ?>
 		<div class="image">
 			 <?php

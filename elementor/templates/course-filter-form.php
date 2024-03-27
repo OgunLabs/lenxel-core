@@ -24,7 +24,7 @@
    $link = isset($settings['link']['url']) ? $settings['link']['url'] : '';
 ?>
 
-<div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
    <form class="course-filter-form" action="<?php echo esc_url($link) ?>"> 
       <div class="search-form-content">
 
@@ -57,7 +57,42 @@
                            )
                         );
                      $html = str_replace('<select', '<select data-placeholder="All Categories"', ob_get_clean()); 
-                     echo $html; 
+                     echo wp_kses(
+                        $html,
+                        array(
+                            'div'=>array(
+                              'class' => array(),
+                            ),
+                            'select'      => array(
+                              'class' => array(),
+                              'name' =>array(),
+                              'data-placeholder' => array(),
+                              'id' => array(),
+                              'tabindex' => array(),
+                              'aria-hidden'
+                            ),
+                            'option' => array(
+                              'class' => array(),
+                              'value'=>array(),
+                            ),
+                            'span' => array(
+                              'aria-expanded'=>array(),
+                              'aria-haspopup'=>array(),
+                              'role'=>array(),
+                              'expanded'=>array(),
+                              'tabindex'=>array(),
+                              'aria-labelledby'=>array(),
+                              'class'=>array(),
+                              'dir'=>array(),
+                              'style' =>array(),
+                              'aria-hidden'=>array(),
+                            ),
+                            'b' => array(
+                              'role'=>array(),
+                            ),
+                            
+                        )
+                    );
                   ?>    
                </div>
             <?php } ?>
@@ -67,7 +102,7 @@
                   <select name="level" class="option-select2-filter" data-placeholder="All Level">
                      <option value="">All Level</option>
                      <?php foreach($filter_levels as $value=>$title){ ?>
-                           <option value="<?php echo $value; ?>"/> <?php echo $title; ?></option>
+                           <option value="<?php echo esc_attr($value); ?>"/> <?php echo esc_html($title); ?></option>
                      <?php } ?>
                   </select>
                </div>
@@ -78,7 +113,7 @@
                   <select name="price" class="option-select2-filter" data-placeholder="All Price Type">
                      <option value="">All Price Type</option>
                      <?php foreach($filter_prices as $value=>$title){ ?>
-                        <option value="<?php echo $value; ?>"/> <?php echo $title; ?></option>
+                        <option value="<?php echo esc_attr($value); ?>"/> <?php echo esc_html($title); ?></option>
                      <?php } ?>
                   </select>
                </div>

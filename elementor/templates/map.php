@@ -13,7 +13,7 @@
    wp_enqueue_script('map-api');
    $_id = lenxelthemesupport_random_id();
    ?>
-   <div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+   <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
       <div class="content-inner">
          <div id="map_canvas_<?php echo esc_attr($_id); ?>" class="map_canvas" style="width:100%; height:<?php echo esc_attr($settings['height']); ?>;"></div>
       </div>
@@ -30,7 +30,7 @@
             'zoom': <?php echo esc_attr($zoom); ?>,
             'center': stmapdefault,
             'mapTypeId':google.maps.MapTypeId.<?php echo esc_attr( $settings['map_type'] ); ?>,
-            'styles': <?php echo $style ?>,
+            'styles': <?php echo esc_js($style); ?>,
             'callback': function() {
                var self = this;
                self.addMarker(marker).on('click', function(){ 

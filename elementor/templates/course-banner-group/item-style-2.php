@@ -47,7 +47,7 @@
             <?php 
                if ( $settings['show_number_content'] == 'yes' && $term ) {
                   if(!empty($banner['term_slug'])){
-                     echo '<div class="number-course">' . $term->count . ' ' . $settings['text_suffix_number'] . '</div>';
+                     echo '<div class="number-course">' . esc_attr($term->count) . ' ' . esc_attr($settings['text_suffix_number']) . '</div>';
                   }
                } 
             ?>
@@ -56,15 +56,15 @@
 
       <div class="banner-content">
          <?php if($banner['title']){ ?>
-            <h3 class="title"><?php echo $banner['title'] ?></h3>
+            <h3 class="title"><?php echo esc_html($banner['title']); ?></h3>
          <?php } ?>
          <?php if($banner['sub_title']){ ?>
-            <div class="sub-title"><?php echo $banner['sub_title'] ?></div>
+            <div class="sub-title"><?php echo esc_html($banner['sub_title']); ?></div>
          <?php } ?>
       </div>
 
       <?php if($link_term){ ?>
-         <a class="link-term-overlay" href="<?php echo esc_url($link_term); ?>" <?php echo $target ?>></a>
+         <a class="link-term-overlay" href="<?php echo esc_url($link_term); ?>" <?php echo esc_attr($target); ?>></a>
       <?php } ?>
                
    </div>

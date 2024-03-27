@@ -33,7 +33,7 @@
    $this->add_inline_editing_attributes( 'job_company', 'none' );
 
    ?>
-   <div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+   <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
       <?php if($image){ ?>
          <div class="image-box"><img src="<?php echo esc_url($image) ?>" alt="<?php echo esc_html($settings['title_text']) ?>"/></div>
       <?php } ?>
@@ -44,7 +44,7 @@
          <?php } ?>
          <?php if($title_text){ ?>
             <<?php echo esc_attr($header_tag) ?> <?php echo $this->get_render_attribute_string( 'title_text' ); ?>>
-              <?php echo $title_text_html ?>
+              <?php echo wp_kses_post($title_text_html); ?>
             </<?php echo esc_attr($header_tag) ?>>
          <?php } ?>
          <div class="box-information clearfix">

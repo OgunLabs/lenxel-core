@@ -6,8 +6,8 @@
 	$_random = lenxelthemesupport_random_id();
 ?>
  
-	<div <?php echo $this->get_render_attribute_string('wrapper'); ?>>
-		<div <?php echo $this->get_render_attribute_string('carousel') ?> data-items="1" data-items_lg="1" data-items_md="1" data-items_sm="1" data-items_xs="1" data-items_xx="1" data-loop="1" data-speed="800" data-auto_play="1" data-auto_play_speed="800" data-auto_play_timeout="6000" data-auto_play_hover="1" data-navigation="0" data-pagination="0" data-mouse_drag="1" data-touch_drag="1">
+	<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('wrapper'))); ?>">
+		<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>" data-items="1" data-items_lg="1" data-items_md="1" data-items_sm="1" data-items_xs="1" data-items_xx="1" data-loop="1" data-speed="800" data-auto_play="1" data-auto_play_speed="800" data-auto_play_timeout="6000" data-auto_play_hover="1" data-navigation="0" data-pagination="0" data-mouse_drag="1" data-touch_drag="1">
 			<?php
 				foreach ($settings['images'] as $image){
 				   $image_id = $image['image']['id']; 
