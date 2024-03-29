@@ -14,7 +14,7 @@
  *
  * @see WP_Widget
  */
-
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
 class Lenxel_Theme_Support_Widget_Recent_Posts extends WP_Widget {
    
    public function __construct() {

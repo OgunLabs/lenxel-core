@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
   use Elementor\Group_Control_Image_Size;
   use Elementor\Icons_Manager;
 

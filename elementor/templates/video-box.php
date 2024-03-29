@@ -1,5 +1,5 @@
 <?php
-
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    $style = $settings['style'];
 
    if ( ! empty( $settings['link']['url'] ) ) {

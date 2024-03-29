@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /*
 * https://gist.github.com/vishalbasnet23/1937b45be0ea73784cc5

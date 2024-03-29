@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
 if(!function_exists('lenxel_post_type_megamenu')   ){
   function lenxel_post_type_megamenu(){
     $labels = array(

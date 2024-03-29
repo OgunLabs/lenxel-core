@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	$this->add_render_attribute('wrapper', 'class', ['lnx-gallery-carousel']);
 	$this->add_render_attribute('carousel', 'class', 'init-carousel-owl owl-carousel');
 	$_random = lenxelthemesupport_random_id();

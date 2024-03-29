@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    use Elementor\Icons_Manager;
    
    $this->add_render_attribute( 'block', 'class', [ 'lnx-user', ' text-' . $settings['align'] ] );

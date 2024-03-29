@@ -15,7 +15,7 @@
  * Copyright: © 2024 Lenxel
  * Domain Path:  /languages
  */
-
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
 define('LENXEL_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('LENXEL_PLUGIN_DIR', plugin_dir_path(__FILE__));
 

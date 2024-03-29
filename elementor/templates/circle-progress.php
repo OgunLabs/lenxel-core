@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
   use Elementor\Icons_Manager;
    $settings = $this->get_settings_for_display();
    $this->add_render_attribute( 'block', 'class', ['gsc-circle-progress clearfix'] );

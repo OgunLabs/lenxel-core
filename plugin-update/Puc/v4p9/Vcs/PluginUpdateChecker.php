@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
 if ( !class_exists('Puc_v4p9_Vcs_PluginUpdateChecker') ):
 
 	class Puc_v4p9_Vcs_PluginUpdateChecker extends Puc_v4p9_Plugin_UpdateChecker implements Puc_v4p9_Vcs_BaseChecker {

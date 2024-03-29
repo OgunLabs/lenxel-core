@@ -206,7 +206,7 @@ if ( !class_exists('Puc_v4p9_Plugin_Ui', false) ):
 		 */
 		public function displayManualCheckResult() {
 			if ( isset($_GET['puc_update_check_result'], $_GET['puc_slug']) && ($_GET['puc_slug'] == $this->updateChecker->slug) && wp_verify_nonce(sanitize_text_field( wp_unslash($_GET['_wpnonce'])), 'puc_update_check_result') ) {
-				$status = strval($_GET['puc_update_check_result']);
+				$status = sanitize_text_field( wp_unslash($_GET['puc_update_check_result']));
 				$title = $this->updateChecker->getInstalledPackage()->getPluginTitle();
 				$noticeClass = 'updated notice-success';
 				$details = '';

@@ -1,5 +1,5 @@
 <?php
-
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	$this->add_render_attribute('wrapper', 'class', ['lnx-listing-users clearfix']);
 	//add_render_attribute grid
 	$this->get_grid_settings();

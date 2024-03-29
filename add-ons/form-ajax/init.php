@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 class Lenxel_Addon_Form_Ajax{
 	
 	private static $instance = null;

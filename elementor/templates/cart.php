@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
   	$this->add_render_attribute( 'block', 'class', [ 'widget gsc-cart-box' ] );
 ?>
 <div <?php echo $this->get_render_attribute_string( 'block' ) ?>>

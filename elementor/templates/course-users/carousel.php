@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	$this->add_render_attribute( 'wrapper', 'class', ['lnx-listing-users']);
 	$this->add_render_attribute('carousel', 'class', 'init-carousel-owl owl-carousel');
   ?>

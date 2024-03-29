@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
 function lenxel_theme_support_mime_types($mimes) {
    $mimes['svg'] = 'image/svg+xml';
    return $mimes;

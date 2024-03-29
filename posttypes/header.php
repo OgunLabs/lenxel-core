@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
 class Lenxel_Theme_Support_Header{
   public static $post_type = 'lnx_header';
   

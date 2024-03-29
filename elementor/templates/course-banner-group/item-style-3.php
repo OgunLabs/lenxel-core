@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    use Elementor\Group_Control_Image_Size;
 
    $image_id = $banner['image']['id']; 
