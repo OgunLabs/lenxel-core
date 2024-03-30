@@ -1,5 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
+
 if ( !class_exists('Puc_v4p9_Vcs_ThemeUpdateChecker', false) ):
 
 	class Puc_v4p9_Vcs_ThemeUpdateChecker extends Puc_v4p9_Theme_UpdateChecker implements Puc_v4p9_Vcs_BaseChecker {

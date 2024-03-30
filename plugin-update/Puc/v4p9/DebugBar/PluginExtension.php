@@ -1,5 +1,4 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
 if ( !class_exists('Puc_v4p9_DebugBar_PluginExtension', false) ):
 
 	class Puc_v4p9_DebugBar_PluginExtension extends Puc_v4p9_DebugBar_Extension {
