@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
 function lenxel_theme_support_path_demo_content(){
 	return (__DIR__.'/demo-data/');
 }

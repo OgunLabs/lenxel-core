@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	$query = $this->query_category();
     $_random = lenxel_themesupport_random_id();
     if ( ! $query ) {

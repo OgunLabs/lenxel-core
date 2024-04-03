@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    $title_text = $settings['title_text'];
    $sub_title = $settings['sub_title'];
    $description_text = $settings['description_text'];

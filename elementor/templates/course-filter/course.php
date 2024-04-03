@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    $filter_order = $settings['filter_order'] == 'yes' ? 'order-disable' : ''; 
    $layout = 'filter-layout-top';
    if( $settings['layout'] == 'filter-layout-left'){

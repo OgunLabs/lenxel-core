@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 use Elementor\Controls_Manager;
 use Elementor\Repeater;
 class Lenxel_Elementor_Override{

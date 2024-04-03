@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    add_filter( 'elementor/icons_manager/additional_tabs', 'lenxel_custom_icons_filters' , 9999999, 1 );
    function lenxel_custom_icons_filters( $tabs = array() ) {
       $newicons = [

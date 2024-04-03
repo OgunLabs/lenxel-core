@@ -16,7 +16,7 @@
  * Domain Path:  /languages
  * Update URI: https://lenxel.ogunlabs.com/plugins/lenxel-theme-support-wp.zip
  */
-
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
 define('LENXEL_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('LENXEL_PLUGIN_DIR', plugin_dir_path(__FILE__));
 

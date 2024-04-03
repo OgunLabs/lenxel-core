@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    use Elementor\Icons_Manager;
 
    if ( empty( $settings['title_text'] ) ) {

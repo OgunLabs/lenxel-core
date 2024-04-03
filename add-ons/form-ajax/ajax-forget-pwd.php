@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 /*
 	* https://fellowtuts.com/wordpress/forgot-password-with-ajax-in-wordpress-login-and-register/
 	* https://www.tutspointer.com/custom-user-forgot-password-using-ajax-in-wordpress/
@@ -59,7 +60,7 @@ class Lenxel_Addons_Forget_Pwd_Ajax{
 		}
 		$message = esc_html__('Hi ', 'lenxel-core') . $user_login . '!' . "\r\n";
 		$message .= '<br>' . esc_html__('Someone requested that the password be reset for the following account', 'lenxel-core') . ' ' . network_home_url( '/' ). "\r\n";
-		$message .= sprintf(esc_html__(' with username: %s', 'lenxel-core'), $user_login). "\r\n";
+		$message .= sprintf(esc_html__(' with username: %s', 'lenxel-core'), esc_html( $user_login )). "\r\n";
 		$message .= '<br>' . esc_html__('If this was a mistake, just ignore this email and nothing will happen.', 'lenxel-core'). "\r\n";
 		$message .= '<br>' . esc_html__('To reset your password, visit the following address:', 'lenxel-core'). "\r\n";
 		$message .= network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') . "\r\n";

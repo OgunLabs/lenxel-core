@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    $title_text = $settings['title_text'];
 
    $this->add_render_attribute( 'block', 'class', [ 'widget gsc-countdown' ] );
