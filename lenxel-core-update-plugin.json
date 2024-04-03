@@ -2,7 +2,7 @@
     "name": "Lenxel core",
     "slug": "lenxel-core",
     "homepage": "http://lenxel.ogunlabs.com/",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "requires": "5.5",
     "author": "Ogunlabs",
     "author_homepage": "http://lenxel.ogunlabs.com/",

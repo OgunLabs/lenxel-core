@@ -4,7 +4,7 @@
  * Plugin Name: Lenxel Core
  * Description: LMS, Header builder, Footer builder, Teams, Portfolios, Lenxel Theme Settings ... for theme
  * Plugin URI: https://ogunlabs.com/products/lenxel 
- * Version: 1.0.4
+ * Version: 1.0.5
  * Requires PHP: 7.2
  * Author: Ogun Labs
  * Requires at least: 5.0
