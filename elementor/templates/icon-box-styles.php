@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                <?php } ?>
             </div>
          </div> 
-         <?php $this->lnx_render_link_html('', $settings['button_url'], 'link-overlay'); ?>
+         <?php $this->lenxel_render_link_html('', $settings['button_url'], 'link-overlay'); ?>
       </div>   
    <?php } ?>
 
@@ -78,7 +78,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             </div>
          <?php } ?>
          
-         <?php $this->lnx_render_link_html('', $settings['button_url'], 'link-overlay'); ?>
+         <?php $this->lenxel_render_link_html('', $settings['button_url'], 'link-overlay'); ?>
 
       </div> 
    <?php } ?>   
@@ -95,14 +95,14 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                      <?php if(!empty($settings['number_text'])) echo '<span class="number">' . $settings['number_text'] . '</span>'; ?>
                   </span>
                <?php } ?>
-               <?php $this->lnx_render_link_html('', $settings['button_url'], 'link-overlay'); ?>
+               <?php $this->lenxel_render_link_html('', $settings['button_url'], 'link-overlay'); ?>
             </div>
          <?php } ?>
 
          <div class="content-inner">
             <?php if(!empty($settings['title_text'])){ ?>
                <<?php echo esc_attr($header_tag) ?> <?php echo $this->get_render_attribute_string( 'title_text' ); ?>>
-                  <?php $this->lnx_render_link_html($title_html, $settings['button_url']); ?>
+                  <?php $this->lenxel_render_link_html($title_html, $settings['button_url']); ?>
                </<?php echo esc_attr($header_tag) ?>>
             <?php } ?>
 
@@ -126,14 +126,14 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                      <?php if(!empty($settings['number_text'])) echo '<span class="number">' . $settings['number_text'] . '</span>'; ?>
                   </span>
                <?php } ?>
-               <?php $this->lnx_render_link_html('', $settings['button_url'], 'link-overlay'); ?>
+               <?php $this->lenxel_render_link_html('', $settings['button_url'], 'link-overlay'); ?>
             </div>
          <?php } ?>
 
          <div class="content-inner">
             <?php if(!empty($settings['title_text'])){ ?>
                <<?php echo esc_attr($header_tag) ?> <?php echo $this->get_render_attribute_string( 'title_text' ); ?>>
-                  <?php $this->lnx_render_link_html($title_html, $settings['button_url']); ?>
+                  <?php $this->lenxel_render_link_html($title_html, $settings['button_url']); ?>
                </<?php echo esc_attr($header_tag) ?>>
             <?php } ?>
 

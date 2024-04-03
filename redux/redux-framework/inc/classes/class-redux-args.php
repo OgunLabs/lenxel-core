@@ -3,6 +3,7 @@
  * Redux Framework Args Class
  *
  * @package     Redux_Framework/Classes
+ * @noinspection PhpConditionCheckedByNextConditionInspection
  */
 
 // Exit if accessed directly.
@@ -53,11 +54,11 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 		/**
 		 * Redux_Args constructor.
 		 *
-		 * @param     object $parent ReduxFramework object.
+		 * @param     object $redux ReduxFramework object.
 		 * @param     array  $args Global arguments array.
 		 */
-		public function __construct( $parent, array $args ) {
-			$this->parent = $parent;
+		public function __construct( $redux, array $args ) {
+			$this->parent = $redux;
 
 			$default = array(
 				'opt_name'                         => '',
@@ -131,19 +132,19 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 				'font_weights'                     => array(
 					array(
 						'id'   => '400',
-						'name' => __( 'Regular 400', 'lenxel-core' ),
+						'name' => __( 'Regular 400', 'redux-framework' ),
 					),
 					array(
 						'id'   => '400italic',
-						'name' => __( 'Regular 400 Italic', 'lenxel-core' ),
+						'name' => __( 'Regular 400 Italic', 'redux-framework' ),
 					),
 					array(
 						'id'   => '700',
-						'name' => __( 'Bold 700', 'lenxel-core' ),
+						'name' => __( 'Bold 700', 'redux-framework' ),
 					),
 					array(
 						'id'   => '700italic',
-						'name' => __( 'Bold 700 Italic', 'lenxel-core' ),
+						'name' => __( 'Bold 700 Italic', 'redux-framework' ),
 					),
 				),
 				'show_import_export'               => true,
@@ -157,8 +158,11 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 				'allow_tracking'                   => true,
 				'admin_theme'                      => 'wp',
 				'elusive_frontend'                 => false,
-				'pro'                              => array(),
+				'fontawesome_frontend'             => false,
+				'flyout_submenus'                  => true,
 				'font_display'                     => 'swap', // block|swap|fallback|optional.
+				'load_on_cron'                     => false,
+				'search'                           => false,
 			);
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
@@ -167,11 +171,13 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 			$args = Redux_Functions::parse_args( $args, $default );
 
 			$args = $this->args( $args );
+
 			$args = $this->default_cleanup( $args );
 
 			if ( ! in_array( $args['font_display'], array( 'block', 'swap', 'fallback', 'optional' ), true ) ) {
 				$args['font_display'] = 'swap';
 			}
+
 			if ( isset( $args['async_typography'] ) && $args['async_typography'] ) {
 				$args['async_typography'] = false;
 			}
@@ -186,7 +192,7 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 		}
 
 		/**
-		 * Builds and sanitizes global args array.
+		 * Builds and sanitizes a global args array.
 		 *
 		 * @param     array $args Global args.
 		 *
@@ -202,9 +208,6 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 			if ( ! function_exists( 'wp_rand' ) ) {
 				require_once ABSPATH . '/wp-includes/pluggable.php';
 			}
-
-			$this->parent->core_instance = chr( 64 + wp_rand( 1, 26 ) ) . time() . '_' . wp_rand( 0, 1000000 );
-			$this->parent->core_thread   = chr( 64 + wp_rand( 1, 26 ) ) . time() . '_' . wp_rand( 0, 1000000 );
 
 			if ( $args['opt_name'] === $this->parent->old_opt_name ) {
 				$this->parent->old_opt_name = null;
@@ -262,22 +265,22 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 
 				$footer_text = sprintf(
 				/* translators: 1: Redux, 2: Link to plugin review */
-					__( 'Enjoyed %1$s? Please leave us a %2$s rating. We really appreciate your support!', 'lenxel-core' ),
-					'<strong>' . __( 'Redux', 'lenxel-core' ) . '</strong>',
+					__( 'Enjoyed %1$s? Please leave us a %2$s rating. We really appreciate your support!', 'redux-framework' ),
+					'<strong>' . __( 'Redux', 'redux-framework' ) . '</strong>',
 					'<a href="https://wordpress.org/support/plugin/redux-framework/reviews/?filter=5/#new-post" target="_blank">&#9733;&#9733;&#9733;&#9733;&#9733;</a>'
 				);
 				$args['footer_credit'] = '<span id="footer-thankyou">' . $footer_text . '</span>';
 			}
 
 			if ( empty( $args['menu_title'] ) ) {
-				$args['menu_title'] = esc_html__( 'Options', 'lenxel-core' );
+				$args['menu_title'] = esc_html__( 'Options', 'redux-framework' );
 			}
 
 			if ( empty( $args['page_title'] ) ) {
-				$args['page_title'] = esc_html__( 'Options', 'lenxel-core' );
+				$args['page_title'] = esc_html__( 'Options', 'redux-framework' );
 			}
 
-			// Auto create the page_slug appropriately.
+			// Auto creates the page_slug appropriately.
 			if ( empty( $args['page_slug'] ) ) {
 				if ( ! empty( $args['display_name'] ) ) {
 					$args['page_slug'] = sanitize_html_class( $args['display_name'] );
@@ -332,14 +335,10 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 		private function change_demo_defaults( array $args ) {
 			if ( $args['dev_mode'] || true === Redux_Helpers::is_local_host() ) {
 				if ( ! empty( $args['admin_bar_links'] ) ) {
-					foreach ( $args['admin_bar_links'] as $idx => $arr ) {
+					foreach ( $args['admin_bar_links'] as $arr ) {
 						if ( is_array( $arr ) && ! empty( $arr ) ) {
-							foreach ( $arr as $x => $y ) {
+							foreach ( $arr as $y ) {
 								if ( strpos( Redux_Core::strtolower( $y ), 'redux' ) !== false ) {
-									$msg = '<strong>' . esc_html__( 'Redux Framework Notice', 'lenxel-core' ) . ' </strong>' .
-										esc_html__( 'There are references to the Redux Framework support site in your config\'s ', 'lenxel-core' ) .
-										'<code>admin_bar_links</code> ' . esc_html__( 'argument.  This is sample data.  Please change or remove this data before shipping your product.', 'lenxel-core' );
-
 									$this->omit_items = true;
 									break;
 								}
@@ -349,14 +348,10 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 				}
 
 				if ( ! empty( $args['share_icons'] ) ) {
-					foreach ( $args['share_icons'] as $idx => $arr ) {
+					foreach ( $args['share_icons'] as $arr ) {
 						if ( is_array( $arr ) && ! empty( $arr ) ) {
-							foreach ( $arr as $x => $y ) {
+							foreach ( $arr as $y ) {
 								if ( strpos( Redux_Core::strtolower( $y ), 'redux' ) !== false ) {
-									$msg = '<strong>' . esc_html__( 'Redux Framework Notice:', 'lenxel-core' ) . '</strong>' .
-										esc_html__( 'There are references to the Redux Framework support site in your config\'s', 'lenxel-core' ) .
-										' <code>share_icons</code> ' . esc_html__( 'argument.  This is sample data.  Please change or remove this data before shipping your product.', 'lenxel-core' );
-
 									$this->omit_icons = true;
 								}
 							}
@@ -372,6 +367,7 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 		 * @param array $args Global args.
 		 *
 		 * @return array
+		 * @noinspection PhpStrictComparisonWithOperandsOfDifferentTypesInspection
 		 */
 		private function default_cleanup( array $args ): array {
 

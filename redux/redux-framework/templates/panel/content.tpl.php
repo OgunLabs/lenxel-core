@@ -51,24 +51,24 @@
 			<?php
 			if ( $display ) {
 				/**
-				 * Action 'redux/page/{opt_name_triger}/section/before'
+				 * Action 'redux/page/{opt_name}/section/before'
 				 *
 				 * @param object $this ReduxFramework
 				 */
 
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				do_action( "redux/page/{$this->parent->args['opt_name_triger']}/section/before", $section );
+				do_action( "redux/page/{$this->parent->args['opt_name']}/section/before", $section );
 
 				$this->output_section( $k );
 
 				/**
-				 * Action 'redux/page/{opt_name_triger}/section/after'
+				 * Action 'redux/page/{opt_name}/section/after'
 				 *
 				 * @param object $this ReduxFramework
 				 */
 
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				do_action( "redux/page/{$this->parent->args['opt_name_triger']}/section/after", $section );
+				do_action( "redux/page/{$this->parent->args['opt_name']}/section/after", $section );
 			}
 			?>
 		</div> <!-- section group -->
@@ -76,13 +76,13 @@
 
 	<?php
 	/**
-	 * Action 'redux/page/{opt_name_triger}/sections/after'
+	 * Action 'redux/page/{opt_name}/sections/after'
 	 *
 	 * @param object $this ReduxFramework
 	 */
 
 	// phpcs:ignore WordPress.NamingConventions.ValidHookName
-	do_action( "redux/page/{$this->parent->args['opt_name_triger']}/sections/after", $this );
+	do_action( "redux/page/{$this->parent->args['opt_name']}/sections/after", $this );
 	?>
 	<div class="clear"></div>
 	<!-- Footer Block -->

@@ -10,7 +10,7 @@
 		var tab;
 		var sTab;
 		var cookieName;
-		var opt_name_triger;
+		var opt_name;
 
 		$( '.redux-group-tab-link-a' ).on(
 			'click',
@@ -34,10 +34,10 @@
 					link = elements.slice( index + 1, index + 2 );
 				}
 
-				el    = link.parents( '.redux-container:first' );
-				relid = link.data( 'rel' ); // The group ID of interest.
-				oldid = el.find( '.redux-group-tab-link-li.active:first .redux-group-tab-link-a' ).data( 'rel' );
-				opt_name_triger = $.redux.getOptName( el );
+				el       = link.parents( '.redux-container:first' );
+				relid    = link.data( 'rel' ); // The group ID of interest.
+				oldid    = el.find( '.redux-group-tab-link-li.active:first .redux-group-tab-link-a' ).data( 'rel' );
+				opt_name = $.redux.getOptName( el );
 
 				if ( oldid === relid ) {
 					return;
@@ -48,14 +48,14 @@
 				if ( ! link.parents( '.postbox-container:first' ).length ) {
 					$( '#currentSection' ).val( relid );
 
-					cookieName = 'redux_current_tab_' + redux.optName.args.opt_name_triger;
+					cookieName = 'redux_current_tab_' + redux.optName.args.opt_name;
 				} else {
 					el.prev( '#currentSection' ).val( relid );
 
 					boxIndex = el.data( 'index' );
 
 					if ( '' !== boxIndex ) {
-						cookieName = 'redux_metabox_' + boxIndex + '_current_tab_' + redux.optName.args.opt_name_triger;
+						cookieName = 'redux_metabox_' + boxIndex + '_current_tab_' + redux.optName.args.opt_name;
 					}
 				}
 
@@ -207,7 +207,7 @@
 				);
 
 				$.cookie(
-					'redux_current_tab_' + redux.optName.args.opt_name_triger,
+					'redux_current_tab_' + redux.optName.args.opt_name,
 					tab,
 					{
 						expires: 7,
@@ -226,13 +226,13 @@
 				var boxIndex;
 
 				if ( ! $( this ).parents( '.postbox-container:first' ).length ) {
-					opt_name_triger = $( '.redux-ajax-security' ).data( 'opt-name' );
+					opt_name = $( '.redux-ajax-security' ).data( 'opt-name' );
 
-					cookieName = 'redux_current_tab_' + opt_name_triger;
+					cookieName = 'redux_current_tab_' + opt_name;
 
 					sTab = $( this ).find( '#' + $.cookie( cookieName ) + '_section_group_li_a' );
 				} else {
-					opt_name_triger = $.redux.getOptName( this );
+					opt_name = $.redux.getOptName( this );
 
 					boxIndex = $( this ).data( 'index' );
 
@@ -240,7 +240,7 @@
 						boxIndex = 0;
 					}
 
-					cookieName = 'redux_metabox_' + boxIndex + '_current_tab_' + opt_name_triger;
+					cookieName = 'redux_metabox_' + boxIndex + '_current_tab_' + opt_name;
 
 					sTab = $( this ).find( '#' + $.cookie( cookieName ) + '_section_group_li_a' );
 				}

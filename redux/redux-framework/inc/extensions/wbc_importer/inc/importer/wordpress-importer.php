@@ -35,7 +35,7 @@ require dirname( __FILE__ ) . '/parsers.php';
  * @subpackage Importer
  */
 if ( class_exists( 'WP_Importer' ) ) {
-class WP_Import extends WP_Importer {
+class Lenxel_WP_Import extends WP_Importer {
 	var $max_wxr_version = 1.2; // max. supported WXR version
 
 	var $id; // WXR attachment ID
@@ -260,11 +260,11 @@ class WP_Import extends WP_Importer {
 ?>
 <form action="<?php echo admin_url( 'admin.php?import=wordpress&amp;step=2' ); ?>" method="post">
 	<?php wp_nonce_field( 'import-wordpress' ); ?>
-	<input type="hidden" name="import_id" value="<?php echo esc_attr($this->id); ?>" />
+	<input type="hidden" name="import_id" value="<?php echo $this->id; ?>" />
 
 <?php if ( ! empty( $this->authors ) ) : ?>
-	<h3><?php _e( 'Assign Authors', 'lenxel-core' ); ?></h3>
-	<p><?php _e( 'To make it simpler for you to edit and save the imported content, you may want to reassign the author of the imported item to an existing user of this site, such as your primary administrator account.', 'lenxel-core' ); ?></p>
+	<h3><?php esc_html_e( 'Assign Authors', 'lenxel-core' ); ?></h3>
+	<p><?php esc_html_e( 'To make it simpler for you to edit and save the imported content, you may want to reassign the author of the imported item to an existing user of this site, such as your primary administrator account.', 'lenxel-core' ); ?></p>
 <?php if ( $this->allow_create_users() ) : ?>
 	<p><?php printf( __( 'If a new user is created by WordPress, a new password will be randomly generated and the new user&#8217;s role will be set as %s. Manually changing the new user&#8217;s details will be necessary.', 'lenxel-core' ), esc_html( get_option('default_role') ) ); ?></p>
 <?php endif; ?>
@@ -276,10 +276,10 @@ class WP_Import extends WP_Importer {
 <?php endif; ?>
 
 <?php if ( $this->allow_fetch_attachments() ) : ?>
-	<h3><?php _e( 'Import Attachments', 'lenxel-core' ); ?></h3>
+	<h3><?php esc_html_e( 'Import Attachments', 'lenxel-core' ); ?></h3>
 	<p>
 		<input type="checkbox" value="1" name="fetch_attachments" id="import-attachments" />
-		<label for="import-attachments"><?php _e( 'Download and import file attachments', 'lenxel-core' ); ?></label>
+		<label for="import-attachments"><?php esc_html_e( 'Download and import file attachments', 'lenxel-core' ); ?></label>
 	</p>
 <?php endif; ?>
 
@@ -296,7 +296,7 @@ class WP_Import extends WP_Importer {
 	 * @param array $author Author information, e.g. login, display name, email
 	 */
 	function author_select( $n, $author ) {
-		_e( 'Import author:', 'lenxel-core' );
+		esc_html_e( 'Import author:', 'lenxel-core' );
 		echo ' <strong>' . esc_html( $author['author_display_name'] );
 		if ( $this->version != '1.0' ) echo ' (' . esc_html( $author['author_login'] ) . ')';
 		echo '</strong><br />';
@@ -306,37 +306,37 @@ class WP_Import extends WP_Importer {
 
 		$create_users = $this->allow_create_users();
 		if ( $create_users ) {
-			echo '<label for="user_new_'. $n . '">';
+			echo '<label for="user_new_'. esc_attr($n) . '">';
 			if ( $this->version != '1.0' ) {
-				_e( 'or create new user with login name:', 'lenxel-core' );
+				esc_html_e( 'or create new user with login name:', 'lenxel-core' );
 				$value = '';
 			} else {
-				_e( 'as a new user:', 'lenxel-core' );
+				esc_html_e( 'as a new user:', 'lenxel-core' );
 				$value = esc_attr( sanitize_user( $author['author_login'], true ) );
 			}
 			echo '</label>';
 
-			echo ' <input type="text" id="user_new_' . $n . '" name="user_new['.$n.']" value="'. $value .'" /><br />';
+			echo ' <input type="text" id="user_new_' . esc_attr($n) . '" name="user_new['.esc_attr($n).']" value="'. esc_attr($value) .'" /><br />';
 		}
 
-		echo '<label for="imported_authors_'. $n . '">';
+		echo '<label for="imported_authors_'. esc_attr($n) . '">';
 		if ( ! $create_users && $this->version == '1.0' ) {
-			_e( 'assign posts to an existing user:', 'lenxel-core' );
+			esc_html_e( 'assign posts to an existing user:', 'lenxel-core' );
 		} else {
-			_e( 'or assign posts to an existing user:', 'lenxel-core' );
+			esc_html_e( 'or assign posts to an existing user:', 'lenxel-core' );
 		}
 		echo '</label>';
 
 		echo ' ' . wp_dropdown_users( array(
 			'name'            => "user_map[$n]",
-			'id'              => 'imported_authors_' . $n,
+			'id'              => 'imported_authors_' . esc_html($n),
 			'multi'           => true,
 			'show_option_all' => __( '- Select -', 'lenxel-core' ),
 			'show'            => 'display_name_with_login',
 			'echo'            => 0,
 		) );
 
-		echo '<input type="hidden" name="imported_authors['.$n.']" value="' . esc_attr( $author['author_login'] ) . '" />';
+		echo '<input type="hidden" name="imported_authors['.esc_attr($n).']" value="' . esc_attr( $author['author_login'] ) . '" />';
 
 		if ( $this->version != '1.0' )
 			echo '</div>';
@@ -903,8 +903,8 @@ class WP_Import extends WP_Importer {
 
 		// no nav_menu term associated with this menu item
 		if ( ! $menu_slug ) {
-			_e( 'Menu item skipped due to missing menu slug', 'lenxel-core' );
-			echo '<br />';
+			esc_html_e( 'Menu item skipped due to missing menu slug', 'lenxel-core' );
+			printf( '< />');
 			return;
 		}
 
@@ -1242,7 +1242,7 @@ class WP_Import extends WP_Importer {
 	 * @return array Information gathered from the WXR file
 	 */
 	function parse( $file ) {
-		$parser = new WXR_Parser();
+		$parser = new Lenxel_WXR_Parser();
 		return $parser->parse( $file );
 	}
 

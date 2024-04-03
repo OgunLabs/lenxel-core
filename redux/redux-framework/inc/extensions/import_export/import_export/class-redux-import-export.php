@@ -19,18 +19,24 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 	 */
 	class Redux_Import_Export extends Redux_Field {
 
+		/**
+		 * Is field.
+		 *
+		 * @var bool
+		 */
+		public $is_field;
 
 		/**
 		 * Redux_Import_Export constructor.
 		 *
 		 * @param array  $field  Field array.
 		 * @param string $value  Value array.
-		 * @param object $parent ReduxFramework object.
+		 * @param object $redux ReduxFramework object.
 		 *
 		 * @throws ReflectionException .
 		 */
-		public function __construct( $field, $value, $parent ) {
-			parent::__construct( $field, $value, $parent );
+		public function __construct( $field, $value, $redux ) {
+			parent::__construct( $field, $value, $redux );
 
 			$this->is_field = $this->parent->extensions['import_export']->is_field;
 		}
@@ -60,9 +66,9 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 		 * @access      public
 		 */
 		public function render() {
-			$secret = md5( md5( Redux_Functions_Ex::hash_key() ) . '-' . $this->parent->args['opt_name_triger'] );
+			$secret = wp_create_nonce( 'redux_io_' . $this->parent->args['opt_name'] );
 
-			// No errors please.
+			// No errors, please.
 			$defaults = array(
 				'full_width' => true,
 				'overflow'   => 'inherit',
@@ -70,54 +76,32 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 
 			$this->field = wp_parse_args( $this->field, $defaults );
 
-			$do_close = false;
-
-			$id = $this->parent->args['opt_name_triger'] . '-' . $this->field['id'];
 			?>
-			<h4><?php esc_html_e( 'Import Options', 'lenxel-core' ); ?></h4>
+			<h4><?php esc_html_e( 'Import Options', 'redux-framework' ); ?></h4>
 			<p>
 				<a
 					href="javascript:void(0);"
 					id="redux-import-code-button"
 					class="button-secondary">
-					<?php esc_html_e( 'Import from Clipboard', 'lenxel-core' ); ?>
+					<?php esc_html_e( 'Import from Clipboard', 'redux-framework' ); ?>
 				</a>
-
-				<a
-					href="javascript:void(0);"
-					id="redux-import-link-button"
-					class="button-secondary">
-					<?php esc_html_e( 'Import from URL', 'lenxel-core' ); ?>
-				</a>
-
 				<a
 					href="#"
 					id="redux-import-upload"
 					class="button-secondary">
-					<?php esc_html_e( 'Upload file', 'lenxel-core' ); ?><span></span>
+					<?php esc_html_e( 'Upload file', 'redux-framework' ); ?><span></span>
 				</a>
 				<input type="file" id="redux-import-upload-file" size="50">
 			</p>
 			<div id="redux-import-code-wrapper">
 				<p class="description" id="import-code-description">
 					<?php // phpcs:ignore WordPress.NamingConventions.ValidHookName ?>
-					<?php echo esc_html( apply_filters( 'redux-import-file-description', esc_html__( 'Paste your clipboard data here.', 'lenxel-core' ) ) ); ?>
+					<?php echo esc_html( apply_filters( 'redux-import-file-description', esc_html__( 'Paste your clipboard data here.', 'redux-framework' ) ) ); ?>
 				</p>
-				<textarea
+				<label for="import-code-value"></label><textarea
 					id="import-code-value"
-					name="<?php echo esc_attr( $this->parent->args['opt_name_triger'] ); ?>[import_code]"
+					name="<?php echo esc_attr( $this->parent->args['opt_name'] ); ?>[import_code]"
 					class="large-text no-update" rows="3"></textarea>
-			</div>
-			<div id="redux-import-link-wrapper">
-				<p class="description" id="import-link-description">
-					<?php // phpcs:ignore WordPress.NamingConventions.ValidHookName ?>
-					<?php echo esc_html( apply_filters( 'redux-import-link-description', esc_html__( 'Input the URL to another sites options set and hit Import to load the options from that site.', 'lenxel-core' ) ) ); ?>
-				</p>
-				<input
-					class="large-text no-update"
-					id="import-link-value"
-					name="<?php echo esc_attr( $this->parent->args['opt_name_triger'] ); ?>[import_link]"
-					rows="2"/>
 			</div>
 			<p id="redux-import-action">
 				<input
@@ -125,10 +109,10 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 					id="redux-import"
 					name="import"
 					class="button-primary"
-					value="<?php esc_html_e( 'Import', 'lenxel-core' ); ?>">&nbsp;&nbsp;
+					value="<?php esc_html_e( 'Import', 'redux-framework' ); ?>">&nbsp;&nbsp;
 				<span>
 					<?php // phpcs:ignore WordPress.NamingConventions.ValidHookName ?>
-					<?php echo esc_html( apply_filters( 'redux-import-warning', esc_html__( 'WARNING! This will overwrite all existing option values, please proceed with caution!', 'lenxel-core' ) ) ); ?>
+					<?php echo esc_html( apply_filters( 'redux-import-warning', esc_html__( 'WARNING! This will overwrite all existing option values, please proceed with caution!', 'redux-framework' ) ) ); ?>
 				</span>
 			</p>
 			<div class="hr">
@@ -136,33 +120,27 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 					<span>&nbsp;</span>
 				</div>
 			</div>
-			<h4><?php esc_html_e( 'Export Options', 'lenxel-core' ); ?></h4>
+			<h4><?php esc_html_e( 'Export Options', 'redux-framework' ); ?></h4>
 			<div class="redux-section-desc">
 				<p class="description">
 					<?php // phpcs:ignore WordPress.NamingConventions.ValidHookName ?>
-					<?php echo esc_html( apply_filters( 'redux-backup-description', esc_html__( 'Here you can copy/download your current option settings. Keep this safe as you can use it as a backup should anything go wrong, or you can use it to restore your settings on this site (or any other site).', 'lenxel-core' ) ) ); ?>
+					<?php echo esc_html( apply_filters( 'redux-backup-description', esc_html__( 'Here you can copy/download your current option settings. Keep this safe as you can use it as a backup should anything go wrong, or you can use it to restore your settings on this site (or any other site).', 'redux-framework' ) ) ); ?>
 				</p>
 			</div>
-			<?php $link = admin_url( 'admin-ajax.php?action=redux_download_options-' . $this->parent->args['opt_name_triger'] . '&secret=' . $secret ); ?>
+			<?php $link = admin_url( 'admin-ajax.php?action=redux_download_options-' . $this->parent->args['opt_name'] . '&secret=' . $secret ); ?>
 			<p>
 				<button id="redux-export-code-copy" class="button-secondary"
 						data-secret="<?php echo esc_attr( $secret ); ?>"
-						data-copy="<?php esc_attr_e( 'Copy to Clipboard', 'lenxel-core' ); ?>"
-						data-copied="<?php esc_attr_e( 'Copied!', 'lenxel-core' ); ?>">
-					<?php esc_html_e( 'Copy to Clipboard', 'lenxel-core' ); ?>
+						data-copy="<?php esc_attr_e( 'Copy to Clipboard', 'redux-framework' ); ?>"
+						data-copied="<?php esc_attr_e( 'Copied!', 'redux-framework' ); ?>">
+					<?php esc_html_e( 'Copy to Clipboard', 'redux-framework' ); ?>
 				</button>
 				<a href="<?php echo esc_url( $link ); ?>" id="redux-export-code-dl" class="button-primary">
-					<?php esc_html_e( 'Export File', 'lenxel-core' ); ?>
-				</a>
-				<a href="javascript:void(0);" id="redux-export-link" class="button-secondary"
-				   data-copy="<?php esc_attr_e( 'Copy Export URL', 'lenxel-core' ); ?>"
-				   data-copied="<?php esc_attr_e( 'Copied!', 'lenxel-core' ); ?>"
-				   data-url="<?php echo esc_url( $link ); ?>">
-					<?php esc_html_e( 'Copy Export URL', 'lenxel-core' ); ?>
+					<?php esc_html_e( 'Export File', 'redux-framework' ); ?>
 				</a>
 			</p>
 			<p></p>
-			<textarea class="large-text no-update" id="redux-export-code" rows="1"></textarea>
+			<label for="redux-export-code"></label><textarea class="large-text no-update" id="redux-export-code" rows="1"></textarea>
 			<?php
 		}
 
@@ -176,7 +154,7 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 		 */
 		public function enqueue() {
 			wp_enqueue_script(
-				'redux-extension-import-export-js',
+				'redux-extension-import-export',
 				$this->url . 'redux-import-export' . Redux_Functions::is_min() . '.js',
 				array(
 					'jquery',
@@ -186,7 +164,22 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 				true
 			);
 
-			wp_enqueue_style( 'redux-import-export', $this->url . 'redux-import-export.css', array(), Redux_Extension_Import_Export::$version );
+			wp_localize_script(
+				'redux-extension-import-export',
+				'ImportExport',
+				array(
+					'unchanged_values' => esc_html__( 'Your panel has unchanged values, would you like to save them now?', 'redux-framework' ),
+				)
+			);
+
+			if ( $this->parent->args['dev_mode'] ) {
+				wp_enqueue_style(
+					'redux-import-export',
+					$this->url . 'redux-import-export.css',
+					array(),
+					Redux_Extension_Import_Export::$version
+				);
+			}
 		}
 	}
 }

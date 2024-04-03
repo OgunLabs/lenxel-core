@@ -109,10 +109,11 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                      'show_pagination'    => 1,
                      'only_course_items'  => 1
                   );
-                  $current_url = wp_doing_ajax() ? esc_url(sanitize_text_field($_SERVER['HTTP_REFERER'])) : esc_url(tutor()->current_url);
+               
+                  $current_url = wp_doing_ajax() ? sanitize_text_field(wp_unslash($_SERVER['HTTP_REFERER'])) : esc_url(tutor()->current_url);
                   $push_link = add_query_arg( array_merge( $_POST, $GLOBALS['tutor_course_archive_arg'] ), $current_url );
 
-                  $data = wp_doing_ajax(  ) ? $_POST : $_GET;
+                  $data = wp_doing_ajax(  ) ? Input::sanitize_array($_POST) : Input::sanitize_array($_GET);
                   $pagination_data = array(
                      'total_page'  => isset($the_query) ? $the_query->max_num_pages : $wp_query->max_num_pages,
                      'per_page'    => $course_per_page,

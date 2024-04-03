@@ -20,8 +20,8 @@ add_filter( 'use_widgets_block_editor', '__return_false' );
 
 add_action( 'init', 'lenxel_init_options', 1 );
 function lenxel_init_options(){
-   if( empty(get_option( 'tribeEventsTemplate', '' )) ){
-      update_option('tribeEventsTemplate', 'default');
+   if( empty(get_option( 'lenxel_tribeEventsTemplate', '' )) ){
+      update_option('lenxel_tribeEventsTemplate', 'default');
    }
    if( empty(get_option( 'views_v2_enabled', '' )) ){
       update_option('views_v2_enabled', '0');
@@ -131,12 +131,12 @@ function lenxel_init_options(){
    }
 }
 
-add_shortcode( 'gv-page-content', 'lenxel_theme_support_page_content_shortcode' );
+add_shortcode( 'lenxel_gv-page-content', 'lenxel_theme_support_page_content_shortcode' );
 function lenxel_theme_support_page_content_shortcode($atts) {
    $thispage = get_page($atts["id"]);
    return do_shortcode( $thispage->post_content );
 }
-add_shortcode( 'gv-post-content', 'lenxel_theme_support_post_content_shortcode' );
+add_shortcode( 'lenxel_gv-post-content', 'lenxel_theme_support_post_content_shortcode' );
 function lenxel_theme_support_post_content_shortcode($atts) {
    $thispost = get_post($atts["id"]);
    return do_shortcode( $thispost->post_content );

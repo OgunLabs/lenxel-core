@@ -35,7 +35,7 @@ if(!class_exists('Lenxel_Elementor_Addons')){
 			require 'elements/heading-block.php';
 			require 'elements/logo.php';
 			require 'elements/posts.php';
-			if(function_exists('get_template_restrict')){
+			if(function_exists('lenxel_get_template_restrict')){
 				require 'elements/image-content.php';
 				require 'elements/cart.php';
 				require 'elements/counter.php';

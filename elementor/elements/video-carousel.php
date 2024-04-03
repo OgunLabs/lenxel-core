@@ -39,7 +39,7 @@ class LNXElement_Video_Carousel extends LNXElement_Base{
      * @return string Widget title.
      */
     public function get_title() {
-        $get_current_name = load_lenxel_widget_content_element('LNX Video Carousel');
+        $get_current_name = lenxel_load_widget_content_element('LNX Video Carousel');
         $filter_name = 'lenxel/element/'.$this->get_name();
 		return apply_filters( $filter_name, $get_current_name);
     }
@@ -203,13 +203,14 @@ class LNXElement_Video_Carousel extends LNXElement_Base{
      * @access protected
      */
     protected function render() {
-        if ( get_template_restrict()->has_premium){
+        if ( lenxel_get_template_restrict()->has_premium){
             $settings = $this->get_settings_for_display();
             printf( '<div class="lnx-element-%s lnx-element">', $this->get_name() );
                 include $this->get_template('video-carousel.php');
             print '</div>';
         }else {
-			printf('%s', $content);
+			$content = '<div></div>';
+			wp_kses($content, array( 'div' ));
 		}
     }
 

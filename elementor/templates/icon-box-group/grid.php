@@ -21,7 +21,7 @@
                <div class="icon-box-item-inner">
                   <?php include $this->get_template('icon-box-group/item.php'); ?>
                </div>
-               <?php $this->lnx_render_link_html('', $item['link'], 'link-overlay'); ?>
+               <?php $this->lenxel_render_link_html('', $item['link'], 'link-overlay'); ?>
             </div>
          </div>
       <?php endforeach; ?>

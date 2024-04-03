@@ -38,7 +38,7 @@ if(!function_exists('lenxel_post_type_megamenu')   ){
   }
   add_action( 'init','lenxel_post_type_megamenu' ); 
 
-  function lenxelthemesupport_add_custom_css_megamenu(){
+  function lenxel_themesupport_add_custom_css_megamenu(){
       global $post;
       $args = array(
         'post_type'     => 'lnx_megamenu',

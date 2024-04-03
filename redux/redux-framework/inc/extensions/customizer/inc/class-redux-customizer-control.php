@@ -16,6 +16,13 @@ if ( ! class_exists( 'Redux_Customizer_Control', false ) ) {
 	class Redux_Customizer_Control extends WP_Customize_Control {
 
 		/**
+		 * Redux ID.
+		 *
+		 * @var string
+		 */
+		public $redux_id = '';
+
+		/**
 		 * Field render.
 		 */
 		public function render() {
@@ -23,10 +30,10 @@ if ( ! class_exists( 'Redux_Customizer_Control', false ) ) {
 			$this->redux_id = str_replace( 'customize-control-', '', 'customize-control-' . str_replace( '[', '-', str_replace( ']', '', $this->id ) ) );
 			$class          = 'customize-control redux-group-tab redux-field customize-control-' . $this->type;
 			$opt_name_arr   = explode( '[', $this->id );
-			$opt_name_triger       = $opt_name_arr[0];
+			$opt_name       = $opt_name_arr[0];
 			$field_id       = str_replace( ']', '', $opt_name_arr[1] );
 
-			$section = Redux_Helpers::section_from_field_id( $opt_name_triger, $field_id );
+			$section = Redux_Helpers::section_from_field_id( $opt_name, $field_id );
 
 			if ( isset( $section['disabled'] ) && true === $section['disabled'] ) {
 				$class .= ' disabled';
@@ -42,9 +49,9 @@ if ( ! class_exists( 'Redux_Customizer_Control', false ) ) {
 					<input
 						type="hidden"
 						data-id="<?php echo esc_attr( $this->id ); ?>"
-						data-key="<?php echo esc_attr( str_replace( $opt_name_triger . '-', '', $this->redux_id ) ); ?>"
+						data-key="<?php echo esc_attr( str_replace( $opt_name . '-', '', $this->redux_id ) ); ?>"
 						class="redux-customizer-input"
-						id="customizer_control_id_<?php echo esc_attr( $this->redux_id ); ?>" <?php echo esc_url( $this->link() ); ?>
+						id="customizer_control_id_<?php echo esc_attr( $this->redux_id ); ?>" <?php echo esc_url( $this->get_link() ); ?>
 						value=""/>
 				<?php } ?>
 				<?php $this->render_content(); ?>
@@ -53,11 +60,11 @@ if ( ! class_exists( 'Redux_Customizer_Control', false ) ) {
 		}
 
 		/**
-		 * Redner content hook.
+		 * Render content hook.
 		 */
 		public function render_content() {
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			do_action( 'redux/advanced_customizer/control/render/' . $this->redux_id, $this );
+			do_action( 'redux/customizer/control/render/' . $this->redux_id, $this );
 		}
 
 		/**

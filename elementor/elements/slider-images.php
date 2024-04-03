@@ -18,7 +18,7 @@ class LNXElement_Slider_Images extends LNXElement_Base{
 	}
 
 	public function get_title() {
-		$get_current_name = load_lenxel_widget_content_element('LNX Slider Images');
+		$get_current_name = lenxel_load_widget_content_element('LNX Slider Images');
 		$filter_name = 'lenxel/element/'.$this->get_name();
 		return apply_filters( $filter_name, $get_current_name);
 	}
@@ -122,13 +122,14 @@ class LNXElement_Slider_Images extends LNXElement_Base{
 	}
 
 	 protected function render() {
-		if ( get_template_restrict()->has_premium){
+		if ( lenxel_get_template_restrict()->has_premium){
 		  $settings = $this->get_settings_for_display();
 		  printf( '<div class="lnx-element-%s lnx-element">', $this->get_name() );
 			include $this->get_template('slider-images.php');
 		  print '</div>'; 
 		}else {
-			printf('%s', $content);
+			$content = '<div></div>';
+			wp_kses($content, array( 'div' ));
 		}
 	 }
 }

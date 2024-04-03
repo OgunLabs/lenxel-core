@@ -40,7 +40,7 @@ if(!function_exists('lenxel_post_type_team')){
  
   add_action( 'init','lenxel_post_type_team' );
 
-  function lenxelthemesupport_get_teams(){
+  function lenxel_themesupport_get_teams(){
     $args = array(
       'post_type'     => 'lnx_team',
       'posts_per_page'   => -1,
@@ -58,22 +58,22 @@ if(!function_exists('lenxel_post_type_team')){
     return apply_filters('lenxelthemes_list_team', $teams );
   }
 
-  function lenxelthemesupport_get_team($id){
+  function lenxel_themesupport_get_team($id){
     $team = get_post($id);
     return $team;
   }
 
   // -- Dynamic Social Team Metabox -- 
-  add_action( 'add_meta_boxes', 'lenxelthemesupport_team_socials' );
-  add_action( 'save_post', 'lnx_team_socials_save_postdata' );
-  function lenxelthemesupport_team_socials() {
+  add_action( 'add_meta_boxes', 'lenxel_themesupport_team_socials' );
+  add_action( 'save_post', 'lenxel_team_socials_save_postdata' );
+  function lenxel_themesupport_team_socials() {
       add_meta_box(
-          'lenxelthemesupport_team_socials',
+          'lenxel_themesupport_team_socials',
           __( 'Socials', 'lenxel-core' ),
-          'lnx_team_socials_inner_custom_box',
+          'lenxel_team_socials_inner_custom_box',
           'lnx_team');
   }
-  function lnx_team_socials_inner_custom_box() {
+  function lenxel_team_socials_inner_custom_box() {
       global $post;
       wp_nonce_field( plugin_basename( __FILE__ ), 'dynamic_socials_noncename' );
       ?>
@@ -111,7 +111,7 @@ if(!function_exists('lenxel_post_type_team')){
   </div><?php
   }
 
-  function lnx_team_socials_save_postdata( $post_id ) {
+  function lenxel_team_socials_save_postdata( $post_id ) {
      if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
           return;
      if ( !isset( $_POST['dynamic_socials_noncename'] ) )
@@ -124,17 +124,17 @@ if(!function_exists('lenxel_post_type_team')){
   }
 
   // -- Dynamic Education Team Metabox -- 
-  add_action( 'add_meta_boxes', 'lenxelthemesupport_team_education' );
-  add_action( 'save_post', 'lnx_team_educations_save_postdata' );
-  function lenxelthemesupport_team_education() {
+  add_action( 'add_meta_boxes', 'lenxel_themesupport_team_education' );
+  add_action( 'save_post', 'lenxel_team_educations_save_postdata' );
+  function lenxel_themesupport_team_education() {
     add_meta_box(
-        'lenxelthemesupport_team_education',
+        'lenxel_themesupport_team_education',
         __( 'Education', 'lenxel-core' ),
-        'lnx_team_education_inner_custom_box',
+        'lenxel_team_education_inner_custom_box',
         'lnx_team');
   }
 
-  function lnx_team_education_inner_custom_box() {
+  function lenxel_team_education_inner_custom_box() {
       global $post;
       wp_nonce_field( plugin_basename( __FILE__ ), 'dynamic_educations_noncename' );
       ?>
@@ -172,7 +172,7 @@ if(!function_exists('lenxel_post_type_team')){
   </div><?php
   }
 
-  function lnx_team_educations_save_postdata( $post_id ) {
+  function lenxel_team_educations_save_postdata( $post_id ) {
      if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
           return;
      if ( !isset( $_POST['dynamic_educations_noncename'] ) )
@@ -185,17 +185,17 @@ if(!function_exists('lenxel_post_type_team')){
   }
 
   // -- Dynamic Skills Team Metabox -- 
-  add_action( 'add_meta_boxes', 'lenxelthemesupport_team_skills' );
-  add_action( 'save_post', 'lnx_team_skills_save_postdata' );
-  function lenxelthemesupport_team_skills() {
+  add_action( 'add_meta_boxes', 'lenxel_themesupport_team_skills' );
+  add_action( 'save_post', 'lenxel_team_skills_save_postdata' );
+  function lenxel_themesupport_team_skills() {
     add_meta_box(
-        'lenxelthemesupport_team_skills',
+        'lenxel_themesupport_team_skills',
         __( 'Skills', 'lenxel-core' ),
-        'lnx_team_skills_inner_custom_box',
+        'lenxel_team_skills_inner_custom_box',
         'lnx_team');
   }
 
-  function lnx_team_skills_inner_custom_box() {
+  function lenxel_team_skills_inner_custom_box() {
       global $post;
       wp_nonce_field( plugin_basename( __FILE__ ), 'dynamic_skills_noncename' );
       ?>
@@ -233,7 +233,7 @@ if(!function_exists('lenxel_post_type_team')){
   </div><?php
   }
 
-  function lnx_team_skills_save_postdata( $post_id ) {
+  function lenxel_team_skills_save_postdata( $post_id ) {
      if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
           return;
      if ( !isset( $_POST['dynamic_skills_noncename'] ) )

@@ -108,13 +108,17 @@ After activating the plugin, this will setup header page builder, footer page bu
 = Plugin Configuration =
 1.  Setting up your Google Map API key.
 
-GPLv2 Licensed | Copyright © 2014-Today by Redux
-License: https://devs.redux.io/
-Source: https://devs.redux.io/
+GPLv2 Licensed | Copyright © v4.4.15 by Redux Framework Team
+License: https://github.com/reduxframework/redux-framework/tree/4.4.15?tab=License-1-ov-file
+Source: https://github.com/reduxframework/redux-framework/tree/4.4.15
 
 GPLv2 Licensed | Copyright © 2014-Today by Elementor
 License: https://developers.elementor.com
 Source: https://developers.elementor.com/docs/controls/simple-example/
+
+GPLv2 Licensed | Bartosz Wojciechowski, David Deutsch by Owl carousel2
+License: The MIT License (MIT) https://github.com/OwlCarousel2/OwlCarousel2/blob/develop/LICENSE
+Source: https://github.com/OwlCarousel2/OwlCarousel2/archive/2.3.4.zip
 
 = Feedback =
 1.  Deactivation feedback on Slack for better performance.

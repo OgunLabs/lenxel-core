@@ -78,7 +78,7 @@ if(!function_exists('lenxel_post_type_portfolio')  ){
   }
 }
 
-  function lenxelthemesupport_portfolio_query( $args ){
+  function lenxel_themesupport_portfolio_query( $args ){
     $ds = array(
       'post_type'   => 'portfolio',
       'posts_per_page'  =>  12
@@ -91,12 +91,12 @@ if(!function_exists('lenxel_post_type_portfolio')  ){
   }
 
  
-  function lenxelthemesupport_profolio_terms(){
+  function lenxel_themesupport_profolio_terms(){
     return get_terms( 'category_portfolio',array('orderby'=>'id') );
   }
 
 
-  function lenxelthemesupport_portfolio_terms_related( $postId ){
+  function lenxel_themesupport_portfolio_terms_related( $postId ){
     $output = array();
     
     $item_cats = get_the_terms( $postId, 'category_portfolio' );
@@ -111,7 +111,7 @@ if(!function_exists('lenxel_post_type_portfolio')  ){
   }
 
   if(!function_exists('moniathemer_related_portfolio')){
-    function lenxelthemesupport_related_portfolio($per_page){
+    function lenxel_themesupport_related_portfolio($per_page){
       $terms = get_the_terms( get_the_ID(),  'category_portfolio' );
       $termids =array();
      
@@ -193,18 +193,18 @@ if(!function_exists('lenxel_post_type_portfolio')  ){
   }
 
 // -- Dynamic Social Teacher Metabox -- 
-  add_action( 'add_meta_boxes', 'lenxelthemesupport_portfolio_information' );
-  add_action( 'save_post', 'lenxelthemesupport_portfolio_save_postdata' );
-  function lenxelthemesupport_portfolio_information() {
+  add_action( 'add_meta_boxes', 'lenxel_themesupport_portfolio_information' );
+  add_action( 'save_post', 'lenxel_themesupport_portfolio_save_postdata' );
+  function lenxel_themesupport_portfolio_information() {
       add_meta_box(
-          'lenxelthemesupport_portfolio_information',
+          'lenxel_themesupport_portfolio_information',
           __( 'Information', 'lenxel-core' ),
-          'lenxelthemesupport_portfolio_inner_custom_box',
+          'lenxel_themesupport_portfolio_inner_custom_box',
           'portfolio');
   }
-  function lenxelthemesupport_portfolio_inner_custom_box() {
+  function lenxel_themesupport_portfolio_inner_custom_box() {
       global $post;
-      wp_nonce_field( plugin_basename( __FILE__ ), 'dynamic_lenxelthemesupport_portfolio_noncename' );
+      wp_nonce_field( plugin_basename( __FILE__ ), 'dynamic_lenxel_themesupport_portfolio_noncename' );
       ?>
       <div id="meta_inner">
       <?php
@@ -241,13 +241,13 @@ if(!function_exists('lenxel_post_type_portfolio')  ){
   </div><?php
   }
 
-  function lenxelthemesupport_portfolio_save_postdata( $post_id ) {
+  function lenxel_themesupport_portfolio_save_postdata( $post_id ) {
      if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
           return;
-     if ( !isset( $_POST['dynamic_lenxelthemesupport_portfolio_noncename'] ) )
+     if ( !isset( $_POST['dynamic_lenxel_themesupport_portfolio_noncename'] ) )
           return;
 
-     if ( !wp_verify_nonce( sanitize_text_field( wp_unslash ($_POST['dynamic_lenxelthemesupport_portfolio_noncename'])), plugin_basename( __FILE__ ) ) )
+     if ( !wp_verify_nonce( sanitize_text_field( wp_unslash ($_POST['dynamic_lenxel_themesupport_portfolio_noncename'])), plugin_basename( __FILE__ ) ) )
           return;
      $pinformations = sanitize_text_field($_POST['pinformations']);
      update_post_meta($post_id,'pinformations', $pinformations);

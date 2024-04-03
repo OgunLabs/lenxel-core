@@ -23,7 +23,7 @@ if ( ! class_exists( 'Redux_Transients', false ) ) {
 			$core = $this->core();
 
 			if ( empty( $core->transients ) ) {
-				$core->transients = get_option( $core->args['opt_name_triger'] . '-transients', array() );
+				$core->transients = get_option( $core->args['opt_name'] . '-transients', array() );
 			}
 		}
 
@@ -34,7 +34,7 @@ if ( ! class_exists( 'Redux_Transients', false ) ) {
 			$core = $this->core();
 
 			if ( ! isset( $core->transients ) || ! isset( $core->transients_check ) || $core->transients_check !== $core->transients ) {
-				update_option( $core->args['opt_name_triger'] . '-transients', $core->transients );
+				update_option( $core->args['opt_name'] . '-transients', $core->transients );
 			}
 		}
 	}

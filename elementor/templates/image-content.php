@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 							<?php 
 								$image_url_second = $settings['image_second']['url']; 
 								$image_html = '<img src="' . esc_url($image_url_second) .'" alt="'. esc_attr($settings['title_text']) . '" />';
-								$this->lnx_render_link_html($image_html, $settings['link']); 
+								$this->lenxel_render_link_html($image_html, $settings['link']); 
 							?>  
 						</div>  
 					</div>
@@ -60,7 +60,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 		  <div class="line-color"></div>
 
-		  <?php $this->lnx_render_link_overlay($settings['link']); ?>
+		  <?php $this->lenxel_render_link_overlay($settings['link']); ?>
 		</div>
 	<?php } ?>  
 	 
@@ -84,7 +84,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 			</div>
 		  <?php endif; ?>
 
-		  <?php $this->lnx_render_link_overlay($settings['link']); ?>
+		  <?php $this->lenxel_render_link_overlay($settings['link']); ?>
 		</div>
 	<?php } ?>  
 
@@ -94,7 +94,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 				<div class="image">
 					<?php
 					  $image_html = Group_Control_Image_Size::get_attachment_image_html($settings, 'image');
-					  $this->lnx_render_link_html($image_html, $settings['link']);
+					  $this->lenxel_render_link_html($image_html, $settings['link']);
 					?>
 				</div>
 			<?php endif; ?>
@@ -112,7 +112,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 				<?php 
 				  $image_url = $settings['image']['url']; 
 				  $image_html = '<img src="' . esc_url($image_url) .'" alt="'. esc_attr($settings['title_text']) . '" />';
-				  $this->lnx_render_link_html($image_html, $settings['link']);
+				  $this->lenxel_render_link_html($image_html, $settings['link']);
 				?>  
 			</div>
 			<div class="line-color"></div>
@@ -125,7 +125,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 			  <?php 
 				 $image_url_second = $settings['image_second']['url']; 
 				 $image_html = '<img src="' . esc_url($image_url_second) .'" alt="'. esc_attr($settings['title_text']) . '" />';
-				 $this->lnx_render_link_html($image_html, $settings['link']); 
+				 $this->lenxel_render_link_html($image_html, $settings['link']); 
 			  ?>  
 			</div>  
 		 </div>
@@ -142,7 +142,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 			<?php 
 			  $image_url = $settings['image']['url']; 
 			  $image_html = '<img src="' . esc_url($image_url) .'" alt="'. esc_attr($settings['title_text']) . '" />';
-			  $this->lnx_render_link_html($image_html, $settings['link']);
+			  $this->lenxel_render_link_html($image_html, $settings['link']);
 			?>  
 		 </div>
 	  <?php endif; ?>
@@ -172,13 +172,13 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 		<div class="content-inner">
 			<?php if($title_text){ ?>
 				<<?php echo esc_attr($header_tag) ?> <?php echo $this->get_render_attribute_string( 'title_text' ); ?>>
-					<?php $this->lnx_render_link_html($title_text, $settings['link']); ?>
+					<?php $this->lenxel_render_link_html($title_text, $settings['link']); ?>
 				</<?php echo esc_attr($header_tag) ?>>
 			<?php } ?>
 			<div <?php echo $this->get_render_attribute_string( 'description_text' ); ?>><?php echo wp_kses($description_text, true); ?></div>
 			<?php if(!empty($settings['link']['url'])){ ?>
 			  <div class="read-more">
-				 <?php $this->lnx_render_link_html('<span>' . esc_html__( 'Read More', 'lenxel-core' ) . '</span>', $settings['link'], 'btn-white'); ?>
+				 <?php $this->lenxel_render_link_html('<span>' . esc_html__( 'Read More', 'lenxel-core' ) . '</span>', $settings['link'], 'btn-white'); ?>
 			  </div>
 			<?php } ?>
 		</div>
@@ -195,20 +195,20 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 		<div class="image">
 			 <?php
 				$image_html = Group_Control_Image_Size::get_attachment_image_html($settings, 'image');
-				$this->lnx_render_link_html($image_html, $settings['link']);
+				$this->lenxel_render_link_html($image_html, $settings['link']);
 			 ?>
 		</div>
 	 <?php endif; ?>
 	 <div class="box-content">
 		<?php if($title_text){ ?>
 			<<?php echo esc_attr($header_tag) ?> <?php echo $this->get_render_attribute_string( 'title_text' ); ?>>
-				<?php $this->lnx_render_link_html($title_text, $settings['link']); ?>
+				<?php $this->lenxel_render_link_html($title_text, $settings['link']); ?>
 			</<?php echo esc_attr($header_tag) ?>>
 		<?php } ?>
 		<div <?php echo $this->get_render_attribute_string( 'description_text' ); ?>><?php echo wp_kses($description_text, true); ?></div>
 		<?php if(!empty($settings['link']['url'])){ ?>
 		  <div class="read-more">
-			 <?php $this->lnx_render_link_html('<span>' . $settings['link_text'] . '</span>', $settings['link'], 'btn-inline'); ?>
+			 <?php $this->lenxel_render_link_html('<span>' . $settings['link_text'] . '</span>', $settings['link'], 'btn-inline'); ?>
 		  </div>
 		<?php } ?>
 	 </div>  
