@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 class Lenxel_Listing_Comment_BE extends Lenxel_Listing_Comment{
 	
 	public function __construct(){ 

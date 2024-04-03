@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    $_random = lenxelthemesupport_random_id();
    $this->add_render_attribute( 'block', 'class', [ 'lnx-navigation-menu', ' menu-align-' . $settings['align'] ] );
    $args = [

@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	$filter_object = new \TUTOR\Course_Filter();
 	$filter_levels = array(
 		'beginner'=> __('Beginner', 'lenxel-core'),

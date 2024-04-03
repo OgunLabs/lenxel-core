@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
 if(!function_exists('lenxel_post_type_portfolio')  ){
     function lenxel_post_type_portfolio(){
       $labels = array(

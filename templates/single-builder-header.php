@@ -1,4 +1,5 @@
 <?php 
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     $protocol = is_ssl() ? 'https' : 'http';
     $header_bg_black = get_post_meta(get_the_ID(), 'lenxel_header_bg_black', true );
 ?>

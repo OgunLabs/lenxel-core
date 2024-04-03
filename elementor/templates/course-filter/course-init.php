@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    global $wp_query;
    if(isset($_GET['ajax_l_course_filter_ajax']) && check_admin_referer('ajax-l-course-filter-nonce', 'ajax_l_course_filter_ajax')){
       $cat = isset($_GET['cat']) && $_GET['cat'] ? sanitize_text_field( $_GET['cat'] ): '';//filter_input(INPUT_GET, 'cat', FILTER_SANITIZE_STRING);
