@@ -1,7 +1,7 @@
 <?php
 use Elementor\Controls_Manager;
 use Elementor\Repeater;
-class LNX_Elementor_Override{
+class Lenxel_Elementor_Override{
    public function __construct() {
       $this->add_actions();
       $this->elementor_init_setup();
@@ -12,22 +12,22 @@ class LNX_Elementor_Override{
    }
 
    function elementor_init_setup(){
-      if(!get_option('elementor_allow_svg', '')) update_option( 'elementor_allow_svg', 1 );
-      if(!get_option('elementor_load_fa4_shim', '')) update_option( 'elementor_load_fa4_shim', 'yes' );
-      if(!get_option('elementor_disable_color_schemes', '')) update_option( 'elementor_disable_color_schemes', 'yes' );
-      if(!get_option('elementor_disable_typography_schemes', '')) update_option( 'elementor_disable_typography_schemes', 'yes' );
-      if(!get_option('elementor_container_width', '')) update_option( 'elementor_container_width', '1200' );
-      $cpt_support = get_option( 'elementor_cpt_support', null );
+      if(!get_option('lenxel_elementor_allow_svg', '')) update_option( 'lenxel_elementor_allow_svg', 1 );
+      if(!get_option('lenxel_elementor_load_fa4_shim', '')) update_option( 'lenxel_elementor_load_fa4_shim', 'yes' );
+      if(!get_option('lenxel_elementor_disable_color_schemes', '')) update_option( 'lenxel_elementor_disable_color_schemes', 'yes' );
+      if(!get_option('lenxel_elementor_disable_typography_schemes', '')) update_option( 'lenxel_elementor_disable_typography_schemes', 'yes' );
+      if(!get_option('lenxel_elementor_container_width', '')) update_option( 'lenxel_elementor_container_width', '1200' );
+      $cpt_support = get_option( 'lenxel_elementor_cpt_support', null );
       if( empty($cpt_support) ){
          $cpt_support[] = 'page';
          $cpt_support[] = 'footer';
          $cpt_support[] = 'lnx_header';
-         update_option('elementor_cpt_support', $cpt_support);
+         update_option('lenxel_elementor_cpt_support', $cpt_support);
       }else{
          if( !in_array('footer', $cpt_support) || !in_array('lnx_header', $cpt_support) ){
             $cpt_support[] = 'footer';
             $cpt_support[] = 'lnx_header';
-            update_option('elementor_cpt_support', $cpt_support);
+            update_option('lenxel_elementor_cpt_support', $cpt_support);
          }
       }
    }
@@ -242,5 +242,5 @@ class LNX_Elementor_Override{
 
 }
 
-new LNX_Elementor_Override();
+new Lenxel_Elementor_Override();
 

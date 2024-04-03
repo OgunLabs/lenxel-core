@@ -43,7 +43,7 @@ class LNXElement_Image_Content extends LNXElement_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		$get_current_name = load_lenxel_widget_content_element('LNX Image Content');
+		$get_current_name = lenxel_load_widget_content_element('LNX Image Content');
 		$filter_name = 'lenxel/element/'.$this->get_name();
 		return apply_filters( $filter_name, $get_current_name);
 	}
@@ -379,12 +379,13 @@ class LNXElement_Image_Content extends LNXElement_Base {
 	 * @access protected
 	 */
 	protected function render() {
-		if ( get_template_restrict()->has_premium){
+		if ( lenxel_get_template_restrict()->has_premium){
 			printf( '<div class="lnx-element-%s lnx-element">', $this->get_name() );
 				include $this->get_template('image-content.php');
 			print '</div>';
 		}else {
-			printf('%s', $content);
+			$content = '<div></div>';
+			wp_kses($content, array( 'div' ));
 		}
 	}
 	

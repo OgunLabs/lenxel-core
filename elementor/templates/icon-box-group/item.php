@@ -28,7 +28,7 @@ $has_icon = ! empty( $item['selected_icon']['value']);
 						<?php } ?>
 					</div>	
 				</div>	
-		   	<?php $this->lnx_render_link_html('', $item['link'], 'link-overlay'); ?>
+		   	<?php $this->lenxel_render_link_html('', $item['link'], 'link-overlay'); ?>
 			</div>	
 	</div>	   
 <?php endif; ?>	

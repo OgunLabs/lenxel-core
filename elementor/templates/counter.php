@@ -41,7 +41,7 @@
                <?php } ?>
             </div>
             
-            <?php $this->lnx_render_link_html('', $settings['link'], 'link-overlay'); ?>
+            <?php $this->lenxel_render_link_html('', $settings['link'], 'link-overlay'); ?>
 
          </div>   
       </div> 

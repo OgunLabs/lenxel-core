@@ -1,7 +1,7 @@
 <?php
 	$this->add_render_attribute('wrapper', 'class', ['lnx-gallery-grid clearfix']);
 	$this->get_grid_settings();
-	$_random = lenxelthemesupport_random_id();
+	$_random = lenxel_themesupport_random_id();
 	$style = $settings['style'];
 ?>
   

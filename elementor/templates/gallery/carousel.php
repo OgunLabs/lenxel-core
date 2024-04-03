@@ -1,7 +1,7 @@
 <?php
 	$this->add_render_attribute('wrapper', 'class', ['lnx-gallery-carousel']);
 	$this->add_render_attribute('carousel', 'class', 'init-carousel-owl owl-carousel');
-	$_random = lenxelthemesupport_random_id();
+	$_random = lenxel_themesupport_random_id();
 	$style = $settings['style'];
 ?>
 

@@ -19,7 +19,8 @@
                      $image_url = $brand['image']['url']; 
                   ?>
                   <img src="<?php echo esc_url($image_url); ?>" alt="" class="brand-img"/>
-                  <?php echo $this->lnx_render_link_overlay($brand['link']) ?>
+                  <?php $link_overlay = $this->lenxel_render_link_overlay($brand['link']);
+						 echo wp_kses( $link_overlay, array('a'=>array('class'=>array(), 'id'=>array()), 'div'=>array('class'=>array()),'span'=>array('class'=>array())) ) ?>
                </div>
             </div>
          <?php endforeach; ?>

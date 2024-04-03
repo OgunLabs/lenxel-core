@@ -1,6 +1,6 @@
 <?php
   	$query = $this->query_posts();
-  	$_random = lenxelthemesupport_random_id();
+  	$_random = lenxel_themesupport_random_id();
   	if ( ! $query->found_posts ) {
 	 	return;
   	}

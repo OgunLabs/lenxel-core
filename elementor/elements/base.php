@@ -345,7 +345,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 	 }
 
 	 public function lnx_render_link_begin($link = array(), $classes = ''){
-		$r = lenxelthemesupport_random_id();
+		$r = lenxel_themesupport_random_id();
 		if ( ! empty( $link['url'] ) ) {
 		  $this->add_render_attribute( '_base_link_0' . $r, 'href', $link['url'] );
 
@@ -371,8 +371,8 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		}
 	 }
 
-	public function lnx_render_link_html($html = '', $link = array(), $classes = ''){
-		$r = lenxelthemesupport_random_id();
+	public function lenxel_render_link_html($html = '', $link = array(), $classes = ''){
+		$r = lenxel_themesupport_random_id();
 		if ( ! empty( $link['url'] ) ) {
 		  $this->add_render_attribute( '_base_link_1' . $r, 'href', $link['url'] );
 
@@ -396,8 +396,8 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		}
 	}
 
-	public function lnx_render_link_overlay($link = array(), $classes = 'link-overlay'){
-		$r = lenxelthemesupport_random_id();
+	public function lenxel_render_link_overlay($link = array(), $classes = 'link-overlay'){
+		$r = lenxel_themesupport_random_id();
 		if ( ! empty( $link['url'] ) ) {
 		  $this->add_render_attribute( '_base_link_1' . $r, 'href', $link['url'] );
 
