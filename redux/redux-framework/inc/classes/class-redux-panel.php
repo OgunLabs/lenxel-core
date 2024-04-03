@@ -5,6 +5,7 @@
  * @class Redux_Panel
  * @version 3.0.0
  * @package Redux Framework/Classes
+ * @noinspection PhpIgnoredClassAliasDeclaration
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -17,7 +18,7 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 	class Redux_Panel {
 
 		/**
-		 * ReduxFramwrok object pointer.
+		 * ReduxFramework object pointer.
 		 *
 		 * @var object
 		 */
@@ -40,10 +41,10 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 		/**
 		 * Sets the path from the arg or via filter. Also calls the panel template function.
 		 *
-		 * @param object $parent ReduxFramework pointer.
+		 * @param object $redux ReduxFramework pointer.
 		 */
-		public function __construct( $parent ) {
-			$this->parent        = $parent;
+		public function __construct( $redux ) {
+			$this->parent        = $redux;
 			$this->template_path = Redux_Core::$dir . 'templates/panel/';
 			$this->original_path = Redux_Core::$dir . 'templates/panel/';
 
@@ -52,7 +53,7 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 			}
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			$this->template_path = trailingslashit( apply_filters( "redux/{$this->parent->args['opt_name_triger']}/panel/templates_path", $this->template_path ) );
+			$this->template_path = trailingslashit( apply_filters( "redux/{$this->parent->args['opt_name']}/panel/templates_path", $this->template_path ) );
 		}
 
 		/**
@@ -71,31 +72,31 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 			}
 
 			/**
-			 * Action 'redux/{opt_name_triger}/panel/before'
+			 * Action 'redux/{opt_name}/panel/before'
 			 */
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			do_action( "redux/{$this->parent->args['opt_name_triger']}/panel/before" );
+			do_action( "redux/{$this->parent->args['opt_name']}/panel/before" );
 
 			echo '<div class="wrap"><h2></h2></div>'; // Stupid hack for WordPress alerts and warnings.
 
 			echo '<div class="clear"></div>';
-			echo '<div class="wrap redux-wrap-div" data-opt-name="' . esc_attr( $this->parent->args['opt_name_triger'] ) . '">';
+			echo '<div class="wrap redux-wrap-div" data-opt-name="' . esc_attr( $this->parent->args['opt_name'] ) . '">';
 
 			// Do we support JS?
-			echo '<noscript><div class="no-js">' . esc_html__( 'Warning- This options panel will not work properly without javascript!', 'lenxel-core' ) . '</div></noscript>';
+			echo '<noscript><div class="no-js">' . esc_html__( 'Warning- This options panel will not work properly without javascript!', 'redux-framework' ) . '</div></noscript>';
 
 			// Security is vital!
-			echo '<input type="hidden" class="redux-ajax-security" data-opt-name="' . esc_attr( $this->parent->args['opt_name_triger'] ) . '" id="ajaxsecurity" name="security" value="' . esc_attr( wp_create_nonce( 'redux_ajax_nonce' . $this->parent->args['opt_name_triger'] ) ) . '" />';
+			echo '<input type="hidden" class="redux-ajax-security" data-opt-name="' . esc_attr( $this->parent->args['opt_name'] ) . '" id="ajaxsecurity" name="security" value="' . esc_attr( wp_create_nonce( 'redux_ajax_nonce' . $this->parent->args['opt_name'] ) ) . '" />';
 
 			/**
-			 * Action 'redux/page/{opt_name_triger}/form/before'
+			 * Action 'redux/page/{opt_name}/form/before'
 			 *
 			 * @param object $this ReduxFramework
 			 */
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			do_action( "redux/page/{$this->parent->args['opt_name_triger']}/form/before", $this );
+			do_action( "redux/page/{$this->parent->args['opt_name']}/form/before", $this );
 
 			if ( is_rtl() ) {
 				$this->parent->args['class'] = ' redux-rtl';
@@ -104,13 +105,13 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 			$this->get_template( 'container.tpl.php' );
 
 			/**
-			 * Action 'redux/page/{opt_name_triger}/form/after'
+			 * Action 'redux/page/{opt_name}/form/after'
 			 *
 			 * @param object $this ReduxFramework
 			 */
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			do_action( "redux/page/{$this->parent->args['opt_name_triger']}/form/after", $this );
+			do_action( "redux/page/{$this->parent->args['opt_name']}/form/after", $this );
 
 			echo '<div class="clear"></div>';
 			echo '</div>';
@@ -120,11 +121,11 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 			}
 
 			/**
-			 * Action 'redux/{opt_name_triger}/panel/after'
+			 * Action 'redux/{opt_name}/panel/after'
 			 */
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			do_action( "redux/{$this->parent->args['opt_name_triger']}/panel/after" );
+			do_action( "redux/{$this->parent->args['opt_name']}/panel/after" );
 		}
 
 		/**
@@ -135,87 +136,87 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 
 				if ( 'import' === $this->parent->transients['last_save_mode'] ) {
 					/**
-					 * Action 'redux/options/{opt_name_triger}/import'
+					 * Action 'redux/options/{opt_name}/import'
 					 *
 					 * @param object $this ReduxFramework
 					 */
 
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					do_action( "redux/options/{$this->parent->args['opt_name_triger']}/import", $this, $this->parent->transients['changed_values'] );
+					do_action( "redux/options/{$this->parent->args['opt_name']}/import", $this, $this->parent->transients['changed_values'] );
 
 					echo '<div class="admin-notice notice-blue saved_notice">';
 
 					/**
-					 * Filter 'redux-imported-text-{opt_name_triger}'
+					 * Filter 'redux-imported-text-{opt_name}'
 					 *
-					 * @param string  translated "settings imported" text
+					 * @param string $text Translated "settings imported" text.
 					 */
 
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					echo '<strong>' . esc_html( apply_filters( "redux-imported-text-{$this->parent->args['opt_name_triger']}", esc_html__( 'Settings Imported!', 'lenxel-core' ) ) ) . '</strong>';
+					echo '<strong>' . esc_html( apply_filters( "redux-imported-text-{$this->parent->args['opt_name']}", esc_html__( 'Settings Imported!', 'redux-framework' ) ) ) . '</strong>';
 					echo '</div>';
 				} elseif ( 'defaults' === $this->parent->transients['last_save_mode'] ) {
 					/**
-					 * Action 'redux/options/{opt_name_triger}/reset'
+					 * Action 'redux/options/{opt_name}/reset'
 					 *
 					 * @param object $this ReduxFramework
 					 */
 
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					do_action( "redux/options/{$this->parent->args['opt_name_triger']}/reset", $this );
+					do_action( "redux/options/{$this->parent->args['opt_name']}/reset", $this );
 
 					echo '<div class="saved_notice admin-notice notice-yellow">';
 
 					/**
-					 * Filter 'redux-defaults-text-{opt_name_triger}'
+					 * Filter 'redux-defaults-text-{opt_name}'
 					 *
-					 * @param string  translated "settings imported" text
+					 * @param string $text Translated "settings imported" text.
 					 */
 
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					echo '<strong>' . esc_html( apply_filters( "redux-defaults-text-{$this->parent->args['opt_name_triger']}", esc_html__( 'All Defaults Restored!', 'lenxel-core' ) ) ) . '</strong>';
+					echo '<strong>' . esc_html( apply_filters( "redux-defaults-text-{$this->parent->args['opt_name']}", esc_html__( 'All Defaults Restored!', 'redux-framework' ) ) ) . '</strong>';
 					echo '</div>';
 				} elseif ( 'defaults_section' === $this->parent->transients['last_save_mode'] ) {
 					/**
-					 * Action 'redux/options/{opt_name_triger}/section/reset'
+					 * Action 'redux/options/{opt_name}/section/reset'
 					 *
 					 * @param object $this ReduxFramework
 					 */
 
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					do_action( "redux/options/{$this->parent->args['opt_name_triger']}/section/reset", $this );
+					do_action( "redux/options/{$this->parent->args['opt_name']}/section/reset", $this );
 
 					echo '<div class="saved_notice admin-notice notice-yellow">';
 
 					/**
-					 * Filter 'redux-defaults-section-text-{opt_name_triger}'
+					 * Filter 'redux-defaults-section-text-{opt_name}'
 					 *
-					 * @param string  translated "settings imported" text
+					 * @param string $text Translated "settings imported" text.
 					 */
 
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					echo '<strong>' . esc_html( apply_filters( "redux-defaults-section-text-{$this->parent->args['opt_name_triger']}", esc_html__( 'Section Defaults Restored!', 'lenxel-core' ) ) ) . '</strong>';
+					echo '<strong>' . esc_html( apply_filters( "redux-defaults-section-text-{$this->parent->args['opt_name']}", esc_html__( 'Section Defaults Restored!', 'redux-framework' ) ) ) . '</strong>';
 					echo '</div>';
 				} elseif ( 'normal' === $this->parent->transients['last_save_mode'] ) {
 					/**
-					 * Action 'redux/options/{opt_name_triger}/saved'
+					 * Action 'redux/options/{opt_name}/saved'
 					 *
 					 * @param mixed $value set/saved option value
 					 */
 
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					do_action( "redux/options/{$this->parent->args['opt_name_triger']}/saved", $this->parent->options, $this->parent->transients['changed_values'] );
+					do_action( "redux/options/{$this->parent->args['opt_name']}/saved", $this->parent->options, $this->parent->transients['changed_values'] );
 
 					echo '<div class="saved_notice admin-notice notice-green">';
 
 					/**
-					 * Filter 'redux-saved-text-{opt_name_triger}'
+					 * Filter 'redux-saved-text-{opt_name}'
 					 *
-					 * @param string translated "settings saved" text
+					 * @param string $text Translated "settings saved" text.
 					 */
 
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					echo '<strong>' . esc_html( apply_filters( "redux-saved-text-{$this->parent->args['opt_name_triger']}", esc_html__( 'Settings Saved!', 'lenxel-core' ) ) ) . '</strong>';
+					echo '<strong>' . esc_html( apply_filters( "redux-saved-text-{$this->parent->args['opt_name']}", esc_html__( 'Settings Saved!', 'redux-framework' ) ) ) . '</strong>';
 					echo '</div>';
 				}
 
@@ -225,63 +226,63 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 			}
 
 			/**
-			 * Action 'redux/options/{opt_name_triger}/settings/changes'
+			 * Action 'redux/options/{opt_name}/settings/changes'
 			 *
 			 * @param mixed $value set/saved option value
 			 */
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			do_action( "redux/options/{$this->parent->args['opt_name_triger']}/settings/change", $this->parent->options, $this->parent->transients['changed_values'] );
+			do_action( "redux/options/{$this->parent->args['opt_name']}/settings/change", $this->parent->options, $this->parent->transients['changed_values'] );
 
 			echo '<div class="redux-save-warn notice-yellow">';
 
 			/**
-			 * Filter 'redux-changed-text-{opt_name_triger}'
+			 * Filter 'redux-changed-text-{opt_name}'
 			 *
-			 * @param string translated "settings have changed" text
+			 * @param string $text Translated "settings have changed" text.
 			 */
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			echo '<strong>' . esc_html( apply_filters( "redux-changed-text-{$this->parent->args['opt_name_triger']}", esc_html__( 'Settings have changed, you should save them!', 'lenxel-core' ) ) ) . '</strong>';
+			echo '<strong>' . esc_html( apply_filters( "redux-changed-text-{$this->parent->args['opt_name']}", esc_html__( 'Settings have changed, you should save them!', 'redux-framework' ) ) ) . '</strong>';
 			echo '</div>';
 
 			/**
-			 * Action 'redux/options/{opt_name_triger}/errors'
+			 * Action 'redux/options/{opt_name}/errors'
 			 *
 			 * @param array $this ->errors error information
 			 */
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			do_action( "redux/options/{$this->parent->args['opt_name_triger']}/errors", $this->parent->errors );
+			do_action( "redux/options/{$this->parent->args['opt_name']}/errors", $this->parent->errors );
 
 			echo '<div class="redux-field-errors notice-red">';
 			echo '<strong>';
-			echo '<span></span> ' . esc_html__( 'error(s) were found!', 'lenxel-core' );
+			echo '<span></span> ' . esc_html__( 'error(s) were found!', 'redux-framework' );
 			echo '</strong>';
 			echo '</div>';
 
 			/**
-			 * Action 'redux/options/{opt_name_triger}/warnings'
+			 * Action 'redux/options/{opt_name}/warnings'
 			 *
 			 * @param array $this ->warnings warning information
 			 */
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			do_action( "redux/options/{$this->parent->args['opt_name_triger']}/warnings", $this->parent->warnings );
+			do_action( "redux/options/{$this->parent->args['opt_name']}/warnings", $this->parent->warnings );
 
 			echo '<div class="redux-field-warnings notice-yellow">';
 			echo '<strong>';
-			echo '<span></span> ' . esc_html__( 'warning(s) were found!', 'lenxel-core' );
+			echo '<span></span> ' . esc_html__( 'warning(s) were found!', 'redux-framework' );
 			echo '</strong>';
 			echo '</div>';
 		}
 
 		/**
-		 * Used to intitialize the settings fields for this panel. Required for saving and redirect.
+		 * Used to initialize the settings fields for this panel. Required for saving and redirect.
 		 */
 		private function init_settings_fields() {
 			// Must run or the page won't redirect properly.
-			settings_fields( "{$this->parent->args['opt_name_triger']}_group" );
+			settings_fields( "{$this->parent->args['opt_name']}_group" );
 		}
 
 		/**
@@ -289,7 +290,7 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 		 *
 		 * @return bool
 		 */
-		public function tick_file_deprecate_warning_lenxel(): bool {
+		public function tick_file_deprecate_warning(): bool {
 			return true;
 		}
 
@@ -313,11 +314,11 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 			if ( ! file_exists( $path ) ) {
 				$old_file = $file;
 
-				add_filter( 'deprecated_file_trigger_error', array( $this, 'tick_file_deprecate_warning_lenxel' ) );
+				add_filter( 'deprecated_file_trigger_error', array( $this, 'tick_file_deprecate_warning' ) );
 
-				$file = str_replace( '-', '_', $file );
+				$file = str_replace( '_', '-', $file );
 
-				_deprecated_file( esc_html( $file ), '4.0', esc_html( $old_file ), 'Please replace this outdated template with the current one from the Redux core.' );
+				_deprecated_file( esc_html( $old_file ), '4.0', esc_html( $file ), 'Please replace this outdated template with the current one from the Redux core.' );
 
 				if ( file_exists( $this->template_path . $file ) ) {
 					$path = $this->template_path . $file;
@@ -327,15 +328,27 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 			}
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			do_action( "redux/{$this->parent->args['opt_name_triger']}/panel/template/" . $file . '/before' );
+			do_action( "redux/{$this->parent->args['opt_name']}/panel/template/" . $file . '/before' );
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			$path = apply_filters( "redux/{$this->parent->args['opt_name_triger']}/panel/template/" . $file, $path );
+			$path = apply_filters( "redux/{$this->parent->args['opt_name']}/panel/template/" . $file, $path );
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			do_action( "redux/{$this->parent->args['opt_name_triger']}/panel/template/" . $file . '/after' );
+			do_action( "redux/{$this->parent->args['opt_name']}/panel/template/" . $file . '/after' );
 
-			require $path;
+			if ( file_exists( $path ) ) {
+				if ( is_readable( $path ) ) {
+					require $path;
+				} else {
+					// translators: %1$s: template path.
+					echo '<div class="error"><p>' . sprintf( esc_html__( 'Redux Panel Template %1$s cannot be read. Please check the permissions for this file.', 'redux-framework' ), '<code>' . esc_html( $path ) . '</code>' ) . '</p></div>';
+				}
+			} elseif ( file_exists( Redux_Core::$dir . 'templates/panel/' . $file ) ) {
+					require Redux_Core::$dir . 'templates/panel/' . $file;
+			} else {
+				// translators: %1$s: template path.
+				echo '<div class="error"><p>' . sprintf( esc_html__( 'Redux Panel Template %1$s does not exist. Please reinstall Redux to replace this file.', 'redux-framework' ), '<code>' . esc_html( $path ) . '</code>' ) . '</p></div>';
+			}
 		}
 
 		/**
@@ -349,7 +362,7 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 			$files  = scandir( $template_path );
 			$result = array();
 			if ( $files ) {
-				foreach ( $files as $key => $value ) {
+				foreach ( $files as $value ) {
 					if ( ! in_array( $value, array( '.', '..' ), true ) ) {
 						if ( is_dir( $template_path . DIRECTORY_SEPARATOR . $value ) ) {
 							$sub_files = self::scan_template_files( $template_path . DIRECTORY_SEPARATOR . $value );
@@ -387,11 +400,11 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 					$core_version      = Redux_Helpers::get_template_version( $this->original_path . $file );
 					$developer_version = Redux_Helpers::get_template_version( $developer_theme_file );
 
-					if ( $core_version && $developer_version && version_compare( $developer_version, $core_version, '<' ) && isset( $this->parent->args['dev_mode'] ) && ! empty( $this->parent->args['dev_mode'] ) ) {
+					if ( $core_version && $developer_version && version_compare( $developer_version, $core_version, '<' ) ) {
 						?>
-						<div id="message" class="error redux-message">
+						<div id="message" class="error redux-message" style="display:block!important">
 							<p>
-								<strong><?php esc_html_e( 'Your panel has bundled copies of Redux Framework template files that are outdated!', 'lenxel-core' ); ?></strong>&nbsp;&nbsp;<?php esc_html_e( 'Please update them now as functionality issues could arise.', 'lenxel-core' ); ?>
+								<strong><?php esc_html_e( 'Your panel has bundled copies of Redux Framework template files that are outdated!', 'redux-framework' ); ?></strong>&nbsp;&nbsp;<?php esc_html_e( 'Please ask the author of this theme to update them as functionality issues could arise.', 'redux-framework' ); ?>
 							</p>
 						</div>
 						<?php
@@ -408,7 +421,7 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 		 * @param mixed $k Section number of settings panel to display.
 		 */
 		private function output_section( $k ) {
-			do_settings_sections( $this->parent->args['opt_name_triger'] . $k . '_section_group' );
+			do_settings_sections( $this->parent->args['opt_name'] . $k . '_section_group' );
 		}
 	}
 }
@@ -416,5 +429,3 @@ if ( ! class_exists( 'Redux_Panel', false ) ) {
 if ( ! class_exists( 'reduxCorePanel' ) ) {
 	class_alias( 'Redux_Panel', 'reduxCorePanel' );
 }
-
-

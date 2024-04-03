@@ -67,7 +67,7 @@ if ( ! class_exists( 'Redux_ThemeCheck', false ) ) {
 				return;
 			}
 
-			// Load admin style sheet and JavaScript.
+			// Load the admin stylesheet and JavaScript.
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
 
@@ -97,7 +97,7 @@ if ( ! class_exists( 'Redux_ThemeCheck', false ) ) {
 		 * @since     1.0.0
 		 * @return    object    A single instance of this class.
 		 */
-		public static function get_redux_instance() {
+		public static function lenxel_get_redux_instance() {
 
 			// If the single instance hasn't been set, set it now.
 			if ( null === self::$redux && Redux_Core::$as_plugin ) {
@@ -114,7 +114,7 @@ if ( ! class_exists( 'Redux_ThemeCheck', false ) ) {
 		 * @param array $php_files Array of files to check.
 		 *
 		 * @return    object    A single instance of this class.
-		 *@since     1.0.0
+		 * @since     1.0.0
 		 */
 		public static function get_redux_details( array $php_files = array() ) {
 			if ( null === self::$redux_details ) {
@@ -139,25 +139,48 @@ if ( ! class_exists( 'Redux_ThemeCheck', false ) ) {
 		}
 
 		/**
-		 * 
+		 * Disable Theme-Check checks that aren't relevant for ThemeForest themes
 		 *
 		 * @since    1.0.0
 		 */
 		public function disable_checks() {
-			global $themechecks;
+			/**
+			 * Uncomment code to use.
+			 *
+			 * global $themechecks;
+			 *
+			 * $checks_to_disable = array(
+			 *    'IncludeCheck',
+			 *    'I18NCheck',
+			 *    'AdminMenu',
+			 *    'Bad_Checks',
+			 *    'MalwareCheck',
+			 *    'Theme_Support',
+			 *    'CustomCheck',
+			 *    'EditorStyleCheck',
+			 *    'IframeCheck',
+			 * );
+			 * foreach ( $themechecks as $keyindex => $check ) {
+			 *    if ( $check instanceof themecheck ) {
+			 *        $check_class = get_class( $check );
+			 *        if ( in_array( $check_class, $checks_to_disable ) ) {
+			 *            unset( $themechecks[$keyindex] );
+			 *        }
+			 *    }
+			 * }
+			 */
 		}
 
 		/**
-		 * 
+		 * Disable Theme-Check checks that aren't relevant for ThemeForest themes
 		 *
 		 * @since    1.0.0
 		 */
 		public function add_checks() {
-			global $themechecks;
 
 			// load all the checks in the checks directory.
 			$dir = 'checks';
-			foreach ( glob( dirname( __FILE__ ) . '/' . $dir . '/*.php' ) as $file ) {
+			foreach ( glob( __DIR__ . '/' . $dir . '/*.php' ) as $file ) {
 				require_once $file;
 			}
 		}

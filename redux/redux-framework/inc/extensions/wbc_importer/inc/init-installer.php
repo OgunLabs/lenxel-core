@@ -15,11 +15,11 @@
 if ( !defined( 'ABSPATH' ) ) exit;
 
 // Don't duplicate me!
-if ( !class_exists( 'Radium_Lnx_Theme_Demo_Data_Importer' ) ) {
+if ( !class_exists( 'lenxel_Radium_Lnx_Theme_Demo_Data_Importer' ) ) {
 
 	require_once dirname( __FILE__ ) .'/importer/radium-importer.php'; //load admin theme data importer
 
-	class Radium_Lnx_Theme_Demo_Data_Importer extends Radium_Lnx_Theme_Importer {
+	class lenxel_Radium_Lnx_Theme_Demo_Data_Importer extends Lenxel_Radium_Lnx_Theme_Importer {
 
 		protected $ReduxParent;
 
@@ -115,7 +115,7 @@ if ( !class_exists( 'Radium_Lnx_Theme_Demo_Data_Importer' ) ) {
 
 				$this->widgets_file_name       = ( isset( $demo_import_array['widgets'] ) ) ? $demo_import_array['widgets'] : '';
 
-				$this->theme_option_name       = $this->ReduxParent->args['opt_name_triger'];
+				$this->theme_option_name       = $this->ReduxParent->args['opt_name'];
 			}
 
 		}

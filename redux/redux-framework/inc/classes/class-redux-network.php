@@ -19,14 +19,14 @@ if ( ! class_exists( 'Redux_Network', false ) ) {
 		/**
 		 * Redux_Network constructor.
 		 *
-		 * @param object $parent ReduxFramework pointer.
+		 * @param object $redux ReduxFramework pointer.
 		 */
-		public function __construct( $parent ) {
-			parent::__construct( $parent );
+		public function __construct( $redux ) {
+			parent::__construct( $redux );
 
-			if ( 'network' === $parent->args['database'] && $parent->args['network_admin'] ) {
+			if ( 'network' === $redux->args['database'] && $redux->args['network_admin'] ) {
 				add_action(
-					'network_admin_edit_redux_' . $parent->args['opt_name_triger'],
+					'network_admin_edit_redux_' . $redux->args['opt_name'],
 					array(
 						$this,
 						'save_network_page',
@@ -49,7 +49,7 @@ if ( ! class_exists( 'Redux_Network', false ) ) {
 			$core = $this->core();
 
 			$args = array(
-				'id'     => $core->args['opt_name_triger'] . '_network_admin',
+				'id'     => $core->args['opt_name'] . '_network_admin',
 				'title'  => $core->args['menu_title'],
 				'parent' => 'network-admin',
 				'href'   => network_admin_url( 'settings.php' ) . '?page=' . $core->args['page_slug'],
@@ -65,11 +65,11 @@ if ( ! class_exists( 'Redux_Network', false ) ) {
 		public function save_network_page() {
 			$core = $this->core();
 
-			if ( isset( $_POST[ $core->args['opt_name_triger'] ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-				$opt_name_triger = sanitize_text_field( wp_unslash( $_POST[ $core->args['opt_name_triger'] ] ) ); // phpcs:ignore WordPress.Security.NonceVerification
+			if ( isset( $_POST[ $core->args['opt_name'] ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+				$opt_name = sanitize_text_field( wp_unslash( $_POST[ $core->args['opt_name'] ] ) ); // phpcs:ignore WordPress.Security.NonceVerification
 			}
 
-			$data = $core->options_class->validate_options( $opt_name_triger );
+			$data = $core->options_class->validate_options( $opt_name );
 
 			if ( ! empty( $data ) ) {
 				$core->options_class->set( $data );

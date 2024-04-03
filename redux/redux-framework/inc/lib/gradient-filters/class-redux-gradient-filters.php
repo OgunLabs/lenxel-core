@@ -41,17 +41,17 @@ if ( ! class_exists( 'Redux_Gradient_Filters' ) ) {
 				$select2_data = Redux_Functions::create_data_string( $select2_default );
 
 				$output .= '<div class="redux-gradient-type">';
-				$output .= '<strong>' . esc_html__( 'Gradient Type ', 'lenxel-core' ) . '</strong>&nbsp;';
+				$output .= '<strong>' . esc_html__( 'Gradient Type ', 'redux-framework' ) . '</strong>&nbsp;';
 				$output .= '<select ';
 				$output .= 'class="redux-gradient-select select2-container"';
-				$output .= 'data-placeholder="' . esc_attr__( 'Type', 'lenxel-core' ) . '" ' . $select2_data . ' ';
+				$output .= 'data-placeholder="' . esc_attr__( 'Type', 'redux-framework' ) . '" ' . $select2_data . ' ';
 				$output .= 'name="' . esc_attr( $field['name'] . $field['name_suffix'] ) . '[gradient-type]"';
 				$output .= 'data-value="' . esc_attr( $value['gradient-type'] ) . '"';
 				$output .= 'data-id="' . esc_attr( $field['id'] ) . '">';
 
 				$arr = array(
-					esc_html__( 'linear', 'lenxel-core' ),
-					esc_html__( 'radial', 'lenxel-core' ),
+					esc_html__( 'linear', 'redux-framework' ),
+					esc_html__( 'radial', 'redux-framework' ),
 				);
 
 				foreach ( $arr as $v ) {
@@ -66,7 +66,7 @@ if ( ! class_exists( 'Redux_Gradient_Filters' ) ) {
 		}
 
 		/**
-		 * Redner sliders.
+		 * Render sliders.
 		 *
 		 * @param array $data Data.
 		 *
@@ -79,7 +79,7 @@ if ( ! class_exists( 'Redux_Gradient_Filters' ) ) {
 
 			if ( $field['gradient-reach'] ) {
 				$output .= '<div class="slider-from-reach">';
-				$output .= '<label>' . esc_html__( 'From Reach ', 'lenxel-core' ) . ':  <strong>' . esc_html( $value['gradient-reach']['from'] ) . '%</strong></label>';
+				$output .= '<div class="label">' . esc_html__( 'From Reach ', 'redux-framework' ) . ':  <strong>' . esc_html( $value['gradient-reach']['from'] ) . '%</strong></div>';
 				$output .= '<div ';
 				$output .= 'class="redux-gradient-slider redux-color-gradient redux-gradient-from-reach color-gradient-input ' . esc_attr( $field['class'] ) . '"';
 				$output .= 'id="' . esc_attr( $field['id'] ) . '"';
@@ -88,7 +88,7 @@ if ( ! class_exists( 'Redux_Gradient_Filters' ) ) {
 				$output .= 'data-max="100"';
 				$output .= 'data-step="1"';
 				$output .= 'data-rtl="' . esc_attr( is_rtl() ) . '"';
-				$output .= 'data-label="' . esc_attr__( 'From Reach', 'lenxel-core' ) . '"';
+				$output .= 'data-label="' . esc_attr__( 'From Reach', 'redux-framework' ) . '"';
 				$output .= 'data-default = "' . esc_attr( $value['gradient-reach']['from'] ) . '">';
 				$output .= '</div>';
 				$output .= '<input ';
@@ -102,7 +102,7 @@ if ( ! class_exists( 'Redux_Gradient_Filters' ) ) {
 				$output .= '</div>';
 
 				$output .= '<div class="slider-to-reach">';
-				$output .= '<label>' . esc_html__( 'To Reach', 'lenxel-core' ) . ':  <strong>' . esc_html( $value['gradient-reach']['to'] ) . '%</strong></label>';
+				$output .= '<div class="label">' . esc_html__( 'To Reach', 'redux-framework' ) . ':  <strong>' . esc_html( $value['gradient-reach']['to'] ) . '%</strong></div>';
 				$output .= '<div ';
 				$output .= 'class="redux-gradient-slider redux-color-gradient redux-gradient-reach-to color-gradient-input ' . esc_attr( $field['class'] ) . '"';
 				$output .= 'id="' . esc_attr( $field['id'] ) . '"';
@@ -111,7 +111,7 @@ if ( ! class_exists( 'Redux_Gradient_Filters' ) ) {
 				$output .= 'data-max="100"';
 				$output .= 'data-step="1"';
 				$output .= 'data-rtl="' . esc_attr( is_rtl() ) . '"';
-				$output .= 'data-label="' . esc_attr__( 'To Reach', 'lenxel-core' ) . '"';
+				$output .= 'data-label="' . esc_attr__( 'To Reach', 'redux-framework' ) . '"';
 				$output .= 'data-default = "' . esc_attr( $value['gradient-reach']['to'] ) . '">';
 				$output .= '</div>';
 				$output .= '<input ';
@@ -132,7 +132,7 @@ if ( ! class_exists( 'Redux_Gradient_Filters' ) ) {
 				}
 
 				$output .= '<div class="slider-gradient-angle" ' . $style . '>';
-				$output .= '<label>' . esc_html__( 'Gradient Angle', 'lenxel-core' ) . ':  <strong>' . $value['gradient-angle'] . '&deg;</strong></label>';
+				$output .= '<div class="label">' . esc_html__( 'Gradient Angle', 'redux-framework' ) . ':  <strong>' . $value['gradient-angle'] . '&deg;</strong></div>';
 				$output .= '<div ';
 				$output .= 'class="redux-gradient-slider redux-color-gradient redux-gradient-angle color-gradient-input ' . esc_attr( $field['class'] ) . '"';
 				$output .= 'id="' . esc_attr( $field['id'] ) . '"';
@@ -141,7 +141,7 @@ if ( ! class_exists( 'Redux_Gradient_Filters' ) ) {
 				$output .= 'data-max="360"';
 				$output .= 'data-step="1"';
 				$output .= 'data-rtl="' . esc_attr( is_rtl() ) . '"';
-				$output .= 'data-label="' . esc_attr__( 'Gradient Angle', 'lenxel-core' ) . '"';
+				$output .= 'data-label="' . esc_attr__( 'Gradient Angle', 'redux-framework' ) . '"';
 				$output .= 'data-default = "' . esc_attr( $value['gradient-angle'] ) . '">';
 				$output .= '</div>';
 				$output .= '<input ';
@@ -217,7 +217,7 @@ if ( ! class_exists( 'Redux_Gradient_Filters' ) ) {
 		 * Enqueue support files.
 		 *
 		 * @param array $field           Field array.
-		 * @param bool  $filters_enabled Enbale filter bit.
+		 * @param bool  $filters_enabled Enable filter bit.
 		 */
 		public static function enqueue( array $field, bool $filters_enabled ) {
 			$min = Redux_Functions::is_min();
@@ -233,16 +233,16 @@ if ( ! class_exists( 'Redux_Gradient_Filters' ) ) {
 					}
 				}
 
-				if ( ! wp_style_is( 'redux-nouislider-css' ) ) {
+				if ( ! wp_style_is( 'redux-nouislider' ) ) {
 					wp_enqueue_style(
-						'redux-nouislider-css',
+						'redux-nouislider',
 						Redux_Core::$url . 'assets/css/vendor/nouislider' . $min . '.css',
 						array(),
 						'5.0.0'
 					);
 
 					wp_enqueue_script(
-						'redux-nouislider-js',
+						'redux-nouislider',
 						Redux_Core::$url . 'assets/js/vendor/nouislider/redux.jquery.nouislider' . $min . '.js',
 						array( 'jquery' ),
 						'5.0.0',
@@ -251,7 +251,7 @@ if ( ! class_exists( 'Redux_Gradient_Filters' ) ) {
 				}
 
 				wp_enqueue_script(
-					'redux-gradient-filters-js',
+					'redux-gradient-filters',
 					Redux_Core::$url . 'inc/lib/gradient-filters/gradient-filters' . Redux_Functions::isMin() . '.js',
 					array( 'jquery' ),
 					Redux_Core::$version,
@@ -259,7 +259,7 @@ if ( ! class_exists( 'Redux_Gradient_Filters' ) ) {
 				);
 
 				wp_enqueue_style(
-					'redux-gradient-filters-css',
+					'redux-gradient-filters',
 					Redux_Core::$url . 'inc/lib/gradient-filters/gradient-filters.css',
 					array(),
 					Redux_Core::$version

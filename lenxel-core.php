@@ -14,6 +14,7 @@
  * Text Domain: lenxel-core
  * Copyright: © 2024 Lenxel
  * Domain Path:  /languages
+ * Update URI: https://lenxel.ogunlabs.com/plugins/lenxel-theme-support-wp.zip
  */
 
 define('LENXEL_PLUGIN_URL', plugin_dir_url(__FILE__));
@@ -40,7 +41,7 @@ class Lenxel_Theme_Support{
       add_action('wp_head', array($this, 'lenxel_core_head_ajax_url'));
       add_action('wp_enqueue_scripts', array($this, 'lenxel_core_register_scripts'));
       add_action('admin_enqueue_scripts', array($this, 'lenxel_core_register_scripts_admin'));
-      register_activation_hook(__FILE__, array($this, 'lnx_create_page_activate'));
+      register_activation_hook(__FILE__, array($this, 'lenxel_create_page_activate'));
       load_plugin_textdomain('lenxel-core', false, 'lenxel-core/languages/');
       add_action('wp_ajax_lenxel_deactivate_plugin', array($this,'lenxel_core_handle_deactivate_plugin'));
       register_deactivation_hook(__FILE__, array($this, 'lenxel_core_plugin_deactivation'));
@@ -48,16 +49,12 @@ class Lenxel_Theme_Support{
       add_action('elementor/editor/footer',array($this,'lenxel_core_premium_content_div'), 99);
       add_shortcode('lenxel_core_login_form_shortcode', array($this,'lenxel_core_login_form'));
       add_shortcode('lenxel_core_course_category', array($this, 'lenxel_core_course_categories'));
-      $this->lenxel_core_plugin_update();
-
-
-
+    
    }
-
-   function lnx_create_page_activate() {
+   function lenxel_create_page_activate() {
       $page_title = 'Sign In';
       $shortcode = '[lenxel_core_login_form_shortcode]';
-      if(get_option('sign_in_id')==false){
+      if(get_option('lenxel_ sign_in_id')==false){
          $arg = array(
             'post_title' => $page_title,
             'post_content' => $shortcode,
@@ -65,16 +62,16 @@ class Lenxel_Theme_Support{
             'post_type' => 'page',
          );
          $sign_in_page_id=wp_insert_post($arg);
-         update_option('sign_in_id',$sign_in_page_id);
+         update_option('lenxel_ sign_in_id',$sign_in_page_id);
       }
    }
-
    public function lenxel_core_head_ajax_url(){
+   //   print_r( plugins_url( 'redux/redux-framework/assets/js/webfont.js', __FILE__ ));
+   //    die();
       $html_content = '<script> var ajaxurl = "'.esc_url(admin_url('admin-ajax.php')).'";</script>';
       echo wp_kses($html_content, array( 'script'=>array() ));
+      
    }
-
-
    public function include_files()
    {
       require_once('redux/admin-init.php');
@@ -119,17 +116,6 @@ class Lenxel_Theme_Support{
    {
       $css_dir = plugin_dir_url(__FILE__) . 'assets/css';
       wp_enqueue_style('lenxel-icons-custom', LENXEL_PLUGIN_URL . 'assets/icons/flaticon.css');
-   }
-
-   public function lenxel_core_plugin_update()
-   {
-      require 'plugin-update/update-checker.php';
-      $updateRoute = plugin_dir_url( __FILE__ ).'lenxel-core-update-plugin.json';
-      Puc_v4_Factory::buildUpdateChecker(
-         "{$updateRoute}",
-         __FILE__,
-         'lenxel-core'
-      );
    }
 
    function lenxel_core_handle_deactivate_plugin() {
@@ -221,7 +207,7 @@ class Lenxel_Theme_Support{
    function lenxel_core_premium_content_div(){
     ob_start();
     ?>
-     <!-- <div class="dialog-widget dialog-buttons-widget dialog-type-buttons dialog-premium-lenxel" id="elementor-element--promotion__dialog" aria-modal="true" role="document" tabindex="0" style="top: 350px; left: 276px;"><div class="dialog-header dialog-buttons-header dialog-premium-lenxel-header"><div id="elementor-element--promotion__dialog__title" class="dialog-premium-lenxel-title">Testimonial Carousel Widget</div><i class="eicon-pro-icon"></i><i class="eicon-close"></i></div><div class="dialog-message dialog-buttons-message dialog-premium-lenxel-message">Use Testimonial Carousel widget and dozens more pro features to extend your toolbox and build sites faster and better.</div><div class="dialog-buttons-wrapper dialog-buttons-buttons-wrapper"><a href="https://ogunlabs.com/get-a-quote" target="_blank" class="elementor-button go-pro dialog-button dialog-action dialog-buttons-action">Upgrade Now</a></div></div> -->
+     
     <script>
         jQuery('body').append('<div class="dialog-widget dialog-buttons-widget dialog-type-buttons dialog-premium-lenxel" id="elementor-element--promotion__dialog" aria-modal="true" role="document" tabindex="0" style="top: 350px; left: 276px; display: none;"><div class="dialog-header dialog-buttons-header dialog-premium-lenxel-header"><div id="elementor-element--promotion__dialog__title" class="dialog-premium-lenxel-title">Testimonial Carousel Widget</div><i class="eicon-pro-icon"></i><i class="eicon-close"></i></div><div class="dialog-message dialog-buttons-message dialog-premium-lenxel-message">Use Testimonial Carousel widget and dozens more pro features to extend your toolbox and build sites faster and better.</div><div class="dialog-buttons-wrapper dialog-buttons-buttons-wrapper"><a href="https://lenxelpay.ogunlabs.com/?add-to-carts=38" target="_blank" class="elementor-button go-pro dialog-button dialog-action dialog-buttons-action">Upgrade Now</a></div></div>');
         jQuery('body').click( function(event) {
@@ -337,119 +323,34 @@ class Lenxel_Theme_Support{
                   </div>
                </form>
             </div>
-
-            <!-- <input type="email" id="email" placeholder="brendaneich@js.com" />
-            <button class="btn">Submit</button> -->
          </section>
       </div>
 
          <div class="overlay hidden"></div>
          <button class="btn btn-open deactivateLenxel" style="display:none;">Open Modal</button>
          <style>
-            .feedbackOther, .betterPlugin{
-               display:none;
-            }
-            .choice {
-               padding: 5px 0px;
-            }
-            * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Inter", sans-serif;
-               }
-               .modal {
-               display: flex;
-               flex-direction: column;
-               justify-content: center;
-               gap: 0.4rem;
-               width: 450px;
-               padding: 1.3rem;
-               min-height: 250px;
-               position: absolute;
-               top: 20%;
-               background-color: white;
-               border: 1px solid #ddd;
-               border-radius: 15px;
-               visibility: visible;
-               height: auto;
-            }
+            .feedbackOther, .betterPlugin{display:none; }
+            .choice {padding: 5px 0px;}
+            * { margin: 0;padding: 0;box-sizing: border-box;font-family: "Inter", sans-serif;}
+               .modal {display: flex;flex-direction: column;justify-content: center;gap: 0.4rem;width: 450px;padding: 1.3rem; min-height: 250px;position: absolute;top: 20%;background-color: white;border: 1px solid #ddd;border-radius: 15px;visibility: visible;height: auto;}
 
-            .modal .flex {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            }
+            .modal .flex {display: flex;align-items: center;justify-content: space-between; }
 
-            .modal input {
-            padding: 0.7rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 0.9em;
-            }
+            .modal input {padding: 0.7rem 1rem;border: 1px solid #ddd; border-radius: 5px;font-size: 0.9em;}
 
-            .modal p {
-            font-size: 0.9rem;
-            color: #777;
-            margin: 0.4rem 0 0.2rem;
-            }
+            .modal p {font-size: 0.9rem;color: #777;margin: 0.4rem 0 0.2rem;}
 
-            button {
-            cursor: pointer;
-            border: none;
-            font-weight: 600;
-            }
+            button {cursor: pointer;border: none;font-weight: 600;}
 
-            .btn {
-            display: inline-block;
-            padding: 0.8rem 1.4rem;
-            font-weight: 700;
-            background-color: black;
-            color: white;
-            border-radius: 5px;
-            text-align: center;
-            font-size: 1em;
-            }
+            .btn {display: inline-block;padding: 0.8rem 1.4rem;font-weight: 700;background-color: black; color: white;border-radius: 5px;text-align: center;font-size: 1em;}
 
-            .btn-open {
-            position: absolute;
-            bottom: 150px;
-            }
+            .btn-open {position: absolute;bottom: 150px;}
 
-            .btn-close {
-            transform: translate(10px, -20px);
-            padding: 0.5rem 0.7rem;
-            background: #eee;
-            border-radius: 50%;
-            }
-            .overlay {
-               position: fixed;
-               top: 0;
-               bottom: 0;
-               left: 0;
-               right: 0;
-               width: 100%;
-               height: 100%;
-               background: rgba(0, 0, 0, 0.5);
-               backdrop-filter: blur(3px);
-               z-index: 1;
-            }
-            .modal {
-            z-index: 2;
-            }
-            .hidden {
-            display: none;
-            }
-            .modalContainer{
-               position: fixed;
-               left: 37%;
-               top: 35%;
-               /* right: 70%; */
-               margin: 0 auto;
-               visibility: visible;
-               opacity: 1;
-               z-index: 99;
-         }
+            .btn-close {transform: translate(10px, -20px);padding: 0.5rem 0.7rem;background: #eee; border-radius: 50%;}
+            .overlay {position: fixed;top: 0;bottom: 0;left: 0;right: 0;width: 100%;height: 100%;background: rgba(0, 0, 0, 0.5);backdrop-filter: blur(3px);z-index: 1;}
+            .modal {z-index: 2;}
+            .hidden {display: none;}
+            .modalContainer{position: fixed;left: 37%;top: 35%;margin: 0 auto;visibility: visible;opacity: 1;z-index: 99;}
          </style>
          
       <?php

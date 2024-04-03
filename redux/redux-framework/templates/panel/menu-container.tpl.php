@@ -5,7 +5,7 @@
  *
  * @author     Redux Framework
  * @package    ReduxFramework/Templates
- * @version:    4.0.0
+ * @version:    4.3.11
  */
 
 ?>
@@ -13,7 +13,7 @@
 	<ul class="redux-group-menu">
 		<?php
 		foreach ( $this->parent->sections as $k => $section ) {
-			$the_title = isset( $section['title'] ) ? $section['title'] : '';
+			$the_title = $section['title'] ?? '';
 			$skip_sec  = false;
 			foreach ( $this->parent->options_class->hidden_perm_sections as $num => $section_title ) {
 				if ( $section_title === $the_title ) {
@@ -26,17 +26,17 @@
 			}
 
 			if ( false === $skip_sec ) {
-				echo( $this->parent->section_menu( $k, $section ) ); // phpcs:ignore WordPress.Security.EscapeOutput
+				echo( $this->parent->render_class->section_menu( $k, $section ) ); // phpcs:ignore WordPress.Security.EscapeOutput
 				$skip_sec = false;
 			}
 		}
 
 		/**
-		 * Action 'redux/page/{opt_name_triger}/menu/after'
+		 * Action 'redux/page/{opt_name}/menu/after'
 		 *
 		 * @param object $this ReduxFramework
 		 */
-		do_action( "redux/page/{$this->parent->args['opt_name_triger']}/menu/after", $this ); // phpcs:ignore WordPress.NamingConventions.ValidHookName
+		do_action( "redux/page/{$this->parent->args['opt_name']}/menu/after", $this ); // phpcs:ignore WordPress.NamingConventions.ValidHookName
 		?>
 	</ul>
 </div>

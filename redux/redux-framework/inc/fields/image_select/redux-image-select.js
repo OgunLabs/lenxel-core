@@ -52,14 +52,14 @@
 							merge   = presets.data( 'merge' );
 
 							if ( undefined !== merge && null !== merge ) {
-								if ( 'string' === $.type( merge ) ) {
+								if ( 'string' === typeof( merge ) ) {
 									merge = merge.split( '|' );
 								}
 
 								$.each(
 									data,
 									function( index ) {
-										if ( 'object' === $.type( redux.optName.options[index] ) && (
+										if ( 'object' === typeof( redux.optName.options[index] ) && (
 											true === merge || -1 !== $.inArray( index, merge ) )
 										) {
 											data[index] = $.extend( redux.optName.options[index], data[index] );
@@ -74,18 +74,18 @@
 
 								window.onbeforeunload = null;
 
-								importCodeValue = $( 'textarea[name="' + redux.optName.args.opt_name_triger + '[import_code]"' );
+								importCodeValue = $( 'textarea[name="' + redux.optName.args.opt_name + '[import_code]"' );
 
 								if ( 0 === importCodeValue.length ) {
-									$( this ).append( '<textarea id="import-code-value" style="display:none;" name="' + redux.optName.args.opt_name_triger + '[import_code]">' + JSON.stringify( data ) + '</textarea>' );
+									$( this ).append( '<textarea id="import-code-value" style="display:none;" name="' + redux.optName.args.opt_name + '[import_code]">' + JSON.stringify( data ) + '</textarea>' );
 								} else {
 									importCodeValue.val( JSON.stringify( data ) );
 								}
 
 								if ( 0 !== $( '#publishing-action #publish' ).length ) {
-									$( '#publish' ).click();
+									$( '#publish' ).trigger( 'click' );
 								} else {
-									$( '#redux-import' ).click();
+									$( '#redux-import' ).trigger( 'click' );
 								}
 							}
 

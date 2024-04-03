@@ -5,6 +5,7 @@
  * @class Redux_Core
  * @version 4.0.0
  * @package Redux Framework/Classes
+ * @noinspection PhpIgnoredClassAliasDeclaration
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -47,20 +48,21 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 		/**
 		 * Redux_Enqueue constructor.
 		 *
-		 * @param     object $parent ReduxFramework pointer.
+		 * @param     object $redux ReduxFramework pointer.
 		 */
-		public function __construct( $parent ) {
-			parent::__construct( $parent );
+		public function __construct( $redux ) {
+			parent::__construct( $redux );
 
 			// Enqueue the admin page CSS and JS.
-			if ( isset( $_GET['page'] ) && $_GET['page'] === $parent->args['page_slug'] ) { // phpcs:ignore WordPress.Security.NonceVerification
+			if ( isset( $_GET['page'] ) && $_GET['page'] === $redux->args['page_slug'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 				add_action( 'admin_enqueue_scripts', array( $this, 'init' ), 1 );
 			}
 
 			add_action( 'wp_enqueue_scripts', array( $this, 'frontend_init' ), 10 );
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			do_action( "redux/{$parent->args['opt_name_triger']}/enqueue/construct", $this );
+			do_action( "redux/{$redux->args['opt_name']}/enqueue/construct", $this );
+
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			do_action( 'redux/enqueue/construct', $this );
 		}
@@ -72,12 +74,11 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			$core = $this->core();
 
 			if ( $core->args['elusive_frontend'] ) {
-				wp_enqueue_style(
-					'redux-elusive-icon',
-					Redux_Core::$url . 'assets/css/vendor/elusive-icons.min.css',
-					array(),
-					Redux_Core::$version
-				);
+				Redux_Functions_Ex::enqueue_elusive_font();
+			}
+
+			if ( $core->args['fontawesome_frontend'] ) {
+				Redux_Functions_Ex::enqueue_font_awesome();
 			}
 		}
 
@@ -98,21 +99,21 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			}
 
 			$this->register_styles( $core );
-			$this->register_scripts( $core );
+			$this->register_scripts();
 
 			add_thickbox();
 
 			$this->enqueue_fields( $core );
 
-			add_filter( "redux/{$core->args['opt_name_triger']}/localize", array( 'Redux_Helpers', 'localize' ) );
+			add_filter( "redux/{$core->args['opt_name']}/localize", array( 'Redux_Helpers', 'localize' ) );
 
 			$this->set_localized_data( $core );
 
 			/**
-			 * Action 'redux/page/{opt_name_triger}/enqueue'
+			 * Action 'redux/page/{opt_name}/enqueue'
 			 */
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			do_action( "redux/page/{$core->args['opt_name_triger']}/enqueue" );
+			do_action( "redux/page/{$core->args['opt_name']}/enqueue" );
 		}
 
 		/**
@@ -122,9 +123,9 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 		 */
 		private function register_styles( $core ) {
 
-			// *****************************************************************
-			// Redux Admin CSS
-			// *****************************************************************
+			/**
+			 * Redux Admin CSS
+			 */
 			if ( 'wordpress' === $core->args['admin_theme'] || 'wp' === $core->args['admin_theme'] ) { // phpcs:ignore WordPress.WP.CapitalPDangit
 				$color_scheme = get_user_option( 'admin_color' );
 			} elseif ( 'classic' === $core->args['admin_theme'] || '' === $core->args['admin_theme'] ) {
@@ -140,10 +141,10 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			$css = Redux_Core::$url . "assets/css/colors/$color_scheme/colors$this->min.css";
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			$css = apply_filters( 'redux/enqueue/' . $core->args['opt_name_triger'] . '/args/admin_theme/css_url', $css );
+			$css = apply_filters( 'redux/enqueue/' . $core->args['opt_name'] . '/args/admin_theme/css_url', $css );
 
 			wp_register_style(
-				'redux-admin-theme-css',
+				'redux-admin-theme',
 				$css,
 				array(),
 				$this->timestamp
@@ -152,25 +153,25 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			wp_enqueue_style(
 				'redux-admin-css',
 				Redux_Core::$url . "assets/css/redux-admin$this->min.css",
-				array( 'redux-admin-theme-css' ),
+				array( 'redux-admin-theme' ),
 				$this->timestamp
 			);
 
-			// *****************************************************************
-			// Redux Fields CSS
-			// *****************************************************************
+			/**
+			 * Redux Fields CSS
+			 */
 			if ( ! $core->args['dev_mode'] ) {
 				wp_enqueue_style(
-					'redux-fields-css',
+					'redux-fields',
 					Redux_Core::$url . 'assets/css/redux-fields.min.css',
 					array(),
 					$this->timestamp
 				);
 			}
 
-			// *****************************************************************
-			// Select2 CSS
-			// *****************************************************************
+			/**
+			 * Select2 CSS
+			 */
 			wp_enqueue_style(
 				'select2-css',
 				Redux_Core::$url . 'assets/css/vendor/select2.min.css',
@@ -178,11 +179,9 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 				'4.1.0'
 			);
 
-			// *****************************************************************
-			// Spectrum CSS
-			// *****************************************************************
-			$css_file = 'redux-spectrum.css';
-
+			/**
+			 * Spectrum CSS
+			 */
 			wp_register_style(
 				'redux-spectrum-css',
 				Redux_Core::$url . "assets/css/vendor/spectrum$this->min.css",
@@ -190,67 +189,67 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 				'1.3.3'
 			);
 
-			// *****************************************************************
-			// Elusive Icon CSS
-			// *****************************************************************
-			wp_enqueue_style(
-				'redux-elusive-icon',
-				Redux_Core::$url . "assets/css/vendor/elusive-icons$this->min.css",
-				array(),
-				$this->timestamp
-			);
+			/**
+			 * Elusive Icon CSS
+			 */
+			Redux_Functions_Ex::enqueue_elusive_font();
 
-			// *****************************************************************
-			// QTip CSS
-			// *****************************************************************
+			/**
+			 * Font Awesome for Social Profiles and Icon Select
+			 */
+			Redux_Functions_Ex::enqueue_font_awesome();
+
+			/**
+			 * QTip CSS
+			 */
 			wp_enqueue_style(
-				'qtip-css',
+				'qtip',
 				Redux_Core::$url . "assets/css/vendor/qtip$this->min.css",
 				array(),
 				'3.0.3'
 			);
 
-			// *****************************************************************
-			// JQuery UI CSS
-			// *****************************************************************
-
+			/**
+			 * JQuery UI CSS
+			 */
 			wp_enqueue_style(
-				'jquery-ui-css',
+				'jquery-ui',
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				apply_filters(
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					"redux/page/{$core->args['opt_name_triger']}/enqueue/jquery-ui-css",
+					"redux/page/{$core->args['opt_name']}/enqueue/jquery-ui-css",
 					Redux_Core::$url . 'assets/css/vendor/jquery-ui-1.10.0.custom.css'
 				),
 				array(),
 				$this->timestamp
 			);
 
-			// *****************************************************************
-			// Iris CSS
-			// *****************************************************************
+			/**
+			 * Iris CSS
+			 */
 			wp_enqueue_style( 'wp-color-picker' );
 
 			if ( $core->args['dev_mode'] ) {
-				// *****************************************************************
-				// Media CSS
-				// *****************************************************************
+
+				/**
+				 * Media CSS
+				 */
 				wp_enqueue_style(
-					'redux-field-media-css',
+					'redux-field-media',
 					Redux_Core::$url . 'assets/css/media.css',
 					array(),
 					$this->timestamp
 				);
 			}
 
-			// *****************************************************************
-			// RTL CSS
-			// *****************************************************************
+			/**
+			 * RTL CSS
+			 */
 			if ( is_rtl() ) {
 				wp_enqueue_style(
-					'redux-rtl-css',
+					'redux-rtl',
 					Redux_Core::$url . 'assets/css/rtl.css',
-					array( 'redux-admin-css' ),
+					array(),
 					$this->timestamp
 				);
 			}
@@ -258,10 +257,8 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 
 		/**
 		 * Register all core framework scripts.
-		 *
-		 * @param     object $core ReduxFramework object.
 		 */
-		private function register_scripts( $core ) {
+		private function register_scripts() {
 			// *****************************************************************
 			// JQuery / JQuery UI JS
 			// *****************************************************************
@@ -269,45 +266,47 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			wp_enqueue_script( 'jquery-ui-core' );
 			wp_enqueue_script( 'jquery-ui-dialog' );
 
-			// *****************************************************************
-			// Select2 Sortable JS
-			// *****************************************************************
+			/**
+			 * Select2 Sortable JS
+			 */
 			wp_register_script(
-				'redux-select2-sortable-js',
+				'redux-select2-sortable',
 				Redux_Core::$url . 'assets/js/vendor/select2-sortable/redux.select2.sortable' . $this->min . '.js',
 				array( 'jquery', 'jquery-ui-sortable' ),
 				$this->timestamp,
 				true
 			);
 
+			/**
+			 * Select2
+			 */
 			wp_enqueue_script(
 				'select2-js',
 				Redux_Core::$url . 'assets/js/vendor/select2/select2' . $this->min . '.js`',
-				array( 'jquery', 'redux-select2-sortable-js' ),
+				array( 'jquery', 'redux-select2-sortable' ),
 				'4.1.0',
 				true
 			);
 
-			// *****************************************************************
-			// QTip JS
-			// *****************************************************************
+			/**
+			 * QTip JS
+			 */
 			wp_enqueue_script(
-				'qtip-js',
+				'qtip',
 				Redux_Core::$url . 'assets/js/vendor/qtip/qtip' . $this->min . '.js',
 				array( 'jquery' ),
 				'3.0.3',
 				true
 			);
 
-			// *****************************************************************
-			// Iris alpha color picker
-			// *****************************************************************
-
-			if ( ! wp_script_is( 'redux-wp-color-picker-alpha-js' ) ) {
+			/**
+			 * Iris alpha color picker
+			 */
+			if ( ! wp_script_is( 'redux-wp-color-picker-alpha' ) ) {
 				wp_enqueue_style( 'wp-color-picker' );
 
 				wp_register_script(
-					'redux-wp-color-picker-alpha-js',
+					'redux-wp-color-picker-alpha',
 					Redux_Core::$url . 'assets/js/vendor/wp-color-picker-alpha/wp-color-picker-alpha' . $this->min . '.js',
 					array( 'jquery', 'wp-color-picker' ),
 					'3.0.0',
@@ -315,9 +314,20 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 				);
 			}
 
-			// *****************************************************************
-			// Spectrum JS
-			// *****************************************************************
+			/**
+			 * Block UI (used by Custom Fonts and Color Schemes).
+			 */
+			wp_register_script(
+				'redux-block-ui',
+				Redux_Core::$url . 'assets/js/vendor/block-ui/jquery.blockUI' . $this->min . '.js',
+				array( 'jquery' ),
+				'2.70.0',
+				true
+			);
+
+			/**
+			 * Spectrum JS
+			 */
 			wp_register_script(
 				'redux-spectrum-js',
 				Redux_Core::$url . 'assets/js/vendor/spectrum/redux-spectrum' . $this->min . '.js',
@@ -326,9 +336,9 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 				true
 			);
 
-			// *****************************************************************
-			// Vendor JS
-			// *****************************************************************
+			/**
+			 * Vendor JS
+			 */
 			wp_register_script(
 				'redux-vendor',
 				Redux_Core::$url . 'assets/js/redux-vendors' . $this->min . '.js',
@@ -337,9 +347,9 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 				true
 			);
 
-			// *****************************************************************
-			// Redux JS
-			// *****************************************************************
+			/**
+			 * Redux JS
+			 */
 			wp_register_script(
 				'redux-js',
 				Redux_Core::$url . 'assets/js/redux' . $this->min . '.js',
@@ -357,14 +367,6 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 		 */
 		public function enqueue_field( $core, array $field ) {
 			if ( isset( $field['type'] ) && 'callback' !== $field['type'] ) {
-
-				/**
-				 * Field class file
-				 * filter 'redux/{opt_name_triger}/field/class/{field.type}
-				 *
-				 * @param     string        field class file path
-				 * @param     array     $field field config data
-				 */
 				$field_type = str_replace( '_', '-', $field['type'] );
 				$core_path  = Redux_Core::$dir . "inc/fields/{$field['type']}/class-redux-$field_type.php";
 
@@ -373,26 +375,19 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 					$core_path = Redux_Core::$dir . "inc/fields/{$field['type']}/field_{$field['type']}.php";
 				}
 
-				if ( Redux_Core::$pro_loaded ) {
-					$pro_path = '';
+				$filter_path = $core_path;
 
-					if ( class_exists( 'Redux_Pro' ) ) {
-						$pro_path = Redux_Pro::$dir . "core/inc/fields/{$field['type']}/class-redux-$field_type.php";
-					}
-
-					if ( file_exists( $pro_path ) ) {
-						$filter_path = $pro_path;
-					} else {
-						$filter_path = $core_path;
-					}
-				} else {
-					$filter_path = $core_path;
-				}
-
+				/**
+				 * Field class file
+				 * filter 'redux/{opt_name}/field/class/{field.type}
+				 *
+				 * @param     string    $filter_path Field class file path
+				 * @param     array     $field       Field config data
+				 */
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
 				$class_file = apply_filters(
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					"redux/{$core->args['opt_name_triger']}/field/class/{$field['type']}",
+					"redux/{$core->args['opt_name']}/field/class/{$field['type']}",
 					$filter_path,
 					$field
 				);
@@ -416,46 +411,20 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 							$core->options[ $field['id'] ] = '';
 						}
 
-						$data = array(
-							'field' => $field,
-							'value' => $core->options[ $field['id'] ],
-							'core'  => $core,
-							'mode'  => 'enqueue',
-						);
-
-						Redux_Functions::load_pro_field( $data );
-
 						$the_field = new $field_class( $field, $core->options[ $field['id'] ], $core );
 
-						if ( Redux_Core::$pro_loaded ) {
-							$field_filter = '';
-
-							if ( class_exists( 'Redux_Pro' ) ) {
-								$field_filter = Redux_Pro::$dir . 'core/inc/fields/' . $field['type'] . '/class-redux-pro-' . $field_type . '.php';
-							}
-
-							if ( file_exists( $field_filter ) ) {
-								require_once $field_filter;
-
-								$filter_class_name = 'Redux_Pro_' . $field['type'];
-
-								if ( class_exists( $filter_class_name ) ) {
-									$extend = new $filter_class_name( $field, $core->options[ $field['id'] ], $core );
-									$extend->init( 'enqueue' );
-								}
-							}
-						}
-
 						// Move dev_mode check to a new if/then block.
-						if ( ( ! wp_script_is( 'redux-field-' . $field_type . '-js' ) ||
-							! wp_script_is( 'redux-extension-' . $field_type . '-js' ) ||
-							! wp_script_is( 'redux-pro-field-' . $field_type . '-js' ) ) &&
-							class_exists( $field_class ) && method_exists( $field_class, 'enqueue' ) ) {
+						if ( ! wp_script_is( 'redux-field-' . $field_type ) && ( class_exists( $field_class ) && method_exists( $field_class, 'enqueue' ) ) ) {
 							$the_field->enqueue();
 						}
 
+						if ( class_exists( $field_class ) && method_exists( $field_class, 'always_enqueue' ) ) {
+							$the_field->always_enqueue();
+						}
+
 						if ( method_exists( $field_class, 'localize' ) ) {
-							$params = $the_field->localize( $field );
+							$the_field->localize( $field );
+
 							if ( ! isset( $this->localize_data[ $field['type'] ] ) ) {
 								$this->localize_data[ $field['type'] ] = array();
 							}
@@ -465,7 +434,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 							$shims = array( 'repeater' );
 
 							// phpcs:ignore WordPress.NamingConventions.ValidHookName
-							$shims = apply_filters( 'redux/' . $core->args['opt_name_triger'] . '/localize/shims', $shims );
+							$shims = apply_filters( 'redux/' . $core->args['opt_name'] . '/localize/shims', $shims );
 
 							if ( is_array( $shims ) && in_array( $field['type'], $shims, true ) ) {
 								$this->repeater_data[ $field['type'] ][ $field['id'] ] = $localize_data;
@@ -486,8 +455,6 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 		 * @param     object $core ReduxFramework object.
 		 */
 		private function enqueue_fields( $core ) {
-			$data = array();
-
 			foreach ( $core->sections as $section ) {
 				if ( isset( $section['fields'] ) ) {
 					foreach ( $section['fields'] as $field ) {
@@ -498,7 +465,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 		}
 
 		/**
-		 * Build localize array from field functions, if any.
+		 * Build a localized array from field functions, if any.
 		 *
 		 * @param object $core ReduxFramework object.
 		 * @param string $type Field type.
@@ -509,14 +476,16 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 				$messages  = array();
 
 				foreach ( $core->transients['notices'][ $type ] as $msg ) {
-					$messages[ $msg['section_id'] ][ $type ][] = $msg;
+					if ( is_array( $msg ) && ! empty( $msg ) ) {
+						$messages[ $msg['section_id'] ][ $type ][] = $msg;
 
-					if ( ! isset( $messages[ $msg['section_id'] ]['total'] ) ) {
-						$messages[ $msg['section_id'] ]['total'] = 0;
+						if ( ! isset( $messages[ $msg['section_id'] ]['total'] ) ) {
+							$messages[ $msg['section_id'] ]['total'] = 0;
+						}
+
+						++$messages[ $msg['section_id'] ]['total'];
+						++$the_total;
 					}
-
-					$messages[ $msg['section_id'] ]['total'] ++;
-					$the_total ++;
 				}
 
 				$this->localize_data[ $type ] = array(
@@ -529,7 +498,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 		}
 
 		/**
-		 * Compile panel errors and warings for locaize array.
+		 * Compile panel errors and wearings for a localized array.
 		 */
 		public function get_warnings_and_errors_array() {
 			$core = $this->core();
@@ -539,7 +508,9 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			$this->build_local_array( $core, 'sanitize' );
 
 			if ( empty( $core->transients['notices'] ) ) {
-				unset( $core->transients['notices'] );
+				if ( isset( $core->transients['notices'] ) ) {
+					unset( $core->transients['notices'] );
+				}
 			}
 		}
 
@@ -553,17 +524,16 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 				$this->localize_data['last_tab'] = $core->args['last_tab'];
 			}
 
-			$this->localize_data['core_instance'] = $core->core_instance;
-			$this->localize_data['core_thread']   = $core->core_thread;
-
 			$this->localize_data['font_weights'] = $this->args['font_weights'];
 
 			$this->localize_data['required'] = $core->required;
 			$this->repeater_data['fonts']    = $core->fonts;
+
 			if ( ! isset( $this->repeater_data['opt_names'] ) ) {
 				$this->repeater_data['opt_names'] = array();
 			}
-			$this->repeater_data['opt_names'][]    = $core->args['opt_name_triger'];
+
+			$this->repeater_data['opt_names'][]    = $core->args['opt_name'];
 			$this->repeater_data['folds']          = array();
 			$this->localize_data['required_child'] = $core->required_child;
 			$this->localize_data['fields']         = $core->fields;
@@ -604,81 +574,81 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 
 			/**
 			 * Save pending string
-			 * filter 'redux/{opt_name_triger}/localize/save_pending
+			 * filter 'redux/{opt_name}/localize/save_pending
 			 *
-			 * @param     string        save_pending string
+			 * @param string $msg Save_pending string
 			 */
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$save_pending = apply_filters(
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				"redux/{$core->args['opt_name_triger']}/localize/save_pending",
+				"redux/{$core->args['opt_name']}/localize/save_pending",
 				esc_html__(
 					'You have changes that are not saved. Would you like to save them now?',
-					'lenxel-core'
+					'redux-framework'
 				)
 			);
 
 			/**
 			 * Reset all string
-			 * filter 'redux/{opt_name_triger}/localize/reset
+			 * filter 'redux/{opt_name}/localize/reset
 			 *
-			 * @param     string        reset all string
+			 * @param string $msg Reset all string.
 			 */
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$reset_all = apply_filters(
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				"redux/{$core->args['opt_name_triger']}/localize/reset",
+				"redux/{$core->args['opt_name']}/localize/reset",
 				esc_html__(
 					'Are you sure? Resetting will lose all custom values.',
-					'lenxel-core'
+					'redux-framework'
 				)
 			);
 
 			/**
 			 * Reset section string
-			 * filter 'redux/{opt_name_triger}/localize/reset_section
+			 * filter 'redux/{opt_name}/localize/reset_section
 			 *
-			 * @param     string        reset section string
+			 * @param string $msg Reset section string.
 			 */
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$reset_section = apply_filters(
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				"redux/{$core->args['opt_name_triger']}/localize/reset_section",
+				"redux/{$core->args['opt_name']}/localize/reset_section",
 				esc_html__(
 					'Are you sure? Resetting will lose all custom values in this section.',
-					'lenxel-core'
+					'redux-framework'
 				)
 			);
 
 			/**
 			 * Preset confirm string
-			 * filter 'redux/{opt_name_triger}/localize/preset
+			 * filter 'redux/{opt_name}/localize/preset
 			 *
-			 * @param     string        preset confirm string
+			 * @param string $msg Preset confirm string.
 			 */
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$preset_confirm = apply_filters(
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				"redux/{$core->args['opt_name_triger']}/localize/preset",
+				"redux/{$core->args['opt_name']}/localize/preset",
 				esc_html__(
 					'Your current options will be replaced with the values of this preset. Would you like to proceed?',
-					'lenxel-core'
+					'redux-framework'
 				)
 			);
 
 			/**
 			 * Import confirm string
-			 * filter 'redux/{opt_name_triger}/localize/import
+			 * filter 'redux/{opt_name}/localize/import
 			 *
-			 * @param     string        import confirm string
+			 * @param string $msg Import confirm string.
 			 */
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$import_confirm = apply_filters(
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				"redux/{$core->args['opt_name_triger']}/localize/import",
+				"redux/{$core->args['opt_name']}/localize/import",
 				esc_html__(
 					'Your current options will be replaced with the values of this import. Would you like to proceed?',
-					'lenxel-core'
+					'redux-framework'
 				)
 			);
 
@@ -691,8 +661,8 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 				'reset_section_confirm'  => $reset_section,
 				'preset_confirm'         => $preset_confirm,
 				'import_section_confirm' => $import_confirm,
-				'please_wait'            => esc_html__( 'Please Wait', 'lenxel-core' ),
-				'opt_name_triger'               => $core->args['opt_name_triger'],
+				'please_wait'            => esc_html__( 'Please Wait', 'redux-framework' ),
+				'opt_name'               => $core->args['opt_name'],
 				'flyout_submenus'        => $core->args['flyout_submenus'] ?? false,
 				'slug'                   => $core->args['page_slug'],
 				'hints'                  => $core->args['hints'],
@@ -705,19 +675,19 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 			$this->localize_data['ajax'] = array(
 				'console' => esc_html__(
 					'There was an error saving. Here is the result of your action:',
-					'lenxel-core'
+					'redux-framework'
 				),
 				'alert'   => esc_html__(
 					'There was a problem with your action. Please try again or reload the page.',
-					'lenxel-core'
+					'redux-framework'
 				),
 			);
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			$this->localize_data = apply_filters( "redux/{$core->args['opt_name_triger']}/localize", $this->localize_data );
+			$this->localize_data = apply_filters( "redux/{$core->args['opt_name']}/localize", $this->localize_data );
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			$this->repeater_data = apply_filters( "redux/{$core->args['opt_name_triger']}/repeater", $this->repeater_data );
+			$this->repeater_data = apply_filters( "redux/{$core->args['opt_name']}/repeater", $this->repeater_data );
 
 			$this->get_warnings_and_errors_array();
 
@@ -753,7 +723,7 @@ if ( ! class_exists( 'Redux_Enqueue', false ) ) {
 
 			wp_localize_script(
 				'redux-js',
-				'redux_' . str_replace( '-', '_', $core->args['opt_name_triger'] ),
+				'redux_' . str_replace( '-', '_', $core->args['opt_name'] ),
 				$this->localize_data
 			);
 

@@ -5,6 +5,7 @@
  * @class   Redux_AJAX_Select2
  * @version 4.0.0
  * @package Redux Framework/Classes
+ * @noinspection PhpConditionCheckedByNextConditionInspection
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -19,12 +20,12 @@ if ( ! class_exists( 'Redux_AJAX_Select2', false ) ) {
 		/**
 		 * Redux_AJAX_Select2 constructor.
 		 *
-		 * @param object $parent ReduxFramework object pointer.
+		 * @param object $redux ReduxFramework object pointer.
 		 */
-		public function __construct( $parent ) {
-			parent::__construct( $parent );
+		public function __construct( $redux ) {
+			parent::__construct( $redux );
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			add_action( "wp_ajax_redux_{$parent->args['opt_name_triger']}_select2", array( $this, 'ajax' ) );
+			add_action( "wp_ajax_redux_{$redux->args['opt_name']}_select2", array( $this, 'ajax' ) );
 		}
 
 		/**
@@ -35,11 +36,11 @@ if ( ! class_exists( 'Redux_AJAX_Select2', false ) ) {
 
 			if ( isset( $_REQUEST['nonce'] ) && isset( $_REQUEST['action'] ) ) {
 				if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['nonce'] ) ), sanitize_text_field( wp_unslash( $_REQUEST['action'] ) ) ) ) {
-					wp_send_json_error( esc_html__( 'Invalid security credential.  Please reload the page and try again.', 'lenxel-core' ) );
+					wp_send_json_error( esc_html__( 'Invalid security credential.  Please reload the page and try again.', 'redux-framework' ) );
 				}
 
 				if ( ! Redux_Helpers::current_user_can( $this->parent->args['page_permissions'] ) ) {
-					wp_send_json_error( esc_html__( 'Invalid user capability.  Please reload the page and try again.', 'lenxel-core' ) );
+					wp_send_json_error( esc_html__( 'Invalid user capability.  Please reload the page and try again.', 'redux-framework' ) );
 				}
 
 				if ( isset( $_REQUEST['data'] ) ) {
@@ -52,7 +53,6 @@ if ( ! class_exists( 'Redux_AJAX_Select2', false ) ) {
 						)
 					);
 
-					$criteria = '';
 					if ( isset( $_REQUEST['q'] ) && ! empty( $_REQUEST['q'] ) ) {
 						$criteria  = sanitize_text_field( wp_unslash( $_REQUEST['q'] ) );
 						$args['s'] = $criteria;

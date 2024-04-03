@@ -5,6 +5,7 @@
  * @class   Redux_Output
  * @version 3.0.0
  * @package Redux Framework/Classes
+ * @noinspection PhpConditionCheckedByNextConditionInspection
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -19,10 +20,10 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 		/**
 		 * Redux_Output constructor.
 		 *
-		 * @param object $parent ReduxFramework pointer.
+		 * @param object $redux ReduxFramework pointer.
 		 */
-		public function __construct( $parent ) {
-			parent::__construct( $parent );
+		public function __construct( $redux ) {
+			parent::__construct( $redux );
 
 			// Output dynamic CSS.
 			// Frontend: Maybe enqueue dynamic CSS and Google fonts.
@@ -44,16 +45,17 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 			}
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			do_action( "redux/output/{$this->parent->args['opt_name_triger']}/construct", $this );
+			do_action( "redux/output/{$this->parent->args['opt_name']}/construct", $this );
 			// Useful for adding different locations for CSS output.
 		}
 
 		/**
 		 * Enqueue CSS and Google fonts for front end
 		 *
-		 * @return      void
-		 * @since       1.0.0
-		 * @access      public
+		 * @return void
+		 * @throws ReflectionException Exception.
+		 * @since  1.0.0
+		 * @access public
 		 */
 		public function enqueue() {
 			$core = $this->core();
@@ -79,13 +81,6 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 									$field['compiler'] = '';
 								}
 
-								/**
-								 * Field class file
-								 * filter 'redux/{opt_name_triger}/field/class/{field.type}
-								 *
-								 * @param string        field class file
-								 * @param array $field field config data
-								 */
 								$field_type = str_replace( '_', '-', $field['type'] );
 								$core_path  = Redux_Core::$dir . "inc/fields/{$field['type']}/class-redux-$field_type.php";
 
@@ -93,24 +88,18 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 									$core_path = Redux_Core::$dir . "inc/fields/{$field['type']}/field_{$field['type']}.php";
 								}
 
-								if ( Redux_Core::$pro_loaded ) {
-									$pro_path = '';
+								$filter_path = $core_path;
 
-									if ( class_exists( 'Redux_Pro' ) ) {
-										$pro_path = Redux_Pro::$dir . "core/inc/fields/{$field['type']}/class-redux-$field_type.php";
-									}
-
-									if ( file_exists( $pro_path ) ) {
-										$filter_path = $pro_path;
-									} else {
-										$filter_path = $core_path;
-									}
-								} else {
-									$filter_path = $core_path;
-								}
+								/**
+								 * Field class file
+								 * filter 'redux/{opt_name}/field/class/{field.type}
+								 *
+								 * @param string $file field class file.
+								 * @param array $field field config data
+								 */
 
 								// phpcs:ignore WordPress.NamingConventions.ValidHookName
-								$class_file = apply_filters( "redux/{$core->args['opt_name_triger']}/field/class/{$field['type']}", $filter_path, $field );
+								$class_file = apply_filters( "redux/{$core->args['opt_name']}/field/class/{$field['type']}", $filter_path, $field );
 
 								if ( $class_file && file_exists( $class_file ) && ( ! class_exists( $field_class ) ) ) {
 									require_once $class_file;
@@ -122,14 +111,6 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 							$field['default'] = $field['default'] ?? '';
 							$value            = $core->options[ $field['id'] ] ?? $field['default'];
 							$style_data       = '';
-							$data             = array(
-								'field' => $field,
-								'value' => $value,
-								'core'  => $core,
-								'mode'  => 'output',
-							);
-
-							Redux_Functions::load_pro_field( $data );
 
 							if ( empty( $field_class ) ) {
 								continue;
@@ -140,20 +121,20 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 							if ( ! empty( $core->options[ $field['id'] ] ) && class_exists( $field_class ) && method_exists( $field_class, 'output' ) && $this->can_output_css( $core, $field ) ) {
 
 								// phpcs:ignore WordPress.NamingConventions.ValidHookName
-								$field = apply_filters( "redux/field/{$core->args['opt_name_triger']}/output_css", $field );
+								$field = apply_filters( "redux/field/{$core->args['opt_name']}/output_css", $field );
 
 								if ( ! empty( $field['output'] ) && ! is_array( $field['output'] ) ) {
 									$field['output'] = array( $field['output'] );
 								}
 
-								if ( ( ( isset( $field['output'] ) && ! empty( $field['output'] ) ) || ( isset( $field['compiler'] ) && ! empty( $field['compiler'] ) ) || isset( $field['media_query'] ) && ! empty( $field['media_query'] ) || 'typography' === $field['type'] || 'icon_select' === $field['type'] ) ) {
+								if ( ( ( isset( $field['output'] ) && ! empty( $field['output'] ) ) || ( isset( $field['compiler'] ) && ! empty( $field['compiler'] ) ) || isset( $field['media_query'] ) && ! empty( $field['media_query'] ) || 'typography' === $field['type'] || 'icon_select' === $field['type'] || 'social_profiles' === $field['type'] ) ) {
 									if ( method_exists( $field_class, 'css_style' ) ) {
 										$style_data = $field_object->css_style( $field_object->value );
 									}
 								}
 
 								if ( null !== $style_data ) {
-									if ( ( ( isset( $field['output'] ) && ! empty( $field['output'] ) ) || ( isset( $field['compiler'] ) && ! empty( $field['compiler'] ) ) || 'typography' === $field['type'] || 'icon_select' === $field['type'] ) ) {
+									if ( ( ( isset( $field['output'] ) && ! empty( $field['output'] ) ) || ( isset( $field['compiler'] ) && ! empty( $field['compiler'] ) ) || 'typography' === $field['type'] || 'icon_select' === $field['type'] || 'social_profiles' === $field['type'] ) ) {
 										$field_object->output( $style_data );
 									}
 
@@ -164,10 +145,10 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 							}
 
 							// phpcs:ignore WordPress.NamingConventions.ValidHookName
-							do_action( "redux/field/{$core->args['opt_name_triger']}/output_loop", $core, $field, $value, $style_data );
+							do_action( "redux/field/{$core->args['opt_name']}/output_loop", $core, $field, $value, $style_data );
 
 							// phpcs:ignore WordPress.NamingConventions.ValidHookName
-							do_action( "redux/field/{$core->args['opt_name_triger']}/output_loop/{$field['type']}", $core, $field, $value, $style_data );
+							do_action( "redux/field/{$core->args['opt_name']}/output_loop/{$field['type']}", $core, $field, $value, $style_data );
 
 							if ( method_exists( $field_class, 'output_variables' ) && $this->can_output_css( $core, $field ) ) {
 								$passed_style_data = $field_object->output_variables( $style_data );
@@ -197,15 +178,15 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 
 				if ( ! $core->args['disable_google_fonts_link'] ) {
 					$url = $typography->make_google_web_font_link( $core->typography );
-					wp_enqueue_style( 'redux-google-fonts-' . $core->args['opt_name_triger'], $url, array(), $version );
-					add_filter( 'style_loader_tag', array( $this, 'add_style_attributes_lenxel' ), 10, 4 );
-					add_filter( 'wp_resource_hints', array( $this, 'google_fonts_preconnect_lenxel' ), 10, 2 );
+					wp_enqueue_style( 'redux-google-fonts-' . $core->args['opt_name'], $url, array(), $version );
+					add_filter( 'style_loader_tag', array( $this, 'add_style_attributes' ), 10, 4 );
+					add_filter( 'wp_resource_hints', array( $this, 'google_fonts_preconnect' ), 10, 2 );
 				}
 			}
 		}
 
 		/**
-		 * Add Google Fonts preconnect link.
+		 * Add a Google Fonts preconnect link.
 		 *
 		 * @param array  $urls              HTML to be added.
 		 * @param string $relationship_type Handle name.
@@ -214,7 +195,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 		 * @since       4.1.15
 		 * @access      public
 		 */
-		public function google_fonts_preconnect_lenxel( array $urls, string $relationship_type ): array {
+		public function google_fonts_preconnect( array $urls, string $relationship_type ): array {
 			if ( 'preconnect' !== $relationship_type ) {
 				return $urls;
 			}
@@ -231,14 +212,13 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 		 *
 		 * @param string $html   HTML to be added.
 		 * @param string $handle Handle name.
-		 * @param string $href   HREF URL of script.
-		 * @param string $media  Media type.
+		 * @param string $href   HREF URL of a script.
 		 *
 		 * @return      string
 		 * @since       4.1.15
 		 * @access      public
 		 */
-		public function add_style_attributes_lenxel( string $html = '', string $handle = '', string $href = '', string $media = '' ): string {
+		public function add_style_attributes( string $html = '', string $handle = '', string $href = '' ): string {
 			if ( Redux_Functions_Ex::string_starts_with( $handle, 'redux-google-fonts-' ) ) {
 				// Revamp thanks to Harry: https://csswizardry.com/2020/05/the-fastest-google-fonts/.
 				$href      = str_replace( array( '|', ' ' ), array( '%7C', '%20' ), urldecode( $href ) );
@@ -265,7 +245,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 		 * @access      public
 		 */
 		private function output_variables( $core, array $section = array(), array $field = array(), $value = array(), ?string $style_data = '' ) {
-			// Let's allow section overrides please.
+			// Let's allow section overrides, please.
 			if ( isset( $section['output_variables'] ) && ! isset( $field['output_variables'] ) ) {
 				$field['output_variables'] = $section['output_variables'];
 			}
@@ -308,7 +288,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 		}
 
 		/**
-		 * Output dynamic CSS at bottom of HEAD
+		 * Output dynamic CSS at the bottom of HEAD
 		 *
 		 * @return      void
 		 * @since       3.2.8
@@ -338,7 +318,7 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 			// phpcs:ignore WordPress.NamingConventions.ValidVariableName
 			if ( ! empty( $core->outputCSS ) && ( true === $core->args['output_tag'] || ( isset( $_POST['customized'] ) && isset( $_POST['nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'preview-customize_' . wp_get_theme()->get_stylesheet() ) ) ) ) {
 				// phpcs:ignore WordPress.NamingConventions.ValidVariableName, WordPress.Security.EscapeOutput
-				echo '<style id="' . esc_attr( $core->args['opt_name_triger'] ) . '-dynamic-css" title="dynamic-css" class="redux-options-output">' . $core->outputCSS . '</style>';
+				echo '<style id="' . esc_attr( $core->args['opt_name'] ) . '-dynamic-css" title="dynamic-css" class="redux-options-output">' . $core->outputCSS . '</style>';
 			}
 		}
 
@@ -355,10 +335,10 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 			$return = true;
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			$field = apply_filters( "redux/field/{$core->args['opt_name_triger']}/_can_output_css", $field );
+			$field = apply_filters( "redux/field/{$core->args['opt_name']}/_can_output_css", $field );
 
 			if ( isset( $field['force_output'] ) && true === $field['force_output'] ) {
-				return $return;
+				return true;
 			}
 
 			if ( ! empty( $field['required'] ) ) {
@@ -386,7 +366,5 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 
 			return $return;
 		}
-
 	}
-
 }

@@ -21,9 +21,9 @@
 if ( !defined( 'ABSPATH' ) ) exit;
 
 // Don't duplicate me!
-if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
+if ( !class_exists( 'Lenxel_Radium_Lnx_Theme_Importer' ) ) {
 
-  class Radium_Lnx_Theme_Importer {
+  class Lenxel_Radium_Lnx_Theme_Importer {
 
     /**
      * Holds a copy of the object for easy reference.
@@ -118,7 +118,7 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
 
     public function after_wp_importer() {
 
-      $imported_demos = get_option( 'wbc_imported_demos' );
+      $imported_demos = get_option( 'lenxel_wbc_imported_demos' );
 
       $this->active_import[$this->active_import_id]['imported'] = 'imported';
 
@@ -130,7 +130,7 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
 
       do_action( 'wbc_importer_after_content_import', $this->active_import, $this->demo_files_path );
 
-      update_option( 'wbc_imported_demos', $imported_demos );
+      update_option( 'lenxel_wbc_imported_demos', $imported_demos );
     }
 
 
@@ -167,10 +167,10 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
      */
     public function add_widget_to_sidebar( $sidebar_slug, $widget_slug, $count_mod, $widget_settings = array() ) {
 
-      $sidebars_widgets = get_option( 'sidebars_widgets' );
+      $lenxel_sidebars_widgets = get_option( 'lenxel_sidebars_widgets' );
 
-      if ( !isset( $sidebars_widgets[$sidebar_slug] ) )
-        $sidebars_widgets[$sidebar_slug] = array( '_multiwidget' => 1 );
+      if ( !isset( $lenxel_sidebars_widgets[$sidebar_slug] ) )
+        $lenxel_sidebars_widgets[$sidebar_slug] = array( '_multiwidget' => 1 );
 
       $newWidget = get_option( 'widget_'.$widget_slug );
 
@@ -178,11 +178,11 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
         $newWidget = array();
 
       $count = count( $newWidget )+1+$count_mod;
-      $sidebars_widgets[$sidebar_slug][] = $widget_slug.'-'.$count;
+      $lenxel_sidebars_widgets[$sidebar_slug][] = $widget_slug.'-'.$count;
 
       $newWidget[$count] = $widget_settings;
 
-      update_option( 'sidebars_widgets', $sidebars_widgets );
+      update_option( 'lenxel_sidebars_widgets', $lenxel_sidebars_widgets );
       update_option( 'widget_'.$widget_slug, $newWidget );
 
     }
@@ -211,7 +211,7 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
 
       }
 
-      if ( !class_exists( 'WP_Import' ) ) {
+      if ( !class_exists( 'Lenxel_WP_Import' ) ) {
 
         $class_wp_import = dirname( __FILE__ ) .'/wordpress-importer.php';
 
@@ -234,7 +234,7 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
 
         } else {
           @set_time_limit(0);
-          $wp_import = new WP_Import();
+          $wp_import = new Lenxel_WP_Import();
           $wp_import->fetch_attachments = true;
           $wp_import->import( $file );
 
@@ -435,8 +435,8 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
           if ( ! $fail && isset( $widget_instances[$id_base] ) ) {
 
             // Get existing widgets in this sidebar
-            $sidebars_widgets = get_option( 'sidebars_widgets' );
-            $sidebar_widgets = isset( $sidebars_widgets[$use_sidebar_id] ) ? $sidebars_widgets[$use_sidebar_id] : array(); // check Inactive if that's where will go
+            $lenxel_sidebars_widgets = get_option( 'lenxel_sidebars_widgets' );
+            $sidebar_widgets = isset( $lenxel_sidebars_widgets[$use_sidebar_id] ) ? $lenxel_sidebars_widgets[$use_sidebar_id] : array(); // check Inactive if that's where will go
 
             // Loop widgets with ID base
             $single_widget_instances = ! empty( $widget_instances[$id_base] ) ? $widget_instances[$id_base] : array();
@@ -488,10 +488,10 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
             update_option( 'widget_' . $id_base, $single_widget_instances );
 
             // Assign widget instance to sidebar
-            $sidebars_widgets = get_option( 'sidebars_widgets' ); // which sidebars have which widgets, get fresh every time
+            $lenxel_sidebars_widgets = get_option( 'lenxel_sidebars_widgets' ); // which sidebars have which widgets, get fresh every time
             $new_instance_id = $id_base . '-' . $new_instance_id_number; // use ID number from new widget instance
-            $sidebars_widgets[$use_sidebar_id][] = $new_instance_id; // add new instance to sidebar
-            update_option( 'sidebars_widgets', $sidebars_widgets ); // save the amended data
+            $lenxel_sidebars_widgets[$use_sidebar_id][] = $new_instance_id; // add new instance to sidebar
+            update_option( 'lenxel_sidebars_widgets', $lenxel_sidebars_widgets ); // save the amended data
 
             // Success message
             if ( $sidebar_available ) {

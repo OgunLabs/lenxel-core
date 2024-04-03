@@ -9,9 +9,9 @@
 if ( !defined( 'ABSPATH' ) ) exit;
 
 // Don't duplicate me!
-if ( !class_exists( 'Wbc_Importer_Progress' ) ) {
+if ( !class_exists( 'Lenxel_Wbc_Importer_Progress' ) ) {
 
-	class Wbc_Importer_Progress {
+	class Lenxel_Wbc_Importer_Progress {
 
 		public static $instance;
 
@@ -99,7 +99,7 @@ if ( !class_exists( 'Wbc_Importer_Progress' ) ) {
 
 		// Ajax Request
 		public function ajax_importer_progress() {
-			if ( !isset( $_REQUEST['nonce'] ) || !wp_verify_nonce( $_REQUEST['nonce'], "redux_{$this->parent->args['opt_name_triger']}_wbc_importer" ) ) {
+			if ( !isset( $_REQUEST['nonce'] ) || !wp_verify_nonce( $_REQUEST['nonce'], "redux_{$this->parent->args['opt_name']}_wbc_importer" ) ) {
 				die( 0 );
 			}
 

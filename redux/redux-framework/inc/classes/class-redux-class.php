@@ -17,7 +17,7 @@ if ( ! class_exists( 'Redux_Class', false ) ) {
 	class Redux_Class {
 
 		/**
-		 * Poiner to ReduxFramework object.
+		 * Pointer to ReduxFramework object.
 		 *
 		 * @var null|ReduxFramework
 		 */
@@ -31,38 +31,36 @@ if ( ! class_exists( 'Redux_Class', false ) ) {
 		public $args = array();
 
 		/**
-		 * Project opt_name_triger
+		 * Project opt_name
 		 *
 		 * @var mixed|string
 		 */
-		public $opt_name_triger = '';
+		public $opt_name = '';
 
 		/**
 		 * Redux_Class constructor.
 		 *
-		 * @param null|object $parent Pointer to ReduxFramework object.
+		 * @param null|object $redux Pointer to ReduxFramework object.
 		 */
-		public function __construct( $parent = null ) {
-			if ( null !== $parent && is_object( $parent ) ) {
-				$this->parent   = $parent;
-				$this->args     = $parent->args;
-				$this->opt_name_triger = $this->args['opt_name_triger'];
+		public function __construct( $redux = null ) {
+			if ( is_object( $redux ) ) {
+				$this->parent   = $redux;
+				$this->args     = $redux->args;
+				$this->opt_name = $this->args['opt_name'];
 			}
 		}
 
 		/**
-		 * Pointer to project specific ReduxFramework object.
+		 * Pointer to a project-specific ReduxFramework object.
 		 *
 		 * @return null|object|ReduxFramework
 		 */
 		public function core() {
-			if ( isset( $this->opt_name_triger ) && '' !== $this->opt_name_triger ) {
-				return Redux::instance( $this->opt_name_triger );
+			if ( isset( $this->opt_name ) && '' !== $this->opt_name ) {
+				return Redux::instance( $this->opt_name );
 			}
 
 			return null;
 		}
-
 	}
-
 }
