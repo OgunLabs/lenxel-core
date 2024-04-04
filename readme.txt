@@ -108,6 +108,42 @@ After activating the plugin, this will setup header page builder, footer page bu
 = Plugin Configuration =
 1.  Setting up your Google Map API key.
 
+
+Copyright (c) 2012-2014 Alexander Brovikov
+Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
+Source: https://github.com/bas2k/jquery.appear/
+
+
+A JavaScript Typing Animation Library Author: Matt Boldt <me@mattboldt.com> Version: v2.0.12
+License(s): MIT
+Source: https://github.com/mattboldt/typed.js
+
+skrollr 0.6.30 (2015-08-12) | Alexander Prinzhorn - 
+https://github.com/Prinzhorn/skrollr | Free to use under terms of MIT license
+
+jQuery Cookie Plugin v1.4.1
+Copyright 2006, 2014 Klaus Hartl Released under the MIT license
+Source: https://github.com/carhartl/jquery-cookie
+
+jQuery Cookie Plugin v1.4.1 Copyright 2006, 2014 Klaus Hartl
+Released under the MIT license
+https://github.com/carhartl/jquery-cookie
+
+SerializeJSON jQuery plugin.
+License:  Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
+Source: https://github.com/marioizquierdo/jquery.serializeJSON
+
+Select2 4.1.0-rc.0
+License: https://github.com/select2/select2/blob/master/LICENSE.md
+Source: https://github.com/select2/select2/blob/master
+
+Wordpress importer Version: 0.6.1
+License: GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+Source: http://wordpress.org/extend/plugins/wordpress-importer/
+
+jQuery UI Spinner 1.20 Copyright (c) 2009-2010 Brant Burnett
+Dual licensed under the MIT or GPL Version 2 licenses.
+
 GPLv2 Licensed | Copyright © v4.4.15 by Redux Framework Team
 License: https://github.com/reduxframework/redux-framework/tree/4.4.15?tab=License-1-ov-file
 Source: https://github.com/reduxframework/redux-framework/tree/4.4.15
@@ -117,7 +153,7 @@ License: https://developers.elementor.com
 Source: https://developers.elementor.com/docs/controls/simple-example/
 
 GPLv2 Licensed | Bartosz Wojciechowski, David Deutsch by Owl carousel2
-License: The MIT License (MIT) https://github.com/OwlCarousel2/OwlCarousel2/blob/develop/LICENSE
+License: The MIT License (MIT) https://github.com/OwlCarousel2/OwlCarousel2/blob/master/LICENSE
 Source: https://github.com/OwlCarousel2/OwlCarousel2/archive/2.3.4.zip
 
 = Feedback =
