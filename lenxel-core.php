@@ -335,10 +335,12 @@ class Lenxel_Theme_Support{
    
    function lenxel_core_login_form() {
       ob_start();
-      $file_path = LENXEL_THEME_DIR . '/templates/login-template-1.php'; // Adjust the path accordingly
+      if (defined('LENXEL_THEME_DIR')) {
+         $file_path = LENXEL_THEME_DIR . '/templates/login-template-1.php'; // Adjust the path accordingly
 
-      if (file_exists($file_path)) {
-         load_template( $file_path );
+         if (file_exists($file_path)) {
+            load_template( $file_path );
+         }
       }
       return ob_get_clean();
    }
