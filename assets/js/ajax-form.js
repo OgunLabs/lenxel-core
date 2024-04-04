@@ -443,12 +443,10 @@
 							});
 							element.addEventListener("click", function(event) {
 								// Prevent default behavior and stop event propagation
-								console.log('the Lord is good');
 								event.preventDefault();
 								event.stopPropagation();
 								
 								// Log a message (for demonstration)
-								console.log('Click event triggered:', event.target.textContent);
 							});
 						});
 					}
