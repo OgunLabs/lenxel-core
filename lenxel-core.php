@@ -37,7 +37,9 @@ class Lenxel_Theme_Support{
       $this->include_files();
       $this->include_post_types();
       add_filter('single_template', array($this, 'lenxel_single_template'), 99, 1);
-
+      add_action('init', array($this, 'lenxel_generate_reset_pwd_password'));
+      add_action('user_register', array($this, 'lnx_user_registration_hook', 10, 1));
+      add_filter('body_class', array($this, 'add_custom_body_class'));
       add_action('wp_head', array($this, 'lenxel_core_head_ajax_url'));
       add_action('wp_enqueue_scripts', array($this, 'lenxel_core_register_scripts'));
       add_action('admin_enqueue_scripts', array($this, 'lenxel_core_register_scripts_admin'));
@@ -54,7 +56,7 @@ class Lenxel_Theme_Support{
    function lenxel_create_page_activate() {
       $page_title = 'Sign In';
       $shortcode = '[lenxel_core_login_form_shortcode]';
-      if(get_option('lenxel_ sign_in_id')==false){
+      if(get_option('lenxel_sign_in_id')==false){
          $arg = array(
             'post_title' => $page_title,
             'post_content' => $shortcode,
@@ -62,9 +64,105 @@ class Lenxel_Theme_Support{
             'post_type' => 'page',
          );
          $sign_in_page_id=wp_insert_post($arg);
-         update_option('lenxel_ sign_in_id',$sign_in_page_id);
+         update_option('lenxel_sign_in_id',$sign_in_page_id);
       }
    }
+
+   // To generate a link for user to reset password through an email
+   function lenxel_generate_reset_pwd_password() {
+      if (isset($_POST['_wp_http_referer'])) {
+      // print_r($_POST);die();
+         $nounce = (isset($_POST['_wpnonce'])) ? $_POST['_wpnonce'] : null ;
+         $nounce_value = (isset($_GET['lost_pwd'])) ? $_GET['lost_pwd'] : null ;
+         if (wp_verify_nonce($nounce, 'lnx_'.$nounce_value)) { 
+         //print_r($_POST);die();
+         global $mailStatus;global $error_email;
+      
+         $email_forget_pwd = sanitize_email($_POST['email']);
+   
+         // check if email exist in db
+         $user_obj = get_user_by('email', $email_forget_pwd);
+         if (!$user_obj) {
+            $error_email = 1;
+            $mailStatus = '
+               <small class="error">
+               <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11" fill="none">
+                  <path d="M5.50033 10.0834C2.96895 10.0834 0.916992 8.03146 0.916992 5.50008C0.916992 2.96871 2.96895 0.916748 5.50033 0.916748C8.0317 0.916748 10.0837 2.96871 10.0837 5.50008C10.0837 8.03146 8.0317 10.0834 5.50033 10.0834ZM5.50033 9.16675C6.47279 9.16675 7.40542 8.78044 8.09305 8.09281C8.78068 7.40517 9.16699 6.47254 9.16699 5.50008C9.16699 4.52762 8.78068 3.59499 8.09305 2.90736C7.40542 2.21972 6.47279 1.83341 5.50033 1.83341C4.52786 1.83341 3.59523 2.21972 2.9076 2.90736C2.21997 3.59499 1.83366 4.52762 1.83366 5.50008C1.83366 6.47254 2.21997 7.40517 2.9076 8.09281C3.59523 8.78044 4.52786 9.16675 5.50033 9.16675ZM5.04199 6.87508H5.95866V7.79175H5.04199V6.87508ZM5.04199 3.20841H5.95866V5.95841H5.04199V3.20841Z" fill="#E93C3C"/>
+               </svg>Email does not exist
+               </small>';
+               
+
+         }else{
+            $error_email = 0;
+            $reset_pwd_url = wp_nonce_url(get_permalink()."?_id=$user_obj->ID", 'reset_nonce'.$user_obj->ID);
+   
+   
+            $to = $email_forget_pwd;
+            $subject = 'Reset Password';
+   
+            $message = 
+            "<div>
+               <p>Click on the link below to reset your password</p>
+               <a href='".html_entity_decode($reset_pwd_url)."'>Reset password</a>
+            </div>";
+            // echo $message;
+   
+            $send_mail = wp_mail($to, $subject, $message,'Content-type: text/html');
+            if ($send_mail) {
+               $mailStatus = "<img alt='successful reset password' src='".esc_url(LENXEL_THEME_URL . '/images/juicy-closed-email-envelope.png') ."'><h2 class='lfs-36 lfw-700 pb-2 pt-2'>We Sent you a Mail</h2><p class='lfs-20 lfw-500'>Kindly Check your email, we sent you a link to verify your Account with use and reset your Password</p>";
+               //load_template(LENXEL_THEME_DIR . '/templates/reset-password-mail.php' );die();
+
+            }
+         }
+         }
+      }
+   }
+
+   function lnx_user_registration_hook($user_id) {
+		if(!empty(lenxel_get_option('enable_registration_notification', '') ) || (lenxel_get_option('enable_registration_notification', '') !== '0')){
+			// Your custom code to run after successful user registration
+			$super_admin_email = get_site_option('admin_email');
+			$user_data = get_userdata($user_id);
+			$to = $user_data->user_email; // Recipient's email address
+			$instructor_status = tutor_utils()->instructor_status($user_id);
+			$instructor_status = is_string($instructor_status) ? strtolower($instructor_status) : '';
+			// Email message
+			$headers = array('Content-Type: text/html; charset=UTF-8'); 
+			if ($user_data) {
+				$user_roles = $user_data->roles;
+				
+				if (!empty($user_roles)) {
+					$user_role = $user_roles[0];
+					$subject = 'User successfully registered as '. (($instructor_status=='pending') ? 'instructor' : $user_role); // Email subject
+					$subject_admin = (($instructor_status=='pending') ? 'New Registration Awaiting Approval' : 'New Registration');
+					$message_admin = (($instructor_status=='pending') ? 'The following user successfully register on the platform as instructor waiting your approval.' : "The following user successfully register on the platform as ".$user_role);
+					$message_subscriber = (($instructor_status=='pending') ? 'You have successful register on the platform as an instructor waiting admin\'s approval' : "You have successful register on the platform as ".$user_role);
+					// For example, you can send a welcome email or perform other tasks
+					$approval_role = array('subscriber',tutor()->instructor_role );
+					if(in_array($user_role,$approval_role)){
+						// Send the email using wp_mail()
+						$result = wp_mail($to, $subject, $message_subscriber, $headers);
+						$result = wp_mail($super_admin_email, $subject_admin, $message_admin, $headers);
+					}
+
+				}
+			}
+		}
+	}
+
+   function add_custom_body_class($classes) {
+      $page_id_data = get_option('lenxel_sign_in_id');
+  
+      if (!empty($page_id_data) && is_page($page_id_data)) {
+          $classes[] = 'lnx-login';
+      }
+  
+      return apply_filters('assign_page_id', $classes);
+  }
+  
+  
+
+  
    public function lenxel_core_head_ajax_url(){
    //   print_r( plugins_url( 'redux/redux-framework/assets/js/webfont.js', __FILE__ ));
    //    die();
@@ -237,10 +335,12 @@ class Lenxel_Theme_Support{
    
    function lenxel_core_login_form() {
       ob_start();
-      $file_path = LENXEL_THEME_DIR . '/templates/login-template-1.php'; // Adjust the path accordingly
+      if (defined('LENXEL_THEME_DIR')) {
+         $file_path = LENXEL_THEME_DIR . '/templates/login-template-1.php'; // Adjust the path accordingly
 
-      if (file_exists($file_path)) {
-         load_template( $file_path );
+         if (file_exists($file_path)) {
+            load_template( $file_path );
+         }
       }
       return ob_get_clean();
    }
