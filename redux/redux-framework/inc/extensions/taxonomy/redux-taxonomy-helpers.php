@@ -20,6 +20,7 @@ if ( ! function_exists( 'create_term_redux_taxonomy' ) ) {
 
 		foreach ( $_POST as $key => $value ) { // phpcs:ignore WordPress.Security.NonceVerification
 			if ( is_array( $value ) && isset( $instances[ $key ] ) ) {
+				$get_key_sanitize = sanitize_text_field( $key );
 				$instances[ $key ]->extensions['taxonomy']->meta_terms_save( $term_id );
 			}
 		}

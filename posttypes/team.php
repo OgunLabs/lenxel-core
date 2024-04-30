@@ -3,18 +3,18 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 if(!function_exists('lenxel_post_type_team')){
     function lenxel_post_type_team(){
       $labels = array(
-        'name' => __( 'Team', 'lenxel-core' ),
-        'singular_name' => __( 'Team', 'lenxel-core' ),
-        'add_new' => __( 'Add New Team', 'lenxel-core' ),
-        'add_new_item' => __( 'Add New Team', 'lenxel-core' ),
-        'edit_item' => __( 'Edit Team', 'lenxel-core' ),
-        'new_item' => __( 'New Team', 'lenxel-core' ),
-        'view_item' => __( 'View Team', 'lenxel-core' ),
-        'search_items' => __( 'Search Teams', 'lenxel-core' ),
-        'not_found' => __( 'No Teams found', 'lenxel-core' ),
-        'not_found_in_trash' => __( 'No Teams found in Trash', 'lenxel-core' ),
-        'parent_item_colon' => __( 'Parent Team:', 'lenxel-core' ),
-        'menu_name' => __( 'Teams', 'lenxel-core' ),
+        'name' => esc_html__( 'Team', 'lenxel-core' ),
+        'singular_name' => esc_html__( 'Team', 'lenxel-core' ),
+        'add_new' => esc_html__( 'Add New Team', 'lenxel-core' ),
+        'add_new_item' => esc_html__( 'Add New Team', 'lenxel-core' ),
+        'edit_item' => esc_html__( 'Edit Team', 'lenxel-core' ),
+        'new_item' => esc_html__( 'New Team', 'lenxel-core' ),
+        'view_item' => esc_html__( 'View Team', 'lenxel-core' ),
+        'search_items' => esc_html__( 'Search Teams', 'lenxel-core' ),
+        'not_found' => esc_html__( 'No Teams found', 'lenxel-core' ),
+        'not_found_in_trash' => esc_html__( 'No Teams found in Trash', 'lenxel-core' ),
+        'parent_item_colon' => esc_html__( 'Parent Team:', 'lenxel-core' ),
+        'menu_name' => esc_html__( 'Teams', 'lenxel-core' ),
       );
 
       $args = array(
@@ -69,7 +69,7 @@ if(!function_exists('lenxel_post_type_team')){
   function lenxel_themesupport_team_socials() {
       add_meta_box(
           'lenxel_themesupport_team_socials',
-          __( 'Socials', 'lenxel-core' ),
+          esc_html__( 'Socials', 'lenxel-core' ),
           'lenxel_team_socials_inner_custom_box',
           'lnx_team');
   }
@@ -86,7 +86,7 @@ if(!function_exists('lenxel_post_type_team')){
       if ( ($team_socials) && count( $team_socials ) > 0 ) {
           foreach( $team_socials as $social ) {
               if ( isset( $social['icon'] ) || isset( $social['link'] ) ) {
-                  printf( '<p><input size="20" type="text" placeholder="Class Icon" name="team_socials[%1$s][icon]" value="%2$s" /><input size="100" type="text" placeholder="Link" name="team_socials[%1$s][link]" value="%3$s" /><a class="button remove">%4$s</a></p>', $c, $social['icon'], $social['link'], __( 'Remove', 'lenxel-core' ) );
+                  printf( '<p><input size="20" type="text" placeholder="Class Icon" name="team_socials[%1$s][icon]" value="%2$s" /><input size="100" type="text" placeholder="Link" name="team_socials[%1$s][link]" value="%3$s" /><a class="button remove">%4$s</a></p>', esc_html($c), esc_attr($social['icon']), esc_url($social['link']), esc_html__( 'Remove', 'lenxel-core' ) );
                   $c = $c +1;
               }
           }
@@ -94,10 +94,10 @@ if(!function_exists('lenxel_post_type_team')){
 
       ?>
   <span id="team-social-list"></span>
-  <a class="add-social-item"><?php _e('Add Social','lenxel-core'); ?></a>
+  <a class="add-social-item"><?php esc_html_e('Add Social','lenxel-core'); ?></a>
   <script>
       jQuery(document).ready(function() {
-          var count = <?php echo $c; ?>;
+          var count = <?php echo esc_js($c); ?>;
           jQuery(".add-social-item").click(function() {
               count = count + 1;
               jQuery('#team-social-list').append('<p> <input size="20" type="text" placeholder="Class Icon" name="team_socials['+count+'][icon]" value="" /><input size="100" type="text" placeholder="Link" name="team_socials['+count+'][link]" value="" /> <a class="remove button">Remove</a></p>' );
@@ -129,7 +129,7 @@ if(!function_exists('lenxel_post_type_team')){
   function lenxel_themesupport_team_education() {
     add_meta_box(
         'lenxel_themesupport_team_education',
-        __( 'Education', 'lenxel-core' ),
+        esc_html__( 'Education', 'lenxel-core' ),
         'lenxel_team_education_inner_custom_box',
         'lnx_team');
   }
@@ -147,7 +147,7 @@ if(!function_exists('lenxel_post_type_team')){
       if ( ($team_educations) && count( $team_educations ) > 0 ) {
           foreach( $team_educations as $education ) {
               if ( isset( $education['title'] ) ) {
-                  printf( '<p><input size="120" type="text" placeholder="Title: MBA, Rotterdam School of Management, Erasmus University" name="team_educations[%1$s][title]" value="%2$s" /><a class="button remove">%3$s</a></p>', $c, $education['title'], __( 'Remove', 'lenxel-core') );
+                  printf( '<p><input size="120" type="text" placeholder="Title: MBA, Rotterdam School of Management, Erasmus University" name="team_educations[%1$s][title]" value="%2$s" /><a class="button remove">%3$s</a></p>', esc_attr($c), esc_attr($education['title']), esc_html__( 'Remove', 'lenxel-core') );
                   $c = $c +1;
               }
           }
@@ -155,7 +155,7 @@ if(!function_exists('lenxel_post_type_team')){
 
       ?>
   <span id="team-education-list"></span>
-  <a class="add-education-item"><?php _e('Add Education','lenxel-core'); ?></a>
+  <a class="add-education-item"><?php esc_html_e('Add Education','lenxel-core'); ?></a>
   <script>
       jQuery(document).ready(function() {
           var count = <?php echo esc_js($c); ?>;
@@ -190,7 +190,7 @@ if(!function_exists('lenxel_post_type_team')){
   function lenxel_themesupport_team_skills() {
     add_meta_box(
         'lenxel_themesupport_team_skills',
-        __( 'Skills', 'lenxel-core' ),
+        esc_html__( 'Skills', 'lenxel-core' ),
         'lenxel_team_skills_inner_custom_box',
         'lnx_team');
   }
@@ -208,7 +208,7 @@ if(!function_exists('lenxel_post_type_team')){
       if ( ($team_skills) && count( $team_skills ) > 0 ) {
           foreach( $team_skills as $skill ) {
               if ( isset( $skill['label'] ) || isset( $skill['volume'] ) ) {
-                  printf( '<p><input size="80" type="text" placeholder="Label" name="team_skills[%1$s][label]" value="%2$s" /><input size="20" type="text" placeholder=" Volume (max 100)" name="team_skills[%1$s][volume]" value="%3$s" /><a class="button remove">%4$s</a></p>', $c, $skill['label'], $skill['volume'], __( 'Remove', 'lenxel-core') );
+                  printf( '<p><input size="80" type="text" placeholder="Label" name="team_skills[%1$s][label]" value="%2$s" /><input size="20" type="text" placeholder=" Volume (max 100)" name="team_skills[%1$s][volume]" value="%3$s" /><a class="button remove">%4$s</a></p>', esc_attr($c), esc_attr($skill['label']), esc_attr($skill['volume']), esc_html__( 'Remove', 'lenxel-core') );
                   $c = $c +1;
               }
           }
@@ -216,10 +216,10 @@ if(!function_exists('lenxel_post_type_team')){
 
       ?>
   <span id="team-skills-list"></span>
-  <a class="add-skills-item"><?php _e('Add Skills','lenxel-core'); ?></a>
+  <a class="add-skills-item"><?php esc_html_e('Add Skills','lenxel-core'); ?></a>
   <script>
       jQuery(document).ready(function() {
-          var count = <?php echo $c; ?>;
+          var count = <?php echo esc_js($c); ?>;
           jQuery(".add-skills-item").click(function() {
               count = count + 1;
               jQuery('#team-skills-list').append('<p><input size="80" type="text" placeholder="Label" name="team_skills['+count+'][label]" value="" /> <input size="20" type="text" placeholder="Volume (max 100)" name="team_skills['+count+'][volume]" value="" /><a class="remove button">Remove</a></p>' );

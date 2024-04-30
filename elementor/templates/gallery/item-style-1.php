@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
       <?php if($image_url){ ?>
          <div class="image">
-            <img src="<?php echo esc_url($image_url_thumbnail) ?>" alt="<?php echo esc_html($image['title']) ?>" />  
+            <img src="<?php echo esc_url($image_url_thumbnail) ?>" alt="<?php echo esc_attr($image['title']) ?>" />  
          </div>
          <a class="photo-gallery" href="<?php echo esc_url($image_url); ?>" data-elementor-lightbox-slideshow="gallery-<?php echo esc_attr($_random); ?>"></a>
       <?php } ?>
@@ -25,10 +25,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
       <div class="image-content">
          <div class="content-inner">
             <?php if($image['title']){ ?>
-               <h3 class="title"><?php echo esc_html($image['title']); ?></h3>
+               <h3 class="title"><?php echo wp_kses_post($image['title']); ?></h3>
             <?php } ?>
             <?php if($image['sub_title']){ ?>
-               <div class="sub-title"><?php echo esc_html($image['sub_title']); ?></div>
+               <div class="sub-title"><?php echo wp_kses_post($image['sub_title']); ?></div>
             <?php } ?>
          </div>   
       </div>

@@ -20,14 +20,16 @@ add_filter( 'use_widgets_block_editor', '__return_false' );
 
 add_action( 'init', 'lenxel_init_options', 1 );
 function lenxel_init_options(){
-   if( empty(get_option( 'lenxel_tribeEventsTemplate', '' )) ){
-      update_option('lenxel_tribeEventsTemplate', 'default');
+   //this update the the events calendar plugin pre define tribeEventsTemplate
+   if( empty(get_option( 'tribeEventsTemplate', '' )) ){
+      update_option('tribeEventsTemplate', 'default');
    }
-   if( empty(get_option( 'views_v2_enabled', '' )) ){
-      update_option('views_v2_enabled', '0');
+   if( empty(get_option( 'lenxel_views_v2_enabled', '' )) ){
+      update_option('lenxel_views_v2_enabled', '0');
    }
 
    if(function_exists('tutor')){
+      //this update the tutor plugin pre define add_option tutor_option
       $options    = (array) maybe_unserialize(get_option('tutor_option'));
       $update = false;
       

@@ -18,11 +18,9 @@ class Lenxel_Elementor_Override{
       if(!get_option('lenxel_elementor_disable_color_schemes', '')) update_option( 'lenxel_elementor_disable_color_schemes', 'yes' );
       if(!get_option('lenxel_elementor_disable_typography_schemes', '')) update_option( 'lenxel_elementor_disable_typography_schemes', 'yes' );
       if(!get_option('lenxel_elementor_container_width', '')) update_option( 'lenxel_elementor_container_width', '1200' );
-      $cpt_support = get_option( 'lenxel_elementor_cpt_support', null );
+      $cpt_support = get_option( 'lenxel_elementor_cpt_support', array() );
       if( empty($cpt_support) ){
-         $cpt_support[] = 'page';
-         $cpt_support[] = 'footer';
-         $cpt_support[] = 'lnx_header';
+         array( 'page', 'footer', 'lnx_header' );
          update_option('lenxel_elementor_cpt_support', $cpt_support);
       }else{
          if( !in_array('footer', $cpt_support) || !in_array('lnx_header', $cpt_support) ){
@@ -53,12 +51,12 @@ class Lenxel_Elementor_Override{
       $obj->add_control(
          '_lnx_extra_classes',
          [
-            'label' => __( 'Style Available', 'lenxel-core' ),
+            'label' => esc_html__( 'Style Available', 'lenxel-core' ),
             'type' => Controls_Manager::SELECT,
             'options' => [
-               '' => __( '-- None --', 'lenxel-core' ),
-               'bg-overflow-left' => __( 'Background Overflow Left', 'lenxel-core' ),
-               'bg-overflow-right' => __( 'Background Overflow Right', 'lenxel-core' ),
+               '' => esc_html__( '-- None --', 'lenxel-core' ),
+               'bg-overflow-left' => esc_html__( 'Background Overflow Left', 'lenxel-core' ),
+               'bg-overflow-right' => esc_html__( 'Background Overflow Right', 'lenxel-core' ),
             ],
             'default' => 'top',
             'prefix_class' => 'column-style-',
@@ -90,22 +88,22 @@ class Lenxel_Elementor_Override{
       $obj->add_control(
          '_lnx_sticky_menu',
          [
-            'label'     => __( 'Sticky Menu Row', 'lenxel-core' ),
+            'label'     => esc_html__( 'Sticky Menu Row', 'lenxel-core' ),
             'type'      => Controls_Manager::SELECT,
             'options'   => [
-               '' => __( '-- None --', 'lenxel-core' ),
-               'gv-sticky-menu' => __( 'Sticky Menu', 'lenxel-core' ),
+               '' => esc_html__( '-- None --', 'lenxel-core' ),
+               'gv-sticky-menu' => esc_html__( 'Sticky Menu', 'lenxel-core' ),
             ],
             'default'         => '',
             'prefix_class'    => '',
-            'description'     => __('You can only enable sticky menu for one row, please make sure display all sticky menu for other rows', 'lenxel-core')
+            'description'     => esc_html__('You can only enable sticky menu for one row, please make sure display all sticky menu for other rows', 'lenxel-core')
          ]
       );
 
       $obj->add_control(
          '_lnx_sticky_background',
          [
-            'label'     => __('Sticky Background Color', 'lenxel-core'),
+            'label'     => esc_html__('Sticky Background Color', 'lenxel-core'),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [ 
                '.gv-sticky-wrapper.is-fixed > .elementor-section' => 'background: {{VALUE}}!important;', 
@@ -118,7 +116,7 @@ class Lenxel_Elementor_Override{
       $obj->add_control(
          '_lnx_sticky_menu_text_color',
          [
-            'label'     => __('Sticky Text Color', 'lenxel-core'),
+            'label'     => esc_html__('Sticky Text Color', 'lenxel-core'),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '.gv-sticky-wrapper.is-fixed > .elementor-section' => 'color: {{VALUE}}', 
@@ -131,7 +129,7 @@ class Lenxel_Elementor_Override{
       $obj->add_control(
          '_lnx_sticky_menu_link_color',
          [
-            'label'     => __('Sticky Link Menu Color', 'lenxel-core'),
+            'label'     => esc_html__('Sticky Link Menu Color', 'lenxel-core'),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '.gv-sticky-wrapper.is-fixed > .elementor-section .lnx-navigation-menu ul.lnx-nav-menu > li > a' => 'color: {{VALUE}}',
@@ -144,7 +142,7 @@ class Lenxel_Elementor_Override{
       $obj->add_control(
          '_lnx_sticky_menu_link_hover_color',
          [
-            'label'     => __('Sticky Link Menu Hover Color', 'lenxel-core'),
+            'label'     => esc_html__('Sticky Link Menu Hover Color', 'lenxel-core'),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '.gv-sticky-wrapper.is-fixed > .elementor-section .lnx-navigation-menu ul.lnx-nav-menu > li > a:hover' => 'color: {{VALUE}}',
@@ -170,12 +168,12 @@ class Lenxel_Elementor_Override{
       $obj->add_control(
          '_lnx_extra_row_style',
          [
-            'label'     => __( 'Style Available', 'lenxel-core' ),
+            'label'     => esc_html__( 'Style Available', 'lenxel-core' ),
             'type'      => Controls_Manager::SELECT,
             'options'   => [
-               '' => __( '-- None --', 'lenxel-core' ),
-               'style-1' => __( 'Background White Full To Left and Border Theme', 'lenxel-core' ),
-               'style-2' => __( 'Background Theme Full To Right', 'lenxel-core' ),
+               '' => esc_html__( '-- None --', 'lenxel-core' ),
+               'style-1' => esc_html__( 'Background White Full To Left and Border Theme', 'lenxel-core' ),
+               'style-2' => esc_html__( 'Background Theme Full To Right', 'lenxel-core' ),
             ],
             'label_block'  => true,
             'default'      => 'top',
@@ -185,13 +183,13 @@ class Lenxel_Elementor_Override{
       $obj->add_control(
          'lnx_row_color',
          [
-            'label' => __( 'Background Color', 'lenxel-core' ),
+            'label' => esc_html__( 'Background Color', 'lenxel-core' ),
             'type' => Controls_Manager::SELECT,
             'label_block'  => true,
             'options' => [
-               '' => __( '-- Default --', 'lenxel-core' ),
-               'theme'         => __( 'Background Color Theme', 'lenxel-core' ),
-               'theme-second'  => __( 'Background Color Theme Second', 'lenxel-core' ),
+               '' => esc_html__( '-- Default --', 'lenxel-core' ),
+               'theme'         => esc_html__( 'Background Color Theme', 'lenxel-core' ),
+               'theme-second'  => esc_html__( 'Background Color Theme Second', 'lenxel-core' ),
             ],
             'default' => '',
             'prefix_class' => 'bg-row-',
@@ -200,12 +198,12 @@ class Lenxel_Elementor_Override{
       $obj->add_control(
          'lnx_bg_row_effect',
          [
-            'label' => __( 'Background Effect', 'lenxel-core' ),
+            'label' => esc_html__( 'Background Effect', 'lenxel-core' ),
             'type' => Controls_Manager::SELECT,
             'label_block'  => true,
             'options' => [
-               '' => __( '-- Default --', 'lenxel-core' ),
-               'particles-js'  => __( 'Particles', 'lenxel-core' )
+               '' => esc_html__( '-- Default --', 'lenxel-core' ),
+               'particles-js'  => esc_html__( 'Particles', 'lenxel-core' )
             ],
             'default' => '',
             'prefix_class' => 'row-background-',
@@ -227,7 +225,7 @@ class Lenxel_Elementor_Override{
       $obj->add_control(
          'lnx_icon_color',
          [
-            'label'     => __( 'Style', 'lenxel-core' ),
+            'label'     => esc_html__( 'Style', 'lenxel-core' ),
             'type'      => Controls_Manager::SELECT,
             'options'   => [
                ''             => esc_html__( '-- Default --', 'lenxel-core' ),

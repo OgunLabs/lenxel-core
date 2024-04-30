@@ -3,27 +3,25 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
   $query = $this->query_posts();
   $_random = lenxel_themesupport_random_id();
   if ( ! $query->found_posts ) {
-    echo "<script>jQuery( document ).ready(function() {
+    $get_iclude_script = "<script>jQuery( document ).ready(function() {
         jQuery('.elementor-widget-lnx-learning').css('display','none');
     });</script>";
+    echo wp_kses( $get_iclude_script, array('script'=>array()) );
 	 return;
   }
-  echo "<script>jQuery( document ).ready(function() {
+  $get_iclude_scr = "<script>jQuery( document ).ready(function() {
       jQuery('.elementor-widget-lnx-learning').css('display','block');
   });</script>";
-	$this->add_render_attribute('wrapper', 'class', ['lnx-course-grid clearfix lnx-course']);
+  echo wp_kses( $get_iclude_scr, array('script'=>array()) );
+	$this->add_render_attribute(['wrapper' => ['class'=>'lnx-course-grid clearfix lnx-course']]);
   $style = (isset($settings['style'])) ? $settings['style'] : '' ;
 	//add_render_attribute grid
 	$this->get_grid_settings();
     $username = wp_get_current_user(); 
 ?>
   
-  <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('wrapper'))); ?>">
-  <script>
-    // $( document ).ready(function() {
-    //   $("a.active").parents('section').css('display','none');
-    // });
-  </script>
+  <div <?php $this->print_render_attribute_string('wrapper'); ?>>
+  
   <style>.elementor-widget-lnx-learning{
     padding:100px 0px 80px;
   }</style>
@@ -31,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
   <?php $current_user= wp_get_current_user(); ?>
   <div class=""><div class="gsc-heading"><p class="title-learning" style="">Welcome Back <?php echo esc_html( $current_user->user_login ); ?>, Continue Learning</div></div>
 		<div class="lnx-content-items lns-style"> 
-		  <div <?php echo $this->get_render_attribute_string('grid') ?>>
+		  <div <?php $this->print_render_attribute_string('grid') ?>>
 			 <?php
 				global $post;
 				$count = 0;
@@ -50,7 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 		</div>
 		<?php if($settings['pagination'] == 'yes'): ?>
 			 <div class="pagination">
-				  <?php echo $this->pagination($query); ?>
+				  <?php echo wp_kses( $this->pagination($query), $this->lenxel_get__allowed_html() ); ?>
 			 </div>
 		<?php endif; ?>
   </div>

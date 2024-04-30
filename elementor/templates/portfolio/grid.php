@@ -5,19 +5,16 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
   if ( ! $query->found_posts ) {
     return;
   }
-
-  $this->add_render_attribute('wrapper', 'class', ['lnx-portfolio-grid clearfix', 'grid-' . $_random]);
-  
-  $this->add_render_attribute('wrapper', 'data-filter', $_random);
+  $this->add_render_attribute(['wrapper' => ['data-filter' => $_random, 'class' => ['lnx-portfolio-grid clearfix', 'grid-' . $_random]]]);
   
   //add_render_attribute grid
   $this->get_grid_settings('isotope-items view-portfolio');
 ?>
 
-  <div <?php echo $this->get_render_attribute_string('wrapper'); ?>>
+  <div <?php $this->print_render_attribute_string('wrapper'); ?>>
     <?php if($settings['isotope_filter'] == 'yes'){ ?>
       <?php 
-        $terms = get_terms('category_portfolio', array('orderby'=>'id'));
+        $terms = get_terms(array('category_portfolio','orderby'=>'id'));
         if(is_array($settings['category_ids']) && count($settings['category_ids']) > 0){
           $terms = get_terms( array(
             'taxonomy' => 'category_portfolio',
@@ -43,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
        </nav> 
     <?php } ?>
     <div class="lnx-content-items"> 
-      <div <?php echo $this->get_render_attribute_string('grid') ?>>
+      <div <?php $this->print_render_attribute_string('grid') ?>>
         <?php
           global $post;
           $count = 0;
@@ -60,7 +57,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     </div>
     <?php if($settings['pagination'] == 'yes'): ?>
         <div class="pagination">
-            <?php echo $this->pagination($query); ?>
+            <?php echo wp_kses( $this->pagination($query), $this->lenxel_get__allowed_html() ); ?>
         </div>
     <?php endif; ?>
   </div>

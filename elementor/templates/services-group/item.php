@@ -14,7 +14,7 @@
 				<?php } ?>
 
 				<?php if($item['desc']){ ?>
-					<div class="desc"><?php echo esc_html($item['desc']); ?></div>
+					<div class="desc"><?php echo wp_kses_post($item['desc']); ?></div>
 				<?php } ?>
 
 				<?php if($item['link']['url']){ ?>

@@ -1,13 +1,13 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-	$this->add_render_attribute('wrapper', 'class', ['lnx-listing-users clearfix']);
+	$this->add_render_attribute(['wrapper' => ['class' => 'lnx-listing-users clearfix']]);
 	//add_render_attribute grid
 	$this->get_grid_settings();
 ?>
   
-<div <?php echo $this->get_render_attribute_string('wrapper'); ?>>
+<div <?php $this->print_render_attribute_string('wrapper'); ?>>
 	<div class="lnx-content-items clearfix"> 
-		<div <?php echo $this->get_render_attribute_string('grid') ?>>
+		<div <?php $this->print_render_attribute_string('grid') ?>>
 			<?php 
 				foreach ($query as $user):
 					$data = array(

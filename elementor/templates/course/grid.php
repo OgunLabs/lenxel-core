@@ -6,15 +6,15 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	 return;
   }
 
-	$this->add_render_attribute('wrapper', 'class', ['lnx-course-grid clearfix lnx-course']);
+	$this->add_render_attribute(['wrapper'=> ['class'=> 'lnx-course-grid clearfix lnx-course']]);
    $style = $settings['style'];
 	//add_render_attribute grid
 	$this->get_grid_settings();
 ?>
   
-  <div <?php echo $this->get_render_attribute_string('wrapper'); ?>>
+  <div <?php $this->print_render_attribute_string('wrapper'); ?>>
 		<div class="lnx-content-items"> 
-		  <div <?php echo $this->get_render_attribute_string('grid') ?>>
+		  <div <?php $this->print_render_attribute_string('grid') ?>>
 			 <?php
 				global $post;
 				$count = 0;
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 		</div>
 		<?php if($settings['pagination'] == 'yes'): ?>
 			 <div class="pagination">
-				  <?php echo $this->pagination($query); ?>
+				  <?php echo wp_kses( $this->pagination($query), $this->lenxel_get__allowed_html() ); ?>
 			 </div>
 		<?php endif; ?>
   </div>

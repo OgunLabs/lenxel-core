@@ -45,7 +45,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 		 */
 		public function render() {
 			// translators: New accordion title.
-			echo '<div class="redux-slides-accordion" data-new-content-title="' . esc_attr( sprintf( __( 'New %s', 'redux-framework' ), $this->field['content_title'] ) ) . '">';
+			echo '<div class="redux-slides-accordion" data-new-content-title="' . esc_attr( sprintf( esc_html__( 'New %s', 'redux-framework' ), $this->field['content_title'] ) ) . '">';
 
 			$x = 0;
 
@@ -125,7 +125,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 						$title_type = 'hidden';
 					}
 
-					$placeholder = ( isset( $this->field['placeholder']['title'] ) ) ? esc_attr( $this->field['placeholder']['title'] ) : __( 'Title', 'redux-framework' );
+					$placeholder = ( isset( $this->field['placeholder']['title'] ) ) ? esc_attr( $this->field['placeholder']['title'] ) : esc_html__( 'Title', 'redux-framework' );
 					echo '<li>';
 					echo '<input
 							type="' . esc_attr( $title_type ) . '"
@@ -137,7 +137,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 					echo '</li>';
 
 					if ( $this->field['show']['description'] ) {
-						$placeholder = ( isset( $this->field['placeholder']['description'] ) ) ? esc_attr( $this->field['placeholder']['description'] ) : __( 'Description', 'redux-framework' );
+						$placeholder = ( isset( $this->field['placeholder']['description'] ) ) ? esc_attr( $this->field['placeholder']['description'] ) : esc_html__( 'Description', 'redux-framework' );
 						echo '<li>';
 						echo '<textarea
 								name="' . esc_attr( $this->field['name'] . '[' . $x . '][description]' . $this->field['name_suffix'] ) . '"
@@ -149,7 +149,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 						echo '</li>';
 					}
 
-					$placeholder = ( isset( $this->field['placeholder']['url'] ) ) ? esc_attr( $this->field['placeholder']['url'] ) : __( 'URL', 'redux-framework' );
+					$placeholder = ( isset( $this->field['placeholder']['url'] ) ) ? esc_attr( $this->field['placeholder']['url'] ) : esc_html__( 'URL', 'redux-framework' );
 					if ( $this->field['show']['url'] ) {
 						$url_type = 'text';
 					} else {
@@ -230,7 +230,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 				echo '<h3>';
 
 				// translators:  Content title for new accordion.
-				echo '<span class="redux-slides-header">' . esc_html( sprintf( __( 'New %s', 'redux-framework' ), esc_attr( $this->field['content_title'] ) ) ) . '</span>';
+				echo '<span class="redux-slides-header">' . esc_html( sprintf( esc_html__( 'New %s', 'redux-framework' ), esc_html( $this->field['content_title'] ) ) ) . '</span>';
 				echo '</h3>';
 				echo '<div>';
 
@@ -260,7 +260,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 					$title_type = 'hidden';
 				}
 
-				$placeholder = ( isset( $this->field['placeholder']['title'] ) ) ? esc_attr( $this->field['placeholder']['title'] ) : __( 'Title', 'redux-framework' );
+				$placeholder = ( isset( $this->field['placeholder']['title'] ) ) ? esc_attr( $this->field['placeholder']['title'] ) : esc_html__( 'Title', 'redux-framework' );
 
 				echo '<li>';
 				echo '<input
@@ -273,7 +273,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 				echo '</li>';
 
 				if ( $this->field['show']['description'] ) {
-					$placeholder = ( isset( $this->field['placeholder']['description'] ) ) ? esc_attr( $this->field['placeholder']['description'] ) : __( 'Description', 'redux-framework' );
+					$placeholder = ( isset( $this->field['placeholder']['description'] ) ) ? esc_attr( $this->field['placeholder']['description'] ) : esc_html__( 'Description', 'redux-framework' );
 
 					echo '<li>';
 					echo '<textarea
@@ -285,7 +285,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 					echo '</li>';
 				}
 
-				$placeholder = ( isset( $this->field['placeholder']['url'] ) ) ? esc_attr( $this->field['placeholder']['url'] ) : __( 'URL', 'redux-framework' );
+				$placeholder = ( isset( $this->field['placeholder']['url'] ) ) ? esc_attr( $this->field['placeholder']['url'] ) : esc_html__( 'URL', 'redux-framework' );
 
 				if ( $this->field['show']['url'] ) {
 					$url_type = 'text';
@@ -360,7 +360,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 			echo '</div>';
 
 			// translators:  Content title for accordion.
-			echo '<a href="javascript:void(0);" class="button redux-slides-add button-primary" rel-id="' . esc_attr( $this->field['id'] ) . '-ul" rel-name="' . esc_attr( $this->field['name'] . '[title][]' . $this->field['name_suffix'] ) . '">' . esc_html( sprintf( __( 'Add %s', 'redux-framework' ), esc_html( $this->field['content_title'] ) ) ) . '</a>';
+			echo '<a href="javascript:void(0);" class="button redux-slides-add button-primary" rel-id="' . esc_attr( $this->field['id'] ) . '-ul" rel-name="' . esc_attr( $this->field['name'] . '[title][]' . $this->field['name_suffix'] ) . '">' . esc_html( sprintf( esc_html__( 'Add %s', 'redux-framework' ), esc_html( $this->field['content_title'] ) ) ) . '</a>';
 			echo '<br/>';
 		}
 

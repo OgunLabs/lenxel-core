@@ -6,15 +6,18 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	 return;
   }
 
-	$this->add_render_attribute('wrapper', 'class', ['lnx-teams-grid clearfix', 'grid-' . $_random]);
-
+	$this->add_render_attribute( [
+		'wrapper' => [
+		   'class' => ['lnx-teams-grid clearfix', 'grid-' . $_random]
+		],
+	 ] );
 	//add_render_attribute grid
 	$this->get_grid_settings();
 ?>
   
-  	<div <?php echo $this->get_render_attribute_string('wrapper'); ?>>
+  	<div <?php $this->print_render_attribute_string('wrapper'); ?>>
 		<div class="lnx-content-items"> 
-		  	<div <?php echo $this->get_render_attribute_string('grid') ?>>
+		  	<div <?php $this->print_render_attribute_string('grid') ?>>
 				<?php
 					global $post;
 					$count = 0;
@@ -22,19 +25,23 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 					  	$query->the_post();
 					  	$post->loop = $count++;
 					  	$post->post_count = $query->post_count;
-                  echo '<div class="item-columns">';
+						?>
+                   <div class="item-columns">
+					<?php
 					  	$this->lenxel_get_template_part('templates/content/item', $settings['style'], array(
 						 	'thumbnail_size' => $settings['image_size'],
 					  		'show_skills'	  => $settings['show_skills']
 						));
-                  echo '</div>';
+						?>
+                  </div>
+				  <?php
 					}
 				?>
 		  	</div>
 		</div>
 		<?php if($settings['pagination'] == 'yes'): ?>
 			<div class="pagination">
-				<?php echo $this->pagination($query); ?>
+				<?php echo wp_kses( $this->pagination($query), $this->lenxel_get__allowed_html() ); ?>
 			</div>
 		<?php endif; ?>
   	</div>

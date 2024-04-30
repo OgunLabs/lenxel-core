@@ -41,7 +41,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
      */
     public function get_title() {
         $get_current_name = lenxel_load_widget_content_element('LNX Locations Map');
-        $filter_name = 'lenxel/element/'.$this->get_name();
+        $filter_name = 'lenxel/element/'.esc_html($this->get_name());
 		return apply_filters( $filter_name, $get_current_name);
     }
 
@@ -87,7 +87,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $this->start_controls_section(
             'section_locations',
             [
-                'label' => __('Locations Content', 'lenxel-core'),
+                'label' => esc_html__('Locations Content', 'lenxel-core'),
             ]
         );
        
@@ -96,7 +96,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $repeater->add_control(
           'title',
           [
-            'label'   => __('Location Title', 'lenxel-core'),
+            'label'   => esc_html__('Location Title', 'lenxel-core'),
             'default' => 'New York',
             'type'    => Controls_Manager::TEXT,
             'label_block' => true
@@ -105,7 +105,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $repeater->add_control(
           'content',
           [
-              'label'       => __('Content', 'lenxel-core'),
+              'label'       => esc_html__('Content', 'lenxel-core'),
               'type'        => Controls_Manager::TEXTAREA,
               'placeholder' => '',
           ]
@@ -113,7 +113,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $repeater->add_control(
           'location_map',
           [
-              'label'   => __('Latitude, Longitude', 'lenxel-core'),
+              'label'   => esc_html__('Latitude, Longitude', 'lenxel-core'),
               'default' => '36.20485484481565,-115.20025440468748',
               'type'    => Controls_Manager::TEXT,
               'label_block' => true,
@@ -123,7 +123,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $repeater->add_control(
           'image',
           [
-              'label'       => __('Choose Image', 'lenxel-core'),
+              'label'       => esc_html__('Choose Image', 'lenxel-core'),
               'type'        => Controls_Manager::MEDIA,
               'default' => [
                   'url' => Elementor\Utils::get_placeholder_image_src(),
@@ -133,7 +133,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $repeater->add_control(
           'address',
           [
-              'label'       => __('Address', 'lenxel-core'),
+              'label'       => esc_html__('Address', 'lenxel-core'),
               'type'        => Controls_Manager::TEXT,
               'placeholder' => '',
               'label_block' => true,
@@ -142,7 +142,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $repeater->add_control(
           'link',
           [
-              'label'       => __('Link', 'lenxel-core'),
+              'label'       => esc_html__('Link', 'lenxel-core'),
               'type'        => Controls_Manager::URL,
           ]
         );
@@ -150,7 +150,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $this->add_control(
             'locations',
             [
-                'label'       => __('Location Content Item', 'lenxel-core'),
+                'label'       => esc_html__('Location Content Item', 'lenxel-core'),
                 'type'        => Controls_Manager::REPEATER,
                  'fields' => $repeater->get_controls(),
                 'title_field' => '{{{ title }}}',
@@ -185,7 +185,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $this->start_controls_section(
             'section_style_box',
             [
-                'label' => __('Box', 'lenxel-core'),
+                'label' => esc_html__('Box', 'lenxel-core'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -193,7 +193,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $this->add_control(
             'box_background',
             [
-                'label'     => __('Box Background', 'lenxel-core'),
+                'label'     => esc_html__('Box Background', 'lenxel-core'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [
@@ -208,7 +208,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $this->start_controls_section(
             'section_style_title',
             [
-                'label' => __('Title', 'lenxel-core'),
+                'label' => esc_html__('Title', 'lenxel-core'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -216,7 +216,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $this->add_control(
             'title_color',
             [
-                'label'     => __('Text Color', 'lenxel-core'),
+                'label'     => esc_html__('Text Color', 'lenxel-core'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [
@@ -239,7 +239,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $this->start_controls_section(
             'section_style_content',
             [
-                'label' => __('Content', 'lenxel-core'),
+                'label' => esc_html__('Content', 'lenxel-core'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -247,7 +247,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
         $this->add_control(
             'content_color',
             [
-                'label'     => __('Text Color', 'lenxel-core'),
+                'label'     => esc_html__('Text Color', 'lenxel-core'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [
@@ -279,7 +279,7 @@ class LNXElement_Locations_Map extends LNXElement_Base{
     protected function render() {
         if ( lenxel_get_template_restrict()->has_premium){
             $settings = $this->get_settings_for_display();
-            printf( '<div class="lnx-element-%s lnx-element">', $this->get_name() );
+            printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
                 include $this->get_template('locations-map.php');
             print '</div>';
         }else {

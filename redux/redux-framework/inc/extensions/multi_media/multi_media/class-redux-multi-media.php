@@ -140,12 +140,12 @@ if ( ! class_exists( 'Redux_Multi_Media' ) ) {
 						for ( $i = 0; $i < $part_count; ++$i ) {
 							$title = $parts[ $i ];
 						}
-
+						
 						// Add file to array.
 						$html  = '<li>';
 						$html .= esc_html__( 'File: ', 'redux-framework' );
 						$html .= '<strong>' . $title . '</strong>&nbsp;&nbsp;&nbsp;';
-						$html .= '(<a href="' . $url . '" target="_blank" rel="external">' . esc_html__( 'Download', 'redux-framework' ) . '</a> / <a href="#" class="redux_remove_file_button">' . __( 'Remove', 'redux-framework' ) . '</a>)';
+						$html .= '(<a href="' . $url . '" target="_blank" rel="external">' . esc_html__( 'Download', 'redux-framework' ) . '</a> / <a href="#" class="redux_remove_file_button">' . esc_html__( 'Remove', 'redux-framework' ) . '</a>)';
 						$html .= $id_input;
 						$html .= '</li>';
 
@@ -167,11 +167,11 @@ if ( ! class_exists( 'Redux_Multi_Media' ) ) {
 					$all_arr[] = $html;
 				}
 			}
-
+			
 			// Output array to page.
 			if ( ! empty( $all_arr ) ) {
 				foreach ( $all_arr as $html ) {
-					echo $html; // phpcs:ignore WordPress.Security.EscapeOutput
+					echo wp_kses($html, array('img'=>array('class'=>array(),'width'=>array(),'height'=>array(),'src'=>array(),'alt'=>array(),'srcset'=>array(),'sizes'=>array()), 'p'=>array('class'=>array()),'input'=>array('type'=>array(),'value'=>array(), 'name'=>array(),'id'=>array(),'class'=>array()),'strong'=>array(), 'li'=>array('class'=>array()),'a' => array('target'=>array(),'href'=>array(),'rel'=>array(),'class'=>array()))); // phpcs:ignore WordPress.Security.EscapeOutput
 				}
 			}
 

@@ -6,7 +6,7 @@ $has_icon = ! empty( $item['selected_icon']['value']);
 ?>
 
 <?php if($settings['style'] == 'style-1'): ?>
-	<div class="item icon-box-item style-1 <?php echo ($item['active'] == 'yes' ? 'active' : ''); ?>">
+	<div class="item icon-box-item style-1 <?php echo esc_attr($item['active'] == 'yes' ? 'active' : ''); ?>">
 			<div class="item-box">
 				<div class="item-box-content">
 					<?php if ( $has_icon ){ ?>
@@ -24,7 +24,7 @@ $has_icon = ! empty( $item['selected_icon']['value']);
 							<h4 class="title"><?php echo esc_html($item['title']); ?></h4>
 						<?php } ?>
 						<?php if($item['desc']){ ?>
-							<div class="desc"><?php echo esc_html($item['desc']); ?></div>
+							<div class="desc"><?php echo wp_kses_post($item['desc']); ?></div>
 						<?php } ?>
 					</div>	
 				</div>	

@@ -6,11 +6,11 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	 	return;
   	}
 
-	$this->add_render_attribute('wrapper', 'class', ['event-layout-list clearfix']);
+	$this->add_render_attribute(['wrapper' => ['class' => 'event-layout-list clearfix']]);
 	
 ?>
   
-  	<div <?php echo $this->get_render_attribute_string('wrapper'); ?>>
+  	<div <?php $this->print_render_attribute_string('wrapper'); ?>>
 		<div class="lnx-content-items"> 
 			<?php
 				global $post;
@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 		</div>
 		<?php if($settings['pagination'] == 'yes'): ?>
 			<div class="pagination">
-				<?php echo $this->pagination($query); ?>
+				<?php echo wp_kses( $this->pagination($query), $this->lenxel_get__allowed_html() ); ?>
 			</div>
 		<?php endif; ?>
   	</div>

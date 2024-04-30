@@ -4,13 +4,18 @@
    }
    use Elementor\Icons_Manager;
 
-   $this->add_render_attribute('wrapper', 'class', ['gsc-services-group layout-carousel', $settings['style']]);
-   $this->add_render_attribute('carousel', 'class', ['init-carousel-owl owl-carousel']);
-   
+   $this->add_render_attribute( [
+      'carousel' => [
+         'class' => 'init-carousel-owl owl-carousel',
+      ],
+      'wrapper' => [
+         'class' => ['gsc-services-group layout-carousel', $settings['style']]
+      ],
+   ] );
 ?>
 
-<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('wrapper'))); ?>">
-   <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>" <?php echo esc_attr($this->lenxel_str_replace_action(array('"'), $this->get_carousel_settings())); ?>>
+<div <?php $this->print_render_attribute_string('wrapper'); ?>>
+   <div <?php $this->print_render_attribute_string('carousel'); ?> <?php $this->lenxel_print_carousel_settings(); ?>>
       <?php foreach ($settings['services_content'] as $item): ?>
          <div class="item">
             <?php include $this->get_template('services-group/item.php'); ?>

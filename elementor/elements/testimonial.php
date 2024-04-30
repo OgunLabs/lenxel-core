@@ -41,7 +41,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
      */
     public function get_title() {
         $get_current_name = lenxel_load_widget_content_element('LNX Testimonials');
-        $filter_name = 'lenxel/element/'.$this->get_name();
+        $filter_name = 'lenxel/element/'.esc_html($this->get_name());
 		return apply_filters( $filter_name, $get_current_name);
     }
 
@@ -88,7 +88,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->start_controls_section(
             'section_testimonial',
             [
-                'label' => __('Testimonials', 'lenxel-core'),
+                'label' => esc_html__('Testimonials', 'lenxel-core'),
             ]
         );
         $this->add_control(
@@ -110,7 +110,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $repeater->add_control(
             'testimonial_title',
             [
-                'label'   => __('Title', 'lenxel-core'),
+                'label'   => esc_html__('Title', 'lenxel-core'),
                 'default' => 'Amazing Courses',
                 'type'    => Controls_Manager::TEXT,
             ]
@@ -118,7 +118,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $repeater->add_control(
             'testimonial_content',
             [
-                'label'       => __('Content', 'lenxel-core'),
+                'label'       => esc_html__('Content', 'lenxel-core'),
                 'type'        => Controls_Manager::TEXTAREA,
                 'default'     => 'I was impresed by the moling services, not lorem ipsum is simply free text of used by refreshing. Neque porro este qui dolorem ipsum quia.',
                 'label_block' => true,
@@ -128,7 +128,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $repeater->add_control(
             'testimonial_image',
             [
-                'label'      => __('Choose Image', 'lenxel-core'),
+                'label'      => esc_html__('Choose Image', 'lenxel-core'),
                 'default'    => [
                     'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/testimonial.png',
                 ],
@@ -140,7 +140,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $repeater->add_control(
             'testimonial_name',
             [
-                'label'   => __('Name', 'lenxel-core'),
+                'label'   => esc_html__('Name', 'lenxel-core'),
                 'default' => 'John Doe',
                 'type'    => Controls_Manager::TEXT,
             ]
@@ -149,7 +149,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $repeater->add_control(
             'testimonial_job',
             [
-                'label'   => __('Job', 'lenxel-core'),
+                'label'   => esc_html__('Job', 'lenxel-core'),
                 'default' => 'Designer',
                 'type'    => Controls_Manager::TEXT,
             ]
@@ -158,7 +158,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $repeater->add_control(
             'testimonial_rating',
             [
-                'label'   => __('Rating', 'lenxel-core'),
+                'label'   => esc_html__('Rating', 'lenxel-core'),
                 'default' => 2,
                 'type'    => Controls_Manager::NUMBER,
             ]
@@ -167,7 +167,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_control(
             'testimonials',
             [
-                'label'       => __('Testimonials Content Item', 'lenxel-core'),
+                'label'       => esc_html__('Testimonials Content Item', 'lenxel-core'),
                 'type'        => Controls_Manager::REPEATER,
                 'fields'      => $repeater->get_controls(),
                 'title_field' => '{{{ testimonial_title }}}',
@@ -219,7 +219,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_control(
             'view',
             [
-                'label'   => __('View', 'lenxel-core'),
+                'label'   => esc_html__('View', 'lenxel-core'),
                 'type'    => Controls_Manager::HIDDEN,
                 'default' => 'traditional',
             ]
@@ -236,7 +236,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->start_controls_section(
             'section_style_content',
             [
-                'label' => __('Content', 'lenxel-core'),
+                'label' => esc_html__('Content', 'lenxel-core'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -244,7 +244,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_control(
             'content_content_color',
             [
-                'label'     => __('Text Color', 'lenxel-core'),
+                'label'     => esc_html__('Text Color', 'lenxel-core'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [
@@ -265,7 +265,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_responsive_control(
 			'content_testimonial_pad',
 			[
-				'label' => __( 'Content Padding', 'lenxel-core' ),
+				'label' => esc_html__( 'Content Padding', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px'],
 				'default' => [
@@ -287,7 +287,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->start_controls_section(
             'section_style_image',
             [
-                'label'     => __('Image', 'lenxel-core'),
+                'label'     => esc_html__('Image', 'lenxel-core'),
                 'tab'       => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -295,7 +295,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_control(
             'image_size',
             [
-                'label'      => __('Image Size', 'lenxel-core'),
+                'label'      => esc_html__('Image Size', 'lenxel-core'),
                 'type'       => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range'      => [
@@ -322,7 +322,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_control(
             'image_border_radius',
             [
-                'label'      => __('Border Radius', 'lenxel-core'),
+                'label'      => esc_html__('Border Radius', 'lenxel-core'),
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors'  => [
@@ -337,7 +337,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->start_controls_section(
             'section_style_name',
             [
-                'label' => __('Name', 'lenxel-core'),
+                'label' => esc_html__('Name', 'lenxel-core'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -345,7 +345,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_control(
             'name_text_color',
             [
-                'label'     => __('Text Color', 'lenxel-core'),
+                'label'     => esc_html__('Text Color', 'lenxel-core'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [
@@ -366,7 +366,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_responsive_control(
 			'name_testimonial_pad',
 			[
-				'label' => __( 'Name Padding', 'lenxel-core' ),
+				'label' => esc_html__( 'Name Padding', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px'],
 				'default' => [
@@ -388,7 +388,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->start_controls_section(
             'section_style_job',
             [
-                'label' => __('Job', 'lenxel-core'),
+                'label' => esc_html__('Job', 'lenxel-core'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -396,7 +396,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_control(
             'job_text_color',
             [
-                'label'     => __('Text Color', 'lenxel-core'),
+                'label'     => esc_html__('Text Color', 'lenxel-core'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [
@@ -416,7 +416,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_responsive_control(
 			'job_testimonial_pad',
 			[
-				'label' => __( 'Job Padding', 'lenxel-core' ),
+				'label' => esc_html__( 'Job Padding', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px'],
 				'default' => [
@@ -437,7 +437,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->start_controls_section(
             'section_content_group',
             [
-                'label' => __('Grouped Content Spacing', 'lenxel-core'),
+                'label' => esc_html__('Grouped Content Spacing', 'lenxel-core'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -445,7 +445,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_responsive_control(
 			'testimonial_group_pad',
 			[
-				'label' => __( 'Grouped Content Spacing', 'lenxel-core' ),
+				'label' => esc_html__( 'Grouped Content Spacing', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px'],
 				'default' => [
@@ -463,7 +463,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
         $this->add_control(
             'testimonial_bg_color',
             [
-                'label'     => __('Background Color', 'lenxel-core'),
+                'label'     => esc_html__('Background Color', 'lenxel-core'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [
@@ -487,7 +487,7 @@ class LNXElement_Testimonial extends LNXElement_Base{
     protected function render() {
         if ( lenxel_get_template_restrict()->has_premium){
             $settings = $this->get_settings_for_display();
-            printf( '<div class="lnx-element-%s lnx-element">', $this->get_name() );
+            printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
             if(isset($settings['style']) && $settings['style']){
                 include $this->get_template('testimonials/lnx-testimonials-' . $settings['style'] . '.php');
             }

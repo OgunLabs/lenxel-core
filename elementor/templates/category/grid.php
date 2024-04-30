@@ -7,16 +7,16 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	 return;
   }
 
-	$this->add_render_attribute('wrapper', 'class', ['lnx-category-grid clearfix lnx-category']);
+	$this->add_render_attribute(['wrapper', ['class', 'lnx-category-grid clearfix lnx-category']]);
     $style = isset($settings['style']) ? $settings['style'] : '';
 	//add_render_attribute grid
 	$this->get_grid_settings();
     
 ?>
   
-  <div <?php echo $this->get_render_attribute_string('wrapper'); ?>>
+  <div <?php $this->print_render_attribute_string('wrapper'); ?>>
 		<div class="lnx-content-items"> 
-		  <div <?php echo $this->get_render_attribute_string('grid') ?>>
+		  <div <?php $this->print_render_attribute_string('grid') ?>>
 			 <?php
 				$count = 0;$category_count=0;
 				foreach ( $query as $category ) { 
@@ -44,12 +44,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
                     </div>
                 <?php 
-                    // $this->lenxel_get_template_part( 'tutor/loop/content/item', $settings['style'], array(
-                    //     'image_size'   => $settings['image_size']
-                    // ) );
-                    // if($style == 'course-1'){
-                    //     do_action('tutor_course/archive/after_loop_course');
-                    // }
+                    
                     $category_count++;
                }
 			 ?>
@@ -57,7 +52,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 		</div>
 		<?php if($settings['pagination'] == 'yes'): ?>
 			 <div class="pagination">
-				  <?php echo $this->pagination($query); ?>
+				  <?php echo wp_kses( $this->pagination($query), $this->lenxel_get__allowed_html() ); ?>
 			 </div>
 		<?php endif; ?>
   </div>

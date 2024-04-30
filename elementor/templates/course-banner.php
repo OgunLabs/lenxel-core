@@ -2,13 +2,11 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    use Elementor\Group_Control_Image_Size;
 
-   $this->add_render_attribute( 'block', 'class', [ 'gsc-listings-banner', 'text-' . $settings['content_align'] ] );
+   $this->add_render_attribute( ['block'=> ['class'=> [ 'gsc-listings-banner', 'text-' . $settings['content_align'] ]], 'subtitle_text'=> ['class'=> 'subtitle'], 'title_text'=> ['class'=> 'title']] );
    
    $subtitle_text = $settings['subtitle'];
    $title_text = $settings['title'];
 
-   $this->add_render_attribute( 'subtitle_text', 'class', 'subtitle' );
-   $this->add_render_attribute( 'title_text', 'class', 'title' );
 
    $image_id = $settings['image']['id']; 
    $image_url = $settings['image']['url'];
@@ -29,31 +27,31 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    if( !empty($settings['link_custom']) ) $link = $settings['link_custom'];
 ?>
 
-<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
+<div <?php $this->print_render_attribute_string('carousel'); ?>>
    <div class="listings-banner-content">
       
       <?php 
          if ( $settings['show_number_content'] == 'yes' && $term ) {
             if(!empty($settings['term_slug'])){
-               echo '<span class="number-listings">' . sprintf(_n('%d Listing', '%d Courses', $term->count, 'lenxel-core'), $term->count) . '</span>';
+               echo '<span class="number-listings">' . sprintf(_n('%d Listing', '%d Courses', esc_html($term->count), 'lenxel-core'), esc_html($term->count)) . '</span>';
             }
          } 
       ?>
 
       <?php if($image_url){ ?>
          <div class="banner-image">
-            <img src="<?php echo esc_url($image_url) ?>" alt="<?php echo esc_html($title_text) ?>" />
+            <img src="<?php echo esc_url($image_url) ?>" alt="<?php echo esc_attr($title_text) ?>" />
          </div>
       <?php } ?>
 
       <div class="banner-content">
          
          <?php if($subtitle_text){ ?>
-            <div class="subtitle"><?php echo esc_html($subtitle_text) ?></div>
+            <div class="subtitle"><?php echo wp_kses_post($subtitle_text) ?></div>
          <?php } ?>
 
          <?php if($title_text){ ?>
-            <h3 class="title"><?php echo esc_html($title_text); ?></h3>
+            <h3 class="title"><?php echo wp_kses_post($title_text); ?></h3>
          <?php } ?>
 
       </div>

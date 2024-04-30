@@ -4,7 +4,7 @@
    }
    use Elementor\Icons_Manager;
 
-   $this->add_render_attribute('wrapper', 'class', ['gsc-course-banner-group layout-grid', $settings['style']]);
+   $this->add_render_attribute(['wrapper'=> ['class' => ['gsc-course-banner-group layout-grid', $settings['style']]]]);
    
    $style = $settings['style'] ? $settings['style'] : 'style-1';
 
@@ -12,8 +12,8 @@
    $this->get_grid_settings();
 ?>
 
-<div <?php echo $this->get_render_attribute_string('wrapper'); ?>>
-   <div <?php echo $this->get_render_attribute_string('grid') ?>>
+<div <?php $this->print_render_attribute_string('wrapper'); ?>>
+   <div <?php $this->print_render_attribute_string('grid') ?>>
       <?php
          foreach ($settings['content_banners'] as $banner): 
             include $this->get_template('course-banner-group/item-' . $style . '.php');

@@ -44,7 +44,7 @@ class LNXElement_Video_Box extends LNXElement_Base {
 	 */
 	public function get_title() {
 		$get_current_name = lenxel_load_widget_content_element('LNX Video Box');
-		$filter_name = 'lenxel/element/'.$this->get_name();
+		$filter_name = 'lenxel/element/'.esc_html($this->get_name());
 		return apply_filters( $filter_name, $get_current_name);
 	}
 
@@ -88,27 +88,27 @@ class LNXElement_Video_Box extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_icon',
 			[
-				'label' => __( 'Content', 'lenxel-core' ),
+				'label' => esc_html__( 'Content', 'lenxel-core' ),
 			]
 		);
 
 		$this->add_control(
 			'title_text',
 			[
-				'label' => __( 'Title', 'lenxel-core' ),
+				'label' => esc_html__( 'Title', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __( 'Enter Your Title', 'lenxel-core' ),
+				'placeholder' => esc_html__( 'Enter Your Title', 'lenxel-core' ),
 				'label_block' => true
 			]
 		);
 		$this->add_control(
 			'style',
 			[
-				'label' => __( 'style', 'lenxel-core' ),
+				'label' => esc_html__( 'style', 'lenxel-core' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'style-1' 		=> __( 'Style I', 'lenxel-core' ),
-					'style-2' 		=> __( 'Style II', 'lenxel-core' ),
+					'style-1' 		=> esc_html__( 'Style I', 'lenxel-core' ),
+					'style-2' 		=> esc_html__( 'Style II', 'lenxel-core' ),
 				],
 				'default' => 'style-1',
 			]
@@ -117,7 +117,7 @@ class LNXElement_Video_Box extends LNXElement_Base {
 		$this->add_control(
 			'image',
 			[
-				'label' => __( 'Image', 'lenxel-core' ),
+				'label' => esc_html__( 'Image', 'lenxel-core' ),
 				'type' => Controls_Manager::MEDIA,
 				'default' => [
                'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/video.jpg',
@@ -131,9 +131,9 @@ class LNXElement_Video_Box extends LNXElement_Base {
 		$this->add_control(
 			'link',
 			[
-				'label' => __( 'Link Video (Youtube/Vimeo)', 'lenxel-core' ),
+				'label' => esc_html__( 'Link Video (Youtube/Vimeo)', 'lenxel-core' ),
 				'type' => Controls_Manager::URL,
-				'placeholder' => __( 'https://your-link.com', 'lenxel-core' ),
+				'placeholder' => esc_html__( 'https://your-link.com', 'lenxel-core' ),
 				'separator' => 'before',
 			]
 		);
@@ -143,7 +143,7 @@ class LNXElement_Video_Box extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_box_style',
 			[
-				'label' => __( 'Box Style', 'lenxel-core' ),
+				'label' => esc_html__( 'Box Style', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -151,7 +151,7 @@ class LNXElement_Video_Box extends LNXElement_Base {
 		$this->add_control(
 			'box_primary_color',
 			[
-				'label' => __( 'Primary Color', 'lenxel-core' ),
+				'label' => esc_html__( 'Primary Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => [
@@ -165,7 +165,7 @@ class LNXElement_Video_Box extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_style_icon',
 			[
-				'label' => __( 'Icon', 'lenxel-core' ),
+				'label' => esc_html__( 'Icon', 'lenxel-core' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 				
 			]
@@ -174,7 +174,7 @@ class LNXElement_Video_Box extends LNXElement_Base {
 		$this->add_control(
 			'icon_color',
 			[
-				'label' => __( 'Primary Color', 'lenxel-core' ),
+				'label' => esc_html__( 'Primary Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'condition' => [
@@ -190,7 +190,7 @@ class LNXElement_Video_Box extends LNXElement_Base {
 		$this->add_responsive_control(
 			'icon_space',
 			[
-				'label' => __( 'Spacing', 'lenxel-core' ),
+				'label' => esc_html__( 'Spacing', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 20,
@@ -213,7 +213,7 @@ class LNXElement_Video_Box extends LNXElement_Base {
 		$this->add_responsive_control(
 			'icon_size',
 			[
-				'label' => __( 'Size', 'lenxel-core' ),
+				'label' => esc_html__( 'Size', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 30
@@ -233,7 +233,7 @@ class LNXElement_Video_Box extends LNXElement_Base {
 		$this->add_responsive_control(
 			'icon_padding',
 			[
-				'label' => __( 'Padding', 'lenxel-core' ),
+				'label' => esc_html__( 'Padding', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
@@ -248,7 +248,7 @@ class LNXElement_Video_Box extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_style_content',
 			[
-				'label' => __( 'Content', 'lenxel-core' ),
+				'label' => esc_html__( 'Content', 'lenxel-core' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -256,7 +256,7 @@ class LNXElement_Video_Box extends LNXElement_Base {
 		$this->add_control(
 			'heading_title',
 			[
-				'label' => __( 'Title', 'lenxel-core' ),
+				'label' => esc_html__( 'Title', 'lenxel-core' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -265,7 +265,7 @@ class LNXElement_Video_Box extends LNXElement_Base {
 		$this->add_responsive_control(
 			'title_bottom_space',
 			[
-				'label' => __( 'Spacing', 'lenxel-core' ),
+				'label' => esc_html__( 'Spacing', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -285,7 +285,7 @@ class LNXElement_Video_Box extends LNXElement_Base {
 		$this->add_control(
 			'title_color',
 			[
-				'label' => __( 'Color', 'lenxel-core' ),
+				'label' => esc_html__( 'Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -305,7 +305,7 @@ class LNXElement_Video_Box extends LNXElement_Base {
 		$this->add_control(
 			'heading_description',
 			[
-				'label' => __( 'Description', 'lenxel-core' ),
+				'label' => esc_html__( 'Description', 'lenxel-core' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 				'condition' => [
@@ -317,7 +317,7 @@ class LNXElement_Video_Box extends LNXElement_Base {
 		$this->add_control(
 			'description_color',
 			[
-				'label' => __( 'Color', 'lenxel-core' ),
+				'label' => esc_html__( 'Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -344,7 +344,7 @@ class LNXElement_Video_Box extends LNXElement_Base {
 		$this->add_responsive_control(
 			'description_bottom_space',
 			[
-				'label' => __( 'Spacing', 'lenxel-core' ),
+				'label' => esc_html__( 'Spacing', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -375,7 +375,7 @@ class LNXElement_Video_Box extends LNXElement_Base {
 	protected function render() {
 		if ( lenxel_get_template_restrict()->has_premium){
 				$settings = $this->get_settings_for_display();
-				printf( '<div class="lnx-element-%s lnx-element">', $this->get_name() );
+				printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
 				include $this->get_template('video-box.php');
 			print '</div>';
 		}else {

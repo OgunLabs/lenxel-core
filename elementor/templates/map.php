@@ -2,9 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    $title_text = $settings['title_text'];
 
-   $this->add_render_attribute( 'block', 'class', [ 'widget gsc-map' ] );
-
-   $this->add_render_attribute( 'title_text', 'class', 'title' );
+   $this->add_render_attribute( ['block'=>['class'=> 'widget gsc-map' ],  'title_text'=> ['class'=> 'title']] );
 
    $this->add_inline_editing_attributes( 'title_text', 'none' );
    $zoom = 14;
@@ -14,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    wp_enqueue_script('map-api');
    $_id = lenxel_themesupport_random_id();
    ?>
-   <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
+   <div <?php $this->print_render_attribute_string('carousel'); ?>>
       <div class="content-inner">
          <div id="map_canvas_<?php echo esc_attr($_id); ?>" class="map_canvas" style="width:100%; height:<?php echo esc_attr($settings['height']); ?>;"></div>
       </div>
@@ -22,15 +20,15 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    <div class="clearfix"></div>
    <script>
       jQuery(document).ready(function($) {
-         var stmapdefault = '<?php echo esc_attr($settings['link']); ?>';
+         var stmapdefault = '<?php echo esc_js($settings['link']); ?>';
          var marker = {position:stmapdefault}
-         var content = '<?php echo esc_html($settings['title_text']) ?>';
+         var content = '<?php echo esc_js($settings['title_text']) ?>';
      
-         jQuery('#map_canvas_<?php echo esc_attr($_id); ?>').gmap({
+         jQuery('#map_canvas_<?php echo esc_js($_id); ?>').gmap({
             'scrollwheel':false,
-            'zoom': <?php echo esc_attr($zoom); ?>,
+            'zoom': <?php echo esc_js($zoom); ?>,
             'center': stmapdefault,
-            'mapTypeId':google.maps.MapTypeId.<?php echo esc_attr( $settings['map_type'] ); ?>,
+            'mapTypeId':google.maps.MapTypeId.<?php echo esc_js( $settings['map_type'] ); ?>,
             'styles': <?php echo esc_js($style); ?>,
             'callback': function() {
                var self = this;

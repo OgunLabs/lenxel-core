@@ -2,18 +2,11 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    use Elementor\Icons_Manager;
 
-   $this->add_render_attribute( 'icon', 'class', [ 'icon icon-font'] );
-   
-   $this->add_render_attribute( 'icon_image', 'class', [ 'icon icon-image' ] );
-   
-
+   $this->add_render_attribute(['icon'=> ['class'=> 'icon icon-font'], 'icon_image'=> ['class'=> 'icon icon-image' ], 'block'=> ['class'=> [ $settings['style'], 'widget gsc-search-box' ] ]]);
    $has_icon = ! empty( $settings['selected_icon']['value']);
 
-  
-   $this->add_render_attribute( 'block', 'class', [ $settings['style'], 'widget gsc-search-box' ] );
-
    ?>
-   <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
+   <div <?php $this->print_render_attribute_string('carousel'); ?>>
       <div class="content-inner">
          
          <div class="main-search lnx-search">

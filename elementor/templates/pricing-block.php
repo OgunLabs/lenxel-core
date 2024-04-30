@@ -7,11 +7,11 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    }
    $title_text = $settings['title_text'];
 
-   $this->add_render_attribute( 'block', 'class', [ 'widget gsc-pricing', $settings['style'] ] );
+   $this->add_render_attribute( ['block'=> ['class'=> [ 'widget gsc-pricing', $settings['style'] ]], 'title_text'=> ['class'=> 'title']] );
    
    $header_tag = 'h3';
 
-   $this->add_render_attribute( 'title_text', 'class', 'title' );
+   $this->add_render_attribute(  );
 
    $this->add_inline_editing_attributes( 'title_text', 'none' );
 
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 ?>
    
-<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
+<div <?php $this->print_render_attribute_string('carousel'); ?>>
    <div class="content-inner">
 
       <div class="plan-price">
@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
       </div>
 
       <?php if($title_text){ ?>
-         <<?php echo esc_attr($header_tag) ?> <?php echo $this->get_render_attribute_string( 'title_text' ); ?>>
+         <<?php echo esc_attr($header_tag) ?> <?php $this->print_render_attribute_string( 'title_text' ); ?>>
             <span><?php echo esc_html($settings['title_text']); ?></span>
          </<?php echo esc_attr($header_tag) ?>>
       <?php } ?>
@@ -42,7 +42,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
          <ul class="plan-list">
             <?php foreach ($settings['pricing_content'] as $key => $item) { ?>
                <li>
-                  <span class="text"><?php echo esc_html($item['pricing_features']); ?></span>
+                  <span class="text"><?php echo wp_kses_post($item['pricing_features']); ?></span>
                </li>  
             <?php } ?>
          </ul>

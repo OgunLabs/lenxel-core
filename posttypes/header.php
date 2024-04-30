@@ -22,24 +22,24 @@ class Lenxel_Theme_Support_Header{
 
   public function args_post_type_header(){
     $labels = array(
-      'name' => __( 'Header Builder', 'lenxel-core' ),
-      'singular_name' => __( 'Header Builder', 'lenxel-core' ),
-      'add_new' => __( 'Add Header Builder', 'lenxel-core' ),
-      'add_new_item' => __( 'Add Header Builder', 'lenxel-core' ),
-      'edit_item' => __( 'Edit Header', 'lenxel-core' ),
-      'new_item' => __( 'New Header Builder', 'lenxel-core' ),
-      'view_item' => __( 'View Header Builder', 'lenxel-core' ),
-      'search_items' => __( 'Search Header Profiles', 'lenxel-core' ),
-      'not_found' => __( 'No Header Profiles found', 'lenxel-core' ),
-      'not_found_in_trash' => __( 'No Header Profiles found in Trash', 'lenxel-core' ),
-      'parent_item_colon' => __( 'Parent Header:', 'lenxel-core' ),
-      'menu_name' => __( 'Header Builder', 'lenxel-core' ),
+      'name' => esc_html__( 'Header Builder', 'lenxel-core' ),
+      'singular_name' => esc_html__( 'Header Builder', 'lenxel-core' ),
+      'add_new' => esc_html__( 'Add Header Builder', 'lenxel-core' ),
+      'add_new_item' => esc_html__( 'Add Header Builder', 'lenxel-core' ),
+      'edit_item' => esc_html__( 'Edit Header', 'lenxel-core' ),
+      'new_item' => esc_html__( 'New Header Builder', 'lenxel-core' ),
+      'view_item' => esc_html__( 'View Header Builder', 'lenxel-core' ),
+      'search_items' => esc_html__( 'Search Header Profiles', 'lenxel-core' ),
+      'not_found' => esc_html__( 'No Header Profiles found', 'lenxel-core' ),
+      'not_found_in_trash' => esc_html__( 'No Header Profiles found in Trash', 'lenxel-core' ),
+      'parent_item_colon' => esc_html__( 'Parent Header:', 'lenxel-core' ),
+      'menu_name' => esc_html__( 'Header Builder', 'lenxel-core' ),
     );
 
     $args = array(
         'labels'              => $labels,
         'hierarchical'        => true,
-        'description'         => __('List Header', "lenxel-core"),
+        'description'         => esc_html__('List Header', "lenxel-core"),
         'public'              => true,
         'show_ui'             => true,
         'show_in_menu'        => true,

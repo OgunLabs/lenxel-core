@@ -43,7 +43,7 @@ if ( ! class_exists( 'Redux_Textarea', false ) ) {
 
 			?>
 			<label for="<?php echo esc_attr( $this->field['id'] ); ?>-textarea"></label>
-			<textarea <?php echo esc_html( $readonly ); ?>
+			<textarea <?php echo esc_attr( $readonly ); ?>
 					name="<?php echo esc_attr( $this->field['name'] . $this->field['name_suffix'] ); ?>"
 					id="<?php echo esc_attr( $this->field['id'] ); ?>-textarea"
 					placeholder="<?php echo esc_attr( $this->field['placeholder'] ); ?>"

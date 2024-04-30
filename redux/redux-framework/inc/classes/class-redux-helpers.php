@@ -647,29 +647,29 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 *
 		 * @return string
 		 */
-		public static function get_template_version( string $file ): string {
-			$filesystem = Redux_Filesystem::get_instance();
+		public static function get_template_version( $file ) {
+			//Redux_Filesystem::get_instance();
 			// Avoid notices if file does not exist.
 			if ( ! file_exists( $file ) ) {
 				return '';
 			}
+			// We don't need to write to the file, so just open for reading.
+			$fp = fopen( $file, 'r' );
 
-			$data = get_file_data( $file, array( 'version' ), 'plugin' );
+			// Pull only the first 8kiB of the file in.
+			$file_data = fread( $fp, 8192 );
 
-			if ( ! empty( $data[0] ) ) {
-				return $data[0];
-			} else {
-				$file_data = $filesystem->get_contents( $file );
+			// PHP will close file handle, but we are good citizens.
+			fclose( $fp );
 
-				$file_data = str_replace( "\r", "\n", $file_data );
-				$version   = '1.0.0';
+			$file_data = str_replace( "\r", "\n", $file_data );
+			$version   = '1.0.0';
 
-				if ( preg_match( '/^[ \t\/*#@]*' . preg_quote( '@version', '/' ) . '(.*)$/mi', $file_data, $match ) && $match[1] ) {
-					$version = _cleanup_header_comment( $match[1] );
-				}
-
-				return $version;
+			if ( preg_match( '/^[ \t\/*#@]*' . preg_quote( '@version', '/' ) . '(.*)$/mi', $file_data, $match ) && $match[1] ) {
+				$version = _cleanup_header_comment( $match[1] );
 			}
+
+			return $version;
 		}
 
 		/**
@@ -918,13 +918,14 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 				return Redux_Core::$google_fonts;
 			}
 
-			$filesystem = Redux_Filesystem::get_instance();
+			//Redux_Filesystem::get_instance();
 
 			$path = trailingslashit( Redux_Core::$upload_dir ) . 'google_fonts.json';
 
 			if ( ! file_exists( $path ) || ( file_exists( $path ) && $download && self::google_fonts_update_needed() ) ) {
 				if ( $download ) {
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
+					// Retrieve an updated Google font array
 					$url = apply_filters( 'redux/typography/google_fonts/url', 'https://raw.githubusercontent.com/reduxframework/google-fonts/master/google_fonts.json' );
 
 					$request = wp_remote_get(
@@ -937,7 +938,9 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 					if ( ! is_wp_error( $request ) ) {
 						$body = wp_remote_retrieve_body( $request );
 						if ( ! empty( $body ) ) {
-							$filesystem->put_contents( $path, $body );
+							$fp = fopen($path, "w");
+							fwrite($fp, $body);
+							fclose($fp);
 							Redux_Core::$google_fonts = json_decode( $body, true );
 						}
 					} else {
@@ -945,7 +948,10 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 					}
 				}
 			} elseif ( file_exists( $path ) ) {
-				Redux_Core::$google_fonts = json_decode( $filesystem->get_contents( $path ), true );
+				$fp = fopen( $path, 'r' );
+				$file_data = fread( $fp, 8192 );
+				fclose( $fp );
+				Redux_Core::$google_fonts = json_decode( $file_data, true );
 				if ( empty( Redux_Core::$google_fonts ) ) {
 					$filesystem->unlink( $path );
 				}

@@ -175,8 +175,8 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 
 				if ( isset( $_POST['nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['nonce'] ) ), 'redux_customer_nonce' ) && isset( $_POST['opt_name'] ) && '' !== $_POST['opt_name'] ) {
 					$redux = Redux::instance( sanitize_text_field( wp_unslash( $_POST['opt_name'] ) ) );
-
-					$post_data = wp_unslash( $_POST['data'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+					$get_sanitize_data = array_map('sanitize_text_field', $_POST['data']);
+					$post_data = wp_unslash( $get_sanitize_data ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 
 					// New method to avoid input_var nonsense.  Thanks @harunbasic.
 					$values = Redux_Functions_Ex::parse_str( $post_data );

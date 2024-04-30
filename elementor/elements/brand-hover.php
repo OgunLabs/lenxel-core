@@ -40,7 +40,7 @@ class LNXElement_Brand_Hover extends LNXElement_Base{
      * @return string Widget title.
      */
     public function get_title() {
-        return __('LNX Brand Hover', 'lenxel-core');
+        return esc_html__('LNX Brand Hover', 'lenxel-core');
     }
 
     /**
@@ -84,7 +84,7 @@ class LNXElement_Brand_Hover extends LNXElement_Base{
         $this->start_controls_section(
             'section_content',
             [
-                'label' => __('Layout & Content', 'lenxel-core'),
+                'label' => esc_html__('Layout & Content', 'lenxel-core'),
             ]
         );
 
@@ -92,7 +92,7 @@ class LNXElement_Brand_Hover extends LNXElement_Base{
         $this->add_control( 
             'layout_heading',
             [
-                'label'   => __( 'Layout', 'lenxel-core' ),
+                'label'   => esc_html__( 'Layout', 'lenxel-core' ),
                 'type'    => Controls_Manager::HEADING,
             ]
         );
@@ -110,12 +110,12 @@ class LNXElement_Brand_Hover extends LNXElement_Base{
         $this->add_control(
             'layout',
             [
-                'label'   => __( 'Layout Display', 'lenxel-core' ),
+                'label'   => esc_html__( 'Layout Display', 'lenxel-core' ),
                 'type'    => Controls_Manager::SELECT,
                 'default' => 'grid',
                 'options' => [
-                    'grid'      => __( 'Grid', 'lenxel-core' ),
-                    'carousel'  => __( 'Carousel', 'lenxel-core' ),
+                    'grid'      => esc_html__( 'Grid', 'lenxel-core' ),
+                    'carousel'  => esc_html__( 'Carousel', 'lenxel-core' ),
                 ]
             ]
         );
@@ -125,7 +125,7 @@ class LNXElement_Brand_Hover extends LNXElement_Base{
         $repeater->add_control(
             'title',
             [
-                'label'       => __('Title', 'lenxel-core'),
+                'label'       => esc_html__('Title', 'lenxel-core'),
                 'type'        => Controls_Manager::TEXT,
                 'default'     => esc_html__('Brand', 'lenxel-core'),
                 'label_block' => true,
@@ -134,7 +134,7 @@ class LNXElement_Brand_Hover extends LNXElement_Base{
         $repeater->add_control(
             'image',
             [
-                'label'      => __('Choose Image', 'lenxel-core'),
+                'label'      => esc_html__('Choose Image', 'lenxel-core'),
                 'default'    => [
                     'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/brand-hover-1.png',
                 ],
@@ -145,7 +145,7 @@ class LNXElement_Brand_Hover extends LNXElement_Base{
         $repeater->add_control(
             'image_hover',
             [
-                'label'      => __('Choose Image Hover', 'lenxel-core'),
+                'label'      => esc_html__('Choose Image Hover', 'lenxel-core'),
                 'default'    => [
                     'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/brand-hover-white-1.png',
                 ],
@@ -156,15 +156,15 @@ class LNXElement_Brand_Hover extends LNXElement_Base{
         $repeater->add_control(
             'link',
             [
-                'label'      => __('Link', 'lenxel-core'),
-                'placeholder' => __( 'https://your-link.com', 'lenxel-core' ),
+                'label'      => esc_html__('Link', 'lenxel-core'),
+                'placeholder' => esc_html__( 'https://your-link.com', 'lenxel-core' ),
                 'type'       => Controls_Manager::URL,
             ]
         );
         $repeater->add_control(
           'active',
           [
-            'label' => __( 'Active', 'lenxel-core' ),
+            'label' => esc_html__( 'Active', 'lenxel-core' ),
             'type' => Controls_Manager::SWITCHER,
             'default' => 'no'
           ]
@@ -172,7 +172,7 @@ class LNXElement_Brand_Hover extends LNXElement_Base{
         $this->add_control(
             'brands',
             [
-                'label'       => __('Brand Content Item', 'lenxel-core'),
+                'label'       => esc_html__('Brand Content Item', 'lenxel-core'),
                 'type'        => Controls_Manager::REPEATER,
                 'fields'      => $repeater->get_controls(),
                 'title_field' => '{{{ title }}}',
@@ -204,7 +204,7 @@ class LNXElement_Brand_Hover extends LNXElement_Base{
         $this->start_controls_section(
             'section_style_image',
             [
-                'label'     => __('Image', 'lenxel-core'),
+                'label'     => esc_html__('Image', 'lenxel-core'),
                 'tab'       => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -220,7 +220,7 @@ class LNXElement_Brand_Hover extends LNXElement_Base{
         $this->add_control(
             'image_border_radius',
             [
-                'label'      => __('Border Radius', 'lenxel-core'),
+                'label'      => esc_html__('Border Radius', 'lenxel-core'),
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors'  => [
@@ -243,7 +243,7 @@ class LNXElement_Brand_Hover extends LNXElement_Base{
      */
     protected function render() {
       $settings = $this->get_settings_for_display();
-      printf( '<div class="lnx-element-%s lnx-element">', $this->get_name() );
+      printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
         if( !empty($settings['layout']) ){ 
           include $this->get_template('brand-hover/' . $settings['layout'] . '.php');
         } 

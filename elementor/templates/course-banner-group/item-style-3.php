@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
       <?php if($image_id){ ?>
          <div class="banner-image">
-            <img src="<?php echo esc_url($image_url) ?>" alt="<?php echo esc_html($banner['title']) ?>" />
+            <img src="<?php echo esc_url($image_url) ?>" alt="<?php echo esc_attr($banner['title']) ?>" />
          </div>
       <?php } ?>
 

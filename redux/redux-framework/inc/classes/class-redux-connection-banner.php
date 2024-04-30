@@ -78,9 +78,9 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 		 * the admin_init action fires, we know that the admin is initialized at this point.
 		 */
 		private function __construct() {
-			$clean_get = $_GET; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			if ( isset( $clean_get['_wpnonce'] ) && wp_verify_nonce( $clean_get['_wpnonce'], $this->nonce ) ) {
-				if ( isset( $clean_get[ $this->dismiss_option ] ) ) {
+			//$clean_get = $_GET; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			if ( isset( $_GET['_wpnonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_GET['_wpnonce'])), $this->nonce ) ) {
+				if ( isset( $_GET[ $this->dismiss_option ] ) ) {
 					update_option( 'redux-framework_extendify_plugin_notice', 'hide' );
 					return;
 				}
@@ -105,13 +105,14 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 			global $pagenow;
 
 			//$clean_get = $_GET; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			if ( isset( $_GET[ $this->register_option ] ) ) {
-				unset( $_GET[ $this->register_option ] );
+			$clean_get = array($this->register_option => sanitize_text_field( $_GET[ $this->register_option ] ), $this->dismiss_option => sanitize_text_field($_GET[ $this->dismiss_option ])); 
+			if ( isset( $clean_get[ $this->register_option ] ) ) {
+				unset( $clean_get[ $this->register_option ] );
 			}
-			if ( isset( $_GET[ $this->dismiss_option ] ) ) {
-				unset( $_GET[ $this->dismiss_option ] );
+			if ( isset( $clean_get[ $this->dismiss_option ] ) ) {
+				unset( $clean_get[ $this->dismiss_option ] );
 			}
-			$base_url = admin_url( add_query_arg( $_GET, $pagenow ) );
+			$base_url = admin_url( add_query_arg( $clean_get, $pagenow ) ); //admin_url( add_query_arg( $_GET, $pagenow ) );
 
 			return array(
 				'dismiss'  => wp_nonce_url( add_query_arg( $this->dismiss_option, true, $base_url ), $this->nonce ),
@@ -128,7 +129,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 			$nonce = isset( $_REQUEST['nonce'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['nonce'] ) ) : '';
 
 			if ( empty( $nonce ) || ! wp_verify_nonce( $nonce, $this->nonce ) ) {
-				die( __( 'Security check failed.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				die( esc_html__( 'Security check failed.', 'redux-framework' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 
 			if ( 'false' === $_REQUEST['activate'] ) {
@@ -393,7 +394,7 @@ if ( ! class_exists( 'Redux_Connection_Banner', false ) ) {
 					<h2>
 						<?php
 						echo wp_kses(
-							__(
+							esc_html__(
 								'<strong>Redux is activated!</strong> Each site on your network must be connected individually by an admin on that site.',
 								'Redux'
 							),

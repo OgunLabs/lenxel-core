@@ -42,7 +42,7 @@ class LNXElement_Circle_Progress extends LNXElement_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'LNX Circle Progress', 'lenxel-core' );
+		return esc_html__( 'LNX Circle Progress', 'lenxel-core' );
 	}
 
 	public function get_script_depends() {
@@ -92,13 +92,13 @@ class LNXElement_Circle_Progress extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_title',
 			[
-				'label' => __( 'Content', 'lenxel-core' ),
+				'label' => esc_html__( 'Content', 'lenxel-core' ),
 			]
 		);
 		$this->add_control(
 			'title',
 			[
-				'label' => __( 'Title', 'lenxel-core' ),
+				'label' => esc_html__( 'Title', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
 				'placeholder' => esc_html__( 'Enter your title', 'lenxel-core' ),
@@ -108,21 +108,21 @@ class LNXElement_Circle_Progress extends LNXElement_Base {
 		$this->add_control(
 			'empty_fill',
 			[
-				'label' => __( 'Color EmptyFill', 'lenxel-core' ),
+				'label' => esc_html__( 'Color EmptyFill', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR
 			]
 		);
 		$this->add_control(
 			'color',
 			[
-				'label' => __( 'Color', 'lenxel-core' ),
+				'label' => esc_html__( 'Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR
 			]
 		);
 		$this->add_control(
 			'number',
 			[
-			  	'label' => __( 'Percentage', 'lenxel-core' ),
+			  	'label' => esc_html__( 'Percentage', 'lenxel-core' ),
 			  	'type' => Controls_Manager::NUMBER,
 				'min' => 5,
 			  	'max' => 100,
@@ -133,7 +133,7 @@ class LNXElement_Circle_Progress extends LNXElement_Base {
 	 	$this->add_control(
 			'thickness',
 			[
-			  	'label' => __( 'Thickness', 'lenxel-core' ),
+			  	'label' => esc_html__( 'Thickness', 'lenxel-core' ),
 			  	'type' => Controls_Manager::NUMBER,
 				'min' => 1,
 			  	'max' => 50,
@@ -149,7 +149,7 @@ class LNXElement_Circle_Progress extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_title_style',
 			[
-				'label' => __( 'Title', 'lenxel-core' ),
+				'label' => esc_html__( 'Title', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -157,7 +157,7 @@ class LNXElement_Circle_Progress extends LNXElement_Base {
 		$this->add_control(
 			'title_color',
 			[
-				'label' => __( 'Text Color', 'lenxel-core' ),
+				'label' => esc_html__( 'Text Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-circle-progress .title' => 'color: {{VALUE}};',
@@ -178,7 +178,7 @@ class LNXElement_Circle_Progress extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_percentage_style',
 			[
-				'label' => __( 'Percentage', 'lenxel-core' ),
+				'label' => esc_html__( 'Percentage', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -186,7 +186,7 @@ class LNXElement_Circle_Progress extends LNXElement_Base {
 		$this->add_control(
 			'percentage_color',
 			[ 
-				'label' => __( 'Percentage Color', 'lenxel-core' ),
+				'label' => esc_html__( 'Percentage Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-circle-progress .circle-progress strong' => 'color: {{VALUE}};',
@@ -216,7 +216,7 @@ class LNXElement_Circle_Progress extends LNXElement_Base {
 	 */
 	protected function render() {
 		
-		printf( '<div class="lnx-element-%s lnx-element">', $this->get_name() );
+		printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
 			include $this->get_template('circle-progress.php');
 		print '</div>';
 	}

@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
       
       <?php if($image_url){ ?>
          <div class="banner-image">
-            <img src="<?php echo esc_url($image_url) ?>" alt="<?php echo esc_html($banner['title']) ?>" />
+            <img src="<?php echo esc_url($image_url) ?>" alt="<?php echo esc_attr($banner['title']) ?>" />
          </div>
       <?php } ?>
 
@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
          <?php 
             if ( $settings['show_number_content'] == 'yes' && $term ) {
                if(!empty($banner['term_slug'])){
-                  echo '<div class="number-course">' . $term->count . ' ' . $settings['text_suffix_number'] . '</div>';
+                  echo '<div class="number-course">' . esc_html($term->count) . ' ' . wp_kses_post($settings['text_suffix_number']) . '</div>';
                }
             } 
          ?>

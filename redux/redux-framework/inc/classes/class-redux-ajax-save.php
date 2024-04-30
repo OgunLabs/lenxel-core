@@ -52,7 +52,7 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 			$core = $this->core();
 
 			if ( ! isset( $_REQUEST['nonce'] ) || ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['nonce'] ) ), 'redux_ajax_nonce' . $this->args['opt_name'] ) ) ) {
-				echo wp_json_encode(
+				wp_send_json(
 					array(
 						'status' => esc_html__( 'Invalid security credential.  Please reload the page and try again.', 'redux-framework' ),
 						'action' => '',
@@ -62,7 +62,7 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 			}
 
 			if ( ! Redux_Helpers::current_user_can( $core->args['page_permissions'] ) ) {
-				echo wp_json_encode(
+				wp_send_json(
 					array(
 						'status' => esc_html__( 'Invalid user capability.  Please reload the page and try again.', 'redux-framework' ),
 						'action' => '',
@@ -75,7 +75,7 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 				$redux = Redux::instance( sanitize_text_field( wp_unslash( $_POST['opt_name'] ) ) );
 
 				if ( ! empty( $redux->args['opt_name'] ) ) {
-						$arrayData = $_POST['data'];
+						$arrayData = array_map('sanitize_text_field', $_POST['data']);
 						$post_data = wp_unslash( $arrayData ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 					// New method to avoid input_var nonsense.  Thanks, @harunbasic.
 					$values = Redux_Functions_Ex::parse_str( $post_data );
@@ -101,7 +101,7 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 							}
 
 							if ( $do_reload || ( isset( $values['defaults'] ) && ! empty( $values['defaults'] ) ) || ( isset( $values['defaults-section'] ) && ! empty( $values['defaults-section'] ) ) || ( isset( $values['import_code'] ) && ! empty( $values['import_code'] ) ) || ( isset( $values['import_link'] ) && ! empty( $values['import_link'] ) ) ) {
-								echo wp_json_encode(
+								wp_send_json(
 									array(
 										'status' => 'success',
 										'action' => 'reload',
@@ -123,7 +123,7 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 							$return_array = array( 'status' => $e->getMessage() );
 						}
 					} else {
-						echo wp_json_encode(
+						wp_send_json(
 							array(
 								'status' => esc_html__( 'Your panel has no fields. Nothing to save.', 'redux-framework' ),
 							)
@@ -189,7 +189,7 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 				}
 
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				echo wp_json_encode( apply_filters( 'redux/options/' . $core->args['opt_name'] . '/ajax_save/response', $return_array ) );
+				wp_send_json( apply_filters( 'redux/options/' . $core->args['opt_name'] . '/ajax_save/response', $return_array ) );
 			}
 
 			die();

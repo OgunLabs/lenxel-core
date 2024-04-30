@@ -20,10 +20,10 @@ class Lenxel_Theme_Support_Widget_Recent_Posts extends WP_Widget {
    public function __construct() {
       $widget_ops = array(
          'classname'                   => 'lnx_widget_recent_entries',
-         'description'                 => __( 'Your site&#8217;s most recent Posts.', 'lenxel-core' ),
+         'description'                 => esc_html__( 'Your site&#8217;s most recent Posts.', 'lenxel-core' ),
          'customize_selective_refresh' => true,
       );
-      parent::__construct( 'lnx-recent-posts', __( 'LNX Recent Posts','lenxel-core' ), $widget_ops );
+      parent::__construct( 'lnx-recent-posts', esc_html__( 'LNX Recent Posts','lenxel-core' ), $widget_ops );
       $this->alt_option_name = 'lnx_widget_recent_entries';
    }
 
@@ -111,7 +111,7 @@ class Lenxel_Theme_Support_Widget_Recent_Posts extends WP_Widget {
 
       <?php
       if ( $title ) {
-         echo esc_html($args['before_title'] . $title . $args['after_title']);
+         echo wp_kses_post($args['before_title'] . $title . $args['after_title']);
       }
 
       $format = current_theme_supports( 'html5', 'navigation-widgets' ) ? 'html5' : 'xhtml';
@@ -131,7 +131,7 @@ class Lenxel_Theme_Support_Widget_Recent_Posts extends WP_Widget {
          <?php foreach ( $r->posts as $recent_post ) : ?>
             <?php
             $post_title   = get_the_title( $recent_post->ID );
-            $title        = ( ! empty( $post_title ) ) ? $post_title : __( '(no title)', 'lenxel-core' );
+            $title        = ( ! empty( $post_title ) ) ? $post_title : esc_html__( '(no title)', 'lenxel-core' );
             $aria_current = '';
 
             if ( get_queried_object_id() === $recent_post->ID ) {
@@ -152,7 +152,7 @@ class Lenxel_Theme_Support_Widget_Recent_Posts extends WP_Widget {
                         $comments_number = get_comments_number_text( esc_html__('0 Comments', 'lenxel-core'), esc_html__('1 Comment', 'lenxel-core'), esc_html__('% Comments', 'lenxel-core'), $recent_post->ID);
                         printf( 
                            '<span class="post-comments"><i class="icon far fa-comments"></i>%1$s</span>',
-                           $comments_number
+                           esc_html($comments_number)
                         ); 
                      ?>
                      <h3 class="post-title"><a href="<?php the_permalink( $recent_post->ID ); ?>"<?php echo esc_attr($aria_current); ?>><?php echo esc_html($title); ?></a></h3>

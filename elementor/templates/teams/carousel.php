@@ -6,16 +6,11 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 		return;
 	}
 
-	$this->add_render_attribute('wrapper', 'class', ['lnx-teams-carousel']);
-
-	$this->add_render_attribute('wrapper', 'data-filter', $_random);
-
-	$this->add_render_attribute('carousel', 'class', 'init-carousel-owl owl-carousel');
-  
+	$this->add_render_attribute(['wrapper'=> ['class' => 'lnx-teams-carousel', 'data-filter'=> $_random], 'carousel' => ['class'=>'init-carousel-owl owl-carousel']]);
   ?>
 
-	<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('wrapper'))); ?>">
-		<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>" <?php echo esc_attr($this->lenxel_str_replace_action(array('"'), $this->get_carousel_settings())); ?>>
+	<div <?php $this->print_render_attribute_string('wrapper'); ?>>
+		<div <?php $this->print_render_attribute_string('carousel'); ?> <?php $this->lenxel_print_carousel_settings(); ?>>
 			<?php
 			  	global $post;
 			  	$count = 0;

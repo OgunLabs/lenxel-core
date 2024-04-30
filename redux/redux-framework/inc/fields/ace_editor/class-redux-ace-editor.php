@@ -95,7 +95,7 @@ if ( ! class_exists( 'Redux_Ace_Editor', false ) ) {
 				// Redux_CDN::enqueue_script(
 					'ace-editor-js',
 					// phpcs:ignore Generic.Strings.UnnecessaryStringConcat
-					apply_filters( 'redux/' . $this->parent->args['opt_name'] . 'fields/ace/script', '//' . 'cdnjs' . '.cloudflare' . '.com/ajax/libs/ace/1.23.0/ace.min.js' ),
+					apply_filters( 'redux/' . $this->parent->args['opt_name'] . 'fields/ace/script', plugins_url( 'assets/js/ace.min.js', dirname( __FILE__, 3 ) )),
 					array( 'jquery' ),
 					'1.23.0',
 					true

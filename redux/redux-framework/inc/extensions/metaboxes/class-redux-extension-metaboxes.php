@@ -998,7 +998,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes', false ) ) {
 								// If only one field in this box.
 								$title = $box['sections'][0]['fields'][0]['title'];
 						} else {
-							$title = ucfirst( $posttype ) . ' ' . __( 'Options', 'redux-framework' );
+							$title = ucfirst( $posttype ) . ' ' . esc_html__( 'Options', 'redux-framework' );
 						}
 
 						$args = array(
@@ -1237,8 +1237,8 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes', false ) ) {
 								if ( ! empty( $section['permissions'] ) && ! Redux_Helpers::current_user_can( $section['permissions'] ) ) {
 									continue;
 								}
-
-								echo $this->parent->render_class->section_menu( $s_key, $section, '_box_' . $metabox['id'], $sections ); // phpcs:ignore WordPress.Security.EscapeOutput
+								$get_allow_html = wp_kses_allowed_html( array('strip','data','post','entities') );
+								echo wp_kses($this->parent->render_class->section_menu( $s_key, $section, '_box_' . $metabox['id'], $sections ),$get_allow_html); // phpcs:ignore WordPress.Security.EscapeOutput
 							}
 							?>
 						</ul>
@@ -1301,7 +1301,8 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes', false ) ) {
 									if ( ! ( isset( $metabox['args']['sections'] ) && 1 === count( $metabox['args']['sections'] ) && isset( $metabox['args']['sections'][0]['fields'] ) && 1 === count( $metabox['args']['sections'][0]['fields'] ) ) && isset( $field['title'] ) ) {
 										echo '<th scope="row">';
 										if ( ! empty( $th ) ) {
-											echo $th; // phpcs:ignore WordPress.Security.EscapeOutput
+											$get_allow_html = wp_kses_allowed_html( array('strip','data','post','entities') );
+											echo wp_kses($th,$get_allow_html); // phpcs:ignore WordPress.Security.EscapeOutput
 										}
 										echo '</th>';
 										echo '<td>';

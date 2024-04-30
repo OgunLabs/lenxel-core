@@ -141,9 +141,9 @@ class Redux_Customizer_Section extends WP_Customize_Section {
 
 		if ( $this->panel ) {
 			/* translators: &#9656; is the unicode right-pointing triangle, and %s is the section title in the Customizer */
-			$array['customizeAction'] = sprintf( __( 'Customizing &#9656; %s', 'redux-framework' ), esc_html( $this->manager->get_panel( $this->panel )->title ) );
+			$array['customizeAction'] = sprintf( esc_html__( 'Customizing &#9656; %s', 'redux-framework' ), esc_html( $this->manager->get_panel( $this->panel )->title ) );
 		} else {
-			$array['customizeAction'] = __( 'Customizing', 'redux-framework' );
+			$array['customizeAction'] = esc_html__( 'Customizing', 'redux-framework' );
 		}
 
 		// BEGIN Redux Additions.

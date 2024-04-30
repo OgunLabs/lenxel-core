@@ -531,7 +531,10 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 			if ( ! empty( $this->args['opt_name'] ) ) {
 				new Redux_Instances( $this );
 
-				$this->filesystem = Redux_Filesystem::get_instance( $this );
+				$this->filesystem = new Redux_Filesystem ( $this );//Redux_Filesystem::get_instance( $this );
+
+                //set redux upload folder
+                $this->set_redux_content();
 
 				/**
 				 * Filter 'redux/options/{opt_name}/sections'
@@ -618,6 +621,15 @@ if ( ! class_exists( 'ReduxFramework', false ) ) {
 			$this->render_class->field_input( $field, $v );
 		}
 
+		private function set_redux_content() {
+			$upload_dir        = wp_upload_dir();
+			self::$_upload_dir = $upload_dir['basedir'] . '/redux/';
+			self::$_upload_url = $upload_dir['baseurl'] . '/redux/';
+			if ( ! is_dir( self::$_upload_dir ) ) {
+				$this->filesystem->execute( 'mkdir', self::$_upload_dir );
+			}
+		}
+		
 		/**
 		 * SHIM: field_default_values
 		 *

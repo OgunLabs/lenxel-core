@@ -2,14 +2,14 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    use Elementor\Icons_Manager;
    
-   $this->add_render_attribute( 'block', 'class', [ 'lnx-user', ' text-' . $settings['align'] ] );
+   $this->add_render_attribute( ['block'=> ['class'=> [ 'lnx-user', ' text-' . $settings['align'] ]]] );
    $url_profile = wp_login_url();
 
    if(empty($settings['text_login_url']['url'])) $settings['text_login_url']['url'] = $url_profile;
 
 ?>
 
-<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
+<div <?php $this->print_render_attribute_string('carousel'); ?>>
    <?php if(is_user_logged_in()){ ?>
       <?php
          $user_id = get_current_user_id();
@@ -68,7 +68,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                   $user_avatar = get_avatar_url($user_id, array('size' => 90));;
                   $avatar_url = !empty($user_avatar) ? $user_avatar : (get_template_directory_uri() . '/images/placehoder-user.jpg');
                ?>
-               <img src="<?php echo esc_url($avatar_url) ?>" alt="<?php echo esc_html($user->display_name) ?>">
+               <img src="<?php echo esc_url($avatar_url) ?>" alt="<?php echo esc_attr($user->display_name) ?>">
             </div>
             <div class="name">
                <span class="user-text">
@@ -78,7 +78,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
          </div>  
          
          <div class="user-account">
-            <?php echo ($menu_html) ?>
+            <?php echo wp_kses($menu_html, $this->lenxel_get__allowed_html()) ?>
          </div> 
 
       </div>
@@ -93,12 +93,11 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
          <?php } ?> 
 
          <?php 
-            $link_login_tags = 'href="#" data-toggle="modal" data-target="#form-ajax-login-popup"';
             if(isset($settings['link_login']) && !empty($settings['link_login'])){
-               $link_login_tags = 'href="' . esc_url($settings['link_login']) . '"';
+               $link_login_tags =  $settings['link_login'];
             }
-            echo '<a '. $link_login_tags . '>';
-               echo '<span class="sign-in-text"> ' . ($settings['text_login'] ? $settings['text_login'] : "Login") . '</span>';
+            echo '<a href="'. (($link_login_tags) ? esc_url($link_login_tags) : '#' ) . '"'. (($link_login_tags) ? '' : 'data-toggle="modal" data-target="#form-ajax-login-popup"' ) . '>';
+               echo '<span class="sign-in-text"> ' . ($settings['text_login'] ? esc_html($settings['text_login']) : "Login") . '</span>';
             echo '</a>';
          ?>
 
@@ -113,7 +112,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             ?>
 
             <a class="register-link" href="<?php echo esc_url($register_link) ?>">
-               <span class="sign-in-text"><?php echo ($settings['text_register'] ? $settings['text_register'] : "Register"); ?></span>
+               <span class="sign-in-text"><?php echo esc_html($settings['text_register'] ? $settings['text_register'] : "Register"); ?></span>
             </a>
          <?php } ?>
       </div>

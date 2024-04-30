@@ -433,6 +433,7 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 		 * @return object - Extended field class.
 		 */
 		public static function extension_compatibility( $extension, string $path, string $ext_class, string $new_class_name, string $name ) {
+			global $wp_filesystem;
 			if ( empty( $new_class_name ) ) {
 				return null;
 			}
@@ -441,8 +442,11 @@ if ( ! class_exists( 'Redux_Functions_Ex', false ) ) {
 
 			if ( ! file_exists( $upload_dir . $ext_class . '.php' ) ) {
 				if ( ! is_dir( $upload_dir ) ) {
-					$extension->filesystem->mkdir( $upload_dir );
-					$extension->filesystem->put_contents( $upload_dir . 'index.php', '<?php // Silence is golden.' );
+					$wp_filesystem->mkdir( $upload_dir ); //$extension->filesystem->mkdir( $upload_dir );
+					$fp = fopen($upload_dir . 'index.php', "w");
+					fwrite($fp, '<?php // Silence is golden.');
+					fclose($fp);
+					//$extension->filesystem->put_contents( $upload_dir . 'index.php', '<?php // Silence is golden.' );
 				}
 				if ( ! class_exists( $ext_class ) ) {
 					require_once $path;

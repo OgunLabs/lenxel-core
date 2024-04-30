@@ -18,7 +18,7 @@ class LNXElement_Portfolio extends LNXElement_Base{
 
     public function get_title() {
         $get_current_name = lenxel_load_widget_content_element('LNX Portfolio');
-        $filter_name = 'lenxel/element/'.$this->get_name();
+        $filter_name = 'lenxel/element/'.esc_html($this->get_name());
 		return apply_filters( $filter_name, $get_current_name);
     }
 
@@ -57,7 +57,7 @@ class LNXElement_Portfolio extends LNXElement_Base{
     private function get_categories_list(){
         $categories = array();
 
-        $categories['none'] = __( 'None', 'lenxel-core' );
+        $categories['none'] = esc_html__( 'None', 'lenxel-core' );
         $taxonomy = 'category_portfolio';
         $tax_terms = get_terms( $taxonomy );
         if ( ! empty( $tax_terms ) && ! is_wp_error( $tax_terms ) ){
@@ -77,7 +77,7 @@ class LNXElement_Portfolio extends LNXElement_Base{
             'post_status'=>array('publish'),
         ) );
 
-        $posts['none'] = __('None', 'lenxel-core');
+        $posts['none'] = esc_html__('None', 'lenxel-core');
 
         while ( $loop->have_posts() ) : $loop->the_post();
             $id = get_the_ID();
@@ -94,7 +94,7 @@ class LNXElement_Portfolio extends LNXElement_Base{
         $this->start_controls_section(
             'section_query',
             [
-                'label' => __('Query & Layout', 'lenxel-core'),
+                'label' => esc_html__('Query & Layout', 'lenxel-core'),
                 'tab'   => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -102,7 +102,7 @@ class LNXElement_Portfolio extends LNXElement_Base{
         $this->add_control(
             'category_ids',
             [
-                'label' => __( 'Select By Category', 'lenxel-core' ),
+                'label' => esc_html__( 'Select By Category', 'lenxel-core' ),
                 'type' => Controls_Manager::SELECT2,
                 'multiple'    => true,
                 'default' => '',
@@ -113,7 +113,7 @@ class LNXElement_Portfolio extends LNXElement_Base{
         $this->add_control(
             'post_ids',
             [
-                'label' => __( 'Select Individually', 'lenxel-core' ),
+                'label' => esc_html__( 'Select Individually', 'lenxel-core' ),
                 'type' => Controls_Manager::SELECT2,
                 'default' => '',
                 'multiple'    => true,
@@ -125,7 +125,7 @@ class LNXElement_Portfolio extends LNXElement_Base{
         $this->add_control(
             'posts_per_page',
             [
-                'label' => __( 'Posts Per Page', 'lenxel-core' ),
+                'label' => esc_html__( 'Posts Per Page', 'lenxel-core' ),
                 'type' => Controls_Manager::NUMBER,
                 'default' => 6,
             ]
@@ -134,14 +134,14 @@ class LNXElement_Portfolio extends LNXElement_Base{
         $this->add_control(
             'orderby',
             [
-                'label'   => __( 'Order By', 'lenxel-core' ),
+                'label'   => esc_html__( 'Order By', 'lenxel-core' ),
                 'type'    => Controls_Manager::SELECT,
                 'default' => 'post_date',
                 'options' => [
-                    'post_date'  => __( 'Date', 'lenxel-core' ),
-                    'post_title' => __( 'Title', 'lenxel-core' ),
-                    'menu_order' => __( 'Menu Order', 'lenxel-core' ),
-                    'rand'       => __( 'Random', 'lenxel-core' ),
+                    'post_date'  => esc_html__( 'Date', 'lenxel-core' ),
+                    'post_title' => esc_html__( 'Title', 'lenxel-core' ),
+                    'menu_order' => esc_html__( 'Menu Order', 'lenxel-core' ),
+                    'rand'       => esc_html__( 'Random', 'lenxel-core' ),
                 ],
             ]
         );
@@ -149,12 +149,12 @@ class LNXElement_Portfolio extends LNXElement_Base{
         $this->add_control(
             'order',
             [
-                'label'   => __( 'Order', 'lenxel-core' ),
+                'label'   => esc_html__( 'Order', 'lenxel-core' ),
                 'type'    => Controls_Manager::SELECT,
                 'default' => 'desc',
                 'options' => [
-                    'asc'  => __( 'ASC', 'lenxel-core' ),
-                    'desc' => __( 'DESC', 'lenxel-core' ),
+                    'asc'  => esc_html__( 'ASC', 'lenxel-core' ),
+                    'desc' => esc_html__( 'DESC', 'lenxel-core' ),
                 ],
             ]
         );
@@ -162,31 +162,31 @@ class LNXElement_Portfolio extends LNXElement_Base{
         $this->add_control( // xx Layout
             'layout_heading',
             [
-                'label'   => __( 'Layout', 'lenxel-core' ),
+                'label'   => esc_html__( 'Layout', 'lenxel-core' ),
                 'type'    => Controls_Manager::HEADING,
             ]
         );
          $this->add_control(
             'layout',
             [
-                'label'   => __( 'Layout Display', 'lenxel-core' ),
+                'label'   => esc_html__( 'Layout Display', 'lenxel-core' ),
                 'type'    => Controls_Manager::SELECT,
                 'default' => 'grid',
                 'options' => [
-                    'grid'      => __( 'Grid', 'lenxel-core' ),
-                    'carousel'  => __( 'Carousel', 'lenxel-core' ),
+                    'grid'      => esc_html__( 'Grid', 'lenxel-core' ),
+                    'carousel'  => esc_html__( 'Carousel', 'lenxel-core' ),
                 ]
             ]
         );
         $this->add_control(
             'style',
             [
-                'label'     => __('Style', 'lenxel-core'),
+                'label'     => esc_html__('Style', 'lenxel-core'),
                 'type'      => \Elementor\Controls_Manager::SELECT,
                 'default' => 'portfolio-style-1',
                 'options' => [
-                    'portfolio-style-1'         => __( 'Item Portfolio Style I', 'lenxel-core' ),
-                    'portfolio-style-2'         => __( 'Item Portfolio Style II', 'lenxel-core' )
+                    'portfolio-style-1'         => esc_html__( 'Item Portfolio Style I', 'lenxel-core' ),
+                    'portfolio-style-2'         => esc_html__( 'Item Portfolio Style II', 'lenxel-core' )
                 ],
                 'condition' => [
                     'layout' => array('grid', 'carousel')
@@ -196,7 +196,7 @@ class LNXElement_Portfolio extends LNXElement_Base{
         $this->add_control(
             'image_size',
             [
-               'label'     => __('Style', 'lenxel-core'),
+               'label'     => esc_html__('Style', 'lenxel-core'),
                'type'      => \Elementor\Controls_Manager::SELECT,
                'options'   => $this->get_thumbnail_size(),
                'default'   => 'lenxel_medium'
@@ -205,7 +205,7 @@ class LNXElement_Portfolio extends LNXElement_Base{
         $this->add_control(
             'isotope_filter',
             [
-                'label'     => __('Isotope Filter', 'lenxel-core'),
+                'label'     => esc_html__('Isotope Filter', 'lenxel-core'),
                 'type'      => Controls_Manager::SWITCHER,
                 'default'   => 'yes',
                 'condition' => [
@@ -216,7 +216,7 @@ class LNXElement_Portfolio extends LNXElement_Base{
         $this->add_control(
             'pagination',
             [
-                'label'     => __('Pagination', 'lenxel-core'),
+                'label'     => esc_html__('Pagination', 'lenxel-core'),
                 'type'      => Controls_Manager::SWITCHER,
                 'default'   => 'no',
                 'condition' => [
@@ -297,7 +297,7 @@ class LNXElement_Portfolio extends LNXElement_Base{
     protected function render() {
         if ( lenxel_get_template_restrict()->has_premium){
             $settings = $this->get_settings_for_display();
-            printf( '<div class="lnx-element-%s lnx-element">', $this->get_name() );
+            printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
             if( !empty($settings['layout']) ){
                 include $this->get_template('portfolio/' . $settings['layout'] . '.php');
             }

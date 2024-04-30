@@ -260,9 +260,9 @@ if ( !class_exists( 'ReduxFramework_extension_wbc_importer' ) ) {
                 }
             }
 
-            $wbc_importer_label = trim( esc_html( apply_filters( 'wbc_importer_label', __( 'Demo Importer', 'lenxel-core' ) ) ) );
+            $wbc_importer_label = trim( esc_html( apply_filters( 'wbc_importer_label', esc_html__( 'Demo Importer', 'lenxel-core' ) ) ) );
 
-            $wbc_importer_label = ( !empty( $wbc_importer_label ) ) ? $wbc_importer_label : __( 'Demo Importer', 'lenxel-core' );
+            $wbc_importer_label = ( !empty( $wbc_importer_label ) ) ? $wbc_importer_label : esc_html__( 'Demo Importer', 'lenxel-core' );
 
             $this->parent->sections[] = array(
                 'id'     => 'wbc_importer_section',

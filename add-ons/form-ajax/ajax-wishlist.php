@@ -29,7 +29,7 @@ class Lenxel_Addons_Wishlist_Ajax{
 		$user_id = get_current_user_id();
 		// Show Popup login of !user_logged
 		if (!is_user_logged_in()) {
-			echo wp_json_encode(array('logged_in' => false, 'add_wishlist' => ''));
+			wp_send_json(array('logged_in' => false, 'add_wishlist' => ''));
 			die();
 		}
 
@@ -45,7 +45,7 @@ class Lenxel_Addons_Wishlist_Ajax{
 				update_user_meta( $user_id, 'lt_wishlist', $wishlist );
 			}
 
-			echo wp_json_encode( array('logged_in' => true, 'add_wishlist' => 'added', 'mode' => 'add') );
+			wp_send_json( array('logged_in' => true, 'add_wishlist' => 'added', 'mode' => 'add') );
 			die();
 		}
 
@@ -59,8 +59,9 @@ class Lenxel_Addons_Wishlist_Ajax{
 					}
 				}
 			} 
+			$wishlist = wp_slash($wishlist);
 			update_user_meta( $user_id, 'lt_wishlist', $wishlist );
-			echo wp_json_encode( array('logged_in' => true, 'remove_wishlist' => 'removed', 'mode' => 'remove') );
+			wp_send_json( array('logged_in' => true, 'remove_wishlist' => 'removed', 'mode' => 'remove') );
 			die();
 		}
 

@@ -872,6 +872,7 @@ if (! class_exists( 'Redux_Parsedown' ) ) {
 
 		protected function blockReference($Line)
 		{
+			//this is not a php shortcode tag
 			if (strpos($Line['text'], ']') !== false
 			    and preg_match('/^\[(.+?)\]:[ ]*+<?(\S+?)>?(?:[ ]+["\'(](.+)["\')])?[ ]*+$/', $Line['text'], $matches)
 			) {

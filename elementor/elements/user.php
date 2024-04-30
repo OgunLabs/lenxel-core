@@ -45,7 +45,7 @@ class LNXElement_User extends LNXElement_Base {
 	 */
 	public function get_title() {
       $get_current_name = lenxel_load_widget_content_element('LNX User');
-		$filter_name = 'lenxel/element/'.$this->get_name();
+		$filter_name = 'lenxel/element/'.esc_html($this->get_name());
 		return apply_filters( $filter_name, $get_current_name);
 	}
 
@@ -78,7 +78,7 @@ class LNXElement_User extends LNXElement_Base {
 	}
 
 	public function get_all_menus(){
-	   $menus = get_terms( 'nav_menu', array( 'hide_empty' => true ) ); 
+	   $menus = get_terms( array('nav_menu', 'hide_empty' => true ) ); 
 	   $results = array();
 	   foreach ($menus as $key => $menu) {
 	   	$results[$menu->slug] = $menu->name;
@@ -99,25 +99,25 @@ class LNXElement_User extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => __( 'Content', 'lenxel-core' ),
+				'label' => esc_html__( 'Content', 'lenxel-core' ),
 			]
 		);
       $this->add_control(
          'align',
          [
-            'label' => __( 'Alignment', 'lenxel-core' ),
+            'label' => esc_html__( 'Alignment', 'lenxel-core' ),
             'type' => Controls_Manager::CHOOSE,
             'options' => [
                'left' => [
-                  'title' => __( 'Left', 'lenxel-core' ),
+                  'title' => esc_html__( 'Left', 'lenxel-core' ),
                   'icon' => 'fa fa-align-left',
                ],
                'center' => [
-                  'title' => __( 'Center', 'lenxel-core' ),
+                  'title' => esc_html__( 'Center', 'lenxel-core' ),
                   'icon' => 'fa fa-align-center',
                ],
                'right' => [
-                  'title' => __( 'Right', 'lenxel-core' ),
+                  'title' => esc_html__( 'Right', 'lenxel-core' ),
                   'icon' => 'fa fa-align-right',
                ],
             ],
@@ -128,7 +128,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'text_login',
          [
-            'label'        => __('Login text', 'lenxel-core'),
+            'label'        => esc_html__('Login text', 'lenxel-core'),
             'type'         => Controls_Manager::TEXT,
             'default'      => esc_html__('Login', 'lenxel-core'),
             'label_block'  => true
@@ -138,7 +138,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'link_login',
          [
-            'label'        => __('Custom Login Link Page', 'lenxel-core'),
+            'label'        => esc_html__('Custom Login Link Page', 'lenxel-core'),
             'type'         => Controls_Manager::TEXT,
             'label_block'  => true,
             'description'  => esc_html__('Empty = Popup Login Form', 'lenxel'),
@@ -151,7 +151,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'enable_register',
          [
-            'label' => __( 'Enable Register Link', 'lenxel-core' ),
+            'label' => esc_html__( 'Enable Register Link', 'lenxel-core' ),
             'type' => Controls_Manager::SWITCHER,
             'default' => 'yes'
          ]
@@ -160,7 +160,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'text_register',
          [
-            'label'        => __('Register Text', 'lenxel-core'),
+            'label'        => esc_html__('Register Text', 'lenxel-core'),
             'type'         => Controls_Manager::TEXT,
             'default'      => esc_html__('Register', 'lenxel-core'),
             'label_block'  => true,
@@ -173,7 +173,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'link_register',
          [
-            'label'        => __('Link Register', 'lenxel-core'),
+            'label'        => esc_html__('Link Register', 'lenxel-core'),
             'type'         => Controls_Manager::TEXT,
             'label_block'  => true,
             'description'  => esc_html__('Empty = default link', 'lenxel'),
@@ -186,7 +186,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'selected_icon',
          [
-            'label' => __( 'Icon', 'lenxel-core' ),
+            'label' => esc_html__( 'Icon', 'lenxel-core' ),
             'type' => Controls_Manager::ICONS,
             'fa4compatibility' => 'icon',
             'default' => [
@@ -199,7 +199,7 @@ class LNXElement_User extends LNXElement_Base {
 		$this->add_control(
 			'menu_width',
 			[
-				'label' => __( 'Menu Width (px)', 'lenxel-core' ),
+				'label' => esc_html__( 'Menu Width (px)', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 250,
@@ -221,7 +221,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->start_controls_section(
          'section_content_style',
          [
-            'label' => __( 'Text & Icon', 'lenxel-core' ),
+            'label' => esc_html__( 'Text & Icon', 'lenxel-core' ),
             'tab' => Controls_Manager::TAB_STYLE,
          ]
       );
@@ -229,7 +229,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'icon_style',
          [
-            'label' => __( 'Icon Style', 'lenxel-core' ),
+            'label' => esc_html__( 'Icon Style', 'lenxel-core' ),
             'type'      => Controls_Manager::HEADING,
          ]
       );
@@ -237,7 +237,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_responsive_control(
          'icon_size',
          [
-            'label' => __( 'Icon Size', 'lenxel-core' ),
+            'label' => esc_html__( 'Icon Size', 'lenxel-core' ),
             'type' => Controls_Manager::SLIDER,
             'default' => [
                'size' => 13,
@@ -258,7 +258,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'icon_color',
          [
-            'label' => __( 'Color', 'lenxel-core' ),
+            'label' => esc_html__( 'Color', 'lenxel-core' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .lnx-user .login-register i' => 'color: {{VALUE}}', 
@@ -270,7 +270,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'icon_color_hover',
          [
-            'label' => __( 'Color Hover', 'lenxel-core' ),
+            'label' => esc_html__( 'Color Hover', 'lenxel-core' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .lnx-user:hover .login-register .box-icon i' => 'color: {{VALUE}}', 
@@ -282,7 +282,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'text_style',
          [
-            'label' => __( 'Text Style', 'lenxel-core' ),
+            'label' => esc_html__( 'Text Style', 'lenxel-core' ),
             'type'      => Controls_Manager::HEADING,
          ]
       );
@@ -290,7 +290,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'text_color',
          [
-            'label' => __( 'Text Color', 'lenxel-core' ),
+            'label' => esc_html__( 'Text Color', 'lenxel-core' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .lnx-user .user-text' => 'color: {{VALUE}}', 
@@ -304,7 +304,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'text_color_hover',
          [
-            'label' => __( 'Text Color Hover', 'lenxel-core' ),
+            'label' => esc_html__( 'Text Color Hover', 'lenxel-core' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .lnx-user:hover .user-text' => 'color: {{VALUE}}', 
@@ -331,14 +331,14 @@ class LNXElement_User extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_account_menu_style',
 			[
-				'label' => __( 'Account Menu', 'lenxel-core' ),
+				'label' => esc_html__( 'Account Menu', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
       $this->add_control(
          'account_menu_color',
          [
-            'label'     => __('Color', 'lenxel-core'),
+            'label'     => esc_html__('Color', 'lenxel-core'),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .lnx-user .login-account .user-account .lnx-nav-menu > li > a' => 'color: {{VALUE}}',
@@ -348,7 +348,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_control(
          'account_menu_color_hover',
          [
-            'label'     => __('Color Hover', 'lenxel-core'),
+            'label'     => esc_html__('Color Hover', 'lenxel-core'),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .lnx-user .login-account .user-account .lnx-nav-menu > li > a:hover' => 'color: {{VALUE}}',
@@ -367,7 +367,7 @@ class LNXElement_User extends LNXElement_Base {
       $this->add_responsive_control(
          'main_menu_padding',
          [
-            'label' => __( 'Menu Item Padding', 'lenxel-core' ),
+            'label' => esc_html__( 'Menu Item Padding', 'lenxel-core' ),
             'type' => Controls_Manager::DIMENSIONS,
             'size_units' => [ 'px', '%' ],
             'selectors' => [
@@ -394,7 +394,7 @@ class LNXElement_User extends LNXElement_Base {
       if ( lenxel_get_template_restrict()->has_premium){
          $settings = $this->get_settings_for_display();
 
-         printf( '<div class="lnx-element-%s lnx-element">', $this->get_name() );
+         printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
          include $this->get_template('user.php');
          print '</div>';
       }else {

@@ -60,7 +60,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             <h3 class="title"><?php echo esc_html($banner['title']); ?></h3>
          <?php } ?>
          <?php if($banner['sub_title']){ ?>
-            <div class="sub-title"><?php echo esc_html($banner['sub_title']); ?></div>
+            <div class="sub-title"><?php echo wp_kses_post($banner['sub_title']); ?></div>
          <?php } ?>
       </div>
 

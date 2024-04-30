@@ -2,13 +2,13 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    $filter_object = new \TUTOR\Course_Filter();
    $filter_levels = array(
-      'beginner'=> __('Beginner', 'lenxel-core'),
-      'intermediate'=> __('Intermediate', 'lenxel-core'),
-      'expert'=> __('Expert', 'lenxel-core')
+      'beginner'=> esc_html__('Beginner', 'lenxel-core'),
+      'intermediate'=> esc_html__('Intermediate', 'lenxel-core'),
+      'expert'=> esc_html__('Expert', 'lenxel-core')
    );
    $filter_prices=array(
-      'free'=> __('Free', 'lenxel-core'),
-      'paid'=> __('Paid', 'lenxel-core')
+      'free'=> esc_html__('Free', 'lenxel-core'),
+      'paid'=> esc_html__('Paid', 'lenxel-core')
    );
 
    $supported_filters = tutor_utils()->get_option('supported_course_filters', array());
@@ -21,11 +21,11 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    $number = (in_array('difficulty_level', $supported_filters) && $settings['search_level'] == 'yes') ? $number + 1 : $number;
    $number = (!$is_membership && in_array('price_type', $supported_filters) && $settings['search_price'] == 'yes') ? $number + 1 : $number;
 
-   $this->add_render_attribute( 'block', 'class', ['widget gsc-course-filter-form', $settings['style'] ]  );
+   $this->add_render_attribute( ['block'=> ['class'=> ['widget gsc-course-filter-form', $settings['style'] ]]]  );
    $link = isset($settings['link']['url']) ? $settings['link']['url'] : '';
 ?>
 
-<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
+<div <?php $this->print_render_attribute_string('carousel'); ?>>
    <form class="course-filter-form" action="<?php echo esc_url($link) ?>"> 
       <div class="search-form-content">
 

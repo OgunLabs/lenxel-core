@@ -6,15 +6,15 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
        return;
     }
 
-	$this->add_render_attribute('wrapper', 'class', ['lnx-category-carousel lnx-category']);
+	$this->add_render_attribute();
 
 	$this->add_render_attribute('wrapper', 'data-filter', $_random);
 
-	$this->add_render_attribute('carousel', 'class', 'init-carousel-owl owl-carousel stag'.$_random);
+	$this->add_render_attribute(['carousel'=> ['class'=> 'init-carousel-owl owl-carousel stag'.$_random], 'wrapper'=> ['class'=> 'lnx-category-carousel lnx-category',  'data-filter'=> $_random]]);
     $style = (isset($settings['style'])) ? $settings['style'] : '' ;
   ?>
-	<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('wrapper'))); ?>">
-		<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>" <?php echo esc_attr('stag'.$_random); ?> <?php echo esc_attr($this->lenxel_str_replace_action(array('"'), $this->get_carousel_settings())); ?>>
+	<div <?php $this->print_render_attribute_string('wrapper'); ?>>
+		<div <?php $this->print_render_attribute_string('carousel'); ?> <?php echo esc_attr('stag'.$_random); ?> <?php $this->lenxel_print_carousel_settings(); ?>>
                 
                 <?php
                     foreach ( $query as $category ): ?>
@@ -50,7 +50,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	</div>
     <script>
     getCorouselCat = setInterval(function(){
-        var owl = jQuery('.owl-carousel.stag<?php echo esc_html($_random); ?>');
+        var owl = jQuery('.owl-carousel.stag<?php echo esc_js($_random); ?>');
         if(owl !== undefined){
                     owl.owlCarousel({
                         items:3,
@@ -80,7 +80,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                                 autoplayHoverPause:true,
                             },
                             1000:{
-                                items:<?php echo esc_html($settings['category_per_page']); ?>,
+                                items:<?php echo esc_js($settings['category_per_page']); ?>,
                                 nav:true,
                                 loop:true,
                                 navRewind:true,
@@ -89,10 +89,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                             }
                         },
                         autoplaySpeed:500
-                    }); jQuery('.owl-carousel.stag<?php echo esc_html($_random ); ?> .owl-nav .owl-prev').html('<i class=\"las la-arrow-left\"></i>'); 
-                    jQuery('.owl-carousel.stag<?php echo esc_html($_random); ?> .owl-nav .owl-next').html('<i class=\"las la-arrow-right\"></i>')
+                    }); jQuery('.owl-carousel.stag<?php echo esc_js($_random ); ?> .owl-nav .owl-prev').html('<i class=\"las la-arrow-left\"></i>'); 
+                    jQuery('.owl-carousel.stag<?php echo esc_js($_random); ?> .owl-nav .owl-next').html('<i class=\"las la-arrow-right\"></i>')
                     clearInterval(getCorouselCat);}},3000); </script> <style>
-                    .owl-carousel.stag<?php echo esc_html($_random); ?> .owl-nav{display: block !important;}</style>
+                    .owl-carousel.stag<?php echo esc_js($_random); ?> .owl-nav{display: block !important;}</style>
 
             
   <?php

@@ -22,24 +22,24 @@ class Lenxel_Theme_Support_Footer{
 
   public function args_post_type_footer(){
     $labels = array(
-      'name' => __( 'Footer Builder', 'lenxel-core' ),
-      'singular_name' => __( 'Footer Builder', 'lenxel-core' ),
-      'add_new' => __( 'Add Footer Builder', 'lenxel-core' ),
-      'add_new_item' => __( 'Add Footer Builder', 'lenxel-core' ),
-      'edit_item' => __( 'Edit Footer', 'lenxel-core' ),
-      'new_item' => __( 'New Footer Builder', 'lenxel-core' ),
-      'view_item' => __( 'View Footer Builder', 'lenxel-core' ),
-      'search_items' => __( 'Search Footer Profiles', 'lenxel-core' ),
-      'not_found' => __( 'No Footer Profiles found', 'lenxel-core' ),
-      'not_found_in_trash' => __( 'No Footer Profiles found in Trash', 'lenxel-core' ),
-      'parent_item_colon' => __( 'Parent Footer:', 'lenxel-core' ),
-      'menu_name' => __( 'Footer Builder', 'lenxel-core' ),
+      'name' => esc_html__( 'Footer Builder', 'lenxel-core' ),
+      'singular_name' => esc_html__( 'Footer Builder', 'lenxel-core' ),
+      'add_new' => esc_html__( 'Add Footer Builder', 'lenxel-core' ),
+      'add_new_item' => esc_html__( 'Add Footer Builder', 'lenxel-core' ),
+      'edit_item' => esc_html__( 'Edit Footer', 'lenxel-core' ),
+      'new_item' => esc_html__( 'New Footer Builder', 'lenxel-core' ),
+      'view_item' => esc_html__( 'View Footer Builder', 'lenxel-core' ),
+      'search_items' => esc_html__( 'Search Footer Profiles', 'lenxel-core' ),
+      'not_found' => esc_html__( 'No Footer Profiles found', 'lenxel-core' ),
+      'not_found_in_trash' => esc_html__( 'No Footer Profiles found in Trash', 'lenxel-core' ),
+      'parent_item_colon' => esc_html__( 'Parent Footer:', 'lenxel-core' ),
+      'menu_name' => esc_html__( 'Footer Builder', 'lenxel-core' ),
     );
 
     $args = array(
         'labels'              => $labels,
         'hierarchical'        => true,
-        'description'         => __('List Footer', "lenxel-core"),
+        'description'         => esc_html__('List Footer', "lenxel-core"),
         'public'              => true,
         'show_ui'             => true,
         'show_in_menu'        => true,
@@ -74,7 +74,7 @@ class Lenxel_Theme_Support_Footer{
     
     $footers['__default_option_theme'] = esc_html__('Default Option Theme', 'lenxel-core');
     $footers['__disable_footer'] = esc_html__('Disable Footer', 'lenxel-core');
-    $footers['__default'] = __('Default Widget Footer', 'lenxel-core');
+    $footers['__default'] = esc_html__('Default Widget Footer', 'lenxel-core');
     wp_reset_postdata();
     return apply_filters('lenxelthemes_list_footer', $footers );
   }

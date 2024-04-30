@@ -7,12 +7,11 @@
 
 ?>
 <?php 
-   $this->add_render_attribute('wrapper', 'class', ['lnx-hover-box-carousel' , $settings['style'] ]);
-   $this->add_render_attribute('carousel', 'class', ['init-carousel-owl owl-carousel']);
+   $this->add_render_attribute(['carousel' => ['class' => 'init-carousel-owl owl-carousel'], 'wrapper' => ['class' => ['lnx-hover-box-carousel' , $settings['style']]]]);
 ?>
 
-<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('wrapper'))); ?>">
-   <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>" <?php echo esc_attr($this->lenxel_str_replace_action(array('"'), $this->get_carousel_settings())); ?>>
+<div <?php $this->print_render_attribute_string('wrapper'); ?>>
+   <div <?php $this->print_render_attribute_string('carousel'); ?> <?php $this->lenxel_print_carousel_settings(); ?>>
       <?php
       foreach ($settings['content_items'] as $box):
          $has_icon = ! empty( $box['selected_icon']['value']);
@@ -20,7 +19,7 @@
       ?>
          <div class="item hover-box-item">
             
-            <div class="box-background" style="background-image:url('<?php echo ($box_image ? $box_image : '' ); ?>')"></div>
+            <div class="box-background" style="background-image:url('<?php echo ($box_image ? esc_url($box_image) : '' ); ?>')"></div>
             
             <div class="box-content">
                <div class="content-inner">
@@ -41,7 +40,7 @@
                   </div>
 
                   <div class="box-desc">
-                     <?php echo esc_html($box['box_content']); ?>
+                     <?php echo wp_kses_post($box['box_content']); ?>
                   </div>
                </div>
             </div>   

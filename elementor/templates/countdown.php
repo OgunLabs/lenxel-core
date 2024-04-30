@@ -2,10 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    $title_text = $settings['title_text'];
 
-   $this->add_render_attribute( 'block', 'class', [ 'widget gsc-countdown' ] );
-   $this->add_render_attribute( 'block', 'class', [ 'align-' . $settings['align'] ] );
-
-   $this->add_render_attribute( 'title_text', 'class', 'title' );
+   $this->add_render_attribute( ['block'=> ['class'=> ['widget gsc-countdown', 'align-' . $settings['align'] ]], 'title_text'=> ['class'=> 'title']] );
 
    $this->add_inline_editing_attributes( 'title_text', 'none' );
    $month = $settings['month'] ? $settings['month'] : '01';
@@ -16,10 +13,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    $date = $month . '-' . $day . '-' . $year . '-' . $hour . '-' . $minutes . '-00';
 ?>
 
-<div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
+<div <?php $this->print_render_attribute_string('carousel'); ?>>
    <div class="content-inner">
       <?php if($title_text){ ?>
-      <h3 <?php echo $this->get_render_attribute_string( 'title_text' ); ?>>
+      <h3 <?php $this->print_render_attribute_string( 'title_text' ); ?>>
          <span><?php echo esc_html($settings['title_text']); ?></span>
       </h3>
       <?php } ?>

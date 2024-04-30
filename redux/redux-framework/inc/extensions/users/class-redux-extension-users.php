@@ -914,9 +914,9 @@ if ( ! class_exists( 'Redux_Extension_Users' ) ) {
 								if ( ! empty( $section['permissions'] ) && ! Redux_Helpers::current_user_can( $section['permissions'] ) ) {
 									continue;
 								}
-
+								$get_allow_html = wp_kses_allowed_html( array('strip','data','post','entities') );
 								// phpcs:ignore WordPress.Security.EscapeOutput
-								echo $this->parent->render_class->section_menu( $s_key, $section, '_' . $metaterm['args']['id'], $sections );
+								echo wp_kses($this->parent->render_class->section_menu( $s_key, $section, '_' . $metaterm['args']['id'], $sections ),$get_allow_html);
 							}
 							?>
 						</ul>
@@ -991,7 +991,8 @@ if ( ! class_exists( 'Redux_Extension_Users' ) ) {
 									if ( ! ( isset( $metaterm['args']['sections'] ) && count( $metaterm['args']['sections'] ) === 1 && isset( $metaterm['args']['sections'][0]['fields'] ) && count( $metaterm['args']['sections'][0]['fields'] ) === 1 ) && isset( $field['title'] ) ) {
 										echo '<th scope="row">';
 										if ( ! empty( $th ) ) {
-											echo $th; //phpcs:ignore WordPress.Security.EscapeOutput
+											$get_allow_html = wp_kses_allowed_html( array('strip','data','post','entities') );
+											echo wp_kses($th,$get_allow_html); //phpcs:ignore WordPress.Security.EscapeOutput
 										}
 										echo '</th>';
 										echo '<td>';

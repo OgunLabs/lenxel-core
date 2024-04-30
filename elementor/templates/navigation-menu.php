@@ -3,7 +3,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    $_random = lenxelthemesupport_random_id();
 
-   $this->add_render_attribute( 'block', 'class', [ 'lnx-navigation-menu', ' menu-align-' . $settings['align'] ] );
+   $this->add_render_attribute( ['block' => ['class'=> [ 'lnx-navigation-menu', ' menu-align-' . $settings['align'] ]]] );
    $args = [
       'echo'        => false,
       'menu'        => $settings['menu'],
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
       return;
    }
 ?>
-   <div class="<?php echo esc_attr($this->lenxel_str_replace_action(array('class="', '"'), $this->get_render_attribute_string('carousel'))); ?>">
+   <div <?php $this->print_render_attribute_string('carousel'); ?>>
       <?php echo wp_kses(
     $menu_html,
     array(

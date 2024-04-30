@@ -159,8 +159,8 @@ if ( ! class_exists( 'Redux_Google_Maps' ) ) {
 				data-street-view="<?php echo esc_attr( $this->field['street_view_control'] ); ?>"
 				data-map-type="<?php echo esc_attr( $this->field['map_type_control'] ); ?>"
 				data-marker-tooltip="<?php echo esc_attr( $marker_tooltip ); ?>"
-				data-geo-alert="<?php echo $geo_alert; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"
-				data-address="<?php echo $data_full; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
+				data-geo-alert="<?php echo esc_attr($geo_alert); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"
+				data-address="<?php echo esc_attr($data_full); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
 
 				<input
 					type="hidden"
@@ -200,12 +200,12 @@ if ( ! class_exists( 'Redux_Google_Maps' ) ) {
 					data-default-long="<?php echo esc_attr( $the_long ); ?>"
 					data-default-lat="<?php echo esc_attr( $the_lat ); ?>"
 					data-default-zoom="<?php echo esc_attr( $the_zoom ); ?>"
-					<?php echo $map_height; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+					<?php echo wp_kses($map_height,true); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 				</div>
 
 				<div class="google_maps_address_results">
 					<?php $is_hidden = $show_address ? '' : $hidden_style; ?>
-					<div class="input_wrapper street-address" <?php echo $is_hidden; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+					<div class="input_wrapper street-address" <?php echo wp_kses($is_hidden,true); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 						<label for="<?php echo esc_attr( $this->field['id'] ); ?>_street_number"><?php esc_html_e( 'Address', 'redux-framework' ); ?></label>
 						<input
 								data-id="<?php echo esc_attr( $this->field['id'] ); ?>"
@@ -217,7 +217,7 @@ if ( ! class_exists( 'Redux_Google_Maps' ) ) {
 								type="text"
 						/>
 					</div>
-					<div class="input_wrapper route" <?php echo $is_hidden; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+					<div class="input_wrapper route" <?php echo wp_kses($is_hidden,true); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 						<label for="<?php echo esc_attr( $this->field['id'] ); ?>_route"><?php esc_html_e( 'Street', 'redux-framework' ); ?></label>
 						<input
 								data-id="<?php echo esc_attr( $this->field['id'] ); ?>"
@@ -231,7 +231,7 @@ if ( ! class_exists( 'Redux_Google_Maps' ) ) {
 					</div>
 
 					<?php $is_hidden = $show_city ? '' : $hidden_style; ?>
-					<div class="input_wrapper city" <?php echo( $is_hidden ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+					<div class="input_wrapper city" <?php echo wp_kses( $is_hidden,true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 						<label for="<?php echo esc_attr( $this->field['id'] ); ?>_locality"><?php esc_html_e( 'City', 'redux-framework' ); ?></label>
 						<input
 								data-id="<?php echo esc_attr( $this->field['id'] ); ?>"
@@ -245,7 +245,7 @@ if ( ! class_exists( 'Redux_Google_Maps' ) ) {
 					</div>
 
 					<?php $is_hidden = $show_state ? '' : $hidden_style; ?>
-					<div class="input_wrapper state" <?php echo( $is_hidden ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+					<div class="input_wrapper state" <?php echo wp_kses( $is_hidden,true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 						<label for="<?php echo esc_attr( $this->field['id'] ); ?>_administrative_area_level_1"><?php esc_html_e( 'State', 'redux-framework' ); ?></label>
 						<input
 								data-id="<?php echo esc_attr( $this->field['id'] ); ?>"
@@ -259,7 +259,7 @@ if ( ! class_exists( 'Redux_Google_Maps' ) ) {
 					</div>
 
 					<?php $is_hidden = $show_postal ? '' : $hidden_style; ?>
-					<div class="input_wrapper zip-code" <?php echo( $is_hidden ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+					<div class="input_wrapper zip-code" <?php echo wp_kses( $is_hidden,true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 						<label for="<?php echo esc_attr( $this->field['id'] ); ?>_postal_code"><?php esc_html_e( 'ZIP Code', 'redux-framework' ); ?></label>
 						<input
 								data-id="<?php echo esc_attr( $this->field['id'] ); ?>"
@@ -273,7 +273,7 @@ if ( ! class_exists( 'Redux_Google_Maps' ) ) {
 					</div>
 
 					<?php $is_hidden = $show_country ? '' : $hidden_style; ?>
-					<div class="input_wrapper country" <?php echo( $is_hidden ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+					<div class="input_wrapper country" <?php echo wp_kses( $is_hidden,true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 						<label for="<?php echo esc_attr( $this->field['id'] ); ?>_country"><?php esc_html_e( 'Country', 'redux-framework' ); ?></label>
 						<input
 								data-id="<?php echo esc_attr( $this->field['id'] ); ?>"
@@ -287,7 +287,7 @@ if ( ! class_exists( 'Redux_Google_Maps' ) ) {
 					</div>
 
 					<?php $is_hidden = $show_lat ? '' : $hidden_style; ?>
-					<div class="input_wrapper latitude" <?php echo( $is_hidden ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+					<div class="input_wrapper latitude" <?php echo wp_kses( $is_hidden,true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 						<label for="<?php echo esc_attr( $this->field['id'] ); ?>_latitude"><?php esc_html_e( 'Latitude', 'redux-framework' ); ?></label>
 						<input
 								data-id="<?php echo esc_attr( $this->field['id'] ); ?>"
@@ -301,7 +301,7 @@ if ( ! class_exists( 'Redux_Google_Maps' ) ) {
 					</div>
 
 					<?php $is_hidden = $show_long ? '' : $hidden_style; ?>
-					<div class="input_wrapper longitude" <?php echo( $is_hidden ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+					<div class="input_wrapper longitude" <?php echo wp_kses( $is_hidden,true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 						<label for="<?php echo esc_attr( $this->field['id'] ); ?>_longitude"><?php esc_html_e( 'Longitude', 'redux-framework' ); ?></label>
 						<input
 								data-id="<?php echo esc_attr( $this->field['id'] ); ?>"
@@ -315,7 +315,7 @@ if ( ! class_exists( 'Redux_Google_Maps' ) ) {
 					</div>
 
 					<?php $is_hidden = $show_marker_info ? '' : $hidden_style; ?>
-					<div class="input_wrapper marker-info" <?php echo( $is_hidden ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+					<div class="input_wrapper marker-info" <?php echo wp_kses( $is_hidden,true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 						<label for="<?php echo esc_attr( $this->field['id'] ); ?>_marker_info"><?php esc_html_e( 'Marker Info', 'redux-framework' ); ?></label>
 						<textarea
 								data-id="<?php echo esc_attr( $this->field['id'] ); ?>"
@@ -337,7 +337,7 @@ if ( ! class_exists( 'Redux_Google_Maps' ) ) {
 								$usage_limit_site = ' ' . sprintf( '<a href="https://developers.google.com/maps/documentation/javascript/usage" target="_blank">%s</a>', esc_html__( 'Google Map Usage Limits', 'redux-framework' ) ) . ' ';
 
 								// translators: %1$s: Google Maps API Key url. %2$s: Google Maps Usage URL.
-								echo sprintf( esc_html__( 'Google Maps supports 25,000 free map loads per 24 hours for 90 consecutive days.  In the events you run a high volume site, you may need to obtain an API Key to continue using Google Map output beyond the free quota.  To sign up for an API Key, please visit the %1$s site.  For more information about Google Map usage limits, please visit the %2$s guide.', 'redux-framework' ), $api_key_site, $usage_limit_site ) . '<br><br>' . esc_html__( 'Once you have obtained an API Key, please enter it in the text box below and save the options panel.', 'redux-framework' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+								echo sprintf( esc_html__( 'Google Maps supports 25,000 free map loads per 24 hours for 90 consecutive days.  In the events you run a high volume site, you may need to obtain an API Key to continue using Google Map output beyond the free quota.  To sign up for an API Key, please visit the %1$s site.  For more information about Google Map usage limits, please visit the %2$s guide.', 'redux-framework' ), esc_html($api_key_site), esc_html($usage_limit_site) ) . '<br><br>' . esc_html__( 'Once you have obtained an API Key, please enter it in the text box below and save the options panel.', 'redux-framework' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								?>
 							</p>
 							<label for="google_m_api_key_input"><?php esc_html_e( 'API Key', 'redux-framework' ); ?></label>

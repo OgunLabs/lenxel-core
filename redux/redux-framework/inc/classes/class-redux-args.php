@@ -132,19 +132,19 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 				'font_weights'                     => array(
 					array(
 						'id'   => '400',
-						'name' => __( 'Regular 400', 'redux-framework' ),
+						'name' => esc_html__( 'Regular 400', 'redux-framework' ),
 					),
 					array(
 						'id'   => '400italic',
-						'name' => __( 'Regular 400 Italic', 'redux-framework' ),
+						'name' => esc_html__( 'Regular 400 Italic', 'redux-framework' ),
 					),
 					array(
 						'id'   => '700',
-						'name' => __( 'Bold 700', 'redux-framework' ),
+						'name' => esc_html__( 'Bold 700', 'redux-framework' ),
 					),
 					array(
 						'id'   => '700italic',
-						'name' => __( 'Bold 700 Italic', 'redux-framework' ),
+						'name' => esc_html__( 'Bold 700 Italic', 'redux-framework' ),
 					),
 				),
 				'show_import_export'               => true,
@@ -265,8 +265,8 @@ if ( ! class_exists( 'Redux_Args', false ) ) {
 
 				$footer_text = sprintf(
 				/* translators: 1: Redux, 2: Link to plugin review */
-					__( 'Enjoyed %1$s? Please leave us a %2$s rating. We really appreciate your support!', 'redux-framework' ),
-					'<strong>' . __( 'Redux', 'redux-framework' ) . '</strong>',
+					esc_html__( 'Enjoyed %1$s? Please leave us a %2$s rating. We really appreciate your support!', 'redux-framework' ),
+					'<strong>' . esc_html__( 'Redux', 'redux-framework' ) . '</strong>',
 					'<a href="https://wordpress.org/support/plugin/redux-framework/reviews/?filter=5/#new-post" target="_blank">&#9733;&#9733;&#9733;&#9733;&#9733;</a>'
 				);
 				$args['footer_credit'] = '<span id="footer-thankyou">' . $footer_text . '</span>';

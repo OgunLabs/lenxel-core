@@ -40,7 +40,7 @@ class LNXElement_Brand extends LNXElement_Base{
      * @return string Widget title.
      */
     public function get_title() {
-        return __('LNX Brand', 'lenxel-core');
+        return esc_html__('LNX Brand', 'lenxel-core');
     }
 
     /**
@@ -84,7 +84,7 @@ class LNXElement_Brand extends LNXElement_Base{
         $this->start_controls_section(
             'section_content',
             [
-                'label' => __('Content', 'lenxel-core'),
+                'label' => esc_html__('Content', 'lenxel-core'),
             ]
         );
         $repeater = new Repeater();
@@ -92,7 +92,7 @@ class LNXElement_Brand extends LNXElement_Base{
         $repeater->add_control(
             'title',
             [
-                'label'       => __('Title', 'lenxel-core'),
+                'label'       => esc_html__('Title', 'lenxel-core'),
                 'type'        => Controls_Manager::TEXT,
                 'default'     => 'Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.',
                 'label_block' => true,
@@ -101,7 +101,7 @@ class LNXElement_Brand extends LNXElement_Base{
         $repeater->add_control(
             'image',
             [
-                'label'      => __('Choose Image', 'lenxel-core'),
+                'label'      => esc_html__('Choose Image', 'lenxel-core'),
                 'default'    => [
                     'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/brand.png',
                 ],
@@ -112,8 +112,8 @@ class LNXElement_Brand extends LNXElement_Base{
         $repeater->add_control(
             'link',
             [
-                'label'      => __('Link', 'lenxel-core'),
-                'placeholder' => __( 'https://your-link.com', 'lenxel-core' ),
+                'label'      => esc_html__('Link', 'lenxel-core'),
+                'placeholder' => esc_html__( 'https://your-link.com', 'lenxel-core' ),
                 'type'       => Controls_Manager::URL,
             ]
         );
@@ -121,7 +121,7 @@ class LNXElement_Brand extends LNXElement_Base{
         $this->add_control(
             'brands',
             [
-                'label'       => __('Brand Content Item', 'lenxel-core'),
+                'label'       => esc_html__('Brand Content Item', 'lenxel-core'),
                 'type'        => Controls_Manager::REPEATER,
                 'fields'      => $repeater->get_controls(),
                 'title_field' => '{{{ title }}}',
@@ -176,7 +176,7 @@ class LNXElement_Brand extends LNXElement_Base{
         $this->start_controls_section(
             'section_style_image',
             [
-                'label'     => __('Image', 'lenxel-core'),
+                'label'     => esc_html__('Image', 'lenxel-core'),
                 'tab'       => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -192,7 +192,7 @@ class LNXElement_Brand extends LNXElement_Base{
         $this->add_control(
             'image_border_radius',
             [
-                'label'      => __('Border Radius', 'lenxel-core'),
+                'label'      => esc_html__('Border Radius', 'lenxel-core'),
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors'  => [
@@ -220,7 +220,7 @@ class LNXElement_Brand extends LNXElement_Base{
      */
     protected function render() {
       $settings = $this->get_settings_for_display();
-      printf( '<div class="lnx-element-%s lnx-element">', $this->get_name() );
+      printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
         include $this->get_template('brand.php');
       print '</div>';
     }

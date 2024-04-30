@@ -351,7 +351,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 					foreach ( $_wp_registered_nav_menus as $k => $v ) {
 						$data[ $k ] = $v;
 						if ( ! has_nav_menu( $k ) ) {
-							$data[ $k ] .= ' ' . __( '[unassigned]', 'redux-framework' );
+							$data[ $k ] .= ' ' . esc_html__( '[unassigned]', 'redux-framework' );
 						}
 					}
 					break;
@@ -373,8 +373,10 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 				case 'icons':
 				case 'font-icon':
 				case 'font-icons':
-					$fs    = Redux_Filesystem::get_instance();
-					$fonts = $fs->get_contents( Redux_Core::$dir . 'assets/css/vendor/elusive-icons.css' );
+					//$fs    = Redux_Filesystem::get_instance();
+					$fp = fopen( Redux_Core::$dir . 'assets/css/vendor/elusive-icons.css', 'r' );
+					$fonts = fread( $fp, 8192 );
+					fclose( $fp );
 					if ( ! empty( $fonts ) ) {
 						preg_match_all( '@\.el-(\w+)::before@', $fonts, $matches );
 						foreach ( $matches[1] as $item ) {
@@ -410,8 +412,10 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 				case 'dashicons':
 				case 'dashicon':
 				case 'dash':
-					$fs    = Redux_Filesystem::get_instance();
-					$fonts = $fs->get_contents( ABSPATH . WPINC . '/css/dashicons.css' );
+					//$fs    = Redux_Filesystem::get_instance();
+					$fp = fopen( ABSPATH . WPINC . '/css/dashicons.css', 'r' );
+					$fonts = fread( $fp, 8192 );
+					fclose( $fp );
 					if ( ! empty( $fonts ) ) {
 						preg_match_all( '@\.dashicons-(\w+):before@', $fonts, $matches );
 						foreach ( $matches[1] as $item ) {

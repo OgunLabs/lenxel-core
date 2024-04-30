@@ -49,7 +49,7 @@ class Lenxel_Addons_Login_Ajax{
           	$wpfc = new WpFastestCache();
           	$wpfc->deleteCache();
          }
-		  	echo wp_json_encode(array('logged_in' => true, 'message' => '<div class="alert alert-success">' . $message . '</div>'));
+		  	 wp_send_json(array('logged_in' => true, 'message' => '<div class="alert alert-success">' . $message . '</div>'));
 		  	die();
 
 	 	}else{
@@ -65,11 +65,11 @@ class Lenxel_Addons_Login_Ajax{
 						}
 					}
 				}
-		  		echo wp_json_encode(array('logged_in' => false, 'message' => '<div class="alert alert-warning">' . $message . '</div>'));
+				wp_send_json(array('logged_in' => false, 'message' => '<div class="alert alert-warning">' . $message . '</div>'));
 		  		die();
 			}else{
 				$message = esc_html__('Login unsuccessful, plese try again!', 'lenxel-core');
-				echo wp_json_encode(array('logged_in' => false, 'message' => '<div class="alert alert-warning">' . $message . '</div>'));
+				wp_send_json(array('logged_in' => false, 'message' => '<div class="alert alert-warning">' . $message . '</div>'));
 				die();
 			}
 	 	}
@@ -81,10 +81,67 @@ class Lenxel_Addons_Login_Ajax{
 		$login_form_top = apply_filters( 'login_form_top', '', array() );
 		$login_form_middle = apply_filters( 'login_form_middle', '', array() );
 		$login_form_bottom = apply_filters( 'login_form_bottom', '', array() );
-
+		$allow_html = [
+			'div' => [
+				'class' => [],
+				'data-display' => [],
+			],
+			'svg' => [
+				'width' => [],
+				'height' => [],
+				'viewbox' => [],
+				'fill' => [],
+				'xmlns' => [],
+			],
+			'path' => [
+				'd' => [],
+				'stroke' => [],
+				'stroke-width' => [],
+				'stroke-linecap' => [],
+				'stroke-linejoin' => [],
+			],
+			'button' => [
+				'class' => [],
+				'data-event' => [],
+				'data-settings' => [],
+				'data-tooltip' => [],
+			],
+			'i' => [
+				'class' => [],
+				'aria-hidden' => [],
+			],
+			'span' => [
+				'class' => [],
+			],
+			'a' => [
+				'href' => [],
+				'style' => [],
+				'target' => [],
+			],
+			'input' => [
+				'type' => [],
+				'value' => array(),
+				'class' => [],
+				'id' => [],
+				'value' => [],
+				'data-'=>[],
+				'name' =>[],
+			],
+			'select' => [
+				'class' => [],
+				'id' => [],
+				'name' =>[],
+			],
+			'option'=>[
+				'class' => [],
+				'value' => [],
+				'id' => [],
+				'selected' =>[],
+			]
+		];
 	?>
 		<form id="ajax-login-form" method="post" class="ajax-form-content">
-			<?php echo html_entity_decode($login_form_top); ?>
+			<?php echo wp_kses(html_entity_decode($login_form_top), $allow_html); ?>
 		   <div class="form-status"></div>
 		   <div class="form-group">
 			   <label for="username"><?php echo esc_html__('Username', 'lenxel-core') ?></label>
@@ -94,14 +151,14 @@ class Lenxel_Addons_Login_Ajax{
 			   <label for="password"><?php echo esc_html__('Password', 'lenxel-core') ?></label>
 			   <input id="password" type="password" placeholder="******" name="password" autocomplete='off' class="form-control">
 			</div>   
-			<?php echo html_entity_decode($login_form_middle); ?>
+			<?php echo wp_kses(html_entity_decode($login_form_middle), $allow_html); ?>
 		   <div class="form-group form-action">
 			   <input class="btn-theme btn-fw" type="submit" value="<?php echo esc_html__('Login', 'lenxel-core') ?>" name="submit">
 			</div>   
 			<div class="lost-password">
 		   	<a class="lost-popup" data-toggle="modal" data-target="#form-ajax-lost-password-popup"><?php esc_html_e('Lost your password?', 'lenxel-core') ?></a>
 		   </div>
-			<?php echo html_entity_decode($login_form_bottom); ?>
+			<?php echo wp_kses(html_entity_decode($login_form_bottom),$allow_html); ?>
 		</form>
 	<?php
 	}

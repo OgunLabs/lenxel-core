@@ -111,7 +111,7 @@ if ( !class_exists( 'ReduxFramework_wbc_importer' ) ) {
 
                     echo '<div class="theme-actions" style="top:82% !important">';
                     if ( false == $imported ) {
-                        echo '<div class="wbc-importer-buttons"><span class="spinner">'.esc_html__( 'Please Wait...', 'lenxel-core' ).'</span><span class="button-primary importer-button import-demo-datas">' . __( 'Import Demo', 'lenxel-core' ) . '</span></div>';
+                        echo '<div class="wbc-importer-buttons"><span class="spinner">'.esc_html__( 'Please Wait...', 'lenxel-core' ).'</span><span class="button-primary importer-button import-demo-datas">' . esc_html__( 'Import Demo', 'lenxel-core' ) . '</span></div>';
                     }else {
                         echo '<div class="wbc-importer-buttons button-secondary importer-button">'.esc_html__( 'Imported', 'lenxel-core' ).'</div>';
                         echo '<span class="spinner">'.esc_html__( 'Please Wait...', 'lenxel-core' ).'</span>';
