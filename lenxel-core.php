@@ -4,22 +4,21 @@
  * Plugin Name: Lenxel Core
  * Description: LMS, Header builder, Footer builder, Teams, Portfolios, Lenxel Theme Settings ... for theme
  * Plugin URI: https://ogunlabs.com/products/lenxel 
- * Version: 1.0.5
- * Requires PHP: 7.2
+ * Version: 1.0.7
+ * Requires PHP: 7.4
  * Author: Ogun Labs
- * Requires at least: 5.0
+ * Requires at least: 6.3
  * Author URI: https://ogunlabs.com/
  * License:           GPL v3 or later
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.en.html
  * Text Domain: lenxel-core
  * Copyright: © 2024 Lenxel
  * Domain Path:  /languages
- * Update URI: https://lenxel.ogunlabs.com/plugins/lenxel-theme-support-wp.zip
  */
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
 define('LENXEL_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('LENXEL_PLUGIN_DIR', plugin_dir_path(__FILE__));
-
+define( 'LENXEL_CORE_VERSION', '1.0.7' );
 
 class Lenxel_Theme_Support{
 
@@ -40,7 +39,7 @@ class Lenxel_Theme_Support{
       add_action('init', array($this, 'lenxel_generate_reset_pwd_password'));
       add_action('user_register', array($this, 'lnx_user_registration_hook', 10, 1));
       add_filter('body_class', array($this, 'add_custom_body_class'));
-      add_action('wp_head', array($this, 'lenxel_core_head_ajax_url'));
+      //add_action('wp_head', array($this, 'lenxel_core_head_ajax_url'));
       add_action('wp_enqueue_scripts', array($this, 'lenxel_core_register_scripts'));
       add_action('admin_enqueue_scripts', array($this, 'lenxel_core_register_scripts_admin'));
       register_activation_hook(__FILE__, array($this, 'lenxel_create_page_activate'));
@@ -67,15 +66,13 @@ class Lenxel_Theme_Support{
          update_option('lenxel_sign_in_id',$sign_in_page_id);
       }
    }
-
+  
    // To generate a link for user to reset password through an email
    function lenxel_generate_reset_pwd_password() {
       if (isset($_POST['_wp_http_referer'])) {
-      // print_r($_POST);die();
-         $nounce = (isset($_POST['_wpnonce'])) ? $_POST['_wpnonce'] : null ;
-         $nounce_value = (isset($_GET['lost_pwd'])) ? $_GET['lost_pwd'] : null ;
+         $nounce = (isset($_POST['_wpnonce'])) ? sanitize_text_field( wp_unslash($_POST['_wpnonce'])) : null ;
+         $nounce_value = (isset($_GET['lost_pwd'])) ? sanitize_text_field($_GET['lost_pwd']) : null ;
          if (wp_verify_nonce($nounce, 'lnx_'.$nounce_value)) { 
-         //print_r($_POST);die();
          global $mailStatus;global $error_email;
       
          $email_forget_pwd = sanitize_email($_POST['email']);
@@ -162,14 +159,12 @@ class Lenxel_Theme_Support{
   
   
 
-  
-   public function lenxel_core_head_ajax_url(){
-   //   print_r( plugins_url( 'redux/redux-framework/assets/js/webfont.js', __FILE__ ));
-   //    die();
-      $html_content = '<script> var ajaxurl = "'.esc_url(admin_url('admin-ajax.php')).'";</script>';
-      echo wp_kses($html_content, array( 'script'=>array() ));
+  //Remove this
+   // public function lenxel_core_head_ajax_url(){
+   //    $html_content = '<script> var ajaxurl = "'.esc_url(admin_url('admin-ajax.php')).'";</script>';
+   //    echo wp_kses($html_content, array( 'script'=>array() ));
       
-   }
+   // }
    public function include_files()
    {
       require_once('redux/admin-init.php');
@@ -299,7 +294,7 @@ class Lenxel_Theme_Support{
       $html_content = '<div class="notice notice-success is-dismissible">
                <p>plugin has been deactivated.</p>
             </div>';
-            echo wp_kses($html_content, array( '<div>','<p>' ));
+            echo wp_kses($html_content, array( 'div','p' ));
    }
    
    function lenxel_core_premium_content_div(){
@@ -330,7 +325,7 @@ class Lenxel_Theme_Support{
     <?php
     $premiumContent = ob_get_clean();
    
-    printf( '%s', $premiumContent);
+    printf( '%s', wp_kses($premiumContent, array('script'=>array())));
    }
    
    function lenxel_core_login_form() {
@@ -455,9 +450,24 @@ class Lenxel_Theme_Support{
          
       <?php
       $contentModal = ob_get_clean();
-      printf( '%s', $contentModal);
+      printf( '%s', wp_kses($contentModal, array('div'=>array('class'=>array(),'id'=>array(),'tabindex'=>array()),'style'=>array(),'p'=>array(),'button'=>array('type'=>array(),'class'=>array(),'id'=>array()),'section'=>array('class'=>array()),'h3'=>array('style'=>array()),'input'=>array('class'=>array(),'style'=>array(),'placeholder'=>array(),'checked'=>array(),'id'=>array(),'name'=>array(),'value'=>array(),'type'=>array()),'label'=>array('for'=>array()),'small'=>array(),'form'=>array('action'=>array()))));
       
    }
 }
 
 new Lenxel_Theme_Support();
+function lenxel_get_all_allow_html(){
+   return [
+      'div' => ['style'=>[],'class' => [],'data-display' => []],'svg' => ['width' => [],'height' => [],'viewbox' => [],'fill' => [],'xmlns' => [],'data-id'=>[],'data-min'=>[],'data-max'=>[],'data-step'=>[],'data-handles'=>[],'data-display'=>[],'data-rtl'=>[],'data-forced'=>[],'data-float-mark'=>[],'data-resolution'=>[],'data-default-one'=>[],'data-style'=>[],'hidefocus'=>[],'tabindex'=>[],'role'=>[],'aria-pressed'=>[],'aria-label'=>[],],
+      'path' => ['d' => [],'stroke' => [],'stroke-width' => [],'stroke-linecap' => [],'stroke-linejoin' => []],'label'=>['for'=>[],'class'=>[]],
+      'button' => ['type'=>[],'aria-expanded'=>[],'class' => [],'data-event' => [],'data-settings' => [],'data-tooltip' => [],'title'=>[],'aria-describedby'=>[],'tabindex'=>[],'aria-label'=>[],'data-select2-id'=>[],'data-editor'=>[],'data-wp-editor-id'=>[],'tabindex'=>[],'role'=>[]],'i' => ['class' => [],'aria-hidden' => [],
+      ],'span' => ['class' => [],'tabindex'=>[],'id'=>[],'style'=>[],'dir'=>[],'data-select2-id'=>[],'aria-disabled'=>[],'aria-labelledby'=>[],'aria-controls'=>[],'aria-expanded'=>[],'role'=>[],'aria-haspopup'=>[],'aria-readonly'=>[],'title'=>[],'aria-hidden'=>[],'rel'=>[]],
+      'a' => ['href' => [],'style' => [],'target' => [],'class'=>[],'tabindex'=>[]],'ul' => ['class' => [],'id' => []],'li' => ['class' => [],'id' => []],
+      'ol' => ['class' => [],'id' => []],'input' => ['data-id'=>[],'aria-label'=>[],'data-oldcolor'=>[],'data-default-color'=>[],'type' => [],'value' => [],'class' => [],'id' => [],'data-alpha-enabled' => [],'data-'=>[],'name' =>[],'checked'=>[],'placeholder'=>[],'readonly'=>[],'data-preview-size'=>[],'data-mode'=>[],'data-lib-filter'=>[],'title'=>[]],
+      'select' => ['class' => [],'id' => [],'name' =>[],'data-allow-clear'=>[],'placeholder'=>[],'data-width'=>[],'style'=>[],'rows'=>[],'data-theme'=>[],'data-select2-id'=>[],'tabindex'=>[],'aria-hidden'=>[]],
+      'option'=>['class' => [],'value' => [],'id' => [],'selected' =>[],'data-select2-id'=>[]],'fieldset'=>['id'=>[],'class'=>[],'data-id'=>[],'data-type'=>[]],'b'=>['role'=>[]],'img'=>['class'=>[],'rel'=>[],'id'=>[],'target'=>[],'alt'=>[],'style'=>[],'src'=>[]],
+      'link'=>['rel'=>[],'id'=>[],'href'=>[],'media'=>[]],'iframe'=>['frameborder'=>[],'id'=>[],'allowtransparency'=>[],'style'=>[],'title'=>[]],
+      'textarea'=>['class'=>[],'autocomplete'=>[],'rows'=>[],'cols'=>[],'name'=>[],'aria-hidden'=>[],'style'=>[],'id'=>[]]
+
+   ];
+}

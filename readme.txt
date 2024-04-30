@@ -1,13 +1,13 @@
 === Lenxel Core for Lenxel(LNX) LMS ===
 Contributors: (ogunlab)
 Tags: LMS, Header builder, Footer builder, Teams, Portfolios, Lenxel Theme Settings
-Requires at least: 5.0
-Tested up to: 6.4
-Requires PHP: 7.2 or above
-Stable tag: 1.0.5
+Requires at least: 6.3
+Tested up to: 6.5
+Requires PHP: 7.4 or above
+Stable tag: 1.0.7
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
-Version: 1.0.5
+Version: 1.0.7
 
 Lenxel Core is an extension of the Lenxel theme template that features Team post-type, Portfolio post-type, Header builder, Footer builder, and Lenxel Theme settings. 
 
@@ -108,25 +108,45 @@ After activating the plugin, this will setup header page builder, footer page bu
 = Plugin Configuration =
 1.  Setting up your Google Map API key.
 
+OwlCarousel2 is use to creates video thumbnail and wrap lession video content into owl-video-wrapper div (url: '//vimeo.com/api/v2/video/' + video.id + '.json')
+Importer is used for content importation.
+Redux-framework is used to manage all theme settings.
+Enqueue script/style on the redux
+Retrieve an updated Google font array
+wp-content/plugins/lenxel-core/redux/redux-framework/inc/classes/class-redux-options-constructor.php $import = wp_remote_retrieve_body( wp_remote_get( $plugin_options['import_link'] ) );  Validate the Options before insertion if the import link is set
 
-Copyright (c) 2012-2014 Alexander Brovikov
+http://elusiveicons.com/license
+
+line-awesome Permitted Use: Download in any format Change Fork
+Licensed: We’ve released the icon pack under either MIT or the Good Boy License. https://github.com/icons8/line-awesome/blob/master/LICENSE.md
+Source: https://github.com/icons8/line-awesome/tree/master
+
+Copyright 2010-2018 Metafizzy Isotope PACKAGED v3.0.6
+Licensed:  Open source license use https://isotope.metafizzy.co/license.html
+Source: https://github.com/metafizzy/isotope
+
+jQuery FN Google Map 3.0-rc Copyright (c) 2010 - 2012 Johan Säll Larsson
+Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+Source: http://code.google.com/p/jquery-ui-map/
+
+Copyright (c) 2010, Ajax.org B.V.
+License: Distributed under the BSD license https://github.com/ajaxorg/ace-builds/blob/master/LICENSE
+Sources: https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.9/ace.min.js
+
+A JavaScript Typing Animation Library Author: Matt Boldt <me@mattboldt.com> Version: v2.0.12
+License(s): MIT https://github.com/mattboldt/typed.js/blob/main/LICENSE.txt
+Source: https://github.com/mattboldt/typed.js
+
+Copyright (c) 2009 Michael Hixson and 2012-2014 Alexander Brovikov
 Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
 Source: https://github.com/bas2k/jquery.appear/
 
-
-A JavaScript Typing Animation Library Author: Matt Boldt <me@mattboldt.com> Version: v2.0.12
-License(s): MIT
-Source: https://github.com/mattboldt/typed.js
-
-skrollr 0.6.30 (2015-08-12) | Alexander Prinzhorn - 
-https://github.com/Prinzhorn/skrollr | Free to use under terms of MIT license
-
-jQuery Cookie Plugin v1.4.1
-Copyright 2006, 2014 Klaus Hartl Released under the MIT license
-Source: https://github.com/carhartl/jquery-cookie
+ScrollMagic v2.0.8 | (c) 2020 Jan Paepke (@janpaepke)
+license: https://github.com/janpaepke/ScrollMagic/blob/master/LICENSE.md
+Source: https://github.com/janpaepke/ScrollMagic
 
 jQuery Cookie Plugin v1.4.1 Copyright 2006, 2014 Klaus Hartl
-Released under the MIT license
+Released under the MIT license https://github.com/carhartl/jquery-cookie/blob/master/MIT-LICENSE.txt
 https://github.com/carhartl/jquery-cookie
 
 SerializeJSON jQuery plugin.
@@ -137,15 +157,20 @@ Select2 4.1.0-rc.0
 License: https://github.com/select2/select2/blob/master/LICENSE.md
 Source: https://github.com/select2/select2/blob/master
 
+Jquery-circle-progress - jQuery Plugin to draw animated circular progress bars: @author Rostyslav Bryzgunov <kottenator@gmail.com>
+Licence: MIT license. https://github.com/kottenator/jquery-circle-progress/blob/master/LICENSE
+Source: https://github.com/kottenator/jquery-circle-progress
+
 Wordpress importer Version: 0.6.1
 License: GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 Source: http://wordpress.org/extend/plugins/wordpress-importer/
 
 jQuery UI Spinner 1.20 Copyright (c) 2009-2010 Brant Burnett
-Dual licensed under the MIT or GPL Version 2 licenses.
+Dual licensed under the MIT or GPL Version 2 licenses. https://github.com/brantburnett/jquery.ui.spinner/blob/master/README
+Source: https://github.com/brantburnett/jquery.ui.spinner/tree/master
 
 GPLv2 Licensed | Copyright © v4.4.15 by Redux Framework Team
-License: https://github.com/reduxframework/redux-framework/tree/4.4.15?tab=License-1-ov-file
+License: https://github.com/reduxframework/redux-framework/blob/4.4.15/license.txt
 Source: https://github.com/reduxframework/redux-framework/tree/4.4.15
 
 GPLv2 Licensed | Copyright © 2014-Today by Elementor
