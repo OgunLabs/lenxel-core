@@ -4,7 +4,7 @@
  * Overwrite Automattic Iris for enabled Alpha Channel in wpColorPicker
  * Only run in input and is defined data alpha in true
  *
- * Version: 3.0.0
+ * Version: 3.0.3
  * https://github.com/kallookoo/wp-color-picker-alpha
  * Licensed under the GPLv2 license or later.
  */
@@ -12,7 +12,7 @@
 ( function( $, undef ) {
 
 	var wpColorPickerAlpha = {
-		'version' : 300
+		'version' : 302
 	};
 
 	// Always try to use the last version of this script.
@@ -110,6 +110,8 @@
 				alphaReset: false,
 				alphaColorType: 'hex',
 				alphaColorWithSpace: false,
+				alphaSkipDebounce: false,
+				alphaDebounceTimeout: 100,
 			} );
 
 			this._super();
@@ -124,7 +126,6 @@
 		 */
 		_addInputListeners: function( input ) {
 			var self = this,
-				debounceTimeout = 100,
 				callback = function( event ){
 					var val = input.val(),
 						color = new Color( val ),
@@ -146,7 +147,11 @@
 					}
 				};
 
-			input.on( 'change', callback ).on( 'keyup', self._debounce( callback, debounceTimeout ) );
+			input.on( 'change', callback );
+
+			if( ! self.alphaOptions.alphaSkipDebounce ) {
+				input.on( 'keyup', self._debounce( callback, self.alphaOptions.alphaDebounceTimeout ) );
+			}
 
 			// If we initialized hidden, show on first focus. The rest is up to you.
 			if ( self.options.hide ) {
@@ -408,6 +413,7 @@
 					alphaReset: false,
 					alphaColorType: 'rgb',
 					alphaColorWithSpace: false,
+					alphaSkipDebounce: ( !!el.data( 'alphaSkipDebounce' ) || false ),
 				};
 
 			if ( options.alphaEnabled ) {
@@ -542,7 +548,7 @@
 					self.colorAlpha.css( { 'background-color': ui.color.to_s( self.alphaOptions.alphaColorType ) } );
 
 					// fire change callback if we have one
-					if ( 'function' === typeof self.options.change ) {
+					if ( typeof self.options.change === 'function' ) {
 						self.options.change.call( this, event, ui );
 					}
 				}
@@ -596,7 +602,7 @@
 					self.colorAlpha.css( 'background-color', '' );
 
 					// fire clear callback if we have one
-					if ( 'function' === typeof self.options.clear ) {
+					if ( typeof self.options.clear === 'function' ) {
 						self.options.clear.call( this, event );
 					}
 				}
@@ -613,7 +619,7 @@
 			 */
 			self.button.on( 'click', function( event ) {
 				if ( $( this ).hasClass( 'wp-picker-default' ) ) {
-					el.val( self.options.defaultColor ).trigger( 'change' );
+					el.val( self.options.defaultColor ).change();
 				} else if ( $( this ).hasClass( 'wp-picker-clear' ) ) {
 					el.val( '' );
 					if ( isDeprecated ) {
@@ -623,7 +629,7 @@
 					self.colorAlpha.css( 'background-color', '' );
 
 					// fire clear callback if we have one
-					if ( 'function' === typeof self.options.clear ) {
+					if ( typeof self.options.clear === 'function' ) {
 						self.options.clear.call( this, event );
 					}
 
@@ -632,4 +638,4 @@
 			} );
 		},
 	} );
-} ( jQuery ) );
+} )( jQuery );
