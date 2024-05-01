@@ -58,13 +58,13 @@ After activating the plugin, this will setup header page builder, footer page bu
 
 = Plugin feature =
 
-*   __Seamless integration__ into the Lenxel theme template. Manages custom post-type
+*   __Seamless integration into the Lenxel theme template. Manages custom post-type__
 *  __Manages Teams__
 * __Manage Sign-in template page__
 *  __Manages Portfolio__
 * __Header and footer page builder__
-* __ Manage course category with different style option using elementor element__
-* __Manage active/enrolled(continue Learning) courses with different style option using elementor element__
+* __Manage course category with different style option using elementor element__
+* __Manage active/enrolled(continue Learning) courses with different style option using lenxel element__
 
 
 
