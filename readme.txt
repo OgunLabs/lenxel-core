@@ -14,31 +14,21 @@ Lenxel Core is an extension of the Lenxel theme template that features Team post
 
 == Description ==
 
-This plugin gives the Lenxel theme template the flexibility to create a custom header, custom footer, teams page, and portfolio.
+This plugin enhances the Lenxel theme template, allowing for custom header, custom footer, teams page, and portfolio creation flexibility.
 
 == Features==
 
-Team post-type 
-
-Portfolio post-type
-
-Header builder
-
-Footer builder
-
-Lenxel Theme settings
-
-Sign-in page
-
-Manage course category with different style option using elementor element
-
-Manage active/enrolled(continue Learning) courses with different style option using elementor element
+* Introducing the Team post-type for showcasing your team members.
+* Discover our Portfolio post-type for displaying your impressive work.
+* Easily build custom headers with our Header builder.
+* Craft unique footers with our Footer builder.
+* Customize your Lenxel theme settings effortlessly.
+* Create a professional Sign-in page for your users.
+* Manage course categories with different style options using Elementor elements.
+* Enhance user experience with customizable styling for active/enrolled courses using Elementor elements.
 
 
-
-
-
-== Later Features Pro ==
+== Advanced Features (Available in Pro/Coming to Pro) ==
 
 * Course Coupon
 
@@ -46,47 +36,33 @@ Manage active/enrolled(continue Learning) courses with different style option us
 
 * Course Retake
 
-* [Full List of Pro Features]
-
 * Frontend course creation
 
+== Supercharge your website with powerful features! ==
+Activating this plugin seamlessly integrates with your theme, unlocking a suite of tools to customize your website:
 
-== How it works==
+*   __Effortless Page Building__: Build stunning headers and footers with an intuitive drag-and-drop interface, no coding required.
+*   __Showcase Your Team__: Create dedicated team member profiles to highlight your expertise and connect with your audience.
+*   __Portfolio Made Easy__: Display your best work in a beautifully designed portfolio section, managed through custom post types.
 
-The plugin has been integrated to work with the theme template to enhance more features after active installation of the plugin.
-After activating the plugin, this will setup header page builder, footer page builder, team custom post-type, and portfolio custom post-type.
 
 = Plugin feature =
 
-*   __Seamless integration into the Lenxel theme template. Manages custom post-type__
-*  __Manages Teams__
-* __Manage Sign-in template page__
-*  __Manages Portfolio__
-* __Header and footer page builder__
-* __Manage course category with different style option using elementor element__
-* __Manage active/enrolled(continue Learning) courses with different style option using lenxel element__
-
-
+*   Seamless Lenxel Integration: Works flawlessly with your Lenxel theme.
+*   Customizable Content: Create teams, portfolios, and courses.
+*   Drag-and-Drop Design: Build headers & footers easily.
+*   Styled Courses: Design unique layouts for course categories & active courses (using Elementor).
 
 
 == Installation ==
 
-= Automatic Installation from themes=
-* 	Login to your WordPress Admin area
-*   Go to "Appearance > themes" and select Lenxel theme from the left-hand-menu
-*   Select the required plugin to be installed.
-*   Install all required plugins (lenxel-core)
-* 	Activate all required plugins (lenxel-core).
-*	After installation, activate the plugin.
-* 	Open the Header builder, Footer builder, Teams, and Portfolio will have been added to the left-hand menu wp-admin dashboard list.
+= Automatic Installation from Plugin Directory =
+* 	Log in to your WordPress Admin area.
+*   Navigate to the "Plugins" section and click on "Add New".
+*   In the search bar, type "Lenxel Core" and press Enter.
+* 	In the search bar, type "Lenxel Core" and press Enter.
+*   Once the installation is complete, click on the "Activate" button to activate the plugin.
 
-
-= Manual Installation =
-1.  The plugin is included in the downloaded file from market place.
-2.  Log in to your WordPress admin dashboard. From the left-hand menu, navigate to "Plugins" and select "Add New."
-3.  Click on the "Upload" option, then choose the file by clicking the "Choose File" button. Once you've selected the ZIP file from your computer, confirm your choice by clicking "OK" and proceed by clicking "Install Now."
-4.  To activate the plugin, simply click the "Activate" button.
-5. 	Open the Header builder, Footer builder, Teams, and Portfolio will have been added to the left-hand menu wp-admin dashboard list. 
 
 == Setup Woocommerce ==
 
