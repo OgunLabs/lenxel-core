@@ -187,6 +187,7 @@
 		            	'security': form_ajax_object.security_nonce
 		          	},
 		          	success: function(data){
+						console.log(data);
 		          		link.removeClass('ajax-preload');
 		          		link.removeClass('wishlist-add');
 		          		link.addClass('wishlist-remove');
@@ -338,7 +339,7 @@
 				// Send AJAX request to deactivate the plugin
 				
 				$.ajax({
-					url: ajaxurl, // WordPress AJAX URL
+					url: form_ajax_object.ajaxurl, // WordPress AJAX URL
 					type: 'POST',
 					data: {
 						action: 'lenxel_deactivate_plugin',
@@ -367,7 +368,7 @@
 			$('#lenxelSkipDeactivation').on('click', function() {
 				// Send AJAX request to deactivate the plugin
 				$.ajax({
-					url: ajaxurl, // WordPress AJAX URL
+					url: form_ajax_object.ajaxurl, // WordPress AJAX URL
 					type: 'POST',
 					data: {
 						action: 'lenxel_deactivate_plugin',
@@ -443,12 +444,10 @@
 							});
 							element.addEventListener("click", function(event) {
 								// Prevent default behavior and stop event propagation
-								console.log('the Lord is good');
 								event.preventDefault();
 								event.stopPropagation();
 								
 								// Log a message (for demonstration)
-								console.log('Click event triggered:', event.target.textContent);
 							});
 						});
 					}

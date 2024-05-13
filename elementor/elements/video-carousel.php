@@ -39,8 +39,9 @@ class LNXElement_Video_Carousel extends LNXElement_Base{
      * @return string Widget title.
      */
     public function get_title() {
-        $get_current_name = load_lenxel_widget_content_element('LNX Video Carousel');
-        return __($get_current_name, 'lenxel-core');
+        $get_current_name = lenxel_load_widget_content_element('LNX Video Carousel');
+        $filter_name = 'lenxel/element/'.esc_html($this->get_name());
+		return apply_filters( $filter_name, $get_current_name);
     }
 
     /**
@@ -84,7 +85,7 @@ class LNXElement_Video_Carousel extends LNXElement_Base{
         $this->start_controls_section(
             'section_videos',
             [
-                'label' => __('Videos', 'lenxel-core'),
+                'label' => esc_html__('Videos', 'lenxel-core'),
             ]
         );
         $repeater = new Repeater();
@@ -92,7 +93,7 @@ class LNXElement_Video_Carousel extends LNXElement_Base{
         $repeater->add_control(
             'video_title',
             [
-                'label'       => __('Title', 'lenxel-core'),
+                'label'       => esc_html__('Title', 'lenxel-core'),
                 'type'        => Controls_Manager::TEXT,
                 'placeholder' => 'Add your title',
                 'label_block' => true
@@ -101,7 +102,7 @@ class LNXElement_Video_Carousel extends LNXElement_Base{
         $repeater->add_control(
             'video_image',
             [
-                'label'      => __('Choose Image', 'lenxel-core'),
+                'label'      => esc_html__('Choose Image', 'lenxel-core'),
                 'default'    => [
                     'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/image-1.jpg',
                 ],
@@ -111,7 +112,7 @@ class LNXElement_Video_Carousel extends LNXElement_Base{
         $repeater->add_control(
             'video_link',
             [
-                'label'   => __('Video Link', 'lenxel-core'),
+                'label'   => esc_html__('Video Link', 'lenxel-core'),
                 'default' => 'https://www.youtube.com/watch?v=knTiUD5IAww',
                 'type'    => Controls_Manager::TEXT,
                 'description' => esc_html__( 'You can add youtube/vimeo video link', 'lenxel-core' )
@@ -121,7 +122,7 @@ class LNXElement_Video_Carousel extends LNXElement_Base{
         $this->add_control(
             'videos_content',
             [
-                'label'       => __('Video Content', 'lenxel-core'),
+                'label'       => esc_html__('Video Content', 'lenxel-core'),
                 'type'        => Controls_Manager::REPEATER,
                 'fields'      => $repeater->get_controls(),
                 'title_field' => '',
@@ -155,7 +156,7 @@ class LNXElement_Video_Carousel extends LNXElement_Base{
         $this->add_control(
             'view',
             [
-                'label'   => __('View', 'lenxel-core'),
+                'label'   => esc_html__('View', 'lenxel-core'),
                 'type'    => Controls_Manager::HIDDEN,
                 'default' => 'traditional',
             ]
@@ -168,14 +169,14 @@ class LNXElement_Video_Carousel extends LNXElement_Base{
         $this->start_controls_section(
             'section_style_name',
             [
-                'label' => __('Title', 'lenxel-core'),
+                'label' => esc_html__('Title', 'lenxel-core'),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
         $this->add_control(
             'title_text_color',
             [
-                'label'     => __('Text Color', 'lenxel-core'),
+                'label'     => esc_html__('Text Color', 'lenxel-core'),
                 'type'      => Controls_Manager::COLOR,
                 'default'   => '',
                 'selectors' => [
@@ -202,13 +203,14 @@ class LNXElement_Video_Carousel extends LNXElement_Base{
      * @access protected
      */
     protected function render() {
-        if ( get_template_restrict()->has_premium){
+        if ( lenxel_get_template_restrict()->has_premium){
             $settings = $this->get_settings_for_display();
-            printf( '<div class="lnx-element-%s lnx-element">', $this->get_name() );
+            printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
                 include $this->get_template('video-carousel.php');
             print '</div>';
         }else {
-			printf('%s', $content);
+			$content = '<div></div>';
+			wp_kses($content, array( 'div' ));
 		}
     }
 

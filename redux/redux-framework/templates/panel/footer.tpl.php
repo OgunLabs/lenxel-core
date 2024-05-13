@@ -5,7 +5,7 @@
  *
  * @author        Redux Framework
  * @package       ReduxFramework/Templates
- * @version:      4.0.0
+ * @version:      4.4.2
  */
 
 // Exit if accessed directly.
@@ -44,7 +44,7 @@ defined( 'ABSPATH' ) || exit;
 						<?php if ( isset( $links['icon'] ) && ! empty( $links['icon'] ) ) { ?>
 							<i class="<?php echo esc_attr( $links['icon'] ); ?>"></i>
 						<?php } else { ?>
-							<img src="<?php echo esc_url( $links['img'] ); ?>"/>
+							<img alt="<?php echo esc_url( $links['img'] ); ?>" src="<?php echo esc_url( $links['img'] ); ?>"/>
 						<?php } ?>
 					</a>
 				<?php } ?>
@@ -55,16 +55,15 @@ defined( 'ABSPATH' ) || exit;
 			<span class="spinner"></span>
 			<?php
 			if ( false === $this->parent->args['hide_save'] ) {
-				submit_button( esc_html__( 'Save Changes', 'lenxel-core' ), 'primary', 'redux_save', false, array( 'id' => 'redux_bottom_save' ) );
+				submit_button( esc_html__( 'Save Changes', 'redux-framework' ), 'primary', 'redux_save', false, array( 'id' => 'redux_bottom_save' ) );
 			}
 
 			if ( false === $this->parent->args['hide_reset'] ) {
-				submit_button( esc_html__( 'Reset Section', 'lenxel-core' ), 'secondary', $this->parent->args['opt_name_triger'] . '[defaults-section]', false, array( 'id' => 'redux-defaults-section-bottom' ) );
-				submit_button( esc_html__( 'Reset All', 'lenxel-core' ), 'secondary', $this->parent->args['opt_name_triger'] . '[defaults]', false, array( 'id' => 'redux-defaults-bottom' ) );
+				submit_button( esc_html__( 'Reset Section', 'redux-framework' ), 'secondary', $this->parent->args['opt_name'] . '[defaults-section]', false, array( 'id' => 'redux-defaults-section-bottom' ) );
+				submit_button( esc_html__( 'Reset All', 'redux-framework' ), 'secondary', $this->parent->args['opt_name'] . '[defaults]', false, array( 'id' => 'redux-defaults-bottom' ) );
 			}
 			?>
 		</div>
-		<div class="redux-ajax-loading" alt="<?php esc_html_e( 'Working...', 'lenxel-core' ); ?>">&nbsp;</div>
 		<div class="clear"></div>
 	</div>
 </div>

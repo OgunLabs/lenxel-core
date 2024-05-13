@@ -45,8 +45,8 @@ if ( ! class_exists( 'Redux_Gallery', false ) ) {
 			}
 
 			echo '</div>';
-			echo '<a href="#" onclick="return false;" id="edit-gallery" class="gallery-attachments button button-primary">' . esc_html__( 'Add/Edit Gallery', 'lenxel-core' ) . '</a> ';
-			echo '<a href="#" onclick="return false;" id="clear-gallery" class="gallery-attachments button">' . esc_html__( 'Clear Gallery', 'lenxel-core' ) . '</a>';
+			echo '<a href="#" onclick="return false;" id="edit-gallery" class="gallery-attachments button button-primary">' . esc_html__( 'Add/Edit Gallery', 'redux-framework' ) . '</a> ';
+			echo '<a href="#" onclick="return false;" id="clear-gallery" class="gallery-attachments button">' . esc_html__( 'Clear Gallery', 'redux-framework' ) . '</a>';
 			echo '<input type="hidden" class="gallery_values ' . esc_attr( $this->field['class'] ) . '" value="' . esc_attr( $this->value ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '" />';
 		}
 
@@ -69,7 +69,7 @@ if ( ! class_exists( 'Redux_Gallery', false ) ) {
 			}
 
 			wp_enqueue_script(
-				'redux-field-gallery-js',
+				'redux-field-gallery',
 				Redux_Core::$url . 'inc/fields/gallery/redux-gallery' . Redux_Functions::is_min() . '.js',
 				array( 'jquery', 'redux-js' ),
 				$this->timestamp,

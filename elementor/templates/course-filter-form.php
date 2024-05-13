@@ -1,13 +1,14 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    $filter_object = new \TUTOR\Course_Filter();
    $filter_levels = array(
-      'beginner'=> __('Beginner', 'lenxel-core'),
-      'intermediate'=> __('Intermediate', 'lenxel-core'),
-      'expert'=> __('Expert', 'lenxel-core')
+      'beginner'=> esc_html__('Beginner', 'lenxel-core'),
+      'intermediate'=> esc_html__('Intermediate', 'lenxel-core'),
+      'expert'=> esc_html__('Expert', 'lenxel-core')
    );
    $filter_prices=array(
-      'free'=> __('Free', 'lenxel-core'),
-      'paid'=> __('Paid', 'lenxel-core')
+      'free'=> esc_html__('Free', 'lenxel-core'),
+      'paid'=> esc_html__('Paid', 'lenxel-core')
    );
 
    $supported_filters = tutor_utils()->get_option('supported_course_filters', array());
@@ -20,11 +21,11 @@
    $number = (in_array('difficulty_level', $supported_filters) && $settings['search_level'] == 'yes') ? $number + 1 : $number;
    $number = (!$is_membership && in_array('price_type', $supported_filters) && $settings['search_price'] == 'yes') ? $number + 1 : $number;
 
-   $this->add_render_attribute( 'block', 'class', ['widget gsc-course-filter-form', $settings['style'] ]  );
+   $this->add_render_attribute( ['block'=> ['class'=> ['widget gsc-course-filter-form', $settings['style'] ]]]  );
    $link = isset($settings['link']['url']) ? $settings['link']['url'] : '';
 ?>
 
-<div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+<div <?php $this->print_render_attribute_string('carousel'); ?>>
    <form class="course-filter-form" action="<?php echo esc_url($link) ?>"> 
       <div class="search-form-content">
 
@@ -57,7 +58,42 @@
                            )
                         );
                      $html = str_replace('<select', '<select data-placeholder="All Categories"', ob_get_clean()); 
-                     echo $html; 
+                     echo wp_kses(
+                        $html,
+                        array(
+                            'div'=>array(
+                              'class' => array(),
+                            ),
+                            'select'      => array(
+                              'class' => array(),
+                              'name' =>array(),
+                              'data-placeholder' => array(),
+                              'id' => array(),
+                              'tabindex' => array(),
+                              'aria-hidden'
+                            ),
+                            'option' => array(
+                              'class' => array(),
+                              'value'=>array(),
+                            ),
+                            'span' => array(
+                              'aria-expanded'=>array(),
+                              'aria-haspopup'=>array(),
+                              'role'=>array(),
+                              'expanded'=>array(),
+                              'tabindex'=>array(),
+                              'aria-labelledby'=>array(),
+                              'class'=>array(),
+                              'dir'=>array(),
+                              'style' =>array(),
+                              'aria-hidden'=>array(),
+                            ),
+                            'b' => array(
+                              'role'=>array(),
+                            ),
+                            
+                        )
+                    );
                   ?>    
                </div>
             <?php } ?>
@@ -67,7 +103,7 @@
                   <select name="level" class="option-select2-filter" data-placeholder="All Level">
                      <option value="">All Level</option>
                      <?php foreach($filter_levels as $value=>$title){ ?>
-                           <option value="<?php echo $value; ?>"/> <?php echo $title; ?></option>
+                           <option value="<?php echo esc_attr($value); ?>"/> <?php echo esc_html($title); ?></option>
                      <?php } ?>
                   </select>
                </div>
@@ -78,7 +114,7 @@
                   <select name="price" class="option-select2-filter" data-placeholder="All Price Type">
                      <option value="">All Price Type</option>
                      <?php foreach($filter_prices as $value=>$title){ ?>
-                        <option value="<?php echo $value; ?>"/> <?php echo $title; ?></option>
+                        <option value="<?php echo esc_attr($value); ?>"/> <?php echo esc_html($title); ?></option>
                      <?php } ?>
                   </select>
                </div>

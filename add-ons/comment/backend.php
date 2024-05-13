@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 class Lenxel_Listing_Comment_BE extends Lenxel_Listing_Comment{
 	
 	public function __construct(){ 
@@ -12,7 +13,7 @@ class Lenxel_Listing_Comment_BE extends Lenxel_Listing_Comment{
 		}
 		add_meta_box(
 			$id         = 'lt_review',
-			$title      = __( 'Review', 'lenxel-core' ),
+			$title      = esc_html__( 'Review', 'lenxel-core' ),
 			$callback   = array( $this, 'output_html' ),
 			$screen     = 'comment',
 			$context    = 'normal' 
@@ -42,7 +43,7 @@ class Lenxel_Listing_Comment_BE extends Lenxel_Listing_Comment{
 				}
 			?>
 			<tr>
-			  <td style="width: 200px;"><strong><?php printf(__('%s', 'lenxel-core'), esc_html($name )); ?></strong></td>
+			  <td style="width: 200px;"><strong><?php printf(esc_html__('%s', 'lenxel-core'), esc_html($name )); ?></strong></td>
 			  <td>
 				 	<select name="lt_review[<?php echo esc_attr($cat_key) ?>]">
 						<?php for ( $i = 0; $i <= 5; $i++ ) : ?>
@@ -51,7 +52,7 @@ class Lenxel_Listing_Comment_BE extends Lenxel_Listing_Comment{
 						  </option>
 						<?php endfor; ?>
 				 	</select>
-				 (<?php printf(__('%s star', 'lenxel-core'), esc_html($current )); ?>)
+				 (<?php printf(esc_html__('%s star', 'lenxel-core'), esc_html($current )); ?>)
 			  </td>
 			</tr>
 			 <?php endforeach; ?>
@@ -63,7 +64,7 @@ class Lenxel_Listing_Comment_BE extends Lenxel_Listing_Comment{
 					$current = $stars[ $cat ];
 				?>
 				<tr>
-				  	<td style="width: 200px;"><strong><?php printf(__('%s', 'lenxel-core' ), esc_html($cat)); ?></strong></td>
+				  	<td style="width: 200px;"><strong><?php printf(esc_html__('%s', 'lenxel-core' ), esc_html($cat)); ?></strong></td>
 				  	<td> 
 					  	<select name="lt_review[<?php echo esc_attr($cat); ?>]">
 							<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
@@ -73,7 +74,7 @@ class Lenxel_Listing_Comment_BE extends Lenxel_Listing_Comment{
 							<?php endfor; ?>
 					 		<option value="delete"><?php echo esc_html__('Delete', 'lenxel-core') ?></option>
 					 	</select>
-					 	(<?php printf(__('%s star', 'lenxel-core'), esc_html($stars[ $cat ])); ?>)
+					 	(<?php printf(esc_html__('%s star', 'lenxel-core'), esc_html($stars[ $cat ])); ?>)
 				  </td>
 				</tr>
 				<?php } ?>

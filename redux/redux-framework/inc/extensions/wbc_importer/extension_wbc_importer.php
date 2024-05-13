@@ -66,7 +66,7 @@ if ( !class_exists( 'ReduxFramework_extension_wbc_importer' ) ) {
             }
 
             //Delete saved options of imported demos, for dev/testing purpose
-            // delete_option('wbc_imported_demos');
+            // delete_option('lenxel_wbc_imported_demos');
 
             $this->getImports();
 
@@ -74,7 +74,7 @@ if ( !class_exists( 'ReduxFramework_extension_wbc_importer' ) ) {
 
             self::$instance = $this;
 
-            add_filter( 'redux/' . $this->parent->args['opt_name_triger'] . '/field/class/' . $this->field_name, array( &$this,
+            add_filter( 'redux/' . $this->parent->args['opt_name'] . '/field/class/' . $this->field_name, array( &$this,
                     'overload_field_path_lenxels'
         ) );
 
@@ -83,7 +83,7 @@ if ( !class_exists( 'ReduxFramework_extension_wbc_importer' ) ) {
                     'ajax_importers'
             ) );
 
-            add_filter( 'redux/'.$this->parent->args['opt_name_triger'].'/field/wbc_importer_files', array(
+            add_filter( 'redux/'.$this->parent->args['opt_name'].'/field/wbc_importer_files', array(
                     $this,
                     'addImportFilesLenxels'
             ) );
@@ -92,7 +92,7 @@ if ( !class_exists( 'ReduxFramework_extension_wbc_importer' ) ) {
             $this->add_importer_section();
 
             include $this->extension_dir.'inc/class-wbc-importer-progress.php';
-            $wbc_progress = new Wbc_Importer_Progress( $this->parent );
+            $wbc_progress = new Lenxel_Wbc_Importer_Progress( $this->parent );
         }
 
         /**
@@ -149,7 +149,7 @@ if ( !class_exists( 'ReduxFramework_extension_wbc_importer' ) ) {
 
             $imports = $this->demoFiles();
 
-            $imported = get_option( 'wbc_imported_demos' );
+            $imported = get_option( 'lenxel_wbc_imported_demos' );
 
             if ( !empty( $imports ) && is_array( $imports ) ) {
                 $x = 1;
@@ -215,10 +215,10 @@ if ( !class_exists( 'ReduxFramework_extension_wbc_importer' ) ) {
         }
 
         public function ajax_importers() {
-            if ( !isset( $_REQUEST['nonce'] ) || !wp_verify_nonce( $_REQUEST['nonce'], "redux_{$this->parent->args['opt_name_triger']}_wbc_importer" ) ) {
+            if ( !isset( $_REQUEST['nonce'] ) || !wp_verify_nonce( sanitize_text_field( wp_unslash ($_REQUEST['nonce'])), "redux_{$this->parent->args['opt_name']}_wbc_importer" ) ) {
                 die( 0 );
             }
-            if ( isset( $_REQUEST['type'] ) && $_REQUEST['type'] == "import-demo-content" && array_key_exists( $_REQUEST['demo_import_id'], $this->wbc_import_files ) ) {
+            if ( isset( $_REQUEST['type'] ) && $_REQUEST['type'] == "import-demo-content" && array_key_exists( sanitize_text_field($_REQUEST['demo_import_id']), $this->wbc_import_files ) ) {
 
                 $reimporting = false;
 
@@ -232,7 +232,7 @@ if ( !class_exists( 'ReduxFramework_extension_wbc_importer' ) ) {
 
                 if ( !isset( $import_parts['imported'] ) || true === $reimporting ) {
                     include $this->extension_dir.'inc/init-installer.php';
-                    $installer = new Radium_Lnx_Theme_Demo_Data_Importer( $this, $this->parent );
+                    $installer = new lenxel_Radium_Lnx_Theme_Demo_Data_Importer( $this, $this->parent );
                 }else {
                     echo esc_html__( "Demo Already Imported", 'lenxel-core' );
                 }
@@ -260,9 +260,9 @@ if ( !class_exists( 'ReduxFramework_extension_wbc_importer' ) ) {
                 }
             }
 
-            $wbc_importer_label = trim( esc_html( apply_filters( 'wbc_importer_label', __( 'Demo Importer', 'lenxel-core' ) ) ) );
+            $wbc_importer_label = trim( esc_html( apply_filters( 'wbc_importer_label', esc_html__( 'Demo Importer', 'lenxel-core' ) ) ) );
 
-            $wbc_importer_label = ( !empty( $wbc_importer_label ) ) ? $wbc_importer_label : __( 'Demo Importer', 'lenxel-core' );
+            $wbc_importer_label = ( !empty( $wbc_importer_label ) ) ? $wbc_importer_label : esc_html__( 'Demo Importer', 'lenxel-core' );
 
             $this->parent->sections[] = array(
                 'id'     => 'wbc_importer_section',

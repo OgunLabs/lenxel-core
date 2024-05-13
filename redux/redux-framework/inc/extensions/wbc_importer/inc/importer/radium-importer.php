@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Radium_Lnx_Theme_Importer
+ * Class Lenxel_Radium_Lnx_Theme_Importer
  *
  * This class provides the capability to import demo content as well as import widgets and WordPress menus
  *
@@ -21,9 +21,9 @@
 if ( !defined( 'ABSPATH' ) ) exit;
 
 // Don't duplicate me!
-if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
+if ( !class_exists( 'Lenxel_Radium_Lnx_Theme_Importer' ) ) {
 
-  class Radium_Lnx_Theme_Importer {
+  class Lenxel_Radium_Lnx_Theme_Importer {
 
     /**
      * Holds a copy of the object for easy reference.
@@ -118,7 +118,7 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
 
     public function after_wp_importer() {
 
-      $imported_demos = get_option( 'wbc_imported_demos' );
+      $imported_demos = get_option( 'lenxel_wbc_imported_demos' );
 
       $this->active_import[$this->active_import_id]['imported'] = 'imported';
 
@@ -130,7 +130,7 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
 
       do_action( 'wbc_importer_after_content_import', $this->active_import, $this->demo_files_path );
 
-      update_option( 'wbc_imported_demos', $imported_demos );
+      update_option( 'lenxel_wbc_imported_demos', $imported_demos );
     }
 
 
@@ -167,10 +167,10 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
      */
     public function add_widget_to_sidebar( $sidebar_slug, $widget_slug, $count_mod, $widget_settings = array() ) {
 
-      $sidebars_widgets = get_option( 'sidebars_widgets' );
+      $lenxel_sidebars_widgets = get_option( 'lenxel_sidebars_widgets' );
 
-      if ( !isset( $sidebars_widgets[$sidebar_slug] ) )
-        $sidebars_widgets[$sidebar_slug] = array( '_multiwidget' => 1 );
+      if ( !isset( $lenxel_sidebars_widgets[$sidebar_slug] ) )
+        $lenxel_sidebars_widgets[$sidebar_slug] = array( '_multiwidget' => 1 );
 
       $newWidget = get_option( 'widget_'.$widget_slug );
 
@@ -178,18 +178,18 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
         $newWidget = array();
 
       $count = count( $newWidget )+1+$count_mod;
-      $sidebars_widgets[$sidebar_slug][] = $widget_slug.'-'.$count;
+      $lenxel_sidebars_widgets[$sidebar_slug][] = $widget_slug.'-'.$count;
 
       $newWidget[$count] = $widget_settings;
 
-      update_option( 'sidebars_widgets', $sidebars_widgets );
+      update_option( 'lenxel_sidebars_widgets', $lenxel_sidebars_widgets );
       update_option( 'widget_'.$widget_slug, $newWidget );
 
     }
 
     public function set_demo_data( $file ) {
 
-      if ( !defined( 'WP_LOAD_IMPORTERS' ) ) define( 'WP_LOAD_IMPORTERS', true );
+      if ( !defined( 'LENXEL_WP_LOAD_IMPORTERS' ) ) define( 'LENXEL_WP_LOAD_IMPORTERS', true );
 
       require_once ABSPATH . 'wp-admin/includes/import.php';
 
@@ -211,7 +211,7 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
 
       }
 
-      if ( !class_exists( 'WP_Import' ) ) {
+      if ( !class_exists( 'Lenxel_WP_Import' ) ) {
 
         $class_wp_import = dirname( __FILE__ ) .'/wordpress-importer.php';
 
@@ -234,7 +234,7 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
 
         } else {
           @set_time_limit(0);
-          $wp_import = new WP_Import();
+          $wp_import = new Lenxel_WP_Import();
           $wp_import->fetch_attachments = true;
           $wp_import->import( $file );
 
@@ -253,7 +253,7 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
       // File exists?
       if ( ! file_exists( $file ) ) {
         wp_die(
-          __( 'Theme options Import file could not be found. Please try again.', 'lenxel-core' ),
+          esc_html__( 'Theme options Import file could not be found. Please try again.', 'lenxel-core' ),
           '',
           array( 'back_link' => true )
         );
@@ -328,7 +328,7 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
       // File exists?
       if ( ! file_exists( $file ) ) {
         wp_die(
-          __( 'Widget Import file could not be found. Please try again.', 'lenxel-core' ),
+          esc_html__( 'Widget Import file could not be found. Please try again.', 'lenxel-core' ),
           '',
           array( 'back_link' => true )
         );
@@ -402,7 +402,7 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
           $sidebar_available = false;
           $use_sidebar_id = 'wp_inactive_widgets'; // add to inactive if sidebar does not exist in theme
           $sidebar_message_type = 'error';
-          $sidebar_message = __( 'Sidebar does not exist in theme (using Inactive)', 'lenxel-core' );
+          $sidebar_message = esc_html__( 'Sidebar does not exist in theme (using Inactive)', 'lenxel-core' );
         }
 
         // Result for sidebar
@@ -424,7 +424,7 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
           if ( ! $fail && ! isset( $available_widgets[$id_base] ) ) {
             $fail = true;
             $widget_message_type = 'error';
-            $widget_message = __( 'Site does not support widget', 'lenxel-core' ); // explain why widget not imported
+            $widget_message = esc_html__( 'Site does not support widget', 'lenxel-core' ); // explain why widget not imported
           }
 
           // Filter to modify settings before import
@@ -435,8 +435,8 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
           if ( ! $fail && isset( $widget_instances[$id_base] ) ) {
 
             // Get existing widgets in this sidebar
-            $sidebars_widgets = get_option( 'sidebars_widgets' );
-            $sidebar_widgets = isset( $sidebars_widgets[$use_sidebar_id] ) ? $sidebars_widgets[$use_sidebar_id] : array(); // check Inactive if that's where will go
+            $lenxel_sidebars_widgets = get_option( 'lenxel_sidebars_widgets' );
+            $sidebar_widgets = isset( $lenxel_sidebars_widgets[$use_sidebar_id] ) ? $lenxel_sidebars_widgets[$use_sidebar_id] : array(); // check Inactive if that's where will go
 
             // Loop widgets with ID base
             $single_widget_instances = ! empty( $widget_instances[$id_base] ) ? $widget_instances[$id_base] : array();
@@ -447,7 +447,7 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
 
                 $fail = true;
                 $widget_message_type = 'warning';
-                $widget_message = __( 'Widget already exists', 'lenxel-core' ); // explain why widget not imported
+                $widget_message = esc_html__( 'Widget already exists', 'lenxel-core' ); // explain why widget not imported
 
                 break;
 
@@ -488,25 +488,25 @@ if ( !class_exists( 'Radium_Lnx_Theme_Importer' ) ) {
             update_option( 'widget_' . $id_base, $single_widget_instances );
 
             // Assign widget instance to sidebar
-            $sidebars_widgets = get_option( 'sidebars_widgets' ); // which sidebars have which widgets, get fresh every time
+            $lenxel_sidebars_widgets = get_option( 'lenxel_sidebars_widgets' ); // which sidebars have which widgets, get fresh every time
             $new_instance_id = $id_base . '-' . $new_instance_id_number; // use ID number from new widget instance
-            $sidebars_widgets[$use_sidebar_id][] = $new_instance_id; // add new instance to sidebar
-            update_option( 'sidebars_widgets', $sidebars_widgets ); // save the amended data
+            $lenxel_sidebars_widgets[$use_sidebar_id][] = $new_instance_id; // add new instance to sidebar
+            update_option( 'lenxel_sidebars_widgets', $lenxel_sidebars_widgets ); // save the amended data
 
             // Success message
             if ( $sidebar_available ) {
               $widget_message_type = 'success';
-              $widget_message = __( 'Imported', 'radium' );
+              $widget_message = esc_html__( 'Imported', 'radium' );
             } else {
               $widget_message_type = 'warning';
-              $widget_message = __( 'Imported to Inactive', 'lenxel-core' );
+              $widget_message = esc_html__( 'Imported to Inactive', 'lenxel-core' );
             }
 
           }
 
           // Result for widget instance
           $results[$sidebar_id]['widgets'][$widget_instance_id]['name'] = isset( $available_widgets[$id_base]['name'] ) ? $available_widgets[$id_base]['name'] : $id_base; // widget name or ID if name not available (not supported by site)
-          $results[$sidebar_id]['widgets'][$widget_instance_id]['title'] = $widget->title ? $widget->title : __( 'No Title', 'lenxel-core' ); // show "No Title" if widget instance is untitled
+          $results[$sidebar_id]['widgets'][$widget_instance_id]['title'] = $widget->title ? $widget->title : esc_html__( 'No Title', 'lenxel-core' ); // show "No Title" if widget instance is untitled
           $results[$sidebar_id]['widgets'][$widget_instance_id]['message_type'] = $widget_message_type;
           $results[$sidebar_id]['widgets'][$widget_instance_id]['message'] = $widget_message;
 

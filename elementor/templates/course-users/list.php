@@ -1,11 +1,11 @@
 <?php
-
-	$this->add_render_attribute('wrapper', 'class', ['lnx-listing-users clearfix']);
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+	$this->add_render_attribute(['wrapper' => ['class' => 'lnx-listing-users clearfix']]);
 	//add_render_attribute grid
 	$this->get_grid_settings();
 ?>
   
-<div <?php echo $this->get_render_attribute_string('wrapper'); ?>>
+<div <?php $this->print_render_attribute_string('wrapper'); ?>>
 	<div class="lnx-content-items clearfix"> 
 		<div class="users-list">
 			<?php 

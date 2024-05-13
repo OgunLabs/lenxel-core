@@ -52,13 +52,13 @@
 		el.find( '.redux-action_bar input, #redux-import-action input' ).on(
 			'click',
 			function( e ) {
-				if ( $( this ).attr( 'name' ) === redux.optName.args.opt_name_triger + '[defaults]' ) {
+				if ( $( this ).attr( 'name' ) === redux.optName.args.opt_name + '[defaults]' ) {
 
 					// Defaults button clicked.
 					if ( ! confirm( redux.optName.args.reset_confirm ) ) {
 						return false;
 					}
-				} else if ( $( this ).attr( 'name' ) === redux.optName.args.opt_name_triger + '[defaults-section]' ) {
+				} else if ( $( this ).attr( 'name' ) === redux.optName.args.opt_name + '[defaults-section]' ) {
 
 					// Default section clicked.
 					if ( ! confirm( redux.optName.args.reset_section_confirm ) ) {
@@ -93,7 +93,7 @@
 				if ( $( container ).hasClass( 'fully-expanded' ) ) {
 					$( container ).removeClass( 'fully-expanded' );
 
-					tab = $.cookie( 'redux_current_tab_' + redux.optName.args.opt_name_triger );
+					tab = $.cookie( 'redux_current_tab_' + redux.optName.args.opt_name );
 
 					el.find( '#' + tab + '_section_group' ).fadeIn(
 						200,

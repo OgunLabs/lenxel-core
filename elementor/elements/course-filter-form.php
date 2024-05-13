@@ -44,8 +44,9 @@ class LNXElement_Course_Filter_Form extends LNXElement_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		$get_current_name = load_lenxel_widget_content_element('LNX Course Filter Form');
-		return __( $get_current_name, 'lenxel-core' );
+		$get_current_name = lenxel_load_widget_content_element('LNX Course Filter Form');
+		$filter_name = 'lenxel/element/'.esc_html($this->get_name());
+		return apply_filters( $filter_name, $get_current_name);
 	}
 
 	/**
@@ -97,14 +98,14 @@ class LNXElement_Course_Filter_Form extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => __( 'Content', 'lenxel-core' ),
+				'label' => esc_html__( 'Content', 'lenxel-core' ),
 			]
 		);
 
 		$this->add_control(
 			'style',
 			[
-				'label'  => __( 'Style', 'lenxel-core' ),
+				'label'  => esc_html__( 'Style', 'lenxel-core' ),
 				'type'   => Controls_Manager::SELECT,
 				'options' => [
 				  'style-1' => esc_html__('Style I', 'lenxel-core'),
@@ -118,7 +119,7 @@ class LNXElement_Course_Filter_Form extends LNXElement_Base {
 		$this->add_control(
 			'link',
 			[
-				'label' => __( 'Link Courses Page', 'lenxel-core' ),
+				'label' => esc_html__( 'Link Courses Page', 'lenxel-core' ),
 				'type' => Controls_Manager::URL,
 			]
 		);
@@ -238,14 +239,14 @@ class LNXElement_Course_Filter_Form extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_box_style',
 			[
-				'label' => __( 'Box', 'lenxel-core' ),
+				'label' => esc_html__( 'Box', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 		$this->add_responsive_control(
 			'box_space',
 			[
-				'label' => __( 'Heading Element Space Bottom', 'lenxel-core' ),
+				'label' => esc_html__( 'Heading Element Space Bottom', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 26,
@@ -274,13 +275,14 @@ class LNXElement_Course_Filter_Form extends LNXElement_Base {
 	 * @access protected
 	 */
 	protected function render() {
-		if ( get_template_restrict()->has_premium){
+		if ( lenxel_get_template_restrict()->has_premium){
 			$settings = $this->get_settings_for_display();
-			printf( '<div class="lnx-element-%s lnx-element">', $this->get_name() );
+			printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
 				include $this->get_template('course-filter-form.php');
 			print '</div>';
 		}else {
-			printf('%s', $content);
+			$content = '<div></div>';
+			wp_kses($content, array( 'div' ));
 		}
 	}
 }

@@ -44,7 +44,7 @@ class LNXElement_Career_Block extends LNXElement_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'LNX Career Block', 'lenxel-core' );
+		return esc_html__( 'LNX Career Block', 'lenxel-core' );
 	}
 
 	/**
@@ -87,26 +87,26 @@ class LNXElement_Career_Block extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => __( 'Content', 'lenxel-core' ),
+				'label' => esc_html__( 'Content', 'lenxel-core' ),
 			]
 		);
 		$this->add_control(
 			'title_text',
 			[
-				'label' => __( 'Title', 'lenxel-core' ),
+				'label' => esc_html__( 'Title', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXT,
 				'dynamic' => [
 					'active' => true,
 				],
-				'placeholder' => __( 'Enter your title', 'lenxel-core' ),
-				'default' => __( 'Add Your Heading Text Here', 'lenxel-core' ),
+				'placeholder' => esc_html__( 'Enter your title', 'lenxel-core' ),
+				'default' => esc_html__( 'Add Your Heading Text Here', 'lenxel-core' ),
 				'label_block' => true
 			]
 		);
 		$this->add_control(
 			'header_tag',
 			[
-				'label' => __( 'HTML Tag', 'lenxel-core' ),
+				'label' => esc_html__( 'HTML Tag', 'lenxel-core' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
 					'h1' => 'H1',
@@ -125,9 +125,9 @@ class LNXElement_Career_Block extends LNXElement_Base {
 		$this->add_control(
 			'link',
 			[
-				'label' => __( 'Link', 'lenxel-core' ),
+				'label' => esc_html__( 'Link', 'lenxel-core' ),
 				'type' => Controls_Manager::URL,
-				'placeholder' => __( 'https://your-link.com', 'lenxel-core' ),
+				'placeholder' => esc_html__( 'https://your-link.com', 'lenxel-core' ),
 				'separator' => 'before',
 			]
 		);
@@ -136,13 +136,13 @@ class LNXElement_Career_Block extends LNXElement_Base {
 		$this->start_controls_section( //** Section Icon
 			'image_section',
 			[
-				'label' => __( 'Image', 'lenxel-core' ),
+				'label' => esc_html__( 'Image', 'lenxel-core' ),
 			]
 		);
 		$this->add_control(
 			'image',
 			[
-				'label' => __( 'Icon Image', 'lenxel-core' ),
+				'label' => esc_html__( 'Icon Image', 'lenxel-core' ),
 				'type' => Controls_Manager::MEDIA,
 				'default' => [
 					'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/icon.png',
@@ -155,13 +155,13 @@ class LNXElement_Career_Block extends LNXElement_Base {
 		$this->start_controls_section( 
 			'content',
 			[
-				'label' => __( 'Content', 'lenxel-core' ),
+				'label' => esc_html__( 'Content', 'lenxel-core' ),
 			]
 		);
 		$this->add_control(
 			'job_type',
 			[
-				'label' => __( 'Job Type', 'lenxel-core' ),
+				'label' => esc_html__( 'Job Type', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => 'Full Time'
 			]
@@ -169,7 +169,7 @@ class LNXElement_Career_Block extends LNXElement_Base {
 		$this->add_control(
 			'company',
 			[
-				'label' => __( 'Company', 'lenxel-core' ),
+				'label' => esc_html__( 'Company', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => 'Lenxelthemes'
 			]
@@ -177,7 +177,7 @@ class LNXElement_Career_Block extends LNXElement_Base {
 		$this->add_control(
 			'address',
 			[
-				'label' => __( 'Address', 'lenxel-core' ),
+				'label' => esc_html__( 'Address', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => 'New South Wales, Australia'
 			]
@@ -188,14 +188,14 @@ class LNXElement_Career_Block extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_title_style',
 			[
-				'label' => __( 'Title', 'lenxel-core' ),
+				'label' => esc_html__( 'Title', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 		$this->add_control(
 			'title_color',
 			[
-				'label' => __( 'Text Color', 'lenxel-core' ),
+				'label' => esc_html__( 'Text Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-career .box-content .title, {{WRAPPER}} .gsc-career .box-content .title a' => 'color: {{VALUE}};',
@@ -212,7 +212,7 @@ class LNXElement_Career_Block extends LNXElement_Base {
 		$this->add_responsive_control(
 			'title_padding',
 			[
-				'label' => __( 'Padding', 'lenxel-core' ),
+				'label' => esc_html__( 'Padding', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'default'	=> [
@@ -233,14 +233,14 @@ class LNXElement_Career_Block extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_job_type_style',
 			[
-				'label' => __( 'Job Type', 'lenxel-core' ),
+				'label' => esc_html__( 'Job Type', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 		$this->add_control(
 			'job_type_color',
 			[
-				'label' => __( 'Text Color', 'lenxel-core' ),
+				'label' => esc_html__( 'Text Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-career .box-content .job-type' => 'color: {{VALUE}};',
@@ -250,7 +250,7 @@ class LNXElement_Career_Block extends LNXElement_Base {
 		$this->add_control(
 			'job_type_background',
 			[
-				'label' => __( 'Background Color', 'lenxel-core' ),
+				'label' => esc_html__( 'Background Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-career .box-content .job-type' => 'background: {{VALUE}};',
@@ -267,7 +267,7 @@ class LNXElement_Career_Block extends LNXElement_Base {
 		$this->add_responsive_control(
 			'job_type_padding',
 			[
-				'label' => __( 'Padding', 'lenxel-core' ),
+				'label' => esc_html__( 'Padding', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'default'	=> [
@@ -288,14 +288,14 @@ class LNXElement_Career_Block extends LNXElement_Base {
 		$this->start_controls_section(
 			'info_type_style',
 			[
-				'label' => __( 'Information (Address & Company)', 'lenxel-core' ),
+				'label' => esc_html__( 'Information (Address & Company)', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 		$this->add_control(
 			'info_color',
 			[
-				'label' => __( 'Text Color', 'lenxel-core' ),
+				'label' => esc_html__( 'Text Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-career .box-content .box-information' => 'color: {{VALUE}};',
@@ -312,7 +312,7 @@ class LNXElement_Career_Block extends LNXElement_Base {
 		$this->add_responsive_control(
 			'info_padding',
 			[
-				'label' => __( 'Padding', 'lenxel-core' ),
+				'label' => esc_html__( 'Padding', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'default'	=> [
@@ -340,7 +340,7 @@ class LNXElement_Career_Block extends LNXElement_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		printf( '<div class="lnx-element-%s lnx-element">', $this->get_name() );
+		printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
          include $this->get_template('career-block.php');
       print '</div>';
 	}

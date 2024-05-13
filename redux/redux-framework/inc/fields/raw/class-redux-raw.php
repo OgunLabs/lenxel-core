@@ -45,7 +45,7 @@ if ( ! class_exists( 'Redux_Raw', false ) ) {
 
 			if ( ! empty( $this->field['content'] ) && isset( $this->field['content'] ) ) {
 				if ( isset( $this->field['markdown'] ) && true === $this->field['markdown'] && ! empty( $this->field['content'] ) ) {
-					require_once dirname( __FILE__ ) . '/parsedown.php';
+					require_once __DIR__ . '/parsedown.php';
 					$parsedown = new Redux_Parsedown();
 
 					echo( $parsedown->text( $this->field['content'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput
@@ -55,7 +55,7 @@ if ( ! class_exists( 'Redux_Raw', false ) ) {
 			}
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			do_action( 'redux-field-raw-' . $this->parent->args['opt_name_triger'] . '-' . $this->field['id'] );
+			do_action( 'redux-field-raw-' . $this->parent->args['opt_name'] . '-' . $this->field['id'] );
 		}
 	}
 }

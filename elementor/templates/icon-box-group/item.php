@@ -6,7 +6,7 @@ $has_icon = ! empty( $item['selected_icon']['value']);
 ?>
 
 <?php if($settings['style'] == 'style-1'): ?>
-	<div class="item icon-box-item style-1 <?php echo ($item['active'] == 'yes' ? 'active' : ''); ?>">
+	<div class="item icon-box-item style-1 <?php echo esc_attr($item['active'] == 'yes' ? 'active' : ''); ?>">
 			<div class="item-box">
 				<div class="item-box-content">
 					<?php if ( $has_icon ){ ?>
@@ -21,14 +21,14 @@ $has_icon = ! empty( $item['selected_icon']['value']);
 
 					<div class="box-content">
 						<?php if($item['title']){ ?>
-							<h4 class="title"><?php echo $item['title'] ?></h4>
+							<h4 class="title"><?php echo esc_html($item['title']); ?></h4>
 						<?php } ?>
 						<?php if($item['desc']){ ?>
-							<div class="desc"><?php echo $item['desc'] ?></div>
+							<div class="desc"><?php echo wp_kses_post($item['desc']); ?></div>
 						<?php } ?>
 					</div>	
 				</div>	
-		   	<?php $this->lnx_render_link_html('', $item['link'], 'link-overlay'); ?>
+		   	<?php $this->lenxel_render_link_html('', $item['link'], 'link-overlay'); ?>
 			</div>	
 	</div>	   
 <?php endif; ?>	
@@ -43,6 +43,6 @@ $has_icon = ! empty( $item['selected_icon']['value']);
 	<?php } ?>
 
 	<?php if($item['title']){ ?>
-		<h3 class="title"><?php echo $item['title'] ?></h3>
+		<h3 class="title"><?php echo esc_html($item['title']); ?></h3>
 	<?php } ?>
 <?php endif; ?>	

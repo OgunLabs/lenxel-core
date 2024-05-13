@@ -1,6 +1,9 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    $_random = lenxelthemesupport_random_id();
-   $this->add_render_attribute( 'block', 'class', [ 'lnx-navigation-menu', ' menu-align-' . $settings['align'] ] );
+
+   $this->add_render_attribute( ['block' => ['class'=> [ 'lnx-navigation-menu', ' menu-align-' . $settings['align'] ]]] );
    $args = [
       'echo'        => false,
       'menu'        => $settings['menu'],
@@ -18,6 +21,28 @@
       return;
    }
 ?>
-   <div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
-      <?php echo $menu_html; ?>
+   <div <?php $this->print_render_attribute_string('carousel'); ?>>
+      <?php echo wp_kses(
+    $menu_html,
+    array(
+        'div'      => array(
+            'class'  => array(),
+            'id' => array(),
+        ),
+        'ul'     => array(
+         'class'=>array()
+        ),
+        'li'     => array(
+         'class'=>array(),
+         'id'=>array(),
+        ),
+        'a' => array(
+         'href'=>array(),
+         'onclick'=>array(),
+        ),
+        'span'=>array(
+         'class'=>array(),
+        ),
+    )
+); ?>
    </div>

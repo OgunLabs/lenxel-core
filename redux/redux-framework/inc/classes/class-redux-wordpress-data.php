@@ -26,13 +26,13 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 		/**
 		 * Redux_WordPress_Data constructor.
 		 *
-		 * @param mixed $parent ReduxFramework pointer or opt_name_triger.
+		 * @param mixed $redux ReduxFramework pointer or opt_name.
 		 */
-		public function __construct( $parent = null ) {
-			if ( is_string( $parent ) ) {
-				$this->opt_name_triger = $parent;
+		public function __construct( $redux = null ) {
+			if ( is_string( $redux ) ) {
+				$this->opt_name = $redux;
 			} else {
-				parent::__construct( $parent );
+				parent::__construct( $redux );
 			}
 		}
 
@@ -41,14 +41,14 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 		 *
 		 * @param string|array $type          Type.
 		 * @param array|string $args          Args.
-		 * @param string       $opt_name_triger      Opt name.
+		 * @param string       $opt_name      Opt name.
 		 * @param string|int   $current_value Current value.
 		 * @param bool         $ajax          Tells if this is an AJAX call.
 		 *
 		 * @return array|mixed|string
 		 */
-		public function get( $type, $args = array(), string $opt_name_triger = '', $current_value = '', bool $ajax = false ) {
-			$opt_name_triger = $this->opt_name_triger;
+		public function get( $type, $args = array(), string $opt_name = '', $current_value = '', bool $ajax = false ) {
+			$opt_name = $this->opt_name;
 
 			// We don't want to run this, it's not a string value. Send it back!
 			if ( is_array( $type ) ) {
@@ -56,11 +56,11 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 			}
 
 			/**
-			 * Filter 'redux/options/{opt_name_triger}/pre_data/{type}'
+			 * Filter 'redux/options/{opt_name}/pre_data/{type}'
 			 *
 			 * @param string $data
 			 */
-			$pre_data = apply_filters( "redux/options/$opt_name_triger/pre_data/$type", null ); // phpcs:ignore WordPress.NamingConventions.ValidHookName
+			$pre_data = apply_filters( "redux/options/$opt_name/pre_data/$type", null ); // phpcs:ignore WordPress.NamingConventions.ValidHookName
 			if ( null !== $pre_data || empty( $type ) ) {
 				return $pre_data;
 			}
@@ -129,13 +129,13 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 			}
 
 			/**
-			 * Filter 'redux/options/{opt_name_triger}/data/{type}'
+			 * Filter 'redux/options/{opt_name}/data/{type}'
 			 *
 			 * @param string $data
 			 */
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			return apply_filters( "redux/options/$opt_name_triger/data/$type", $data );
+			return apply_filters( "redux/options/$opt_name/data/$type", $data );
 		}
 
 
@@ -165,6 +165,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 							$key = $k;
 						}
 					}
+
 					if ( empty( $name_key ) ) {
 						$value = $v;
 					} else {
@@ -231,7 +232,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 		private function get_data( string $type, $args, $current_value ) {
 			$args = $this->get_arg_defaults( $type, $args );
 
-			$opt_name_triger = $this->opt_name_triger;
+			$opt_name = $this->opt_name;
 			if ( empty( $args ) ) {
 				$args = array();
 			}
@@ -249,7 +250,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 
 			$secondary_key = 'slug';
 			if ( isset( $args['secondary_key'] ) ) {
-				$display_key = $args['secondary_key'];
+				$secondary_key = $args['secondary_key'];
 				unset( $args['secondary_key'] );
 			}
 
@@ -298,13 +299,8 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 
 				case 'sites':
 				case 'site':
-					// WP > 4.6.
-					if ( function_exists( 'get_sites' ) && class_exists( 'WP_Site_Query' ) ) {
-						$sites = get_sites();
-						// WP < 4.6.
-					} elseif ( function_exists( 'wp_get_sites' ) ) {
-						$sites = wp_get_sites(); // phpcs:ignore WordPress.WP.DeprecatedFunctions
-					}
+					$sites = get_sites();
+
 					if ( isset( $sites ) ) {
 						$results = array();
 						foreach ( $sites as $site ) {
@@ -355,7 +351,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 					foreach ( $_wp_registered_nav_menus as $k => $v ) {
 						$data[ $k ] = $v;
 						if ( ! has_nav_menu( $k ) ) {
-							$data[ $k ] .= ' ' . __( '[unassigned]', 'lenxel-core' );
+							$data[ $k ] .= ' ' . esc_html__( '[unassigned]', 'redux-framework' );
 						}
 					}
 					break;
@@ -377,8 +373,10 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 				case 'icons':
 				case 'font-icon':
 				case 'font-icons':
-					$fs    = Redux_Filesystem::get_instance();
-					$fonts = $fs->get_contents( Redux_Core::$dir . 'assets/css/vendor/elusive-icons.css' );
+					//$fs    = Redux_Filesystem::get_instance();
+					$fp = fopen( Redux_Core::$dir . 'assets/css/vendor/elusive-icons.css', 'r' );
+					$fonts = fread( $fp, 8192 );
+					fclose( $fp );
 					if ( ! empty( $fonts ) ) {
 						preg_match_all( '@\.el-(\w+)::before@', $fonts, $matches );
 						foreach ( $matches[1] as $item ) {
@@ -398,26 +396,26 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 					 */
 
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					$font_icons = apply_filters( 'redux/font-icons', $data );
+					$font_icons = apply_filters_deprecated( 'redux/font-icons', array( $data ), '4.3', 'redux/$opt_name/field/font/icons' );
 
 					/**
-					 * Filter 'redux/{opt_name_triger}/field/font/icons'
+					 * Filter 'redux/{opt_name}/field/font/icons'
 					 *
 					 * @param array $font_icons array of elusive icon classes
-					 *
-					 * @deprecated
 					 */
 
 					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					$font_icons = apply_filters( "redux/$opt_name_triger/field/font/icons", $font_icons );
+					$data = apply_filters( "redux/$opt_name/field/font/icons", $font_icons );
 
 					break;
 
 				case 'dashicons':
 				case 'dashicon':
 				case 'dash':
-					$fs    = Redux_Filesystem::get_instance();
-					$fonts = $fs->get_contents( ABSPATH . WPINC . '/css/dashicons.css' );
+					//$fs    = Redux_Filesystem::get_instance();
+					$fp = fopen( ABSPATH . WPINC . '/css/dashicons.css', 'r' );
+					$fonts = fread( $fp, 8192 );
+					fclose( $fp );
 					if ( ! empty( $fonts ) ) {
 						preg_match_all( '@\.dashicons-(\w+):before@', $fonts, $matches );
 						foreach ( $matches[1] as $item ) {
@@ -461,7 +459,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 				case 'capability_group':
 					global $wp_roles;
 
-					foreach ( $wp_roles->roles as $k => $role ) {
+					foreach ( $wp_roles->roles as $role ) {
 						$caps = array();
 						foreach ( $role['capabilities'] as $key => $cap ) {
 							$caps[ $key ] = ucwords( str_replace( '_', ' ', $key ) );
@@ -473,9 +471,10 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 					break;
 
 				case 'callback':
-					if ( ! empty( $args ) ) {
+					if ( ! empty( $args ) && is_string( $args ) && function_exists( $args ) ) {
 						$data = call_user_func( $args, $current_value );
 					}
+
 					break;
 			}
 
@@ -535,7 +534,7 @@ if ( ! class_exists( 'Redux_WordPress_Data', false ) ) {
 		private function maybe_translate( &$value, $post_type ) {
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			$value = apply_filters( "redux/options/$this->opt_name_triger/wordpress_data/translate/post_type_value", $value, $post_type );
+			$value = apply_filters( "redux/options/$this->opt_name/wordpress_data/translate/post_type_value", $value, $post_type );
 
 			// WPML Integration, see https://wpml.org/documentation/support/creating-multilingual-wordpress-themes/language-dependent-ids/.
 			if ( function_exists( 'icl_object_id' ) ) {

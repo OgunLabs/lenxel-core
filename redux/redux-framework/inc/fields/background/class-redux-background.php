@@ -107,7 +107,7 @@ if ( ! class_exists( 'Redux_Background', false ) ) {
 					'index' => 'color',
 				);
 
-				echo Redux_Functions_Ex::output_alpha_data( $data);
+				echo Redux_Functions_Ex::output_alpha_data( $data ); // phpcs:ignore WordPress.Security.EscapeOutput
 
 				echo '>';
 
@@ -118,7 +118,7 @@ if ( ! class_exists( 'Redux_Background', false ) ) {
 					if ( 'transparent' === $this->value['background-color'] ) {
 						$is_checked = ' checked="checked"';
 					}
-					echo '<label for="' . esc_attr( $this->field['id'] ) . '-transparency" class="color-transparency-check"><input type="checkbox" class="checkbox color-transparency redux-background-input ' . esc_attr( $this->field['class'] ) . '" id="' . esc_attr( $this->field['id'] ) . '-transparency" data-id="' . esc_attr( $this->field['id'] ) . '-color" value="1" ' . esc_html( $is_checked ) . '> ' . esc_html__( 'Transparent', 'lenxel-core' ) . '</label>';
+					echo '<label for="' . esc_attr( $this->field['id'] ) . '-transparency" class="color-transparency-check"><input type="checkbox" class="checkbox color-transparency redux-background-input ' . esc_attr( $this->field['class'] ) . '" id="' . esc_attr( $this->field['id'] ) . '-transparency" data-id="' . esc_attr( $this->field['id'] ) . '-color" value="1" ' . esc_html( $is_checked ) . '> ' . esc_html__( 'Transparent', 'redux-framework' ) . '</label>';
 				}
 
 				if ( true === $this->field['background-repeat'] || true === $this->field['background-position'] || true === $this->field['background-attachment'] ) {
@@ -126,118 +126,116 @@ if ( ! class_exists( 'Redux_Background', false ) ) {
 				}
 			}
 
-			if ( $this->field['background-image'] ) {
-				if ( true === $this->field['background-repeat'] ) {
-					$array = array(
-						'no-repeat' => esc_html__( 'No Repeat', 'lenxel-core' ),
-						'repeat'    => esc_html__( 'Repeat All', 'lenxel-core' ),
-						'repeat-x'  => esc_html__( 'Repeat Horizontally', 'lenxel-core' ),
-						'repeat-y'  => esc_html__( 'Repeat Vertically', 'lenxel-core' ),
-						'inherit'   => esc_html__( 'Inherit', 'lenxel-core' ),
-					);
+			if ( true === $this->field['background-repeat'] ) {
+				$array = array(
+					'no-repeat' => esc_html__( 'No Repeat', 'redux-framework' ),
+					'repeat'    => esc_html__( 'Repeat All', 'redux-framework' ),
+					'repeat-x'  => esc_html__( 'Repeat Horizontally', 'redux-framework' ),
+					'repeat-y'  => esc_html__( 'Repeat Vertically', 'redux-framework' ),
+					'inherit'   => esc_html__( 'Inherit', 'redux-framework' ),
+				);
 
-					echo '<select id="' . esc_attr( $this->field['id'] ) . '-repeat-select" data-placeholder="' . esc_html__( 'Background Repeat', 'lenxel-core' ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[background-repeat]" class="redux-select-item redux-background-input redux-background-repeat ' . esc_attr( $this->field['class'] ) . '"' . esc_attr( $select2_data ) . '>';
-					echo '<option></option>';
+				echo '<select id="' . esc_attr( $this->field['id'] ) . '-repeat-select" data-placeholder="' . esc_html__( 'Background Repeat', 'redux-framework' ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[background-repeat]" class="redux-select-item redux-background-input redux-background-repeat ' . esc_attr( $this->field['class'] ) . '"' . esc_attr( $select2_data ) . '>';
+				echo '<option></option>';
 
-					foreach ( $array as $k => $v ) {
-						echo '<option value="' . esc_attr( $k ) . '" ' . selected( $this->value['background-repeat'], $k, false ) . '>' . esc_html( $v ) . '</option>';
-					}
-
-					echo '</select>';
+				foreach ( $array as $k => $v ) {
+					echo '<option value="' . esc_attr( $k ) . '" ' . selected( $this->value['background-repeat'], $k, false ) . '>' . esc_html( $v ) . '</option>';
 				}
 
-				if ( true === $this->field['background-clip'] ) {
-					$array = array(
-						'inherit'     => esc_html__( 'Inherit', 'lenxel-core' ),
-						'border-box'  => esc_html__( 'Border Box', 'lenxel-core' ),
-						'content-box' => esc_html__( 'Content Box', 'lenxel-core' ),
-						'padding-box' => esc_html__( 'Padding Box', 'lenxel-core' ),
-					);
+				echo '</select>';
+			}
 
-					echo '<select id="' . esc_attr( $this->field['id'] ) . '-clip-select" data-placeholder="' . esc_html__( 'Background Clip', 'lenxel-core' ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[background-clip]" class="redux-select-item redux-background-input redux-background-clip ' . esc_attr( $this->field['class'] ) . '"' . esc_attr( $select2_data ) . '>';
-					echo '<option></option>';
+			if ( true === $this->field['background-clip'] ) {
+				$array = array(
+					'inherit'     => esc_html__( 'Inherit', 'redux-framework' ),
+					'border-box'  => esc_html__( 'Border Box', 'redux-framework' ),
+					'content-box' => esc_html__( 'Content Box', 'redux-framework' ),
+					'padding-box' => esc_html__( 'Padding Box', 'redux-framework' ),
+				);
 
-					foreach ( $array as $k => $v ) {
-						echo '<option value="' . esc_attr( $k ) . '" ' . selected( $this->value['background-clip'], $k, false ) . '>' . esc_html( $v ) . '</option>';
-					}
+				echo '<select id="' . esc_attr( $this->field['id'] ) . '-clip-select" data-placeholder="' . esc_html__( 'Background Clip', 'redux-framework' ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[background-clip]" class="redux-select-item redux-background-input redux-background-clip ' . esc_attr( $this->field['class'] ) . '"' . esc_attr( $select2_data ) . '>';
+				echo '<option></option>';
 
-					echo '</select>';
+				foreach ( $array as $k => $v ) {
+					echo '<option value="' . esc_attr( $k ) . '" ' . selected( $this->value['background-clip'], $k, false ) . '>' . esc_html( $v ) . '</option>';
 				}
 
-				if ( true === $this->field['background-origin'] ) {
-					$array = array(
-						'inherit'     => esc_html__( 'Inherit', 'lenxel-core' ),
-						'border-box'  => esc_html__( 'Border Box', 'lenxel-core' ),
-						'content-box' => esc_html__( 'Content Box', 'lenxel-core' ),
-						'padding-box' => esc_html__( 'Padding Box', 'lenxel-core' ),
-					);
+				echo '</select>';
+			}
 
-					echo '<select id="' . esc_attr( $this->field['id'] ) . '-origin-select" data-placeholder="' . esc_html__( 'Background Origin', 'lenxel-core' ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[background-origin]" class="redux-select-item redux-background-input redux-background-origin ' . esc_attr( $this->field['class'] ) . '"' . esc_attr( $select2_data ) . '>';
-					echo '<option></option>';
+			if ( true === $this->field['background-origin'] ) {
+				$array = array(
+					'inherit'     => esc_html__( 'Inherit', 'redux-framework' ),
+					'border-box'  => esc_html__( 'Border Box', 'redux-framework' ),
+					'content-box' => esc_html__( 'Content Box', 'redux-framework' ),
+					'padding-box' => esc_html__( 'Padding Box', 'redux-framework' ),
+				);
 
-					foreach ( $array as $k => $v ) {
-						echo '<option value="' . esc_attr( $k ) . '" ' . selected( $this->value['background-origin'], $k, false ) . '>' . esc_html( $v ) . '</option>';
-					}
+				echo '<select id="' . esc_attr( $this->field['id'] ) . '-origin-select" data-placeholder="' . esc_html__( 'Background Origin', 'redux-framework' ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[background-origin]" class="redux-select-item redux-background-input redux-background-origin ' . esc_attr( $this->field['class'] ) . '"' . esc_attr( $select2_data ) . '>';
+				echo '<option></option>';
 
-					echo '</select>';
+				foreach ( $array as $k => $v ) {
+					echo '<option value="' . esc_attr( $k ) . '" ' . selected( $this->value['background-origin'], $k, false ) . '>' . esc_html( $v ) . '</option>';
 				}
 
-				if ( true === $this->field['background-size'] ) {
-					$array = array(
-						'inherit' => esc_html__( 'Inherit', 'lenxel-core' ),
-						'cover'   => esc_html__( 'Cover', 'lenxel-core' ),
-						'contain' => esc_html__( 'Contain', 'lenxel-core' ),
-					);
+				echo '</select>';
+			}
 
-					echo '<select id="' . esc_attr( $this->field['id'] ) . '-size-select" data-placeholder="' . esc_html__( 'Background Size', 'lenxel-core' ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[background-size]" class="redux-select-item redux-background-input redux-background-size ' . esc_attr( $this->field['class'] ) . '"' . esc_attr( $select2_data ) . '>';
-					echo '<option></option>';
+			if ( true === $this->field['background-size'] ) {
+				$array = array(
+					'inherit' => esc_html__( 'Inherit', 'redux-framework' ),
+					'cover'   => esc_html__( 'Cover', 'redux-framework' ),
+					'contain' => esc_html__( 'Contain', 'redux-framework' ),
+				);
 
-					foreach ( $array as $k => $v ) {
-						echo '<option value="' . esc_attr( $k ) . '" ' . selected( $this->value['background-size'], $k, false ) . '>' . esc_html( $v ) . '</option>';
-					}
+				echo '<select id="' . esc_attr( $this->field['id'] ) . '-size-select" data-placeholder="' . esc_html__( 'Background Size', 'redux-framework' ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[background-size]" class="redux-select-item redux-background-input redux-background-size ' . esc_attr( $this->field['class'] ) . '"' . esc_attr( $select2_data ) . '>';
+				echo '<option></option>';
 
-					echo '</select>';
+				foreach ( $array as $k => $v ) {
+					echo '<option value="' . esc_attr( $k ) . '" ' . selected( $this->value['background-size'], $k, false ) . '>' . esc_html( $v ) . '</option>';
 				}
 
-				if ( true === $this->field['background-attachment'] ) {
-					$array = array(
-						'fixed'   => esc_html__( 'Fixed', 'lenxel-core' ),
-						'scroll'  => esc_html__( 'Scroll', 'lenxel-core' ),
-						'inherit' => esc_html__( 'Inherit', 'lenxel-core' ),
-					);
+				echo '</select>';
+			}
 
-					echo '<select id="' . esc_attr( $this->field['id'] ) . '-attachment-select" data-placeholder="' . esc_html__( 'Background Attachment', 'lenxel-core' ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[background-attachment]" class="redux-select-item redux-background-input redux-background-attachment ' . esc_attr( $this->field['class'] ) . '"' . esc_attr( $select2_data ) . '>';
-					echo '<option></option>';
+			if ( true === $this->field['background-attachment'] ) {
+				$array = array(
+					'fixed'   => esc_html__( 'Fixed', 'redux-framework' ),
+					'scroll'  => esc_html__( 'Scroll', 'redux-framework' ),
+					'inherit' => esc_html__( 'Inherit', 'redux-framework' ),
+				);
 
-					foreach ( $array as $k => $v ) {
-						echo '<option value="' . esc_attr( $k ) . '" ' . selected( $this->value['background-attachment'], $k, false ) . '>' . esc_html( $v ) . '</option>';
-					}
+				echo '<select id="' . esc_attr( $this->field['id'] ) . '-attachment-select" data-placeholder="' . esc_html__( 'Background Attachment', 'redux-framework' ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[background-attachment]" class="redux-select-item redux-background-input redux-background-attachment ' . esc_attr( $this->field['class'] ) . '"' . esc_attr( $select2_data ) . '>';
+				echo '<option></option>';
 
-					echo '</select>';
+				foreach ( $array as $k => $v ) {
+					echo '<option value="' . esc_attr( $k ) . '" ' . selected( $this->value['background-attachment'], $k, false ) . '>' . esc_html( $v ) . '</option>';
 				}
 
-				if ( true === $this->field['background-position'] ) {
-					$array = array(
-						'left top'      => esc_html__( 'Left Top', 'lenxel-core' ),
-						'left center'   => esc_html__( 'Left center', 'lenxel-core' ),
-						'left bottom'   => esc_html__( 'Left Bottom', 'lenxel-core' ),
-						'center top'    => esc_html__( 'Center Top', 'lenxel-core' ),
-						'center center' => esc_html__( 'Center Center', 'lenxel-core' ),
-						'center bottom' => esc_html__( 'Center Bottom', 'lenxel-core' ),
-						'right top'     => esc_html__( 'Right Top', 'lenxel-core' ),
-						'right center'  => esc_html__( 'Right center', 'lenxel-core' ),
-						'right bottom'  => esc_html__( 'Right Bottom', 'lenxel-core' ),
-					);
+				echo '</select>';
+			}
 
-					echo '<select id="' . esc_attr( $this->field['id'] ) . '-position-select" data-placeholder="' . esc_html__( 'Background Position', 'lenxel-core' ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[background-position]" class="redux-select-item redux-background-input redux-background-position ' . esc_attr( $this->field['class'] ) . '"' . esc_attr( $select2_data ) . '>';
-					echo '<option></option>';
+			if ( true === $this->field['background-position'] ) {
+				$array = array(
+					'left top'      => esc_html__( 'Left Top', 'redux-framework' ),
+					'left center'   => esc_html__( 'Left center', 'redux-framework' ),
+					'left bottom'   => esc_html__( 'Left Bottom', 'redux-framework' ),
+					'center top'    => esc_html__( 'Center Top', 'redux-framework' ),
+					'center center' => esc_html__( 'Center Center', 'redux-framework' ),
+					'center bottom' => esc_html__( 'Center Bottom', 'redux-framework' ),
+					'right top'     => esc_html__( 'Right Top', 'redux-framework' ),
+					'right center'  => esc_html__( 'Right center', 'redux-framework' ),
+					'right bottom'  => esc_html__( 'Right Bottom', 'redux-framework' ),
+				);
 
-					foreach ( $array as $k => $v ) {
-						echo '<option value="' . esc_attr( $k ) . '" ' . selected( $this->value['background-position'], $k, false ) . '>' . esc_html( $v ) . '</option>';
-					}
+				echo '<select id="' . esc_attr( $this->field['id'] ) . '-position-select" data-placeholder="' . esc_html__( 'Background Position', 'redux-framework' ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[background-position]" class="redux-select-item redux-background-input redux-background-position ' . esc_attr( $this->field['class'] ) . '"' . esc_attr( $select2_data ) . '>';
+				echo '<option></option>';
 
-					echo '</select>';
+				foreach ( $array as $k => $v ) {
+					echo '<option value="' . esc_attr( $k ) . '" ' . selected( $this->value['background-position'], $k, false ) . '>' . esc_html( $v ) . '</option>';
 				}
+
+				echo '</select>';
 			}
 
 			if ( $this->field['background-image'] ) {
@@ -258,12 +256,11 @@ if ( ! class_exists( 'Redux_Background', false ) ) {
 						} elseif ( ! empty( $this->field['default']['background-image'] ) ) {
 							$this->value['background-image'] = $this->field['default']['background-image'];
 						}
-					} else {
-						if ( is_numeric( $this->field['default'] ) ) { // Check if it's an attachment ID.
+					} elseif ( is_numeric( $this->field['default'] ) ) {
+						// Check if it's an attachment ID.
 							$this->value['media']['id'] = $this->field['default'];
-						} else { // Must be a URL.
-							$this->value['background-image'] = $this->field['default'];
-						}
+					} else { // Must be a URL.
+						$this->value['background-image'] = $this->field['default'];
 					}
 				}
 
@@ -284,13 +281,13 @@ if ( ! class_exists( 'Redux_Background', false ) ) {
 					$hide = '';
 				}
 
-				$placeholder = $this->field['placeholder'] ?? esc_html__( 'No media selected', 'lenxel-core' );
+				$placeholder = $this->field['placeholder'] ?? esc_html__( 'No media selected', 'redux-framework' );
 
-				echo '<input placeholder="' . esc_html( $placeholder ) . '" type="text" class="redux-background-input ' . esc_attr( $hide ) . 'upload ' . esc_attr( $this->field['class'] ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[background-image]" id="' . esc_attr( $this->parent->args['opt_name_triger'] ) . '[' . esc_attr( $this->field['id'] ) . '][background-image]" value="' . esc_url( $this->value['background-image'] ) . '" />';
-				echo '<input type="hidden" class="upload-id ' . esc_attr( $this->field['class'] ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[media][id]" id="' . esc_attr( $this->parent->args['opt_name_triger'] ) . '[' . esc_attr( $this->field['id'] ) . '][media][id]" value="' . esc_attr( $this->value['media']['id'] ) . '" />';
-				echo '<input type="hidden" class="upload-height" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[media][height]" id="' . esc_attr( $this->parent->args['opt_name_triger'] ) . '[' . esc_attr( $this->field['id'] ) . '][media][height]" value="' . esc_attr( $this->value['media']['height'] ) . '" />';
-				echo '<input type="hidden" class="upload-width" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[media][width]" id="' . esc_attr( $this->parent->args['opt_name_triger'] ) . '[' . esc_attr( $this->field['id'] ) . '][media][width]" value="' . esc_attr( $this->value['media']['width'] ) . '" />';
-				echo '<input type="hidden" class="upload-thumbnail" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[media][thumbnail]" id="' . esc_attr( $this->parent->args['opt_name_triger'] ) . '[' . esc_attr( $this->field['id'] ) . '][media][thumbnail]" value="' . esc_url( $this->value['media']['thumbnail'] ) . '" />';
+				echo '<input placeholder="' . esc_html( $placeholder ) . '" type="text" class="redux-background-input ' . esc_attr( $hide ) . 'upload ' . esc_attr( $this->field['class'] ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[background-image]" id="' . esc_attr( $this->parent->args['opt_name'] ) . '[' . esc_attr( $this->field['id'] ) . '][background-image]" value="' . esc_url( $this->value['background-image'] ) . '" />';
+				echo '<input type="hidden" class="upload-id ' . esc_attr( $this->field['class'] ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[media][id]" id="' . esc_attr( $this->parent->args['opt_name'] ) . '[' . esc_attr( $this->field['id'] ) . '][media][id]" value="' . esc_attr( $this->value['media']['id'] ) . '" />';
+				echo '<input type="hidden" class="upload-height" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[media][height]" id="' . esc_attr( $this->parent->args['opt_name'] ) . '[' . esc_attr( $this->field['id'] ) . '][media][height]" value="' . esc_attr( $this->value['media']['height'] ) . '" />';
+				echo '<input type="hidden" class="upload-width" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[media][width]" id="' . esc_attr( $this->parent->args['opt_name'] ) . '[' . esc_attr( $this->field['id'] ) . '][media][width]" value="' . esc_attr( $this->value['media']['width'] ) . '" />';
+				echo '<input type="hidden" class="upload-thumbnail" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[media][thumbnail]" id="' . esc_attr( $this->parent->args['opt_name'] ) . '[' . esc_attr( $this->field['id'] ) . '][media][thumbnail]" value="' . esc_url( $this->value['media']['thumbnail'] ) . '" />';
 
 				// Preview.
 				$hide = '';
@@ -329,14 +326,14 @@ if ( ! class_exists( 'Redux_Background', false ) ) {
 				echo '<div class="upload_button_div">';
 
 				// If the user has WP3.5+ show upload/remove button.
-				echo '<span class="button redux-background-upload" id="' . esc_attr( $this->field['id'] ) . '-media">' . esc_html__( 'Upload', 'lenxel-core' ) . '</span>';
+				echo '<span class="button redux-background-upload" id="' . esc_attr( $this->field['id'] ) . '-media">' . esc_html__( 'Upload', 'redux-framework' ) . '</span>';
 
 				$hide = '';
 				if ( empty( $this->value['background-image'] ) || '' === $this->value['background-image'] ) {
 					$hide = ' hide';
 				}
 
-				echo '<span class="button removeCSS redux-remove-background' . esc_attr( $hide ) . '" id="reset_' . esc_attr( $this->field['id'] ) . '" rel="' . esc_attr( $this->field['id'] ) . '">' . esc_html__( 'Remove', 'lenxel-core' ) . '</span>';
+				echo '<span class="button removeCSS redux-remove-background' . esc_attr( $hide ) . '" id="reset_' . esc_attr( $this->field['id'] ) . '" rel="' . esc_attr( $this->field['id'] ) . '">' . esc_html__( 'Remove', 'redux-framework' ) . '</span>';
 
 				echo '</div>';
 			}
@@ -369,10 +366,8 @@ if ( ! class_exists( 'Redux_Background', false ) ) {
 		public function enqueue() {
 			if ( function_exists( 'wp_enqueue_media' ) ) {
 				wp_enqueue_media();
-			} else {
-				if ( ! wp_script_is( 'media-upload' ) ) {
-					wp_enqueue_script( 'media-upload' );
-				}
+			} elseif ( ! wp_script_is( 'media-upload' ) ) {
+				wp_enqueue_script( 'media-upload' );
 			}
 
 			if ( ! wp_style_is( 'select2-css' ) ) {
@@ -386,7 +381,7 @@ if ( ! class_exists( 'Redux_Background', false ) ) {
 			$dep_array = array( 'jquery', 'wp-color-picker', 'select2-js', 'redux-js' );
 
 			wp_enqueue_script(
-				'redux-field-background-js',
+				'redux-field-background',
 				Redux_Core::$url . 'inc/fields/background/redux-background' . Redux_Functions::is_min() . '.js',
 				$dep_array,
 				$this->timestamp,
@@ -395,13 +390,13 @@ if ( ! class_exists( 'Redux_Background', false ) ) {
 
 			if ( $this->parent->args['dev_mode'] ) {
 				wp_enqueue_style(
-					'redux-field-background-css',
+					'redux-field-background',
 					Redux_Core::$url . 'inc/fields/background/redux-background.css',
 					array(),
 					$this->timestamp
 				);
 
-				wp_enqueue_style( 'redux-color-picker-css' );
+				wp_enqueue_style( 'redux-color-picker' );
 			}
 		}
 

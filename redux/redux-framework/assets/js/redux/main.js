@@ -7,8 +7,9 @@
 
 	$( document ).ready(
 		function() {
-			var opt_name_triger;
+			var opt_name;
 			var tempArr = [];
+			var container;
 
 			$.fn.isOnScreen = function() {
 				var win;
@@ -42,22 +43,24 @@
 				$( '.wp-full-overlay-sidebar' ).addClass( 'redux-container' );
 			}
 
-			$( '.redux-container' ).each(
-				function() {
-					opt_name_triger = $.redux.getOptName( this );
+			container = $( '.redux-container' );
 
-					if ( $.inArray( opt_name_triger, tempArr ) === -1 ) {
-						tempArr.push( opt_name_triger );
+			container.each(
+				function() {
+					opt_name = $.redux.getOptName( this );
+
+					if ( $.inArray( opt_name, tempArr ) === -1 ) {
+						tempArr.push( opt_name );
 						$.redux.checkRequired( $( this ) );
 						$.redux.initEvents( $( this ) );
 					}
 				}
 			);
 
-			$( '.redux-container' ).on(
+			container.on(
 				'click',
 				function() {
-					opt_name_triger = $.redux.getOptName( this );
+					opt_name = $.redux.getOptName( this );
 				}
 			);
 
@@ -124,7 +127,7 @@
 	};
 
 	$.redux.disableFields = function() {
-		$( 'label[for="redux_disable_field"]' ).each(
+		$( 'tr.redux_disable_field' ).each(
 			function() {
 				$( this ).parents( 'tr' ).find( 'fieldset:first' ).find( 'input, select, textarea' ).attr( 'name', '' );
 			}
@@ -132,18 +135,15 @@
 	};
 
 	$.redux.hideFields = function() {
-		$( 'label[for="redux_hide_field"]' ).each(
+		$( 'tr.redux_hide_field' ).each(
 			function() {
-				var tr = $( this ).parent().parent();
-
-				$( tr ).addClass( 'hidden' );
+				$( this ).addClass( 'hidden' );
 			}
 		);
 	};
 
 	$.redux.getOptName = function( el ) {
 		var metabox;
-		var li;
 		var optName;
 		var item = $( el );
 
@@ -153,7 +153,7 @@
 			optName = $( el ).parents( '.redux-wrap-div' ).data( 'opt-name' );
 		}
 
-		// Compatibility for metaboxes
+		// Compatibility for metaboxes.
 		if ( undefined === optName ) {
 			metabox = $( el ).parents( '.postbox' );
 			if ( 0 === metabox.length ) {
@@ -178,7 +178,7 @@
 			optName = $( el ).find( '.redux-form-wrapper' ).data( 'opt-name' );
 		}
 
-		// Shim, let's just get an opt_name_triger shall we?!
+		// Shim, let's just get an opt_name shall we?!
 		if ( undefined === optName ) {
 			optName = redux.opt_names[0];
 		}

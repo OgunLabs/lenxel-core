@@ -34,7 +34,7 @@ class LNXElement_Rev_Slider extends \Elementor\Widget_Shortcode{
      * @return string Widget title.
      */
     public function get_title() {
-        return __('LNX Revolution Slider', 'lenxel-core');
+        return esc_html__('LNX Revolution Slider', 'lenxel-core');
     }
 
     /**
@@ -74,19 +74,19 @@ class LNXElement_Rev_Slider extends \Elementor\Widget_Shortcode{
                 $revsliders[ $slider->getAlias() ] = $slider->getTitle();
             }
         } else {
-            $revsliders[ __( 'No sliders found', 'lenxel-core' ) ] = 0;
+            $revsliders[ esc_html__( 'No sliders found', 'lenxel-core' ) ] = 0;
         }
 
         $this->start_controls_section(
             'section_content',
             [
-                'label' => __('Content', 'lenxel-core'),
+                'label' => esc_html__('Content', 'lenxel-core'),
             ]
         );
         $this->add_control(
             'alias_slider',
             [
-                'label'   => __( 'Choose Slider:', 'lenxel-core' ),
+                'label'   => esc_html__( 'Choose Slider:', 'lenxel-core' ),
                 'type'    => Controls_Manager::SELECT,
                 'label_block' => true,
                 'options' => $revsliders
@@ -107,7 +107,7 @@ class LNXElement_Rev_Slider extends \Elementor\Widget_Shortcode{
         global $rs_loaded_by_editor;
         if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) $rs_loaded_by_editor = true;
             $settings = $this->get_settings_for_display();
-            printf( '<div class="lnx-element-%s lnx-element">', $this->get_name() );
+            printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
                 include(LENXEL_PLUGIN_DIR . 'elementor/templates/rev-slider.php');
             print '</div>';
         if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) $rs_loaded_by_editor = false;

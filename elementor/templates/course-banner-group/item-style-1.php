@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    use Elementor\Group_Control_Image_Size;
 
    $image_id = $banner['image']['id']; 
@@ -31,7 +32,7 @@
       
       <?php if($image_url){ ?>
          <div class="banner-image">
-            <img src="<?php echo esc_url($image_url) ?>" alt="<?php echo esc_html($banner['title']) ?>" />
+            <img src="<?php echo esc_url($image_url) ?>" alt="<?php echo esc_attr($banner['title']) ?>" />
          </div>
       <?php } ?>
 
@@ -39,18 +40,18 @@
          <?php 
             if ( $settings['show_number_content'] == 'yes' && $term ) {
                if(!empty($banner['term_slug'])){
-                  echo '<div class="number-course">' . $term->count . ' ' . $settings['text_suffix_number'] . '</div>';
+                  echo '<div class="number-course">' . esc_html($term->count) . ' ' . wp_kses_post($settings['text_suffix_number']) . '</div>';
                }
             } 
          ?>
          <div class="clearfix"></div>
          <?php if($banner['title']){ ?>
-            <h3 class="title"><?php echo $banner['title'] ?></h3>
+            <h3 class="title"><?php echo esc_html($banner['title']); ?></h3>
          <?php } ?>
       </div>
 
       <?php if($link_term){ ?>
-         <a class="link-term-overlay" href="<?php echo esc_url($link_term); ?>" <?php echo $target ?>></a>
+         <a class="link-term-overlay" href="<?php echo esc_url($link_term); ?>" <?php echo esc_attr($target); ?>></a>
       <?php } ?>
                
    </div>

@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    $filter_order = $settings['filter_order'] == 'yes' ? 'order-disable' : ''; 
    $layout = 'filter-layout-top';
    if( $settings['layout'] == 'filter-layout-left'){
@@ -9,12 +10,12 @@
 
    $pagination = $settings['pagination'] == 'yes' ? 'enable-pagination' : 'disable-pagination';
 
-   $this->add_render_attribute( 'block', 'class', ['el-course-filter', $filter_order, $layout, $pagination] );
+   $this->add_render_attribute( ['block' => ['class' => ['el-course-filter', $filter_order, $layout, $pagination]]] );
 
    $course_filter = (bool) tutor_utils()->get_option('course_archive_filter', false);
    $supported_filters = tutor_utils()->get_option('supported_course_filters', array());
 ?>
-   <div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+   <div <?php $this->print_render_attribute_string('carousel'); ?>>
       <div class="content-inner">
          
          <?php if($course_filter && count($supported_filters)){ ?>
@@ -26,7 +27,7 @@
                </div>
                <div class="filter-course-results clearfix">
                   <a href="#" class="btn-control-sidebar btn-theme"><i class="las la-bars"></i><?php echo esc_html__('Show Sidebar', 'lenxel-core') ?></a>
-                  <div class="<?php tutor_container_classes(); ?> tutor-course-filter-loop-container" data-column_per_row="<?php echo tutor_utils()->get_option( 'courses_col_per_row', 4 ); ?>">
+                  <div class="<?php tutor_container_classes(); ?> tutor-course-filter-loop-container" data-column_per_row="<?php echo esc_attr(tutor_utils()->get_option( 'courses_col_per_row', 4 )); ?>">
                   
                         <?php include $this->get_template('course-filter/course-init.php'); ?>
                         

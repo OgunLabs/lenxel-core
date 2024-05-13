@@ -1,13 +1,14 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	$filter_object = new \TUTOR\Course_Filter();
 	$filter_levels = array(
-		'beginner'=> __('Beginner', 'lenxel-core'),
-		'intermediate'=> __('Intermediate', 'lenxel-core'),
-		'expert'=> __('Expert', 'lenxel-core')
+		'beginner'=> esc_html__('Beginner', 'lenxel-core'),
+		'intermediate'=> esc_html__('Intermediate', 'lenxel-core'),
+		'expert'=> esc_html__('Expert', 'lenxel-core')
 	);
 	$filter_prices=array(
-		'free'=> __('Free', 'lenxel-core'),
-		'paid'=> __('Paid', 'lenxel-core')
+		'free'=> esc_html__('Free', 'lenxel-core'),
+		'paid'=> esc_html__('Paid', 'lenxel-core')
 	);
 
 	$supported_filters = tutor_utils()->get_option('supported_course_filters', array());
@@ -41,7 +42,7 @@
 	<?php if(in_array('category', $supported_filters) && $settings['search_category'] == 'yes'){ ?>
 		<div class="course-filter_category course-checkbox-filter">
 			<?php if($settings['label_input'] == 'yes'){ ?>
-				<label class="title-field"><?php _e('Category', 'lenxel-core'); ?></label>
+				<label class="title-field"><?php esc_html_e('Category', 'lenxel-core'); ?></label>
 			<?php } ?>	
 			<div class="show-results" data-placehoder="<?php echo esc_attr($settings['placeholder_category']) ?>">
 				<div class="content-inner"><?php echo esc_html($settings['placeholder_category']) ?></div>
@@ -73,7 +74,7 @@
 	<?php if(in_array('difficulty_level', $supported_filters) && $settings['search_level'] == 'yes'){ ?>
 		<div class="course-filter_level course-checkbox-filter">
 			<?php if($settings['label_input'] == 'yes'){ ?>
-				<label class="title-field"><?php _e('Level', 'lenxel-core'); ?></label>
+				<label class="title-field"><?php esc_html_e('Level', 'lenxel-core'); ?></label>
 			<?php } ?>	
 			<div class="show-results" data-placehoder="<?php echo esc_attr($settings['placeholder_level']) ?>">
 				<div class="content-inner"><?php echo esc_html($settings['placeholder_level']) ?></div>
@@ -82,8 +83,8 @@
 				<div class="content-inner">
 					<?php foreach($filter_levels as $value=>$title){ ?>
 					  	<label>
-							<input type="checkbox" name="tutor-course-filter-level" value="<?php echo $value; ?>"/>&nbsp;
-							<?php echo $title; ?>
+							<input type="checkbox" name="tutor-course-filter-level" value="<?php echo esc_attr($value); ?>"/>&nbsp;
+							<?php echo esc_html($title); ?>
 					  	</label>
 				 	<?php } ?>
 				</div>
@@ -94,7 +95,7 @@
 	<?php if(!$is_membership && in_array('price_type', $supported_filters) && $settings['search_price'] == 'yes'){ ?>
 		<div class="course-filter-price_type course-checkbox-filter">
 			<?php if($settings['label_input'] == 'yes'){ ?>
-				<label class="title-field"><?php _e('Price', 'lenxel-core'); ?></label>
+				<label class="title-field"><?php esc_html_e('Price', 'lenxel-core'); ?></label>
 			<?php } ?>	
 			<div class="show-results" data-placehoder="<?php echo esc_attr($settings['placeholder_price']) ?>">
 				<div class="content-inner"><?php echo esc_html($settings['placeholder_price']) ?></div>
@@ -103,8 +104,8 @@
 				<div class="content-inner">
 					<?php foreach($filter_prices as $value=>$title){ ?>
 					  	<label>
-							<input type="checkbox" name="tutor-course-filter-price" value="<?php echo $value; ?>"/>&nbsp;
-							<?php echo $title; ?>
+							<input type="checkbox" name="tutor-course-filter-price" value="<?php echo esc_attr($value); ?>"/>&nbsp;
+							<?php echo esc_html($title); ?>
 					  	</label>
 				 	<?php } ?>
 				</div>
@@ -122,13 +123,13 @@
 	<input type="hidden" name="only_course_items" value="1" />
 
 	<?php if (isset($_GET['ajax_l_course_filter_ajax']) && check_admin_referer('ajax-l-course-filter-nonce', 'ajax_l_course_filter_ajax')) {	?>	
-	<?php if((isset($_GET['cat']) && $_GET['cat']) && check_ajax_referer('ajax-l-course-filter-nonce', 'ajax_l_course_filter_ajax')){ ?>
+	<?php if((isset($_GET['cat']) && !empty($_GET['cat'])) && check_ajax_referer('ajax-l-course-filter-nonce', 'ajax_l_course_filter_ajax')){ ?>
 	  	<input type="hidden" id="course_cat_filter" name="course_cat_filter" value="<?php echo esc_attr(sanitize_text_field($_GET['cat'])) ?>" />
 	<?php } ?>
-	<?php if((isset($_GET['level']) && $_GET['level']) ){ ?>
+	<?php if((isset($_GET['level']) && !empty($_GET['level'])) ){ ?>
 	  	<input type="hidden" id="course_level_filter" name="course_level_filter" value="<?php echo esc_attr(sanitize_text_field($_GET['level'])) ?>" />
 	<?php } ?>
-	<?php if(isset($_GET['price']) && $_GET['price']){ ?>
+	<?php if(isset($_GET['price']) && !empty($_GET['price'])){ ?>
 	  	<input type="hidden" id="course_price_filter" name="course_price_filter" value="<?php echo esc_attr(sanitize_text_field($_GET['price'])) ?>" />
 	<?php } }?>
 

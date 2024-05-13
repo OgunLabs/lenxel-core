@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 class Lenxel_Listing_Comment_FE extends Lenxel_Listing_Comment{
 
   public static $instance;
@@ -49,7 +50,7 @@ class Lenxel_Listing_Comment_FE extends Lenxel_Listing_Comment{
             <div class="comment-reviews-inner clearfix">
    			  	<?php foreach ( $review_categories as $key => $name) : ?>
       				<div class='review-item'>
-      					<label><?php printf(__('%s','lenxel-core'), $name); ?></label>
+      					<label><?php printf(esc_html__('%s','lenxel-core'), esc_html($name)); ?></label>
       					<div class='stars select-review' data-review-key='<?php echo esc_attr($key); ?>'>
       						<span data-star='5' class="star dashicons dashicons-star-filled"></span>
       						<span data-star='4' class="star dashicons dashicons-star-filled"></span>
@@ -124,7 +125,7 @@ class Lenxel_Listing_Comment_FE extends Lenxel_Listing_Comment{
   public function lenxel_reviews_field_for_listing_owner( $post, $current_user, $is_author ) {
 		if ( $is_author && lenxel_themer_get_theme_option( 'lt_review_allow_owner', 'enable' ) != 'enable' ) {
 			
-			echo sprintf( '<div class="alert alert-warning">%s</div>', wpautop( __( "You can't add a star rating to your own product.", 'lenxel-core' ) ) );
+			echo sprintf( '<div class="alert alert-warning">%s</div>', wpautop( esc_html__( "You can't add a star rating to your own product.", 'lenxel-core' ) ) );
 			add_filter( 'lt_review_field', '__return_false' ); 
 			
 		}

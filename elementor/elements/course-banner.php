@@ -39,8 +39,9 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 	  * @return string Widget title.
 	*/
 	public function get_title() {
-		$get_current_name = load_lenxel_widget_content_element('LNX Banner');
-		 return __($get_current_name, 'lenxel-core');
+		$get_current_name = lenxel_load_widget_content_element('LNX Banner');
+		 $filter_name = 'lenxel/element/'.esc_html($this->get_name());
+		return apply_filters( $filter_name, $get_current_name);
 	}
 
 	/**
@@ -81,13 +82,13 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => __('Content', 'lenxel-core'),
+				'label' => esc_html__('Content', 'lenxel-core'),
 			]
 		);
 		$this->add_control(
 			'subtitle',
 			[
-				'label' => __( 'SubTitle', 'lenxel-core' ),
+				'label' => esc_html__( 'SubTitle', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXT,
 				'label_block'	=> true,
 				'placeholder' => esc_html__( 'Add your Sub Title', 'lenxel-core' ),
@@ -97,7 +98,7 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 		$this->add_control(
 			'title',
 			[
-				'label' => __( 'Title', 'lenxel-core' ),
+				'label' => esc_html__( 'Title', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXT,
 				'label_block'	=> true,
 				'placeholder' => esc_html__( 'Add your Title', 'lenxel-core' ),
@@ -108,7 +109,7 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 		$this->add_control(
 			'taxonomy',
 			[
-				'label' => __( 'Taxonomy', 'lenxel-core' ),
+				'label' => esc_html__( 'Taxonomy', 'lenxel-core' ),
 				'type' => Controls_Manager::SELECT,
 				'label_block'	=> true,
 				'options' => [
@@ -122,7 +123,7 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 		$this->add_control(
 			'term_slug',
 			[
-				'label' => __( 'Region & Category Slug', 'lenxel-core' ),
+				'label' => esc_html__( 'Region & Category Slug', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXT,
 				'label_block'	=> true,
 				'placeholder' => esc_html__( 'Term slug', 'lenxel-core' ),
@@ -132,9 +133,9 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 		$this->add_control(
 			'image',
 			[
-				'label' => __( 'Region & Category Slug', 'lenxel-core' ),
+				'label' => esc_html__( 'Region & Category Slug', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXT,
-				'label'      => __('Choose Image', 'lenxel-core'),
+				'label'      => esc_html__('Choose Image', 'lenxel-core'),
 				'default'    => [
 					 'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/image-1.jpg',
 				],
@@ -149,7 +150,7 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 		$this->add_control(
 			'link_custom',
 			[
-				'label' => __( 'Link Custom', 'lenxel-core' ),
+				'label' => esc_html__( 'Link Custom', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXT,
 				'label_block'	=> true,
 				'default' => ''
@@ -159,7 +160,7 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 		$this->add_control(
 			'image_size',
 			[
-				'label'     => __('Image Size', 'lenxel-core'),
+				'label'     => esc_html__('Image Size', 'lenxel-core'),
 				'type'      => \Elementor\Controls_Manager::SELECT,
 				'options'   => $this->get_thumbnail_size(),
 				'default'   => 'full'
@@ -168,19 +169,19 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 		$this->add_control(
 			'content_align',
 			[
-				'label' => __( 'Alignment Text', 'lenxel-core' ),
+				'label' => esc_html__( 'Alignment Text', 'lenxel-core' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => __( 'Left', 'lenxel-core' ),
+						'title' => esc_html__( 'Left', 'lenxel-core' ),
 						'icon' => 'fa fa-align-left',
 					],
 					'center' => [
-						'title' => __( 'Center', 'lenxel-core' ),
+						'title' => esc_html__( 'Center', 'lenxel-core' ),
 						'icon' => 'fa fa-align-center',
 					],
 					'right' => [
-						'title' => __( 'Right', 'lenxel-core' ),
+						'title' => esc_html__( 'Right', 'lenxel-core' ),
 						'icon' => 'fa fa-align-right',
 					],
 				],
@@ -190,7 +191,7 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 		$this->add_control(
 			'show_number_content',
 			[
-				'label'   => __( 'Show number content', 'lenxel-core' ),
+				'label'   => esc_html__( 'Show number content', 'lenxel-core' ),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'no'
 			]
@@ -202,7 +203,7 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 		  $this->start_controls_section(
 			 'section_style_icon',
 			 [
-				'label' => __( 'Icon', 'lenxel-core' ),
+				'label' => esc_html__( 'Icon', 'lenxel-core' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			 ]
 		  );
@@ -210,7 +211,7 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 		  $this->add_control(
 			 'icon_color',
 			 [
-				'label' => __( 'Icon Color', 'lenxel-core' ),
+				'label' => esc_html__( 'Icon Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -223,7 +224,7 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 		  $this->add_responsive_control(
 			 'icon_size',
 			 [
-				'label' => __( 'Size', 'lenxel-core' ),
+				'label' => esc_html__( 'Size', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 				  'size' => 60
@@ -244,7 +245,7 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 		  $this->add_responsive_control(
 			 'icon_space',
 			 [
-				'label' => __( 'Spacing', 'lenxel-core' ),
+				'label' => esc_html__( 'Spacing', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 				  'size' => 0,
@@ -264,7 +265,7 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 		  $this->add_responsive_control(
 			 'icon_padding',
 			 [
-				'label' => __( 'Padding', 'lenxel-core' ),
+				'label' => esc_html__( 'Padding', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
@@ -278,7 +279,7 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 		  $this->start_controls_section(
 			 'section_style_content',
 			 [
-				'label' => __( 'Content', 'lenxel-core' ),
+				'label' => esc_html__( 'Content', 'lenxel-core' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			 ]
 		  );
@@ -286,7 +287,7 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 		  $this->add_control(
 			 'heading_title',
 			 [
-				'label' => __( 'Title', 'lenxel-core' ),
+				'label' => esc_html__( 'Title', 'lenxel-core' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			 ]
@@ -295,7 +296,7 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 		  $this->add_responsive_control(
 			 'title_bottom_space',
 			 [
-				'label' => __( 'Spacing', 'lenxel-core' ),
+				'label' => esc_html__( 'Spacing', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 				  'px' => [
@@ -315,7 +316,7 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 		  $this->add_control(
 			 'title_color',
 			 [
-				'label' => __( 'Color', 'lenxel-core' ),
+				'label' => esc_html__( 'Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -336,7 +337,7 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 		  $this->add_control(
 			 'heading_description',
 			 [
-				'label' => __( 'Description', 'lenxel-core' ),
+				'label' => esc_html__( 'Description', 'lenxel-core' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 				'condition' => [
@@ -348,7 +349,7 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 		  $this->add_control(
 			 'description_color',
 			 [
-				'label' => __( 'Color', 'lenxel-core' ),
+				'label' => esc_html__( 'Color', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -384,13 +385,14 @@ class LNXElement_Course_Banner extends LNXElement_Base{
 	  * @access protected
 	  */
 	 protected function render() {
-		if ( get_template_restrict()->has_premium){
+		if ( lenxel_get_template_restrict()->has_premium){
 			$settings = $this->get_settings_for_display();
-			printf( '<div class="lnx-element-%s lnx-element">', $this->get_name() );
+			printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
 				include $this->get_template('course-banner.php');
 			print '</div>';
 		}else {
-			printf('%s', $content);
+			$content = '<div></div>';
+			wp_kses($content, array( 'div' ));
 		}
 	 }
 

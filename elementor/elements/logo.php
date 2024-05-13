@@ -43,7 +43,7 @@ class LNXElement_Logo extends LNXElement_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'LNX Logo', 'lenxel-core' );
+		return esc_html__( 'LNX Logo', 'lenxel-core' );
 	}
 
 	/**
@@ -86,23 +86,23 @@ class LNXElement_Logo extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_title',
 			[
-				'label' => __( 'Content', 'lenxel-core' ),
+				'label' => esc_html__( 'Content', 'lenxel-core' ),
 			]
 		);
 		$this->add_control(
 			'title_text',
 			[
-				'label' => __( 'Title', 'lenxel-core' ),
+				'label' => esc_html__( 'Title', 'lenxel-core' ),
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __( 'Enter your title', 'lenxel-core' ),
-				'default' => __( 'Home', 'lenxel-core' ),
+				'placeholder' => esc_html__( 'Enter your title', 'lenxel-core' ),
+				'default' => esc_html__( 'Home', 'lenxel-core' ),
 				'label_block' => true
 			]
 		);
 		$this->add_control(
 			'image',
 			[
-				'label' => __( 'Choose Logo Image', 'lenxel-core' ),
+				'label' => esc_html__( 'Choose Logo Image', 'lenxel-core' ),
 				'type' => Controls_Manager::MEDIA,
 				'label_block' => true,
 				'default' => [
@@ -113,28 +113,28 @@ class LNXElement_Logo extends LNXElement_Base {
 		$this->add_control(
 			'link',
 			[
-				'label' => __( 'Link', 'lenxel-core' ),
+				'label' => esc_html__( 'Link', 'lenxel-core' ),
 				'type' => Controls_Manager::URL,
-				'placeholder' => __( 'https://your-link.com', 'lenxel-core' ),
+				'placeholder' => esc_html__( 'https://your-link.com', 'lenxel-core' ),
 				'label_block' => true
 			]
 		);
 		$this->add_control(
 			'align',
 			[
-				'label' => __( 'Alignment', 'lenxel-core' ),
+				'label' => esc_html__( 'Alignment', 'lenxel-core' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => __( 'Left', 'lenxel-core' ),
+						'title' => esc_html__( 'Left', 'lenxel-core' ),
 						'icon' => 'fa fa-align-left',
 					],
 					'center' => [
-						'title' => __( 'Center', 'lenxel-core' ),
+						'title' => esc_html__( 'Center', 'lenxel-core' ),
 						'icon' => 'fa fa-align-center',
 					],
 					'right' => [
-						'title' => __( 'Right', 'lenxel-core' ),
+						'title' => esc_html__( 'Right', 'lenxel-core' ),
 						'icon' => 'fa fa-align-right',
 					],
 				],
@@ -144,7 +144,7 @@ class LNXElement_Logo extends LNXElement_Base {
 		$this->add_control(
 			'max_width',
 			[
-				'label' => __( 'Max Width', 'lenxel-core' ),
+				'label' => esc_html__( 'Max Width', 'lenxel-core' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -162,14 +162,14 @@ class LNXElement_Logo extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_box_style',
 			[
-				'label' => __( 'Logo Styling', 'lenxel-core' ),
+				'label' => esc_html__( 'Logo Styling', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 		$this->add_responsive_control(
 			'logo_padding',
 			[
-				'label' => __( 'Padding', 'lenxel-core' ),
+				'label' => esc_html__( 'Padding', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
@@ -180,7 +180,7 @@ class LNXElement_Logo extends LNXElement_Base {
 		$this->add_responsive_control(
 			'logo_margin',
 			[
-				'label' => __( 'Margin', 'lenxel-core' ),
+				'label' => esc_html__( 'Margin', 'lenxel-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
@@ -200,7 +200,7 @@ class LNXElement_Logo extends LNXElement_Base {
        $this->add_control(
          'image_border_radius',
          [
-            'label'      => __('Border Radius', 'lenxel-core'),
+            'label'      => esc_html__('Border Radius', 'lenxel-core'),
             'type'       => Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%'],
             'selectors'  => [
@@ -222,7 +222,7 @@ class LNXElement_Logo extends LNXElement_Base {
 	 */
 	protected function render() {
 		
-      printf( '<div class="lnx-element-%s lnx-element">', $this->get_name() );
+      printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
          include $this->get_template('logo.php');
       print '</div>';
 	}

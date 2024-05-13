@@ -1,7 +1,8 @@
 <?php
-  	$this->add_render_attribute( 'block', 'class', [ 'widget gsc-cart-box' ] );
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+  	$this->add_render_attribute( ['block'=> ['class'=> 'widget gsc-cart-box' ]] );
 ?>
-<div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+<div <?php $this->print_render_attribute_string('block'); ?>>
 	<div class="content-inner">
 		
 		<?php if(class_exists('WooCommerce')){ ?>

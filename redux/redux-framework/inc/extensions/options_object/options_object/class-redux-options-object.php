@@ -21,6 +21,8 @@ if ( ! class_exists( 'Redux_Options_Object', false ) ) {
 	 */
 	class Redux_Options_Object extends Redux_Field {
 
+		public $is_field;
+
 		/**
 		 * Redux_Options_Object constructor.
 		 *
@@ -79,7 +81,7 @@ if ( ! class_exists( 'Redux_Options_Object', false ) ) {
 
 			$do_close = false;
 
-			$id = $this->parent->args['opt_name_triger'] . '-' . $this->field['id'];
+			$id = $this->parent->args['opt_name'] . '-' . $this->field['id'];
 
 			if ( ! $this->is_field || ( $this->is_field && false === $full_width ) ) {
 				?>
@@ -97,13 +99,13 @@ if ( ! class_exists( 'Redux_Options_Object', false ) ) {
 					class="redux-field redux-container-<?php echo esc_attr( $this->field['type'] ) . ' ' . esc_attr( $this->field['class'] ); ?>"
 					data-id="<?php echo esc_attr( $this->field['id'] ); ?>">
 
-				<h3><?php esc_html_e( 'Options Object', 'lenxel-core' ); ?></h3>
+				<h3><?php esc_html_e( 'Options Object', 'redux-framework' ); ?></h3>
 				<div id="redux-object-browser"></div>
 				<div id="redux-object-json" class="hide"><?php echo( $json ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
 				<a
 					href="#" id="consolePrintObject"
 					class="button">
-					<?php esc_html_e( 'Show Object in Javascript Console Object', 'lenxel-core' ); ?></a>
+					<?php esc_html_e( 'Show Object in Javascript Console Object', 'redux-framework' ); ?></a>
 
 			</fieldset>
 			<?php if ( true === $do_close ) { ?>
@@ -126,23 +128,23 @@ if ( ! class_exists( 'Redux_Options_Object', false ) ) {
 		 * @return      void
 		 */
 		public function enqueue() {
+			wp_enqueue_script(
+				'redux-extension-options-object',
+				$this->url . 'redux-options-object' . Redux_Functions::is_min() . '.js',
+				array( 'jquery', 'redux-js' ),
+				Redux_Extension_Options_Object::$version,
+				true
+			);
+
 			if ( $this->parent->args['dev_mode'] ) {
-				wp_enqueue_script(
-					'redux-extension-options-object-js',
-					$this->url . 'redux-options-object' . Redux_Functions::is_min() . '.js',
-					array( 'jquery', 'redux-js' ),
+				wp_enqueue_style(
+					'redux-options-object',
+					$this->url . 'redux-options-object.css',
+					array(),
 					Redux_Extension_Options_Object::$version,
-					true
+					'all'
 				);
 			}
-
-			wp_enqueue_style(
-				'redux-options-object',
-				$this->url . 'redux-options-object.css',
-				array(),
-				Redux_Extension_Options_Object::$version,
-				'all'
-			);
 		}
 	}
 }

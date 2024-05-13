@@ -2363,9 +2363,13 @@
 		}
 
 		if (video.type === 'youtube') {
+			//OwlCarousel2 is use to creates video thumbnail and wrap lession video content into owl-video-wrapper div
+			//initial video thumbnail for each video 
 			path = "//img.youtube.com/vi/" + video.id + "/hqdefault.jpg";
 			create(path);
 		} else if (video.type === 'vimeo') {
+			//OwlCarousel2 is use to creates video thumbnail and wrap lession video content into owl-video-wrapper div
+			//initial video thumbnail for each video 
 			$.ajax({
 				type: 'GET',
 				url: '//vimeo.com/api/v2/video/' + video.id + '.json',
@@ -2377,6 +2381,8 @@
 				}
 			});
 		} else if (video.type === 'vzaar') {
+			//OwlCarousel2 is use to creates video thumbnail and wrap lession video content into owl-video-wrapper div
+			//initial video thumbnail for each video 
 			$.ajax({
 				type: 'GET',
 				url: '//vzaar.com/api/videos/' + video.id + '.json',

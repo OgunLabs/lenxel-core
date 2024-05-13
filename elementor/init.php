@@ -35,7 +35,7 @@ if(!class_exists('Lenxel_Elementor_Addons')){
 			require 'elements/heading-block.php';
 			require 'elements/logo.php';
 			require 'elements/posts.php';
-			if(function_exists('get_template_restrict')){
+			if(function_exists('lenxel_get_template_restrict')){
 				require 'elements/image-content.php';
 				require 'elements/cart.php';
 				require 'elements/counter.php';
@@ -82,7 +82,7 @@ if(!class_exists('Lenxel_Elementor_Addons')){
 			Elementor\Plugin::instance()->elements_manager->add_category(
 				'lenxel_elements',
 				array(
-			  		'title' => __('Lenxel Elements', 'lenxel-core'),
+			  		'title' => esc_html__('Lenxel Elements', 'lenxel-core'),
 			  		'icon'  => 'fa fa-plug',
 				),
 			9);
@@ -103,7 +103,7 @@ if(!class_exists('Lenxel_Elementor_Addons')){
 			);
 			wp_register_script('gmap3', LENXEL_PLUGIN_URL . '/elementor/assets/libs/gmap3.min.js'); 
 			wp_register_script('circle-progress', LENXEL_PLUGIN_URL . 'elementor/assets/libs/circle-progress.min.js' , array(), '1.0.0', true);
-			wp_register_script('typed', LENXEL_PLUGIN_URL . 'elementor/assets/libs/typed.min.js' , array(), '1.0.0', true);
+			wp_register_script('typed', LENXEL_PLUGIN_URL . 'elementor/assets/libs/typed.umd.js' , array(), '1.0.0', true);
 	 		
 	 	}
 

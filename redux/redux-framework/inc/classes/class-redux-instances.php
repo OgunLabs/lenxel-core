@@ -6,6 +6,7 @@
  *
  * @package     Redux_Framework/Classes
  * @subpackage  Core
+ * @noinspection PhpIgnoredClassAliasDeclaration
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -27,36 +28,36 @@ if ( ! class_exists( 'Redux_Instances', false ) ) {
 		/**
 		 * Get Instance
 		 * Get Redux_Instances instance
-		 * OR an instance of ReduxFramework by [opt_name_triger]
+		 * OR an instance of ReduxFramework by [opt_name]
 		 *
-		 * @param  string|false $opt_name_triger the defined opt_name_triger.
+		 * @param  string|false $opt_name the defined opt_name.
 		 *
-		 * @return ReduxFramework class instance
+		 * @return ReduxFramework|Redux_Instances class instance
 		 */
-		public static function get_instance( $opt_name_triger = false ) {
+		public static function get_instance( $opt_name = false ) {
 
-			if ( $opt_name_triger && ! empty( self::$instances[ $opt_name_triger ] ) ) {
-				return self::$instances[ $opt_name_triger ];
+			if ( $opt_name && ! empty( self::$instances[ $opt_name ] ) ) {
+				return self::$instances[ $opt_name ];
 			}
 
 			return new self();
 		}
 
 		/**
-		 * Shim for old get_redux_instance method.
+		 * Shim for old lenxel_get_redux_instance method.
 		 *
-		 * @param  string|false $opt_name_triger the defined opt_name_triger.
+		 * @param  string|false $opt_name the defined opt_name.
 		 *
 		 * @return ReduxFramework class instance
 		 */
-		public static function get_redux_instance( $opt_name_triger = '' ) {
-			return self::get_instance( $opt_name_triger );
+		public static function lenxel_get_redux_instance( $opt_name = '' ) {
+			return self::get_instance( $opt_name );
 		}
 
 		/**
 		 * Get all instantiated ReduxFramework instances (so far)
 		 *
-		 * @return [type] [description]
+		 * @return array|null [type] [description]
 		 */
 		public static function get_all_instances(): ?array {
 			return self::$instances;
@@ -82,7 +83,7 @@ if ( ! class_exists( 'Redux_Instances', false ) ) {
 		 */
 		public function store( $redux_framework ) {
 			if ( $redux_framework instanceof ReduxFramework ) {
-				$key                     = $redux_framework->args['opt_name_triger'];
+				$key                     = $redux_framework->args['opt_name'];
 				self::$instances[ $key ] = $redux_framework;
 			}
 		}
@@ -93,27 +94,27 @@ if ( ! class_exists( 'ReduxFrameworkInstances' ) ) {
 	class_alias( 'Redux_Instances', 'ReduxFrameworkInstances' );
 }
 
-if ( ! function_exists( 'get_redux_instance' ) ) {
+if ( ! function_exists( 'lenxel_get_redux_instance' ) ) {
 	/**
 	 * Shim function that some theme oddly used.
 	 *
-	 * @param  string|false $opt_name_triger the defined opt_name_triger.
+	 * @param  string|false $opt_name the defined opt_name.
 	 *
 	 * @return ReduxFramework class instance
 	 */
-	function get_redux_instance( $opt_name_triger ) {
-		return Redux_Instances::get_instance( $opt_name_triger );
+	function lenxel_get_redux_instance( $opt_name ) {
+		return Redux_Instances::get_instance( $opt_name );
 	}
 }
 
-if ( ! function_exists( 'get_all_redux_instances' ) ) {
+if ( ! function_exists( 'lenxel_get_all_redux_instances' ) ) {
 	/**
 	 * Fetch all instances of ReduxFramework
 	 * as an associative array.
 	 *
-	 * @return array        format ['opt_name_triger' => $ReduxFramework]
+	 * @return array        format ['opt_name' => $ReduxFramework]
 	 */
-	function get_all_redux_instances(): ?array {
+	function lenxel_get_all_redux_instances(): ?array {
 		return Redux_Instances::get_all_instances();
 	}
 }

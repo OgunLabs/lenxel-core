@@ -9,9 +9,9 @@
 if ( !defined( 'ABSPATH' ) ) exit;
 
 // Don't duplicate me!
-if ( !class_exists( 'Wbc_Importer_Progress' ) ) {
+if ( !class_exists( 'Lenxel_Wbc_Importer_Progress' ) ) {
 
-	class Wbc_Importer_Progress {
+	class Lenxel_Wbc_Importer_Progress {
 
 		public static $instance;
 
@@ -92,19 +92,19 @@ if ( !class_exists( 'Wbc_Importer_Progress' ) ) {
 
 			// $this->total_posts = $count_post;
 
-			update_option( 'wbc_import_progress',  $progress_array );
+			update_option( 'lenxel_wbc_import_progress',  $progress_array );
 
 			return $posts;
 		}
 
 		// Ajax Request
 		public function ajax_importer_progress() {
-			if ( !isset( $_REQUEST['nonce'] ) || !wp_verify_nonce( $_REQUEST['nonce'], "redux_{$this->parent->args['opt_name_triger']}_wbc_importer" ) ) {
+			if ( !isset( $_REQUEST['nonce'] ) || !wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['nonce'])), "redux_{$this->parent->args['opt_name']}_wbc_importer" ) ) {
 				die( 0 );
 			}
 
 			if ( is_array( $this->get_count() ) ) {
-				echo json_encode( $this->get_count() );
+				wp_send_json($this->get_count()); //json_encode( $this->get_count() );
 			}
 
 			die( 0 );
@@ -113,24 +113,24 @@ if ( !class_exists( 'Wbc_Importer_Progress' ) ) {
 
 		//Update post count totals
 		public function update_count() {
-			$post_count = get_option( 'wbc_import_progress' );
+			$post_count = get_option( 'lenxel_wbc_import_progress' );
 
 			if ( is_array( $post_count ) ) {
 				if ( $post_count['remaining'] > 0 ) {
 					$post_count['remaining']      = $post_count['remaining'] - 1;
 					$post_count['imported_count'] = $post_count['imported_count'] + 1;
-					update_option( 'wbc_import_progress', $post_count );
+					update_option( 'lenxel_wbc_import_progress', $post_count );
 				}else {
 					$post_count['remaining']      = 0;
 					$post_count['imported_count'] = $post_count['total_post'];
-					update_option( 'wbc_import_progress', $post_count );
+					update_option( 'lenxel_wbc_import_progress', $post_count );
 				}
 			}
 		}
 
 		// Returns post count array
 		public function get_count() {
-			return get_option( 'wbc_import_progress' );
+			return get_option( 'lenxel_wbc_import_progress' );
 		}
 
 

@@ -1,19 +1,20 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
   $query = $this->query_posts();
-  $_random = lenxelthemesupport_random_id();
+  $_random = lenxel_themesupport_random_id();
   if ( ! $query->found_posts ) {
 	 return;
   }
 
-	$this->add_render_attribute('wrapper', 'class', ['lnx-course-grid clearfix lnx-course']);
+	$this->add_render_attribute(['wrapper'=> ['class'=> 'lnx-course-grid clearfix lnx-course']]);
    $style = $settings['style'];
 	//add_render_attribute grid
 	$this->get_grid_settings();
 ?>
   
-  <div <?php echo $this->get_render_attribute_string('wrapper'); ?>>
+  <div <?php $this->print_render_attribute_string('wrapper'); ?>>
 		<div class="lnx-content-items"> 
-		  <div <?php echo $this->get_render_attribute_string('grid') ?>>
+		  <div <?php $this->print_render_attribute_string('grid') ?>>
 			 <?php
 				global $post;
 				$count = 0;
@@ -34,7 +35,7 @@
 		</div>
 		<?php if($settings['pagination'] == 'yes'): ?>
 			 <div class="pagination">
-				  <?php echo $this->pagination($query); ?>
+				  <?php echo wp_kses( $this->pagination($query), $this->lenxel_get__allowed_html() ); ?>
 			 </div>
 		<?php endif; ?>
   </div>

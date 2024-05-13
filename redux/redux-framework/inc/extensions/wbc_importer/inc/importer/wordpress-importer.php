@@ -10,11 +10,11 @@ Text Domain: wordpress-importer
 License: GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 
-if ( ! defined( 'WP_LOAD_IMPORTERS' ) )
+if ( ! defined( 'LENXEL_WP_LOAD_IMPORTERS' ) )
 	return;
 
 /** Display verbose errors */
-define( 'IMPORT_DEBUG', false );
+define( 'LENXEL_IMPORT_DEBUG', false );
 
 // Load Importer API
 require_once ABSPATH . 'wp-admin/includes/import.php';
@@ -35,7 +35,7 @@ require dirname( __FILE__ ) . '/parsers.php';
  * @subpackage Importer
  */
 if ( class_exists( 'WP_Importer' ) ) {
-class WP_Import extends WP_Importer {
+class Lenxel_WP_Import extends WP_Importer {
 	var $max_wxr_version = 1.2; // max. supported WXR version
 
 	var $id; // WXR attachment ID
@@ -72,8 +72,8 @@ class WP_Import extends WP_Importer {
 	 */
 	function dispatch() {
 		$this->header();
-
-		$step = empty( $_GET['step'] ) ? 0 : (int) $_GET['step'];
+		$get_step = sanitize_text_field($_GET['step']);
+		$step = empty( $_GET['step'] ) ? 0 : (int) $get_step;
 		switch ( $step ) {
 			case 0:
 				$this->greet();
@@ -131,8 +131,8 @@ class WP_Import extends WP_Importer {
 	 */
 	function import_start( $file ) {
 		if ( ! is_file($file) ) {
-			echo '<p><strong>' . __( 'Sorry, there has been an error.', 'lenxel-core' ) . '</strong><br />';
-			echo __( 'The file does not exist, please try again.', 'lenxel-core' ) . '</p>';
+			echo '<p><strong>' . esc_html__( 'Sorry, there has been an error.', 'lenxel-core' ) . '</strong><br />';
+			echo esc_html__( 'The file does not exist, please try again.', 'lenxel-core' ) . '</p>';
 			$this->footer();
 			die();
 		}
@@ -140,7 +140,7 @@ class WP_Import extends WP_Importer {
 		$import_data = $this->parse( $file );
 
 		if ( is_wp_error( $import_data ) ) {
-			echo '<p><strong>' . __( 'Sorry, there has been an error.', 'lenxel-core' ) . '</strong><br />';
+			echo '<p><strong>' . esc_html__( 'Sorry, there has been an error.', 'lenxel-core' ) . '</strong><br />';
 			echo esc_html( $import_data->get_error_message() ) . '</p>';
 			$this->footer();
 			die();
@@ -175,8 +175,8 @@ class WP_Import extends WP_Importer {
 		wp_defer_term_counting( false );
 		wp_defer_comment_counting( false );
 
-		echo '<p>' . __( 'All done.', 'lenxel-core' ) . ' <a href="' . admin_url() . '">' . __( 'Have fun!', 'lenxel-core' ) . '</a>' . '</p>';
-		echo '<p>' . __( 'Remember to update the passwords and roles of imported users.', 'lenxel-core' ) . '</p>';
+		echo '<p>' . esc_html__( 'All done.', 'lenxel-core' ) . ' <a href="' . admin_url() . '">' . esc_html__( 'Have fun!', 'lenxel-core' ) . '</a>' . '</p>';
+		echo '<p>' . esc_html__( 'Remember to update the passwords and roles of imported users.', 'lenxel-core' ) . '</p>';
 
 		do_action( 'import_end' );
 	}
@@ -191,12 +191,12 @@ class WP_Import extends WP_Importer {
 		$file = wp_import_handle_upload();
 
 		if ( isset( $file['error'] ) ) {
-			echo '<p><strong>' . __( 'Sorry, there has been an error.', 'lenxel-core' ) . '</strong><br />';
+			echo '<p><strong>' . esc_html__( 'Sorry, there has been an error.', 'lenxel-core' ) . '</strong><br />';
 			echo esc_html( $file['error'] ) . '</p>';
 			return false;
 		} else if ( ! file_exists( $file['file'] ) ) {
-			echo '<p><strong>' . __( 'Sorry, there has been an error.', 'lenxel-core' ) . '</strong><br />';
-			printf( __( 'The export file could not be found at <code>%s</code>. It is likely that this was caused by a permissions problem.', 'lenxel-core' ), esc_html( $file['file'] ) );
+			echo '<p><strong>' . esc_html__( 'Sorry, there has been an error.', 'lenxel-core' ) . '</strong><br />';
+			printf( esc_html__( 'The export file could not be found at <code>%s</code>. It is likely that this was caused by a permissions problem.', 'lenxel-core' ), esc_html( $file['file'] ) );
 			echo '</p>';
 			return false;
 		}
@@ -204,7 +204,7 @@ class WP_Import extends WP_Importer {
 		$this->id = (int) $file['id'];
 		$import_data = $this->parse( $file['file'] );
 		if ( is_wp_error( $import_data ) ) {
-			echo '<p><strong>' . __( 'Sorry, there has been an error.', 'lenxel-core' ) . '</strong><br />';
+			echo '<p><strong>' . esc_html__( 'Sorry, there has been an error.', 'lenxel-core' ) . '</strong><br />';
 			echo esc_html( $import_data->get_error_message() ) . '</p>';
 			return false;
 		}
@@ -212,7 +212,7 @@ class WP_Import extends WP_Importer {
 		$this->version = $import_data['version'];
 		if ( $this->version > $this->max_wxr_version ) {
 			echo '<div class="error"><p><strong>';
-			printf( __( 'This WXR file (version %s) may not be supported by this version of the importer. Please consider updating.', 'lenxel-core' ), esc_html($import_data['version']) );
+			printf( esc_html__( 'This WXR file (version %s) may not be supported by this version of the importer. Please consider updating.', 'lenxel-core' ), esc_html($import_data['version']) );
 			echo '</strong></p></div>';
 		}
 
@@ -237,7 +237,7 @@ class WP_Import extends WP_Importer {
 			foreach ( $import_data['posts'] as $post ) {
 				$login = sanitize_user( $post['post_author'], true );
 				if ( empty( $login ) ) {
-					printf( __( 'Failed to import author %s. Their posts will be attributed to the current user.', 'lenxel-core' ), esc_html( $post['post_author'] ) );
+					printf( esc_html__( 'Failed to import author %s. Their posts will be attributed to the current user.', 'lenxel-core' ), esc_html( $post['post_author'] ) );
 					echo '<br />';
 					continue;
 				}
@@ -260,13 +260,13 @@ class WP_Import extends WP_Importer {
 ?>
 <form action="<?php echo admin_url( 'admin.php?import=wordpress&amp;step=2' ); ?>" method="post">
 	<?php wp_nonce_field( 'import-wordpress' ); ?>
-	<input type="hidden" name="import_id" value="<?php echo $this->id; ?>" />
+	<input type="hidden" name="import_id" value="<?php echo esc_attr($this->id); ?>" />
 
 <?php if ( ! empty( $this->authors ) ) : ?>
-	<h3><?php _e( 'Assign Authors', 'lenxel-core' ); ?></h3>
-	<p><?php _e( 'To make it simpler for you to edit and save the imported content, you may want to reassign the author of the imported item to an existing user of this site, such as your primary administrator account.', 'lenxel-core' ); ?></p>
+	<h3><?php esc_html_e( 'Assign Authors', 'lenxel-core' ); ?></h3>
+	<p><?php esc_html_e( 'To make it simpler for you to edit and save the imported content, you may want to reassign the author of the imported item to an existing user of this site, such as your primary administrator account.', 'lenxel-core' ); ?></p>
 <?php if ( $this->allow_create_users() ) : ?>
-	<p><?php printf( __( 'If a new user is created by WordPress, a new password will be randomly generated and the new user&#8217;s role will be set as %s. Manually changing the new user&#8217;s details will be necessary.', 'lenxel-core' ), esc_html( get_option('default_role') ) ); ?></p>
+	<p><?php printf( esc_html__( 'If a new user is created by WordPress, a new password will be randomly generated and the new user&#8217;s role will be set as %s. Manually changing the new user&#8217;s details will be necessary.', 'lenxel-core' ), esc_html( get_option('default_role') ) ); ?></p>
 <?php endif; ?>
 	<ol id="authors">
 <?php foreach ( $this->authors as $author ) : ?>
@@ -276,10 +276,10 @@ class WP_Import extends WP_Importer {
 <?php endif; ?>
 
 <?php if ( $this->allow_fetch_attachments() ) : ?>
-	<h3><?php _e( 'Import Attachments', 'lenxel-core' ); ?></h3>
+	<h3><?php esc_html_e( 'Import Attachments', 'lenxel-core' ); ?></h3>
 	<p>
 		<input type="checkbox" value="1" name="fetch_attachments" id="import-attachments" />
-		<label for="import-attachments"><?php _e( 'Download and import file attachments', 'lenxel-core' ); ?></label>
+		<label for="import-attachments"><?php esc_html_e( 'Download and import file attachments', 'lenxel-core' ); ?></label>
 	</p>
 <?php endif; ?>
 
@@ -296,7 +296,7 @@ class WP_Import extends WP_Importer {
 	 * @param array $author Author information, e.g. login, display name, email
 	 */
 	function author_select( $n, $author ) {
-		_e( 'Import author:', 'lenxel-core' );
+		esc_html_e( 'Import author:', 'lenxel-core' );
 		echo ' <strong>' . esc_html( $author['author_display_name'] );
 		if ( $this->version != '1.0' ) echo ' (' . esc_html( $author['author_login'] ) . ')';
 		echo '</strong><br />';
@@ -306,37 +306,37 @@ class WP_Import extends WP_Importer {
 
 		$create_users = $this->allow_create_users();
 		if ( $create_users ) {
-			echo '<label for="user_new_'. $n . '">';
+			echo '<label for="user_new_'. esc_attr($n) . '">';
 			if ( $this->version != '1.0' ) {
-				_e( 'or create new user with login name:', 'lenxel-core' );
+				esc_html_e( 'or create new user with login name:', 'lenxel-core' );
 				$value = '';
 			} else {
-				_e( 'as a new user:', 'lenxel-core' );
+				esc_html_e( 'as a new user:', 'lenxel-core' );
 				$value = esc_attr( sanitize_user( $author['author_login'], true ) );
 			}
 			echo '</label>';
 
-			echo ' <input type="text" id="user_new_' . $n . '" name="user_new['.$n.']" value="'. $value .'" /><br />';
+			echo ' <input type="text" id="user_new_' . esc_attr($n) . '" name="user_new['.esc_attr($n).']" value="'. esc_attr($value) .'" /><br />';
 		}
 
-		echo '<label for="imported_authors_'. $n . '">';
+		echo '<label for="imported_authors_'. esc_attr($n) . '">';
 		if ( ! $create_users && $this->version == '1.0' ) {
-			_e( 'assign posts to an existing user:', 'lenxel-core' );
+			esc_html_e( 'assign posts to an existing user:', 'lenxel-core' );
 		} else {
-			_e( 'or assign posts to an existing user:', 'lenxel-core' );
+			esc_html_e( 'or assign posts to an existing user:', 'lenxel-core' );
 		}
 		echo '</label>';
 
 		echo ' ' . wp_dropdown_users( array(
 			'name'            => "user_map[$n]",
-			'id'              => 'imported_authors_' . $n,
+			'id'              => 'imported_authors_' . esc_html($n),
 			'multi'           => true,
-			'show_option_all' => __( '- Select -', 'lenxel-core' ),
+			'show_option_all' => esc_html__( '- Select -', 'lenxel-core' ),
 			'show'            => 'display_name_with_login',
 			'echo'            => 0,
 		) );
 
-		echo '<input type="hidden" name="imported_authors['.$n.']" value="' . esc_attr( $author['author_login'] ) . '" />';
+		echo '<input type="hidden" name="imported_authors['.esc_attr($n).']" value="' . esc_attr( $author['author_login'] ) . '" />';
 
 		if ( $this->version != '1.0' )
 			echo '</div>';
@@ -359,7 +359,8 @@ class WP_Import extends WP_Importer {
 			$old_id = isset( $this->authors[$old_login]['author_id'] ) ? intval($this->authors[$old_login]['author_id']) : false;
 
 			if ( ! empty( $_POST['user_map'][$i] ) ) {
-				$user = get_userdata( intval($_POST['user_map'][$i]) );
+				$usermap = sanitize_text_field( $_POST['user_map'][$i]);
+				$user = get_userdata( intval($usermap) );
 				if ( isset( $user->ID ) ) {
 					if ( $old_id )
 						$this->processed_authors[$old_id] = $user->ID;
@@ -385,9 +386,9 @@ class WP_Import extends WP_Importer {
 						$this->processed_authors[$old_id] = $user_id;
 					$this->author_mapping[$santized_old_login] = $user_id;
 				} else {
-					printf( __( 'Failed to create new user for %s. Their posts will be attributed to the current user.', 'lenxel-core' ), esc_html($this->authors[$old_login]['author_display_name']) );
-					if ( defined('IMPORT_DEBUG') && IMPORT_DEBUG )
-						echo ' ' . $user_id->get_error_message();
+					printf( esc_html__( 'Failed to create new user for %s. Their posts will be attributed to the current user.', 'lenxel-core' ), esc_html($this->authors[$old_login]['author_display_name']) );
+					if ( defined('LENXEL_IMPORT_DEBUG') && LENXEL_IMPORT_DEBUG )
+						echo ' ' . wp_kses_post($user_id->get_error_message());
 					echo '<br />';
 				}
 			}
@@ -437,9 +438,9 @@ class WP_Import extends WP_Importer {
 				if ( isset($cat['term_id']) )
 					$this->processed_terms[intval($cat['term_id'])] = $id;
 			} else {
-				printf( __( 'Failed to import category %s', 'lenxel-core' ), esc_html($cat['category_nicename']) );
-				if ( defined('IMPORT_DEBUG') && IMPORT_DEBUG )
-					echo ': ' . $id->get_error_message();
+				printf( esc_html__( 'Failed to import category %s', 'lenxel-core' ), esc_html($cat['category_nicename']) );
+				if ( defined('LENXEL_IMPORT_DEBUG') && LENXEL_IMPORT_DEBUG )
+					echo ': ' . wp_kses_post($id->get_error_message());
 				echo '<br />';
 				continue;
 			}
@@ -482,9 +483,9 @@ class WP_Import extends WP_Importer {
 				if ( isset($tag['term_id']) )
 					$this->processed_terms[intval($tag['term_id'])] = $id['term_id'];
 			} else {
-				printf( __( 'Failed to import post tag %s', 'lenxel-core' ), esc_html($tag['tag_name']) );
-				if ( defined('IMPORT_DEBUG') && IMPORT_DEBUG )
-					echo ': ' . $id->get_error_message();
+				printf( esc_html__( 'Failed to import post tag %s', 'lenxel-core' ), esc_html($tag['tag_name']) );
+				if ( defined('LENXEL_IMPORT_DEBUG') && LENXEL_IMPORT_DEBUG )
+					echo ': ' . wp_kses_post($id->get_error_message());
 				echo '<br />';
 				continue;
 			}
@@ -537,9 +538,9 @@ class WP_Import extends WP_Importer {
 				if ( isset($term['term_id']) )
 					$this->processed_terms[intval($term['term_id'])] = $id['term_id'];
 			} else {
-				printf( __( 'Failed to import %s %s', 'lenxel-core' ), esc_html($term['term_taxonomy']), esc_html($term['term_name']) );
-				if ( defined('IMPORT_DEBUG') && IMPORT_DEBUG )
-					echo ': ' . $id->get_error_message();
+				printf( esc_html__( 'Failed to import %s %s', 'lenxel-core' ), esc_html($term['term_taxonomy']), esc_html($term['term_name']) );
+				if ( defined('LENXEL_IMPORT_DEBUG') && LENXEL_IMPORT_DEBUG )
+					echo ': ' . wp_kses_post($id->get_error_message());
 				echo '<br />';
 				continue;
 			}
@@ -630,7 +631,7 @@ class WP_Import extends WP_Importer {
 			$post = apply_filters( 'wp_import_post_data_raw', $post );
 
 			if ( ! post_type_exists( $post['post_type'] ) ) {
-				printf( __( 'Failed to import &#8220;%s&#8221;: Invalid post type %s', 'lenxel-core' ),
+				printf( esc_html__( 'Failed to import &#8220;%s&#8221;: Invalid post type %s', 'lenxel-core' ),
 					esc_html($post['post_title']), esc_html($post['post_type']) );
 				echo '<br />';
 				do_action( 'wp_import_post_exists', $post );
@@ -667,7 +668,7 @@ class WP_Import extends WP_Importer {
 			$post_exists = apply_filters( 'wp_import_existing_post', $post_exists, $post );
 
 			if ( $post_exists && get_post_type( $post_exists ) == $post['post_type'] ) {
-				printf( __('%s &#8220;%s&#8221; already exists.', 'lenxel-core'), $post_type_object->labels->singular_name, esc_html($post['post_title']) );
+				printf( esc_html__('%s &#8220;%s&#8221; already exists.', 'lenxel-core'), esc_html($post_type_object->labels->singular_name), esc_html($post['post_title']) );
 				echo '<br />';
 				$comment_post_ID = $post_id = $post_exists;
 				$this->processed_posts[ intval( $post['post_id'] ) ] = intval( $post_exists );
@@ -729,10 +730,10 @@ class WP_Import extends WP_Importer {
 				}
 
 				if ( is_wp_error( $post_id ) ) {
-					printf( __( 'Failed to import %s &#8220;%s&#8221;', 'lenxel-core' ),
-						$post_type_object->labels->singular_name, esc_html($post['post_title']) );
-					if ( defined('IMPORT_DEBUG') && IMPORT_DEBUG )
-						echo ': ' . $post_id->get_error_message();
+					printf( esc_html__( 'Failed to import %s &#8220;%s&#8221;', 'lenxel-core' ),
+						esc_html($post_type_object->labels->singular_name), esc_html($post['post_title']) );
+					if ( defined('LENXEL_IMPORT_DEBUG') && LENXEL_IMPORT_DEBUG )
+						echo ': ' . wp_kses_post($post_id->get_error_message());
 					echo '<br />';
 					continue;
 				}
@@ -763,9 +764,9 @@ class WP_Import extends WP_Importer {
 							$term_id = $t['term_id'];
 							do_action( 'wp_import_insert_term', $t, $term, $post_id, $post );
 						} else {
-							printf( __( 'Failed to import %s %s', 'lenxel-core' ), esc_html($taxonomy), esc_html($term['name']) );
-							if ( defined('IMPORT_DEBUG') && IMPORT_DEBUG )
-								echo ': ' . $t->get_error_message();
+							printf( esc_html__( 'Failed to import %s %s', 'lenxel-core' ), esc_html($taxonomy), esc_html($term['name']) );
+							if ( defined('LENXEL_IMPORT_DEBUG') && LENXEL_IMPORT_DEBUG )
+								echo ': ' . wp_kses_post($t->get_error_message());
 							echo '<br />';
 							do_action( 'wp_import_insert_term_failed', $t, $term, $post_id, $post );
 							continue;
@@ -903,14 +904,14 @@ class WP_Import extends WP_Importer {
 
 		// no nav_menu term associated with this menu item
 		if ( ! $menu_slug ) {
-			_e( 'Menu item skipped due to missing menu slug', 'lenxel-core' );
-			echo '<br />';
+			esc_html_e( 'Menu item skipped due to missing menu slug', 'lenxel-core' );
+			printf( '< />');
 			return;
 		}
 
 		$menu_id = term_exists( $menu_slug, 'nav_menu' );
 		if ( ! $menu_id ) {
-			printf( __( 'Menu item skipped due to invalid menu slug: %s', 'lenxel-core' ), esc_html( $menu_slug ) );
+			printf( esc_html__( 'Menu item skipped due to invalid menu slug: %s', 'lenxel-core' ), esc_html( $menu_slug ) );
 			echo '<br />';
 			return;
 		} else {
@@ -973,7 +974,7 @@ class WP_Import extends WP_Importer {
 	function process_attachment( $post, $url ) {
 		if ( ! $this->fetch_attachments )
 			return new WP_Error( 'attachment_processing_error',
-				__( 'Fetching attachments is not enabled', 'lenxel-core' ) );
+				esc_html__( 'Fetching attachments is not enabled', 'lenxel-core' ) );
 
 		// if the URL is absolute, but does not contain address, then upload it assuming base_site_url
 		if ( preg_match( '|^/[\w\W]+$|', $url ) )
@@ -986,7 +987,7 @@ class WP_Import extends WP_Importer {
 		if ( $info = wp_check_filetype( $upload['file'] ) )
 			$post['post_mime_type'] = $info['type'];
 		else
-			return new WP_Error( 'attachment_processing_error', __('Invalid file type', 'lenxel-core') );
+			return new WP_Error( 'attachment_processing_error', esc_html__('Invalid file type', 'lenxel-core') );
 
 		$post['guid'] = $upload['url'];
 
@@ -1025,7 +1026,7 @@ class WP_Import extends WP_Importer {
 
 		$tmp_file_name = wp_tempnam( $file_name );
 		if ( ! $tmp_file_name ) {
-			return new WP_Error( 'import_no_file', __( 'Could not create temporary file.', 'lenxel-core' ) );
+			return new WP_Error( 'import_no_file', esc_html__( 'Could not create temporary file.', 'lenxel-core' ) );
 		}
 
 		// Fetch the remote URL and write it to the placeholder file.
@@ -1044,7 +1045,7 @@ class WP_Import extends WP_Importer {
 				'import_file_error',
 				sprintf(
 					/* translators: 1: The WordPress error message. 2: The WordPress error code. */
-					__( 'Request failed due to an error: %1$s (%2$s)', 'lenxel-core' ),
+					esc_html__( 'Request failed due to an error: %1$s (%2$s)', 'lenxel-core' ),
 					esc_html( $remote_response->get_error_message() ),
 					esc_html( $remote_response->get_error_code() )
 				)
@@ -1060,7 +1061,7 @@ class WP_Import extends WP_Importer {
 				'import_file_error',
 				sprintf(
 					/* translators: 1: The HTTP error message. 2: The HTTP error code. */
-					__( 'Remote server returned the following unexpected result: %1$s (%2$s)', 'lenxel-core' ),
+					esc_html__( 'Remote server returned the following unexpected result: %1$s (%2$s)', 'lenxel-core' ),
 					get_status_header_desc( $remote_response_code ),
 					esc_html( $remote_response_code )
 				)
@@ -1072,25 +1073,25 @@ class WP_Import extends WP_Importer {
 		// Request failed.
 		if ( ! $headers ) {
 			@unlink( $tmp_file_name );
-			return new WP_Error( 'import_file_error', __('Remote server did not respond', 'lenxel-core') );
+			return new WP_Error( 'import_file_error', esc_html__('Remote server did not respond', 'lenxel-core') );
 		}
 
 		$filesize = (int) filesize( $tmp_file_name );
 
 		if ( 0 === $filesize ) {
 			@unlink( $tmp_file_name );
-			return new WP_Error( 'import_file_error', __('Zero size file downloaded', 'lenxel-core') );
+			return new WP_Error( 'import_file_error', esc_html__('Zero size file downloaded', 'lenxel-core') );
 		}
 
 		if ( ! isset( $headers['content-encoding'] ) && isset( $headers['content-length'] ) && $filesize !== (int) $headers['content-length'] ) {
 			@unlink( $tmp_file_name );
-			return new WP_Error( 'import_file_error', __('Downloaded file has incorrect size', 'lenxel-core' ) );
+			return new WP_Error( 'import_file_error', esc_html__('Downloaded file has incorrect size', 'lenxel-core' ) );
 		}
 
 		$max_size = (int) $this->max_attachment_size();
 		if ( ! empty( $max_size ) && $filesize > $max_size ) {
 			@unlink( $tmp_file_name );
-			return new WP_Error( 'import_file_error', sprintf(__('Remote file is too large, limit is %s', 'lenxel-core' ), size_format($max_size) ) );
+			return new WP_Error( 'import_file_error', sprintf(esc_html__('Remote file is too large, limit is %s', 'lenxel-core' ), size_format($max_size) ) );
 		}
 
 		// Override file name with Content-Disposition header value.
@@ -1122,7 +1123,7 @@ class WP_Import extends WP_Importer {
 		}
 
 		if ( ( ! $type || ! $ext ) && ! current_user_can( 'unfiltered_upload' ) ) {
-			return new WP_Error( 'import_file_error', __( 'Sorry, this file type is not permitted for security reasons.', 'lenxel-core' ) );
+			return new WP_Error( 'import_file_error', esc_html__( 'Sorry, this file type is not permitted for security reasons.', 'lenxel-core' ) );
 		}
 
 		$uploads = wp_upload_dir( $post['upload_date'] );
@@ -1137,7 +1138,7 @@ class WP_Import extends WP_Importer {
 
 		if ( ! $move_new_file ) {
 			@unlink( $tmp_file_name );
-			return new WP_Error( 'import_file_error', __( 'The uploaded file could not be moved', 'lenxel-core' ) );
+			return new WP_Error( 'import_file_error', esc_html__( 'The uploaded file could not be moved', 'lenxel-core' ) );
 		}
 
 		// Set correct file permissions.
@@ -1242,21 +1243,21 @@ class WP_Import extends WP_Importer {
 	 * @return array Information gathered from the WXR file
 	 */
 	function parse( $file ) {
-		$parser = new WXR_Parser();
+		$parser = new Lenxel_WXR_Parser();
 		return $parser->parse( $file );
 	}
 
 	// Display import page title
 	function header() {
 		echo '<div class="wrap">';
-		echo '<h2>' . __( 'Import WordPress', 'lenxel-core' ) . '</h2>';
+		echo '<h2>' . esc_html__( 'Import WordPress', 'lenxel-core' ) . '</h2>';
 
 		$updates = get_plugin_updates();
 		$basename = plugin_basename(__FILE__);
 		if ( isset( $updates[$basename] ) ) {
 			$update = $updates[$basename];
 			echo '<div class="error"><p><strong>';
-			printf( __( 'A new version of this importer is available. Please update to version %s to ensure compatibility with newer export files.', 'lenxel-core' ), $update->update->new_version );
+			printf( esc_html__( 'A new version of this importer is available. Please update to version %s to ensure compatibility with newer export files.', 'lenxel-core' ), esc_html($update->update->new_version) );
 			echo '</strong></p></div>';
 		}
 	}
@@ -1271,8 +1272,8 @@ class WP_Import extends WP_Importer {
 	 */
 	function greet() {
 		echo '<div class="narrow">';
-		echo '<p>'.__( 'Howdy! Upload your WordPress eXtended RSS (WXR) file and we&#8217;ll import the posts, pages, comments, custom fields, categories, and tags into this site.', 'lenxel-core' ).'</p>';
-		echo '<p>'.__( 'Choose a WXR (.xml) file to upload, then click Upload file and import.', 'lenxel-core' ).'</p>';
+		echo '<p>'.esc_html__( 'Howdy! Upload your WordPress eXtended RSS (WXR) file and we&#8217;ll import the posts, pages, comments, custom fields, categories, and tags into this site.', 'lenxel-core' ).'</p>';
+		echo '<p>'.esc_html__( 'Choose a WXR (.xml) file to upload, then click Upload file and import.', 'lenxel-core' ).'</p>';
 		wp_import_upload_form( 'admin.php?import=wordpress&amp;step=1' );
 		echo '</div>';
 	}

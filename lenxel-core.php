@@ -4,21 +4,22 @@
  * Plugin Name: Lenxel Core
  * Description: LMS, Header builder, Footer builder, Teams, Portfolios, Lenxel Theme Settings ... for theme
  * Plugin URI: https://ogunlabs.com/products/lenxel 
- * Version: 1.0.3
- * Requires PHP: 7.1
+ * Version: 1.1
+ * Requires PHP: 7.4
  * Author: Ogun Labs
- * Requires at least: 5.0
+ * Requires at least: 6.3
  * Author URI: https://ogunlabs.com/
  * License:           GPL v3 or later
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.en.html
  * Text Domain: lenxel-core
  * Copyright: © 2024 Lenxel
  * Domain Path:  /languages
+ * Icon: assets/logo.png
  */
-
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
 define('LENXEL_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('LENXEL_PLUGIN_DIR', plugin_dir_path(__FILE__));
-
+define( 'LENXEL_CORE_VERSION', '1.1' );
 
 class Lenxel_Theme_Support{
 
@@ -36,11 +37,13 @@ class Lenxel_Theme_Support{
       $this->include_files();
       $this->include_post_types();
       add_filter('single_template', array($this, 'lenxel_single_template'), 99, 1);
-
-      add_action('wp_head', array($this, 'lenxel_core_head_ajax_url'));
+      add_action('init', array($this, 'lenxel_generate_reset_pwd_password'));
+      add_action('user_register', array($this, 'lnx_user_registration_hook', 10, 1));
+      add_filter('body_class', array($this, 'add_custom_body_class'));
+      //add_action('wp_head', array($this, 'lenxel_core_head_ajax_url'));
       add_action('wp_enqueue_scripts', array($this, 'lenxel_core_register_scripts'));
       add_action('admin_enqueue_scripts', array($this, 'lenxel_core_register_scripts_admin'));
-      register_activation_hook(__FILE__, array($this, 'lnx_create_page_activate'));
+      register_activation_hook(__FILE__, array($this, 'lenxel_create_page_activate'));
       load_plugin_textdomain('lenxel-core', false, 'lenxel-core/languages/');
       add_action('wp_ajax_lenxel_deactivate_plugin', array($this,'lenxel_core_handle_deactivate_plugin'));
       register_deactivation_hook(__FILE__, array($this, 'lenxel_core_plugin_deactivation'));
@@ -48,16 +51,12 @@ class Lenxel_Theme_Support{
       add_action('elementor/editor/footer',array($this,'lenxel_core_premium_content_div'), 99);
       add_shortcode('lenxel_core_login_form_shortcode', array($this,'lenxel_core_login_form'));
       add_shortcode('lenxel_core_course_category', array($this, 'lenxel_core_course_categories'));
-      $this->lenxel_core_plugin_update();
-
-
-
+    
    }
-
-   function lnx_create_page_activate() {
+   function lenxel_create_page_activate() {
       $page_title = 'Sign In';
       $shortcode = '[lenxel_core_login_form_shortcode]';
-      if(get_option('sign_in_id')==false){
+      if(get_option('lenxel_sign_in_id')==false){
          $arg = array(
             'post_title' => $page_title,
             'post_content' => $shortcode,
@@ -65,16 +64,108 @@ class Lenxel_Theme_Support{
             'post_type' => 'page',
          );
          $sign_in_page_id=wp_insert_post($arg);
-         update_option('sign_in_id',$sign_in_page_id);
+         update_option('lenxel_sign_in_id',$sign_in_page_id);
+      }
+   }
+  
+   // To generate a link for user to reset password through an email
+   function lenxel_generate_reset_pwd_password() {
+      if (isset($_POST['_wp_http_referer'])) {
+         $nounce = (isset($_POST['_wpnonce'])) ? sanitize_text_field( wp_unslash($_POST['_wpnonce'])) : null ;
+         $nounce_value = (isset($_GET['lost_pwd'])) ? sanitize_text_field($_GET['lost_pwd']) : null ;
+         if (wp_verify_nonce($nounce, 'lnx_'.$nounce_value)) { 
+         global $mailStatus;global $error_email;
+      
+         $email_forget_pwd = sanitize_email($_POST['email']);
+   
+         // check if email exist in db
+         $user_obj = get_user_by('email', $email_forget_pwd);
+         if (!$user_obj) {
+            $error_email = 1;
+            $mailStatus = '
+               <small class="error">
+               <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11" fill="none">
+                  <path d="M5.50033 10.0834C2.96895 10.0834 0.916992 8.03146 0.916992 5.50008C0.916992 2.96871 2.96895 0.916748 5.50033 0.916748C8.0317 0.916748 10.0837 2.96871 10.0837 5.50008C10.0837 8.03146 8.0317 10.0834 5.50033 10.0834ZM5.50033 9.16675C6.47279 9.16675 7.40542 8.78044 8.09305 8.09281C8.78068 7.40517 9.16699 6.47254 9.16699 5.50008C9.16699 4.52762 8.78068 3.59499 8.09305 2.90736C7.40542 2.21972 6.47279 1.83341 5.50033 1.83341C4.52786 1.83341 3.59523 2.21972 2.9076 2.90736C2.21997 3.59499 1.83366 4.52762 1.83366 5.50008C1.83366 6.47254 2.21997 7.40517 2.9076 8.09281C3.59523 8.78044 4.52786 9.16675 5.50033 9.16675ZM5.04199 6.87508H5.95866V7.79175H5.04199V6.87508ZM5.04199 3.20841H5.95866V5.95841H5.04199V3.20841Z" fill="#E93C3C"/>
+               </svg>Email does not exist
+               </small>';
+               
+
+         }else{
+            $error_email = 0;
+            $reset_pwd_url = wp_nonce_url(get_permalink()."?_id=$user_obj->ID", 'reset_nonce'.$user_obj->ID);
+   
+   
+            $to = $email_forget_pwd;
+            $subject = 'Reset Password';
+   
+            $message = 
+            "<div>
+               <p>Click on the link below to reset your password</p>
+               <a href='".html_entity_decode($reset_pwd_url)."'>Reset password</a>
+            </div>";
+            // echo $message;
+   
+            $send_mail = wp_mail($to, $subject, $message,'Content-type: text/html');
+            if ($send_mail) {
+               $mailStatus = "<img alt='successful reset password' src='".esc_url(LENXEL_THEME_URL . '/images/juicy-closed-email-envelope.png') ."'><h2 class='lfs-36 lfw-700 pb-2 pt-2'>We Sent you a Mail</h2><p class='lfs-20 lfw-500'>Kindly Check your email, we sent you a link to verify your Account with use and reset your Password</p>";
+               //load_template(LENXEL_THEME_DIR . '/templates/reset-password-mail.php' );die();
+
+            }
+         }
+         }
       }
    }
 
-   public function lenxel_core_head_ajax_url(){
-      $html_content = '<script> var ajaxurl = "'.esc_url(admin_url('admin-ajax.php')).'";</script>';
-      echo wp_kses($html_content, array( 'script'=>array() ));
-   }
+   function lnx_user_registration_hook($user_id) {
+		if(!empty(lenxel_get_option('enable_registration_notification', '') ) || (lenxel_get_option('enable_registration_notification', '') !== '0')){
+			// Your custom code to run after successful user registration
+			$super_admin_email = get_site_option('admin_email');
+			$user_data = get_userdata($user_id);
+			$to = $user_data->user_email; // Recipient's email address
+			$instructor_status = tutor_utils()->instructor_status($user_id);
+			$instructor_status = is_string($instructor_status) ? strtolower($instructor_status) : '';
+			// Email message
+			$headers = array('Content-Type: text/html; charset=UTF-8'); 
+			if ($user_data) {
+				$user_roles = $user_data->roles;
+				
+				if (!empty($user_roles)) {
+					$user_role = $user_roles[0];
+					$subject = 'User successfully registered as '. (($instructor_status=='pending') ? 'instructor' : $user_role); // Email subject
+					$subject_admin = (($instructor_status=='pending') ? 'New Registration Awaiting Approval' : 'New Registration');
+					$message_admin = (($instructor_status=='pending') ? 'The following user successfully register on the platform as instructor waiting your approval.' : "The following user successfully register on the platform as ".$user_role);
+					$message_subscriber = (($instructor_status=='pending') ? 'You have successful register on the platform as an instructor waiting admin\'s approval' : "You have successful register on the platform as ".$user_role);
+					// For example, you can send a welcome email or perform other tasks
+					$approval_role = array('subscriber',tutor()->instructor_role );
+					if(in_array($user_role,$approval_role)){
+						// Send the email using wp_mail()
+						$result = wp_mail($to, $subject, $message_subscriber, $headers);
+						$result = wp_mail($super_admin_email, $subject_admin, $message_admin, $headers);
+					}
 
+				}
+			}
+		}
+	}
 
+   function add_custom_body_class($classes) {
+      $page_id_data = get_option('lenxel_sign_in_id');
+  
+      if (!empty($page_id_data) && is_page($page_id_data)) {
+          $classes[] = 'lnx-login';
+      }
+  
+      return apply_filters('assign_page_id', $classes);
+  }
+  
+  
+
+  //Remove this
+   // public function lenxel_core_head_ajax_url(){
+   //    $html_content = '<script> var ajaxurl = "'.esc_url(admin_url('admin-ajax.php')).'";</script>';
+   //    echo wp_kses($html_content, array( 'script'=>array() ));
+      
+   // }
    public function include_files()
    {
       require_once('redux/admin-init.php');
@@ -119,17 +210,6 @@ class Lenxel_Theme_Support{
    {
       $css_dir = plugin_dir_url(__FILE__) . 'assets/css';
       wp_enqueue_style('lenxel-icons-custom', LENXEL_PLUGIN_URL . 'assets/icons/flaticon.css');
-   }
-
-   public function lenxel_core_plugin_update()
-   {
-      require 'plugin-update/update-checker.php';
-      $updateRoute = plugin_dir_url( __FILE__ ).'lenxel-core-update-plugin.json';
-      Puc_v4_Factory::buildUpdateChecker(
-         "{$updateRoute}",
-         __FILE__,
-         'lenxel-core'
-      );
    }
 
    function lenxel_core_handle_deactivate_plugin() {
@@ -215,13 +295,13 @@ class Lenxel_Theme_Support{
       $html_content = '<div class="notice notice-success is-dismissible">
                <p>plugin has been deactivated.</p>
             </div>';
-            echo wp_kses($html_content, array( '<div>','<p>' ));
+            echo wp_kses($html_content, array( 'div','p' ));
    }
    
    function lenxel_core_premium_content_div(){
     ob_start();
     ?>
-     <!-- <div class="dialog-widget dialog-buttons-widget dialog-type-buttons dialog-premium-lenxel" id="elementor-element--promotion__dialog" aria-modal="true" role="document" tabindex="0" style="top: 350px; left: 276px;"><div class="dialog-header dialog-buttons-header dialog-premium-lenxel-header"><div id="elementor-element--promotion__dialog__title" class="dialog-premium-lenxel-title">Testimonial Carousel Widget</div><i class="eicon-pro-icon"></i><i class="eicon-close"></i></div><div class="dialog-message dialog-buttons-message dialog-premium-lenxel-message">Use Testimonial Carousel widget and dozens more pro features to extend your toolbox and build sites faster and better.</div><div class="dialog-buttons-wrapper dialog-buttons-buttons-wrapper"><a href="https://ogunlabs.com/get-a-quote" target="_blank" class="elementor-button go-pro dialog-button dialog-action dialog-buttons-action">Upgrade Now</a></div></div> -->
+     
     <script>
         jQuery('body').append('<div class="dialog-widget dialog-buttons-widget dialog-type-buttons dialog-premium-lenxel" id="elementor-element--promotion__dialog" aria-modal="true" role="document" tabindex="0" style="top: 350px; left: 276px; display: none;"><div class="dialog-header dialog-buttons-header dialog-premium-lenxel-header"><div id="elementor-element--promotion__dialog__title" class="dialog-premium-lenxel-title">Testimonial Carousel Widget</div><i class="eicon-pro-icon"></i><i class="eicon-close"></i></div><div class="dialog-message dialog-buttons-message dialog-premium-lenxel-message">Use Testimonial Carousel widget and dozens more pro features to extend your toolbox and build sites faster and better.</div><div class="dialog-buttons-wrapper dialog-buttons-buttons-wrapper"><a href="https://lenxelpay.ogunlabs.com/?add-to-carts=38" target="_blank" class="elementor-button go-pro dialog-button dialog-action dialog-buttons-action">Upgrade Now</a></div></div>');
         jQuery('body').click( function(event) {
@@ -245,16 +325,18 @@ class Lenxel_Theme_Support{
     </script>
     <?php
     $premiumContent = ob_get_clean();
-    //echo $premiumContent;
-    printf( '%s', $premiumContent);
+   
+    printf( '%s', wp_kses($premiumContent, array('script'=>array())));
    }
    
    function lenxel_core_login_form() {
       ob_start();
-      $file_path = LENXEL_THEME_DIR . '/templates/login-template-1.php'; // Adjust the path accordingly
+      if (defined('LENXEL_THEME_DIR')) {
+         $file_path = LENXEL_THEME_DIR . '/templates/login-template-1.php'; // Adjust the path accordingly
 
-      if (file_exists($file_path)) {
-         load_template( $file_path );
+         if (file_exists($file_path)) {
+            load_template( $file_path );
+         }
       }
       return ob_get_clean();
    }
@@ -274,7 +356,7 @@ class Lenxel_Theme_Support{
 	return "<div class='col-sm-12 col-md-3'><h2>Categories</h2>{$cat_data}</div>";
 
    }  
-
+   
    function lenxel_core_deactivate_plugin_modal(){
       $current_user = wp_get_current_user();
       $user_email = $current_user->user_email;
@@ -337,126 +419,56 @@ class Lenxel_Theme_Support{
                   </div>
                </form>
             </div>
-
-            <!-- <input type="email" id="email" placeholder="brendaneich@js.com" />
-            <button class="btn">Submit</button> -->
          </section>
       </div>
 
          <div class="overlay hidden"></div>
          <button class="btn btn-open deactivateLenxel" style="display:none;">Open Modal</button>
          <style>
-            .feedbackOther, .betterPlugin{
-               display:none;
-            }
-            .choice {
-               padding: 5px 0px;
-            }
-            * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Inter", sans-serif;
-               }
-               .modal {
-               display: flex;
-               flex-direction: column;
-               justify-content: center;
-               gap: 0.4rem;
-               width: 450px;
-               padding: 1.3rem;
-               min-height: 250px;
-               position: absolute;
-               top: 20%;
-               background-color: white;
-               border: 1px solid #ddd;
-               border-radius: 15px;
-               visibility: visible;
-               height: auto;
-            }
+            .feedbackOther, .betterPlugin{display:none; }
+            .choice {padding: 5px 0px;}
+            * { margin: 0;padding: 0;box-sizing: border-box;font-family: "Inter", sans-serif;}
+               .modal {display: flex;flex-direction: column;justify-content: center;gap: 0.4rem;width: 450px;padding: 1.3rem; min-height: 250px;position: absolute;top: 20%;background-color: white;border: 1px solid #ddd;border-radius: 15px;visibility: visible;height: auto;}
 
-            .modal .flex {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            }
+            .modal .flex {display: flex;align-items: center;justify-content: space-between; }
 
-            .modal input {
-            padding: 0.7rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 0.9em;
-            }
+            .modal input {padding: 0.7rem 1rem;border: 1px solid #ddd; border-radius: 5px;font-size: 0.9em;}
 
-            .modal p {
-            font-size: 0.9rem;
-            color: #777;
-            margin: 0.4rem 0 0.2rem;
-            }
+            .modal p {font-size: 0.9rem;color: #777;margin: 0.4rem 0 0.2rem;}
 
-            button {
-            cursor: pointer;
-            border: none;
-            font-weight: 600;
-            }
+            button {cursor: pointer;border: none;font-weight: 600;}
 
-            .btn {
-            display: inline-block;
-            padding: 0.8rem 1.4rem;
-            font-weight: 700;
-            background-color: black;
-            color: white;
-            border-radius: 5px;
-            text-align: center;
-            font-size: 1em;
-            }
+            .btn {display: inline-block;padding: 0.8rem 1.4rem;font-weight: 700;background-color: black; color: white;border-radius: 5px;text-align: center;font-size: 1em;}
 
-            .btn-open {
-            position: absolute;
-            bottom: 150px;
-            }
+            .btn-open {position: absolute;bottom: 150px;}
 
-            .btn-close {
-            transform: translate(10px, -20px);
-            padding: 0.5rem 0.7rem;
-            background: #eee;
-            border-radius: 50%;
-            }
-            .overlay {
-               position: fixed;
-               top: 0;
-               bottom: 0;
-               left: 0;
-               right: 0;
-               width: 100%;
-               height: 100%;
-               background: rgba(0, 0, 0, 0.5);
-               backdrop-filter: blur(3px);
-               z-index: 1;
-            }
-            .modal {
-            z-index: 2;
-            }
-            .hidden {
-            display: none;
-            }
-            .modalContainer{
-               position: fixed;
-               left: 37%;
-               top: 35%;
-               /* right: 70%; */
-               margin: 0 auto;
-               visibility: visible;
-               opacity: 1;
-               z-index: 99;
-         }
+            .btn-close {transform: translate(10px, -20px);padding: 0.5rem 0.7rem;background: #eee; border-radius: 50%;}
+            .overlay {position: fixed;top: 0;bottom: 0;left: 0;right: 0;width: 100%;height: 100%;background: rgba(0, 0, 0, 0.5);backdrop-filter: blur(3px);z-index: 1;}
+            .modal {z-index: 2;}
+            .hidden {display: none;}
+            .modalContainer{position: fixed;left: 37%;top: 35%;margin: 0 auto;visibility: visible;opacity: 1;z-index: 99;}
          </style>
          
       <?php
       $contentModal = ob_get_clean();
-      printf( '%s', $contentModal);
+      printf( '%s', wp_kses($contentModal, array('div'=>array('class'=>array(),'id'=>array(),'tabindex'=>array()),'style'=>array(),'p'=>array(),'button'=>array('type'=>array(),'class'=>array(),'id'=>array()),'section'=>array('class'=>array()),'h3'=>array('style'=>array()),'input'=>array('class'=>array(),'style'=>array(),'placeholder'=>array(),'checked'=>array(),'id'=>array(),'name'=>array(),'value'=>array(),'type'=>array()),'label'=>array('for'=>array()),'small'=>array(),'form'=>array('action'=>array()))));
       
    }
 }
 
 new Lenxel_Theme_Support();
+function lenxel_get_all_allow_html(){
+   return [
+      'div' => ['style'=>[],'class' => [],'data-display' => []],'svg' => ['width' => [],'height' => [],'viewbox' => [],'fill' => [],'xmlns' => [],'data-id'=>[],'data-min'=>[],'data-max'=>[],'data-step'=>[],'data-handles'=>[],'data-display'=>[],'data-rtl'=>[],'data-forced'=>[],'data-float-mark'=>[],'data-resolution'=>[],'data-default-one'=>[],'data-style'=>[],'hidefocus'=>[],'tabindex'=>[],'role'=>[],'aria-pressed'=>[],'aria-label'=>[],],
+      'path' => ['d' => [],'stroke' => [],'stroke-width' => [],'stroke-linecap' => [],'stroke-linejoin' => []],'label'=>['for'=>[],'class'=>[]],
+      'button' => ['type'=>[],'aria-expanded'=>[],'class' => [],'data-event' => [],'data-settings' => [],'data-tooltip' => [],'title'=>[],'aria-describedby'=>[],'tabindex'=>[],'aria-label'=>[],'data-select2-id'=>[],'data-editor'=>[],'data-wp-editor-id'=>[],'tabindex'=>[],'role'=>[]],'i' => ['class' => [],'aria-hidden' => [],
+      ],'span' => ['class' => [],'tabindex'=>[],'id'=>[],'style'=>[],'dir'=>[],'data-select2-id'=>[],'aria-disabled'=>[],'aria-labelledby'=>[],'aria-controls'=>[],'aria-expanded'=>[],'role'=>[],'aria-haspopup'=>[],'aria-readonly'=>[],'title'=>[],'aria-hidden'=>[],'rel'=>[]],
+      'a' => ['href' => [],'style' => [],'target' => [],'class'=>[],'tabindex'=>[]],'ul' => ['class' => [],'id' => []],'li' => ['class' => [],'id' => []],
+      'ol' => ['class' => [],'id' => []],'input' => ['data-id'=>[],'aria-label'=>[],'data-oldcolor'=>[],'data-default-color'=>[],'type' => [],'value' => [],'class' => [],'id' => [],'data-alpha-enabled' => [],'data-'=>[],'name' =>[],'checked'=>[],'placeholder'=>[],'readonly'=>[],'data-preview-size'=>[],'data-mode'=>[],'data-lib-filter'=>[],'title'=>[]],
+      'select' => ['class' => [],'id' => [],'name' =>[],'data-allow-clear'=>[],'placeholder'=>[],'data-width'=>[],'style'=>[],'rows'=>[],'data-theme'=>[],'data-select2-id'=>[],'tabindex'=>[],'aria-hidden'=>[]],
+      'option'=>['class' => [],'value' => [],'id' => [],'selected' =>[],'data-select2-id'=>[]],'fieldset'=>['id'=>[],'class'=>[],'data-id'=>[],'data-type'=>[]],'b'=>['role'=>[]],'img'=>['class'=>[],'rel'=>[],'id'=>[],'target'=>[],'alt'=>[],'style'=>[],'src'=>[]],
+      'link'=>['rel'=>[],'id'=>[],'href'=>[],'media'=>[]],'iframe'=>['frameborder'=>[],'id'=>[],'allowtransparency'=>[],'style'=>[],'title'=>[]],
+      'textarea'=>['class'=>[],'autocomplete'=>[],'rows'=>[],'cols'=>[],'name'=>[],'aria-hidden'=>[],'style'=>[],'id'=>[]]
+
+   ];
+}

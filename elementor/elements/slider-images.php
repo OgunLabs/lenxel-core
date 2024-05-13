@@ -18,8 +18,9 @@ class LNXElement_Slider_Images extends LNXElement_Base{
 	}
 
 	public function get_title() {
-		$get_current_name = load_lenxel_widget_content_element('LNX Slider Images');
-		return __($get_current_name, 'lenxel-core');
+		$get_current_name = lenxel_load_widget_content_element('LNX Slider Images');
+		$filter_name = 'lenxel/element/'.esc_html($this->get_name());
+		return apply_filters( $filter_name, $get_current_name);
 	}
 
 	 /**
@@ -57,7 +58,7 @@ class LNXElement_Slider_Images extends LNXElement_Base{
 		$this->start_controls_section(
 			'section_query',
 			[
-				'label' => __('Query & Layout', 'lenxel-core'),
+				'label' => esc_html__('Query & Layout', 'lenxel-core'),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -66,7 +67,7 @@ class LNXElement_Slider_Images extends LNXElement_Base{
       $repeater->add_control(
          'image',
          [
-            'label'       => __('Image', 'lenxel-core'),
+            'label'       => esc_html__('Image', 'lenxel-core'),
             'type'        => Controls_Manager::MEDIA,
             'show_label' => false,
             'default'    => [
@@ -77,7 +78,7 @@ class LNXElement_Slider_Images extends LNXElement_Base{
 		$this->add_control(
          'images',
          [
-            'label'       => __('Testimonials Content Item', 'lenxel-core'),
+            'label'       => esc_html__('Testimonials Content Item', 'lenxel-core'),
             'type'        => Controls_Manager::REPEATER,
             'fields'      => $repeater->get_controls(),
             'title_field' => '{{{ title }}}',
@@ -101,7 +102,7 @@ class LNXElement_Slider_Images extends LNXElement_Base{
 		$this->add_control( // xx Layout
 			'layout_heading',
 			[
-				'label'   => __( 'Layout', 'lenxel-core' ),
+				'label'   => esc_html__( 'Layout', 'lenxel-core' ),
 				'type'    => Controls_Manager::HEADING,
 			]
 		);
@@ -109,7 +110,7 @@ class LNXElement_Slider_Images extends LNXElement_Base{
 		$this->add_control(
 			'image_size',
 			[
-				'label'     => __('Style', 'lenxel-core'),
+				'label'     => esc_html__('Style', 'lenxel-core'),
 				'type'      => \Elementor\Controls_Manager::SELECT,
 				'options'   => $this->get_thumbnail_size(),
 				'default'   => 'lenxel_medium'
@@ -121,13 +122,14 @@ class LNXElement_Slider_Images extends LNXElement_Base{
 	}
 
 	 protected function render() {
-		if ( get_template_restrict()->has_premium){
+		if ( lenxel_get_template_restrict()->has_premium){
 		  $settings = $this->get_settings_for_display();
-		  printf( '<div class="lnx-element-%s lnx-element">', $this->get_name() );
+		  printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
 			include $this->get_template('slider-images.php');
 		  print '</div>'; 
 		}else {
-			printf('%s', $content);
+			$content = '<div></div>';
+			wp_kses($content, array( 'div' ));
 		}
 	 }
 }

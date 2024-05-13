@@ -40,8 +40,9 @@ class LNXElement_Services_Group extends LNXElement_Base{
      * @return string Widget title.
      */
     public function get_title() {
-      $get_current_name = load_lenxel_widget_content_element('LNX Services Group');
-        return __($get_current_name, 'lenxel-core');
+      $get_current_name = lenxel_load_widget_content_element('LNX Services Group');
+        $filter_name = 'lenxel/element/'.esc_html($this->get_name());
+		return apply_filters( $filter_name, $get_current_name);
     }
 
     /**
@@ -85,25 +86,25 @@ class LNXElement_Services_Group extends LNXElement_Base{
         $this->start_controls_section(
             'section_content',
             [
-                'label' => __('Content', 'lenxel-core'),
+                'label' => esc_html__('Content', 'lenxel-core'),
             ]
         );
         $this->add_control( // xx Layout
             'layout_heading',
             [
-                'label'   => __( 'Layout', 'lenxel-core' ),
+                'label'   => esc_html__( 'Layout', 'lenxel-core' ),
                 'type'    => Controls_Manager::HEADING,
             ]
         );
          $this->add_control(
             'layout',
             [
-                'label'   => __( 'Layout Display', 'lenxel-core' ),
+                'label'   => esc_html__( 'Layout Display', 'lenxel-core' ),
                 'type'    => Controls_Manager::SELECT,
                 'default' => 'grid',
                 'options' => [
-                    'grid'      => __( 'Grid', 'lenxel-core' ),
-                    'carousel'  => __( 'Carousel', 'lenxel-core' )
+                    'grid'      => esc_html__( 'Grid', 'lenxel-core' ),
+                    'carousel'  => esc_html__( 'Carousel', 'lenxel-core' )
                 ]
             ]
         );
@@ -111,7 +112,7 @@ class LNXElement_Services_Group extends LNXElement_Base{
         $this->add_control(
             'style',
             [
-                'label' => __( 'Style', 'lenxel-core' ),
+                'label' => esc_html__( 'Style', 'lenxel-core' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
                     'style-1' => esc_html__('Style I', 'lenxel-core')
@@ -123,7 +124,7 @@ class LNXElement_Services_Group extends LNXElement_Base{
         $repeater->add_control(
           'title',
           [
-            'label'       => __('Title', 'lenxel-core'),
+            'label'       => esc_html__('Title', 'lenxel-core'),
             'type'        => Controls_Manager::TEXT,
             'default'     => 'Add your Title',
             'label_block' => true,
@@ -132,7 +133,7 @@ class LNXElement_Services_Group extends LNXElement_Base{
         $repeater->add_control(
           'desc',
           [
-            'label'       => __('Description', 'lenxel-core'),
+            'label'       => esc_html__('Description', 'lenxel-core'),
             'type'        => Controls_Manager::TEXTAREA,
             'default'     => 'Lorem ipsum dolor sit amet, consectetur notted adipisicing elit sed do.',
             'label_block' => true,
@@ -141,7 +142,7 @@ class LNXElement_Services_Group extends LNXElement_Base{
         $repeater->add_control(
             'image',
             [
-                'label'      => __('Choose Image', 'lenxel-core'),
+                'label'      => esc_html__('Choose Image', 'lenxel-core'),
                 'default'    => [
                     'url' => LENXEL_PLUGIN_URL . 'elementor/assets/images/image-1.jpg',
                 ],
@@ -152,9 +153,9 @@ class LNXElement_Services_Group extends LNXElement_Base{
         $repeater->add_control(
           'link',
           [
-            'label'     => __( 'Link', 'lenxel-core' ),
+            'label'     => esc_html__( 'Link', 'lenxel-core' ),
             'type'      => Controls_Manager::URL,
-            'placeholder' => __( 'https://your-link.com', 'lenxel-core' ),
+            'placeholder' => esc_html__( 'https://your-link.com', 'lenxel-core' ),
             'label_block' => true
           ]
         );
@@ -162,7 +163,7 @@ class LNXElement_Services_Group extends LNXElement_Base{
         $this->add_control(
           'services_content',
           [
-            'label'       => __('Service Content Item', 'lenxel-core'),
+            'label'       => esc_html__('Service Content Item', 'lenxel-core'),
             'type'        => Controls_Manager::REPEATER,
             'fields'      => $repeater->get_controls(),
             'title_field' => '{{{ title }}}',
@@ -193,7 +194,7 @@ class LNXElement_Services_Group extends LNXElement_Base{
         $this->start_controls_section(
           'section_style_icon',
           [
-            'label' => __( 'Icon', 'lenxel-core' ),
+            'label' => esc_html__( 'Icon', 'lenxel-core' ),
             'tab'   => Controls_Manager::TAB_STYLE,
           ]
         );
@@ -201,7 +202,7 @@ class LNXElement_Services_Group extends LNXElement_Base{
         $this->add_control(
           'icon_color',
           [
-            'label' => __( 'Icon Color', 'lenxel-core' ),
+            'label' => esc_html__( 'Icon Color', 'lenxel-core' ),
             'type' => Controls_Manager::COLOR,
             'default' => '',
             'selectors' => [
@@ -214,7 +215,7 @@ class LNXElement_Services_Group extends LNXElement_Base{
         $this->add_responsive_control(
           'icon_size',
           [
-            'label' => __( 'Size', 'lenxel-core' ),
+            'label' => esc_html__( 'Size', 'lenxel-core' ),
             'type' => Controls_Manager::SLIDER,
             'default' => [
               'size' => 60
@@ -235,7 +236,7 @@ class LNXElement_Services_Group extends LNXElement_Base{
         $this->add_responsive_control(
           'icon_space',
           [
-            'label' => __( 'Spacing', 'lenxel-core' ),
+            'label' => esc_html__( 'Spacing', 'lenxel-core' ),
             'type' => Controls_Manager::SLIDER,
             'default' => [
               'size' => 0,
@@ -255,7 +256,7 @@ class LNXElement_Services_Group extends LNXElement_Base{
         $this->add_responsive_control(
           'icon_padding',
           [
-            'label' => __( 'Padding', 'lenxel-core' ),
+            'label' => esc_html__( 'Padding', 'lenxel-core' ),
             'type' => Controls_Manager::DIMENSIONS,
             'size_units' => [ 'px', '%' ],
             'selectors' => [
@@ -269,7 +270,7 @@ class LNXElement_Services_Group extends LNXElement_Base{
         $this->start_controls_section(
           'section_style_content',
           [
-            'label' => __( 'Content', 'lenxel-core' ),
+            'label' => esc_html__( 'Content', 'lenxel-core' ),
             'tab'   => Controls_Manager::TAB_STYLE,
           ]
         );
@@ -277,7 +278,7 @@ class LNXElement_Services_Group extends LNXElement_Base{
         $this->add_control(
           'heading_title',
           [
-            'label' => __( 'Title', 'lenxel-core' ),
+            'label' => esc_html__( 'Title', 'lenxel-core' ),
             'type' => Controls_Manager::HEADING,
             'separator' => 'before',
           ]
@@ -286,7 +287,7 @@ class LNXElement_Services_Group extends LNXElement_Base{
         $this->add_responsive_control(
           'title_bottom_space',
           [
-            'label' => __( 'Spacing', 'lenxel-core' ),
+            'label' => esc_html__( 'Spacing', 'lenxel-core' ),
             'type' => Controls_Manager::SLIDER,
             'range' => [
               'px' => [
@@ -306,7 +307,7 @@ class LNXElement_Services_Group extends LNXElement_Base{
         $this->add_control(
           'title_color',
           [
-            'label' => __( 'Color', 'lenxel-core' ),
+            'label' => esc_html__( 'Color', 'lenxel-core' ),
             'type' => Controls_Manager::COLOR,
             'default' => '',
             'selectors' => [
@@ -327,7 +328,7 @@ class LNXElement_Services_Group extends LNXElement_Base{
         $this->add_control(
           'heading_description',
           [
-            'label' => __( 'Description', 'lenxel-core' ),
+            'label' => esc_html__( 'Description', 'lenxel-core' ),
             'type' => Controls_Manager::HEADING,
             'separator' => 'before',
             'condition' => [
@@ -339,7 +340,7 @@ class LNXElement_Services_Group extends LNXElement_Base{
         $this->add_control(
           'description_color',
           [
-            'label' => __( 'Color', 'lenxel-core' ),
+            'label' => esc_html__( 'Color', 'lenxel-core' ),
             'type' => Controls_Manager::COLOR,
             'default' => '',
             'selectors' => [
@@ -375,15 +376,16 @@ class LNXElement_Services_Group extends LNXElement_Base{
      * @access protected
      */
     protected function render() {
-      if ( get_template_restrict()->has_premium){
+      if ( lenxel_get_template_restrict()->has_premium){
         $settings = $this->get_settings_for_display();
-        printf( '<div class="lnx-element-%s lnx-element">', $this->get_name() );
+        printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
           if( !empty($settings['layout']) ){
             include $this->get_template('services-group/' . $settings['layout'] . '.php');
           }
         print '</div>';
       }else {
-			  printf('%s', $content);
+			  $content = '<div></div>';
+			wp_kses($content, array( 'div' ));
 		  }
     }
 

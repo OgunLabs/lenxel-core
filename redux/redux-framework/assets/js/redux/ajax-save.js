@@ -73,13 +73,15 @@
 				dataType: 'json',
 				url: ajaxurl,
 				data: {
-					action:     redux.optName.args.opt_name_triger + '_ajax_save',
+					action:     redux.optName.args.opt_name + '_ajax_save',
 					nonce:      $nonce,
-					'opt_name_triger': redux.optName.args.opt_name_triger,
+					'opt_name': redux.optName.args.opt_name,
 					data:       $data
 				},
 				error: function( response ) {
-					$( '.redux-action_bar input' ).prop( 'disabled', false );
+					var input = $( '.redux-action_bar input' );
+
+					input.prop( 'disabled', false );
 
 					if ( true === redux.optName.args.dev_mode ) {
 						console.log( response.responseText );
@@ -91,7 +93,7 @@
 						redux.optName.args.ajax_save = false;
 
 						$( button ).trigger( 'click' );
-						$( '.redux-action_bar input' ).prop( 'disabled', true );
+						input.prop( 'disabled', true );
 					}
 				},
 				success: function( response ) {

@@ -60,7 +60,7 @@ if ( !class_exists( 'ReduxFramework_wbc_importer' ) ) {
 
             echo '</fieldset></td></tr><tr><td colspan="2"><fieldset class="redux-field wbc_importer">';
 
-            $nonce = wp_create_nonce( "redux_{$this->parent->args['opt_name_triger']}_wbc_importer" );
+            $nonce = wp_create_nonce( "redux_{$this->parent->args['opt_name']}_wbc_importer" );
 
             // No errors please
             $defaults = array(
@@ -75,7 +75,7 @@ if ( !class_exists( 'ReduxFramework_wbc_importer' ) ) {
 
             $imported = false;
 
-            $this->field['wbc_demo_imports'] = apply_filters( "redux/{$this->parent->args['opt_name_triger']}/field/wbc_importer_files", array() );
+            $this->field['wbc_demo_imports'] = apply_filters( "redux/{$this->parent->args['opt_name']}/field/wbc_importer_files", array() );
 
             echo '<div class="theme-browser"><div class="themes">';
 
@@ -111,7 +111,7 @@ if ( !class_exists( 'ReduxFramework_wbc_importer' ) ) {
 
                     echo '<div class="theme-actions" style="top:82% !important">';
                     if ( false == $imported ) {
-                        echo '<div class="wbc-importer-buttons"><span class="spinner">'.esc_html__( 'Please Wait...', 'lenxel-core' ).'</span><span class="button-primary importer-button import-demo-datas">' . __( 'Import Demo', 'lenxel-core' ) . '</span></div>';
+                        echo '<div class="wbc-importer-buttons"><span class="spinner">'.esc_html__( 'Please Wait...', 'lenxel-core' ).'</span><span class="button-primary importer-button import-demo-datas">' . esc_html__( 'Import Demo', 'lenxel-core' ) . '</span></div>';
                     }else {
                         echo '<div class="wbc-importer-buttons button-secondary importer-button">'.esc_html__( 'Imported', 'lenxel-core' ).'</div>';
                         echo '<span class="spinner">'.esc_html__( 'Please Wait...', 'lenxel-core' ).'</span>';

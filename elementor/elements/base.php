@@ -19,7 +19,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 	  $this->start_controls_section(
 			'section_carousel_options',
 			 [
-				'label' => __('Carousel Options', 'lenxel-core'),
+				'label' => esc_html__('Carousel Options', 'lenxel-core'),
 				'type'  => Controls_Manager::SECTION,
 				'condition' => $condition,
 			 ]
@@ -29,7 +29,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		 $this->add_control(
 			 'ca_items_lg',
 			 [
-				'label'     => __('Columns for Large Screen', 'lenxel-core'),
+				'label'     => esc_html__('Columns for Large Screen', 'lenxel-core'),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => $single_item == true ? 1 : 3,
 				'options'   => array(1=>1, 2=>2, 3=>3, 4=>4, 5=>5, 6=>6)
@@ -39,7 +39,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'ca_items_md',
 			 [
-				'label'     => __('Columns for Medium Screen', 'lenxel-core'),
+				'label'     => esc_html__('Columns for Medium Screen', 'lenxel-core'),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => $single_item == true ? 1 : 3,
 				'options'   => array(1=>1, 2=>2, 3=>3, 4=>4, 5=>5, 6=>6)
@@ -49,7 +49,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 			 $this->add_control(
 				'ca_items_sm',
 				[
-				  'label'     => __('Columns for Small Screen', 'lenxel-core'),
+				  'label'     => esc_html__('Columns for Small Screen', 'lenxel-core'),
 				  'type'      => Controls_Manager::SELECT,
 				  'default'   => $single_item == true ? 1 : 2,
 				  'options'   => array(1=>1, 2=>2, 3=>3, 4=>4, 5=>5, 6=>6)
@@ -59,7 +59,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 			 $this->add_control(
 				'ca_items_xs',
 				[
-				  'label'     => __('Columns for Extra Small Screen', 'lenxel-core'),
+				  'label'     => esc_html__('Columns for Extra Small Screen', 'lenxel-core'),
 				  'type'      => Controls_Manager::SELECT,
 				  'default'   => 1,
 				  'options'   => array(1=>1, 2=>2, 3=>3, 4=>4, 5=>5, 6=>6)
@@ -68,7 +68,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 			 $this->add_control(
 				'ca_items_xx',
 				[
-				  'label'     => __('Columns for Very Extra Small Screen', 'lenxel-core'),
+				  'label'     => esc_html__('Columns for Very Extra Small Screen', 'lenxel-core'),
 				  'type'      => Controls_Manager::SELECT,
 				  'default'   => 1,
 				  'options'   => array(1=>1, 2=>2, 3=>3)
@@ -79,7 +79,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'ca_loop',
 			 [
-				'label'     => __('Loop', 'lenxel-core'),
+				'label'     => esc_html__('Loop', 'lenxel-core'),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes'
 			 ]
@@ -88,7 +88,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'ca_speed',
 			 [
-				'label'     => __('Speed', 'lenxel-core'),
+				'label'     => esc_html__('Speed', 'lenxel-core'),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 800,
 			 ]
@@ -97,7 +97,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'ca_auto_play',
 			 [
-				'label'     => __('Auto Play', 'lenxel-core'),
+				'label'     => esc_html__('Auto Play', 'lenxel-core'),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes'
 			 ]
@@ -106,7 +106,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'ca_auto_play_timeout',
 			 [
-				'label'     => __('Auto Play Timeout', 'lenxel-core'),
+				'label'     => esc_html__('Auto Play Timeout', 'lenxel-core'),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 6000,
 			 ]
@@ -115,7 +115,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'ca_auto_play_speed',
 			 [
-				'label'     => __('Auto Play Speed', 'lenxel-core'),
+				'label'     => esc_html__('Auto Play Speed', 'lenxel-core'),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 800,
 			 ]
@@ -124,7 +124,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'ca_play_hover',
 			 [
-				'label'     => __('Play Hover', 'lenxel-core'),
+				'label'     => esc_html__('Play Hover', 'lenxel-core'),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes'
 			 ]
@@ -133,7 +133,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'ca_navigation',
 			 [
-				'label'     => __('Navigation', 'lenxel-core'),
+				'label'     => esc_html__('Navigation', 'lenxel-core'),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes'
 			 ]
@@ -142,7 +142,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'ca_pagination',
 			 [
-				'label'     => __('Pagination', 'lenxel-core'),
+				'label'     => esc_html__('Pagination', 'lenxel-core'),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'no'
 			 ]
@@ -151,7 +151,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		$this->add_control(
 		  'ca_mouse_drag',
 		  [
-			 'label'     => __('Mouse Drag', 'lenxel-core'),
+			 'label'     => esc_html__('Mouse Drag', 'lenxel-core'),
 			 'type'      => Controls_Manager::SWITCHER,
 			 'default'   => 'yes',
 		  ]
@@ -160,7 +160,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		$this->add_control(
 		  'ca_touch_drag',
 		  [
-			 'label'     => __('Touch Drag', 'lenxel-core'),
+			 'label'     => esc_html__('Touch Drag', 'lenxel-core'),
 			 'type'      => Controls_Manager::SWITCHER,
 			 'default'   => 'yes'
 		  ]
@@ -168,7 +168,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		$this->add_responsive_control(
 		  'spacing_dots',
 		  [
-			 'label' => __( 'Dots Spacing', 'lenxel-core' ),
+			 'label' => esc_html__( 'Dots Spacing', 'lenxel-core' ),
 			 'type' => Controls_Manager::SLIDER,
 			 'default' => [
 				'size' => 10,
@@ -192,7 +192,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 	  $this->start_controls_section(
 		  'section_grid_options',
 		  [
-			 'label' => __('Grid Options', 'lenxel-core'),
+			 'label' => esc_html__('Grid Options', 'lenxel-core'),
 			 'type'  => Controls_Manager::SECTION,
 			 'condition' => $condition,
 		  ]
@@ -201,7 +201,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 	  $this->add_control(
 		  'grid_items_lg',
 		  [
-			 'label'     => __('Columns for Large Screen', 'lenxel-core'),
+			 'label'     => esc_html__('Columns for Large Screen', 'lenxel-core'),
 			 'type'      => Controls_Manager::SELECT,
 			 'default'   => 3,
 			 'options'   => array(1=>1, 2=>2, 3=>3, 4=>4, 5=>5, 6=>6)
@@ -211,7 +211,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		$this->add_control(
 		  'grid_items_md',
 		  [
-			 'label'     => __('Columns for Medium Screen', 'lenxel-core'),
+			 'label'     => esc_html__('Columns for Medium Screen', 'lenxel-core'),
 			 'type'      => Controls_Manager::SELECT,
 			 'default'   => 3,
 			 'options'   => array(1=>1, 2=>2, 3=>3, 4=>4, 5=>5, 6=>6)
@@ -221,7 +221,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'grid_items_sm',
 			 [
-				'label'     => __('Columns for Small Screen', 'lenxel-core'),
+				'label'     => esc_html__('Columns for Small Screen', 'lenxel-core'),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 2,
 				'options'   => array(1=>1, 2=>2, 3=>3, 4=>4, 5=>5, 6=>6)
@@ -231,7 +231,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'grid_items_xs',
 			 [
-				'label'     => __('Columns for Extra Small Screen', 'lenxel-core'),
+				'label'     => esc_html__('Columns for Extra Small Screen', 'lenxel-core'),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 1,
 				'options'   => array(1=>1, 2=>2, 3=>3, 4=>4, 5=>5, 6=>6)
@@ -241,7 +241,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'grid_items_xx',
 			 [
-				'label'     => __('Columns for Very Extra Small Screen', 'lenxel-core'),
+				'label'     => esc_html__('Columns for Very Extra Small Screen', 'lenxel-core'),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 1,
 				'options'   => array(1=>1, 2=>2, 3=>3)
@@ -251,7 +251,7 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_control(
 			 'grid_remove_padding',
 			 [
-				'label'     => __('Remove Padding', 'lenxel-core'),
+				'label'     => esc_html__('Remove Padding', 'lenxel-core'),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'no',
 			 ]
@@ -301,7 +301,12 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		
 		return $ouput;
 	 }
-
+	 protected function lenxel_print_carousel_settings(){
+		echo esc_attr($this->lenxel_str_replace_action(array('"'), $this->get_carousel_settings()));
+	 }
+	 protected function lenxel_str_replace_action( array $replace_value, string $rep_data_value){
+		return str_replace($replace_value, '', $rep_data_value);
+	 }
 	 protected function get_grid_settings($classes = '') {
 		$settings = $this->get_settings_for_display();
 		if($classes){
@@ -322,19 +327,19 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		  $this->add_render_attribute( 'button', 'href', $settings['button_url']['url'] );
 
 		  if(!empty($classes)){
-			 $this->add_render_attribute( 'button', 'class', $classes );
+			 $this->add_render_attribute( ['button' => ['class', $classes]] );
 		  }else{
-			 $this->add_render_attribute( 'button', 'class', 'btn-theme' );
+			 $this->add_render_attribute( ['button' => ['class', 'btn-theme']] );
 		  }
 
 		  if ( $settings['button_url']['is_external'] ) {
-			 $this->add_render_attribute( 'button', 'target', '_blank' );
+			 $this->add_render_attribute( ['button' => ['target', '_blank']] );
 		  }
 		  if ( $settings['button_url']['nofollow'] ) {
-			 $this->add_render_attribute( 'button', 'rel', 'nofollow' );
+			 $this->add_render_attribute( ['button' => ['rel' => 'nofollow']] );
 		  }
 		  ?>
-		  <a <?php echo $this->get_render_attribute_string( 'button' ); ?>>
+		  <a <?php $this->print_render_attribute_string( 'button' ); ?>>
 			 <span><?php echo esc_html( $settings['button_text'] ) ?></span>
 		  </a>
 
@@ -343,22 +348,22 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 	 }
 
 	 public function lnx_render_link_begin($link = array(), $classes = ''){
-		$r = lenxelthemesupport_random_id();
+		$r = lenxel_themesupport_random_id();
 		if ( ! empty( $link['url'] ) ) {
-		  $this->add_render_attribute( '_base_link_0' . $r, 'href', $link['url'] );
+		  $this->add_render_attribute( ['_base_link_0' . $r => ['href' => $link['url']]] );
 
 		  if(!empty($classes)){
-			 $this->add_render_attribute( '_base_link_0' . $r, 'class', $classes );
+			 $this->add_render_attribute( ['_base_link_0' . $r => ['class' => $classes]] );
 		  }
 
 		  if ( $link['is_external'] ) {
-			 $this->add_render_attribute( '_base_link_0' . $r, 'target', '_blank' );
+			 $this->add_render_attribute( ['_base_link_0' . $r => ['target', '_blank']] );
 		  }
 		  if ( $link['nofollow'] ) {
-			 $this->add_render_attribute( '_base_link_0' . $r, 'rel', 'nofollow' );
+			 $this->add_render_attribute( ['_base_link_0' . $r => ['rel', 'nofollow']] );
 		  }
 		  ?>
-		  <a <?php echo $this->get_render_attribute_string( '_base_link_0' . $r ); ?>>
+		  <a <?php $this->print_render_attribute_string( '_base_link_0' . $r ); ?>>
 		  <?php
 		}
 	 }
@@ -369,48 +374,48 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		}
 	 }
 
-	public function lnx_render_link_html($html = '', $link = array(), $classes = ''){
-		$r = lenxelthemesupport_random_id();
+	public function lenxel_render_link_html($html = '', $link = array(), $classes = ''){
+		$r = lenxel_themesupport_random_id();
 		if ( ! empty( $link['url'] ) ) {
-		  $this->add_render_attribute( '_base_link_1' . $r, 'href', $link['url'] );
+		  $this->add_render_attribute( ['_base_link_1' . $r => ['href' => $link['url']]] );
 
 		  if(!empty($classes)){
-			 $this->add_render_attribute( '_base_link_1' . $r, 'class', $classes );
+			 $this->add_render_attribute( ['_base_link_1' . $r => ['class' => $classes]] );
 		  }
 
 		  if ( $link['is_external'] ) {
-			 $this->add_render_attribute( '_base_link_1' . $r, 'target', '_blank' );
+			 $this->add_render_attribute( ['_base_link_1' . $r => ['target' => '_blank']] );
 		  }
 		  if ( $link['nofollow'] ) {
-			 $this->add_render_attribute( '_base_link_1' . $r, 'rel', 'nofollow' );
+			 $this->add_render_attribute( ['_base_link_1' . $r => ['rel' => 'nofollow']] );
 		  }
 		  ?>
-		  <a <?php echo $this->get_render_attribute_string( '_base_link_1' . $r ); ?>>
-			 <?php echo $html; ?>
+		  <a <?php $this->print_render_attribute_string( '_base_link_1' . $r ); ?>>
+			 <?php echo wp_kses($html, $this->lenxel_get__allowed_html()); ?>
 		  </a>
 		  <?php
 		}else{
-		  echo $html;
+		  echo wp_kses($html, $this->lenxel_get__allowed_html());
 		}
 	}
 
-	public function lnx_render_link_overlay($link = array(), $classes = 'link-overlay'){
-		$r = lenxelthemesupport_random_id();
+	public function lenxel_render_link_overlay($link = array(), $classes = 'link-overlay'){
+		$r = lenxel_themesupport_random_id();
 		if ( ! empty( $link['url'] ) ) {
-		  $this->add_render_attribute( '_base_link_1' . $r, 'href', $link['url'] );
+		  $this->add_render_attribute( ['_base_link_1' . $r => ['href'=> $link['url']]] );
 
 		  if(!empty($classes)){
-			 $this->add_render_attribute( '_base_link_1' . $r, 'class', $classes );
+			 $this->add_render_attribute( ['_base_link_1' . $r => ['class'=> $classes]] );
 		  }
 
 		  if ( $link['is_external'] ) {
-			 $this->add_render_attribute( '_base_link_1' . $r, 'target', '_blank' );
+			 $this->add_render_attribute( ['_base_link_1' . $r => ['target' => '_blank']] );
 		  }
 		  if ( $link['nofollow'] ) {
-			 $this->add_render_attribute( '_base_link_1' . $r, 'rel', 'nofollow' );
+			 $this->add_render_attribute( ['_base_link_1' . $r => ['rel' => 'nofollow']] );
 		  }
 		  ?>
-		  <a <?php echo $this->get_render_attribute_string( '_base_link_1' . $r ); ?>></a>
+		  <a <?php $this->print_render_attribute_string( '_base_link_1' . $r ); ?>></a>
 		  <?php
 		}
 	}
@@ -454,7 +459,79 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 	 
 		include($template);
   	}
-
+	function lenxel_get__allowed_html(): array {
+		return [
+			'div' => [
+				'class' => [],
+				'data-display' => [],
+			],
+			'svg' => [
+				'width' => [],
+				'height' => [],
+				'viewbox' => [],
+				'fill' => [],
+				'xmlns' => [],
+			],
+			'path' => [
+				'd' => [],
+				'stroke' => [],
+				'stroke-width' => [],
+				'stroke-linecap' => [],
+				'stroke-linejoin' => [],
+			],
+			'button' => [
+				'class' => [],
+				'data-event' => [],
+				'data-settings' => [],
+				'data-tooltip' => [],
+			],
+			'i' => [
+				'class' => [],
+				'aria-hidden' => [],
+			],
+			'span' => [
+				'class' => [],
+			],
+			'a' => [
+				'href' => [],
+				'style' => [],
+				'target' => [],
+			],
+			'ul' => [
+				'class' => [],
+				'id' => [],
+				''
+			],
+			'li' => [
+				'class' => [],
+				'id' => [],
+			],
+			'ol' => [
+				'class' => [],
+				'id' => [],
+			],
+			'input' => [
+				'type' => [],
+				'value' => array(),
+				'class' => [],
+				'id' => [],
+				'value' => [],
+				'data-'=>[],
+				'name' =>[],
+			],
+			'select' => [
+				'class' => [],
+				'id' => [],
+				'name' =>[],
+			],
+			'option'=>[
+				'class' => [],
+				'value' => [],
+				'id' => [],
+				'selected' =>[],
+			]
+		];
+	}
   	public function pagination( $query = false ){
 	 	global $wp_query;   
 	 	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : ( ( get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1 );

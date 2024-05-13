@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
    global $wp_query;
    if(isset($_GET['ajax_l_course_filter_ajax']) && check_admin_referer('ajax-l-course-filter-nonce', 'ajax_l_course_filter_ajax')){
       $cat = isset($_GET['cat']) && $_GET['cat'] ? sanitize_text_field( $_GET['cat'] ): '';//filter_input(INPUT_GET, 'cat', FILTER_SANITIZE_STRING);
@@ -108,10 +109,20 @@
                      'show_pagination'    => 1,
                      'only_course_items'  => 1
                   );
-                  $current_url = wp_doing_ajax() ? $_SERVER['HTTP_REFERER'] : tutor()->current_url;
-                  $push_link = add_query_arg( array_merge( $_POST, $GLOBALS['tutor_course_archive_arg'] ), $current_url );
+               
+                  $current_url = wp_doing_ajax() ? esc_url(sanitize_text_field(wp_unslash($_SERVER['HTTP_REFERER']))) : esc_url(tutor()->current_url);
+                  $allowed_keys = array(
+                     // Add the keys you want to process here
+                     'course_filter'=> (isset($_POST['course_filter']) ? sanitize_text_field($_POST['course_filter']) : ((isset($_GET['course_filter']) ? sanitize_text_field($_GET['course_filter']) : 1))),
+                     'supported_filters'=> (isset($_POST['supported_filters']) ? sanitize_text_field($_POST['supported_filters']) : ((isset($_GET['supported_filters']) ? sanitize_text_field($_GET['supported_filters']) : 1))),
+                     'loop_content_only'=>(isset($_POST['loop_content_only']) ? sanitize_text_field($_POST['loop_content_only']) : ((isset($_GET['loop_content_only']) ? sanitize_text_field($_GET['loop_content_only']) : 1))),
+                     'show_pagination'=>(isset($_POST['show_pagination']) ? sanitize_text_field($_POST['show_pagination']) : ((isset($_GET['show_pagination']) ? sanitize_text_field($_GET['show_pagination']) : 1))),
+                     'only_course_items'=>(isset($_POST['only_course_items']) ? sanitize_text_field($_POST['only_course_items']) : ((isset($_GET['only_course_items']) ? sanitize_text_field($_GET['only_course_items']) : 1))),
+                 );
 
-                  $data = wp_doing_ajax(  ) ? $_POST : $_GET;
+                  $push_link = add_query_arg( $allowed_keys, $current_url );
+
+                  $data = (wp_doing_ajax()) ? array_map( 'sanitize_text_field', $_POST ) : array_map( 'sanitize_text_field', $_GET );
                   $pagination_data = array(
                      'total_page'  => isset($the_query) ? $the_query->max_num_pages : $wp_query->max_num_pages,
                      'per_page'    => $course_per_page,

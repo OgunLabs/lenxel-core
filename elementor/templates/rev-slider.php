@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 if($settings['alias_slider']){
    echo do_shortcode( '[rev_slider ' . $settings['alias_slider'] . ']' );
 }else{

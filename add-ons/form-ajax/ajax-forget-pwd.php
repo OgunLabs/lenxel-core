@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 /*
 	* https://fellowtuts.com/wordpress/forgot-password-with-ajax-in-wordpress-login-and-register/
 	* https://www.tutspointer.com/custom-user-forgot-password-using-ajax-in-wordpress/
@@ -31,13 +32,13 @@ class Lenxel_Addons_Forget_Pwd_Ajax{
 	 
 		if ( empty($user_login) ) {
 		  	$mess = esc_html__('Error: Enter a username or e-mail address.', 'lenxel-core');
-			echo wp_json_encode(array('loggedin' => false, 'message'=>'<div class="alert alert-warning">' . $mess . '</div>'));
+			  wp_send_json(array('loggedin' => false, 'message'=>'<div class="alert alert-warning">' . $mess . '</div>'));
 		  	die();
 		} else if ( strpos( $user_login, '@' ) ) {
 			$user = get_user_by( 'email', trim( $user_login ) );
 			if ( empty( $user ) ){
 				$mess = esc_html__('Error: There is no user registered with that email address.', 'lenxel-core');
-				echo wp_json_encode(array('loggedin' => false, 'message'=>'<div class="alert alert-warning">' . $mess . '</div>'));
+				wp_send_json(array('loggedin' => false, 'message'=>'<div class="alert alert-warning">' . $mess . '</div>'));
 				die();
 			}
 		} else {
@@ -46,7 +47,7 @@ class Lenxel_Addons_Forget_Pwd_Ajax{
 		}
 		if ( !$user ) {
 			$mess = esc_html__('Error: Invalid username or email.', 'lenxel-core');
-			echo wp_json_encode(array('loggedin' => false, 'message'=>'<div class="alert alert-warning">' . $mess . '</div>'));
+			 wp_send_json(array('loggedin' => false, 'message'=>'<div class="alert alert-warning">' . $mess . '</div>'));
 			die();
 		}
 		
@@ -59,7 +60,7 @@ class Lenxel_Addons_Forget_Pwd_Ajax{
 		}
 		$message = esc_html__('Hi ', 'lenxel-core') . $user_login . '!' . "\r\n";
 		$message .= '<br>' . esc_html__('Someone requested that the password be reset for the following account', 'lenxel-core') . ' ' . network_home_url( '/' ). "\r\n";
-		$message .= sprintf(esc_html__(' with username: %s', 'lenxel-core'), $user_login). "\r\n";
+		$message .= sprintf(esc_html__(' with username: %s', 'lenxel-core'), esc_html( $user_login )). "\r\n";
 		$message .= '<br>' . esc_html__('If this was a mistake, just ignore this email and nothing will happen.', 'lenxel-core'). "\r\n";
 		$message .= '<br>' . esc_html__('To reset your password, visit the following address:', 'lenxel-core'). "\r\n";
 		$message .= network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') . "\r\n";
@@ -68,7 +69,7 @@ class Lenxel_Addons_Forget_Pwd_Ajax{
 		
 		$blogname = is_multisite() ?  $GLOBALS['current_site']->site_name : wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
 	 
-		$title = sprintf( __('[%s] Password Reset'), $blogname );
+		$title = sprintf( esc_html__('[%s] Password Reset'), esc_html($blogname) );
 		
 		$from = get_option('admin_email'); 
 		$to = $user->user_email; 
@@ -83,11 +84,11 @@ class Lenxel_Addons_Forget_Pwd_Ajax{
 
 		if ( $mail ){
 			$mess = esc_html__('Success: Check your e-mail for the confirmation link.', 'lenxel-core');
-			echo wp_json_encode(array('message'=> '<div class="alert alert-success">' . $mess . '</div>'));
+			wp_send_json(array('message'=> '<div class="alert alert-success">' . $mess . '</div>'));
 			die();
 		}else{
 			$mess = esc_html__('The e-mail could not be sent.', 'lenxel-core') . "<br/>" . esc_html__('Possible reason: your host may have disabled the mail() function.', 'lenxel-core');
-			echo wp_json_encode(array('message'=>'<div class="alert alert-warning">' . $mess . '</div>'));
+			wp_send_json(array('message'=>'<div class="alert alert-warning">' . $mess . '</div>'));
 			die();
 		}
 	}

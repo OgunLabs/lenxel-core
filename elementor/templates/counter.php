@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
   use Elementor\Icons_Manager;
    
 
@@ -10,15 +11,14 @@
 
    $title_html = $settings['title_text'];
 
-   $this->add_render_attribute( 'block', 'class', [ 'widget', 'milestone-block', $settings['style'] ] );
-   $this->add_render_attribute( 'title_text', 'class', 'milestone-text' );
+   $this->add_render_attribute( ['block'=> ['class'=> [ 'widget', 'milestone-block', $settings['style'] ]], 'title_text'=> ['class'=> 'milestone-text']] );
 
    $this->add_inline_editing_attributes( 'title_text', 'none' );
 
    ?>
 
    <?php if($style == 'style-1' || $style == 'style-2' || $style == 'style-3'){ ?>
-      <div <?php echo $this->get_render_attribute_string( 'block' ) ?>>
+      <div <?php $this->print_render_attribute_string('carousel'); ?>>
          <div class="box-content">
             <?php if ( $has_icon ){ ?>
                <div class="milestone-icon">
@@ -30,18 +30,18 @@
 
             <div class="milestone-content">
                <div class="milestone-number-inner">
-                  <?php if($settings['text_before']) echo ('<span class="symbol before">' . $settings['text_before'] . '</span>'); ?>
+                  <?php if($settings['text_before']) echo ('<span class="symbol before">' . wp_kses_post($settings['text_before']) . '</span>'); ?>
                   <span class="milestone-number"><?php echo esc_attr($settings['number']); ?></span>
-                  <?php if($settings['text_after']) echo ('<span class="symbol after">' . $settings['text_after'] . '</span>'); ?>
+                  <?php if($settings['text_after']) echo ('<span class="symbol after">' . wp_kses_post($settings['text_after']) . '</span>'); ?>
                </div>
                <?php if(!empty($title_html)){ ?>
-                  <<?php echo esc_attr($header_tag) ?> <?php echo $this->get_render_attribute_string( 'title_text' ); ?>>
-                      <?php echo $title_html ?>
+                  <<?php echo esc_attr($header_tag) ?> <?php $this->print_render_attribute_string( 'title_text' ); ?>>
+                      <?php echo wp_kses($title_html, $this->lenxel_get__allowed_html()); ?>
                   </<?php echo esc_attr($header_tag) ?>>
                <?php } ?>
             </div>
             
-            <?php $this->lnx_render_link_html('', $settings['link'], 'link-overlay'); ?>
+            <?php $this->lenxel_render_link_html('', $settings['link'], 'link-overlay'); ?>
 
          </div>   
       </div> 

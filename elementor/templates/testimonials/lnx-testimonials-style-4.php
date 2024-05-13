@@ -7,8 +7,14 @@
    
 <?php if( $settings['style'] == 'style-4' ){ 
 
-   $this->add_render_attribute('wrapper', 'class', ['lnx-testimonial-carousel' , $settings['style'] ]);
-   $this->add_render_attribute('carousel', 'class', ['init-carousel-owl owl-carousel']);
+   $this->add_render_attribute( [
+      'carousel' => [
+         'class' => 'init-carousel-owl owl-carousel',
+      ],
+      'wrapper' => [
+         'class' => ['lnx-testimonial-carousel', $settings['style']]
+      ],
+   ] );
 
    ?>
    <style>
@@ -21,8 +27,8 @@
          <div class="current-slide"></div>        
       </div>
       <div class="col-md-6 resize-height" style="height:inherit;">
-         <div <?php echo $this->get_render_attribute_string('wrapper'); ?> style="height:100%;">
-            <div <?php echo $this->get_render_attribute_string('carousel') ?> <?php echo $this->get_carousel_settings() ?> style="height:100%;">
+         <div <?php $this->print_render_attribute_string('wrapper'); ?> style="height:100%;">
+            <div <?php $this->print_render_attribute_string( 'carousel' ); ?> <?php $this->lenxel_print_carousel_settings(); ?> style="height:100%;">
                <?php
                foreach ($settings['testimonials'] as $testimonial): ?>
                   <?php 
@@ -39,7 +45,7 @@
                         <div class="testimonial-item-content" style="height:100%">
                            <div class="testimonial-meta" style="height:100%;width: 100%;overflow: hidden;">
                               <div class="testimonial-image" style="height:100%;width: 110%;">
-                                 <img src="<?php echo esc_url($avatar) ?>" alt="<?php echo $testimonial['testimonial_name']; ?>" style="height:100%;" />
+                                 <img src="<?php echo esc_url($avatar) ?>" alt="<?php echo esc_attr($testimonial['testimonial_name']); ?>" style="height:100%;" />
                                  <div class="content-profile" style="padding: 20px; display:none;">
                                  <div class="tutor-loop-rating-wrap">
                                     <div class="tutor-ratings-stars">
@@ -56,13 +62,13 @@
                                        </div>
                                     <?php } ?>
                                        <div class="testimonial-content">
-                                          <?php  echo $testimonial['testimonial_content']; ?>
+                                          <?php  echo wp_kses_post($testimonial['testimonial_content']); ?>
                                        </div>
                                        <div class="testimonial-information">
-                                          <span class="testimonial-name"><?php echo $testimonial['testimonial_name']; ?></span>
+                                          <span class="testimonial-name"><?php echo esc_html($testimonial['testimonial_name']); ?></span>
                                        </div>
                                        <div class="testimonial-information2">
-                                          <span class="testimonial-job"><?php echo $testimonial['testimonial_job']; ?></span>
+                                          <span class="testimonial-job"><?php echo wp_kses_post($testimonial['testimonial_job']); ?></span>
                                        </div>
                                  </div>
                               </div>

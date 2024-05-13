@@ -1,13 +1,14 @@
 <?php
-	$this->add_render_attribute('wrapper', 'class', ['lnx-gallery-grid clearfix']);
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+	$this->add_render_attribute(['wrapper' => ['class' => 'lnx-gallery-grid clearfix']]);
 	$this->get_grid_settings();
-	$_random = lenxelthemesupport_random_id();
+	$_random = lenxel_themesupport_random_id();
 	$style = $settings['style'];
 ?>
   
-  	<div <?php echo $this->get_render_attribute_string('wrapper'); ?>>
+  	<div <?php $this->print_render_attribute_string('wrapper'); ?>>
 		<div class="lnx-content-items"> 
-		  	<div <?php echo $this->get_render_attribute_string('grid') ?>>
+		  	<div <?php $this->print_render_attribute_string('grid') ?>>
 			 	<?php
 				  	foreach ($settings['images'] as $image){
 					 	echo '<div class="item">';

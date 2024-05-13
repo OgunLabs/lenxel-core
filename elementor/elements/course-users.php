@@ -44,8 +44,9 @@ class LNXElement_Users extends LNXElement_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		$get_current_name = load_lenxel_widget_content_element('LNX Instructor/Students');
-		return __( $get_current_name, 'lenxel-core' );
+		$get_current_name = lenxel_load_widget_content_element('LNX Instructor/Students');
+		$filter_name = 'lenxel/element/'.esc_html($this->get_name());
+		return apply_filters( $filter_name, $get_current_name);
 	}
 
 	/**
@@ -100,7 +101,7 @@ class LNXElement_Users extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => __( 'Content', 'lenxel-core' ),
+				'label' => esc_html__( 'Content', 'lenxel-core' ),
 			]
 		);
 		
@@ -121,7 +122,7 @@ class LNXElement_Users extends LNXElement_Base {
 		$this->add_control(
          'user_ids',
          [
-            'label' 				=> __( 'Select Individually (IDs)', 'lenxel-core' ),
+            'label' 				=> esc_html__( 'Select Individually (IDs)', 'lenxel-core' ),
             'type' 				=> Controls_Manager::TEXT,
             'default' 			=> '',
             'label_block' 		=> true,
@@ -180,20 +181,20 @@ class LNXElement_Users extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_team_layout',
 			[
-				'label' => __('Layout', 'lenxel-core'),
+				'label' => esc_html__('Layout', 'lenxel-core'),
 				'type'  => Controls_Manager::SECTION,
 			]
 		);
 		$this->add_control(
 			'layout',
 			[
-				'label'   => __( 'Layout Display', 'lenxel-core' ),
+				'label'   => esc_html__( 'Layout Display', 'lenxel-core' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'carousel',
 				'options' => [
-					'grid'      => __( 'Grid', 'lenxel-core' ),
-					'carousel'  => __( 'Carousel', 'lenxel-core' ),
-					'list'  		=> __( 'List', 'lenxel-core' ),
+					'grid'      => esc_html__( 'Grid', 'lenxel-core' ),
+					'carousel'  => esc_html__( 'Carousel', 'lenxel-core' ),
+					'list'  		=> esc_html__( 'List', 'lenxel-core' ),
 				]
 			]
 		);
@@ -215,7 +216,7 @@ class LNXElement_Users extends LNXElement_Base {
 	 * @access protected
 	 */
 	protected function render() {
-		if ( get_template_restrict()->has_premium){
+		if ( lenxel_get_template_restrict()->has_premium){
 			$settings = $this->get_settings_for_display();
 
 			$layout    = $settings['layout'];
@@ -253,13 +254,14 @@ class LNXElement_Users extends LNXElement_Base {
 				$total_pages = intval($users['avail_roles'][$user_role] / $per_page) + 1;
 			}
 
-			printf( '<div class="lnx-element-%s lnx-element">', $this->get_name() );
+			printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
 			if( !empty($layout) ){
 				include $this->get_template('course-users/' . $layout . '.php');
 			}
 			print '</div>';
 		}else {
-			printf('%s', $content);
+			$content = '<div></div>';
+			wp_kses($content, array( 'div' ));
 		}
 	}
 }

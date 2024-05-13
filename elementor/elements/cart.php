@@ -43,8 +43,9 @@ class LNXElement_Cart_Box extends LNXElement_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		$get_current_name = $get_current_name = load_lenxel_widget_content_element('LNX Cart Box');
-		return __( $get_current_name, 'lenxel-core' );
+		$get_current_name = lenxel_load_widget_content_element('LNX Cart Box');
+		$filter_name = 'lenxel/element/'.esc_html($this->get_name());
+		return apply_filters( $filter_name, $get_current_name);
 	}
 
 	/**
@@ -88,7 +89,7 @@ class LNXElement_Cart_Box extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_icon_style',
 			[
-				'label' => __( 'Icon', 'lenxel-core' ),
+				'label' => esc_html__( 'Icon', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -96,7 +97,7 @@ class LNXElement_Cart_Box extends LNXElement_Base {
 		$this->add_control(
 			'icon_color',
 			[
-				'label' => __( 'Color', 'lenxel-core' ),
+				'label' => esc_html__( 'Color', 'lenxel-core' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .gsc-cart-box .mini-cart-header .mini-cart .title-cart' => 'color: {{VALUE}}', 
@@ -107,7 +108,7 @@ class LNXElement_Cart_Box extends LNXElement_Base {
 		$this->add_control(
 			'number_color',
 			[
-				'label' => __( 'Number Color', 'lenxel-core' ),
+				'label' => esc_html__( 'Number Color', 'lenxel-core' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .gsc-cart-box .mini-cart-header .mini-cart .mini-cart-items' => 'color: {{VALUE}}', 
@@ -117,7 +118,7 @@ class LNXElement_Cart_Box extends LNXElement_Base {
 		$this->add_control(
 			'number_background',
 			[
-				'label' => __( 'Number Background', 'lenxel-core' ),
+				'label' => esc_html__( 'Number Background', 'lenxel-core' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .gsc-cart-box .mini-cart-header .mini-cart .mini-cart-items' => 'background-color: {{VALUE}}', 
@@ -137,14 +138,14 @@ class LNXElement_Cart_Box extends LNXElement_Base {
 	 * @access protected
 	 */
 	protected function render() {
-		if ( get_template_restrict()->has_premium){
+		if ( lenxel_get_template_restrict()->has_premium){
 			$settings = $this->get_settings_for_display();
-			printf( '<div class="lnx-element-%s lnx-element">', $this->get_name() );
+			printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
 			include $this->get_template('cart.php');
 			print '</div>';
 		}else {
-			$content = "";
-			printf('%s', $content);
+			$content = '<div></div>';
+			wp_kses($content, array( 'div' ));
 		}
 	}
 }

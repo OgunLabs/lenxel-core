@@ -1,20 +1,17 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	$query = $this->query_posts();
-	$_random = lenxelthemesupport_random_id();
+	$_random = lenxel_themesupport_random_id();
 	if ( ! $query->found_posts ) {
 		return;
 	}
 
-	$this->add_render_attribute('wrapper', 'class', ['lnx-posts-carousel lnx-posts']);
-
-	$this->add_render_attribute('wrapper', 'data-filter', $_random);
-
-	$this->add_render_attribute('carousel', 'class', 'init-carousel-owl owl-carousel');
+	$this->add_render_attribute(['carousel' => ['class'=>'init-carousel-owl owl-carousel'], 'wrapper' => ['class'=> 'lnx-posts-carousel lnx-posts', 'data-filter' => $_random], 'wrapper']);
   
   ?>
 
-	<div <?php echo $this->get_render_attribute_string('wrapper'); ?>>
-		<div <?php echo $this->get_render_attribute_string('carousel') ?> <?php echo $this->get_carousel_settings() ?>>
+	<div <?php $this->print_render_attribute_string('wrapper'); ?>>
+		<div <?php $this->print_render_attribute_string('carousel'); ?> <?php $this->lenxel_print_carousel_settings(); ?>>
 			<?php
 			  	global $post;
 			  	$count = 0;
