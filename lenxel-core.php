@@ -14,6 +14,7 @@
  * Text Domain: lenxel-core
  * Copyright: © 2024 Lenxel
  * Domain Path:  /languages
+ * Icon: assets/logo.png
  */
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
 define('LENXEL_PLUGIN_URL', plugin_dir_url(__FILE__));
