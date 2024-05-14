@@ -171,6 +171,7 @@ class Lenxel_Theme_Support{
       require_once('redux/admin-init.php');
       require_once('includes/functions.php');
       require_once('includes/hook.php');
+      require_once('includes/metaboxes.php');
       require_once('elementor/init.php');
       require_once('sample/init.php');
       require_once('add-ons/form-ajax/init.php');
