@@ -14,7 +14,6 @@
  * Text Domain: lenxel-core
  * Copyright: © 2024 Lenxel
  * Domain Path:  /languages
- * Icon: assets/logo.png
  */
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
 define('LENXEL_PLUGIN_URL', plugin_dir_url(__FILE__));
@@ -171,6 +170,7 @@ class Lenxel_Theme_Support{
       require_once('redux/admin-init.php');
       require_once('includes/functions.php');
       require_once('includes/hook.php');
+      require_once('includes/metaboxes.php');
       require_once('elementor/init.php');
       require_once('sample/init.php');
       require_once('add-ons/form-ajax/init.php');
