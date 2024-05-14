@@ -80,14 +80,9 @@ Activating this plugin seamlessly integrates with your theme, unlocking a suite 
 3. Install the Lenxel theme template to complete the setup.
 
 == Copyright ==
-OwlCarousel2 is use to creates video thumbnail and wrap lession video content into owl-video-wrapper div (url: '//vimeo.com/api/v2/video/' + video.id + '.json')
-Importer is used for content importation.
-Redux-framework is used to manage all theme settings.
-Enqueue script/style on the redux
-Retrieve an updated Google font array
-wp-content/plugins/lenxel-core/redux/redux-framework/inc/classes/class-redux-options-constructor.php $import = wp_remote_retrieve_body( wp_remote_get( $plugin_options['import_link'] ) );  Validate the Options before insertion if the import link is set
-
-http://elusiveicons.com/license
+OwlCarousel2 is utilized for generating video thumbnails and encapsulating lesson video content within the owl-video-wrapper div.
+The Importer tool facilitates content importation.
+Redux Framework is employed to handle all theme settings.
 
 line-awesome Permitted Use: Download in any format Change Fork
 Licensed: We've released the icon pack under either MIT or the Good Boy License. https://github.com/icons8/line-awesome/blob/master/LICENSE.md
@@ -118,8 +113,8 @@ license: https://github.com/janpaepke/ScrollMagic/blob/master/LICENSE.md
 Source: https://github.com/janpaepke/ScrollMagic
 
 jQuery Cookie Plugin v1.4.1 Copyright 2006, 2014 Klaus Hartl
-Released under the MIT license https://github.com/carhartl/jquery-cookie/blob/master/MIT-LICENSE.txt
-https://github.com/carhartl/jquery-cookie
+License: Released under the MIT license https://github.com/carhartl/jquery-cookie/blob/master/MIT-LICENSE.txt
+Source: https://github.com/carhartl/jquery-cookie
 
 SerializeJSON jQuery plugin.
 License:  Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
