@@ -69,7 +69,7 @@ Activating this plugin seamlessly integrates with your theme, unlocking a suite 
 12. Go ahead to take a test.
 
 == Plugin configuration ==
-1.  Setting up your Google Map API key.
+* Setting up your Google Map API key.
 
 == Feedback ==
 * Improving performance through deactivation feedback.
