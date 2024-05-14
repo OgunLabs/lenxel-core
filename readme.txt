@@ -8,16 +8,15 @@ Stable tag: 1.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 Version: 1.1
+Icon: assets/logo.png
 
 Lenxel Core is an extension of the Lenxel theme template that features Team post-type, Portfolio post-type, Header builder, Footer builder, and Lenxel Theme settings. 
 
 
 == Description ==
-
 This plugin enhances the Lenxel theme template, allowing for custom header, custom footer, teams page, and portfolio creation flexibility.
 
-== Features==
-
+== Features ==
 * Introducing the Team post-type for showcasing your team members.
 * Discover our Portfolio post-type for displaying your impressive work.
 * Easily build custom headers with our Header builder.
@@ -28,73 +27,65 @@ This plugin enhances the Lenxel theme template, allowing for custom header, cust
 * Enhance user experience with customizable styling for active/enrolled courses using Elementor elements.
 
 
-== Advanced Features (Available in Pro/Coming to Pro) ==
-
-* Course Coupon
-
-* Live Chat Support Inside the Plugin
-
-* Course Retake
-
+== Advanced features (Coming to Pro) ==
+* Course coupon
+* Live chat support inside the plugin
+* Course retake
 * Frontend course creation
 
 == Supercharge your website with powerful features! ==
 Activating this plugin seamlessly integrates with your theme, unlocking a suite of tools to customize your website:
+*   __Effortless page building__: Build stunning headers and footers with an intuitive drag-and-drop interface, no coding required.
+*   __Showcase your team__: Create dedicated team member profiles to highlight your expertise and connect with your audience.
+*   __Portfolio made easy__: Display your best work in a beautifully designed portfolio section, managed through custom post types.
 
-*   __Effortless Page Building__: Build stunning headers and footers with an intuitive drag-and-drop interface, no coding required.
-*   __Showcase Your Team__: Create dedicated team member profiles to highlight your expertise and connect with your audience.
-*   __Portfolio Made Easy__: Display your best work in a beautifully designed portfolio section, managed through custom post types.
 
-
-= Plugin feature =
-
-*   Seamless Lenxel Integration: Works flawlessly with your Lenxel theme.
-*   Customizable Content: Create teams, portfolios, and courses.
-*   Drag-and-Drop Design: Build headers & footers easily.
-*   Styled Courses: Design unique layouts for course categories & active courses (using Elementor).
+== Plugin feature ==
+* __Seamless lenxel integration__: Works flawlessly with your Lenxel theme.
+* __Customizable content__: Create teams, portfolios, and courses.
+* __Drag-and-drop design__: Build headers & footers easily.
+* __Styled courses__: Design unique layouts for course categories & active courses (using Elementor).
 
 
 == Installation ==
+1. Log in to your WordPress Admin area.
+2. Navigate to the "Plugins" section and click on "Add New".
+3. In the search bar, type "Lenxel Core" and press Enter.
+4. Once the installation is complete, click on the "Activate" button to activate the plugin.
 
-= Automatic Installation from Plugin Directory =
-* 	Log in to your WordPress Admin area.
-*   Navigate to the "Plugins" section and click on "Add New".
-*   In the search bar, type "Lenxel Core" and press Enter.
-* 	In the search bar, type "Lenxel Core" and press Enter.
-*   Once the installation is complete, click on the "Activate" button to activate the plugin.
-
-
-== Setup Woocommerce ==
-
-= Lenxel Theme settings =
-1.  General Options
-2.  Header Options
-3.  Breadcrumb Options
+== Lenxel theme settings ==
+1.  General options
+2.  Header options
+3.  Breadcrumb options
 4.  Styling
 5.  Typography
-6.  Blog Options
-7.  Page Options
-8.  Course Options
-9.  Product Options
-10. Dashboard Options
-10. Demo Importer
+6.  Blog options
+7.  Page options
+8.  Course options
+9.  Product options
+10. Dashboard options
+10. Demo importer
 11. Import / Export
 12. Go ahead to take a test.
 
-= Plugin Configuration =
-1.  Setting up your Google Map API key.
+== Plugin configuration ==
+* Setting up your Google Map API key.
 
-OwlCarousel2 is use to creates video thumbnail and wrap lession video content into owl-video-wrapper div (url: '//vimeo.com/api/v2/video/' + video.id + '.json')
-Importer is used for content importation.
-Redux-framework is used to manage all theme settings.
-Enqueue script/style on the redux
-Retrieve an updated Google font array
-wp-content/plugins/lenxel-core/redux/redux-framework/inc/classes/class-redux-options-constructor.php $import = wp_remote_retrieve_body( wp_remote_get( $plugin_options['import_link'] ) );  Validate the Options before insertion if the import link is set
+== Feedback ==
+* Improving performance through deactivation feedback.
 
-http://elusiveicons.com/license
+== Plugin prerequisites ==
+1. Ensure that the WooCommerce plugin is installed and activated on your WordPress website.
+2. Install the Tutor plugin to manage curriculum, quizzes, and curriculum assignments.
+3. Install the Lenxel theme template to complete the setup.
+
+== Copyright ==
+OwlCarousel2 is utilized for generating video thumbnails and encapsulating lesson video content within the owl-video-wrapper div.
+The Importer tool facilitates content importation.
+Redux Framework is employed to handle all theme settings.
 
 line-awesome Permitted Use: Download in any format Change Fork
-Licensed: We’ve released the icon pack under either MIT or the Good Boy License. https://github.com/icons8/line-awesome/blob/master/LICENSE.md
+Licensed: We've released the icon pack under either MIT or the Good Boy License. https://github.com/icons8/line-awesome/blob/master/LICENSE.md
 Source: https://github.com/icons8/line-awesome/tree/master
 
 Copyright 2010-2018 Metafizzy Isotope PACKAGED v3.0.6
@@ -122,8 +113,8 @@ license: https://github.com/janpaepke/ScrollMagic/blob/master/LICENSE.md
 Source: https://github.com/janpaepke/ScrollMagic
 
 jQuery Cookie Plugin v1.4.1 Copyright 2006, 2014 Klaus Hartl
-Released under the MIT license https://github.com/carhartl/jquery-cookie/blob/master/MIT-LICENSE.txt
-https://github.com/carhartl/jquery-cookie
+License: Released under the MIT license https://github.com/carhartl/jquery-cookie/blob/master/MIT-LICENSE.txt
+Source: https://github.com/carhartl/jquery-cookie
 
 SerializeJSON jQuery plugin.
 License:  Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
@@ -156,14 +147,3 @@ Source: https://developers.elementor.com/docs/controls/simple-example/
 GPLv2 Licensed | Bartosz Wojciechowski, David Deutsch by Owl carousel2
 License: The MIT License (MIT) https://github.com/OwlCarousel2/OwlCarousel2/blob/master/LICENSE
 Source: https://github.com/OwlCarousel2/OwlCarousel2/archive/2.3.4.zip
-
-= Feedback =
-1.  Deactivation feedback on Slack for better performance.
-
-== Frequently Asked Questions ==
-
-= Prerequisites for Using the Plugin =
-
-1.	You must install and activate the WooCommerce plugin on your WordPress website.
-2.  You need to install Tutor plugin to manage curriculum, quiz, and curriculum assignment.
-3.	You need to install Lenxel theme template.
