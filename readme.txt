@@ -41,7 +41,7 @@ Activating this plugin seamlessly integrates with your theme, unlocking a suite 
 
 
 == Plugin feature ==
-* __Seamless lenxel integration__: Works flawlessly with your Lenxel theme.
+* __Seamless theme integration__: Works flawlessly with the Lenxel theme.
 * __Customizable content__: Create teams, portfolios, and courses.
 * __Drag-and-drop design__: Build headers & footers easily.
 * __Styled courses__: Design unique layouts for course categories & active courses (using Elementor).
