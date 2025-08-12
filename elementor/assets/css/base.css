@@ -8,3 +8,6 @@
 .el-course-filter .tutor-pagination{
    width: 100%;
 }
+.image-content-gallery{
+  display:flex;
+}

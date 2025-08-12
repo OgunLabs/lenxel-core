@@ -460,77 +460,98 @@ abstract class LNXElement_Base extends Elementor\Widget_Base {
 		include($template);
   	}
 	function lenxel_get__allowed_html(): array {
-		return [
-			'div' => [
-				'class' => [],
-				'data-display' => [],
-			],
-			'svg' => [
-				'width' => [],
-				'height' => [],
-				'viewbox' => [],
-				'fill' => [],
-				'xmlns' => [],
-			],
-			'path' => [
-				'd' => [],
-				'stroke' => [],
-				'stroke-width' => [],
-				'stroke-linecap' => [],
-				'stroke-linejoin' => [],
-			],
-			'button' => [
-				'class' => [],
-				'data-event' => [],
-				'data-settings' => [],
-				'data-tooltip' => [],
-			],
-			'i' => [
-				'class' => [],
-				'aria-hidden' => [],
-			],
-			'span' => [
-				'class' => [],
-			],
-			'a' => [
-				'href' => [],
-				'style' => [],
-				'target' => [],
-			],
-			'ul' => [
-				'class' => [],
-				'id' => [],
-				''
-			],
-			'li' => [
-				'class' => [],
-				'id' => [],
-			],
-			'ol' => [
-				'class' => [],
-				'id' => [],
-			],
-			'input' => [
-				'type' => [],
-				'value' => array(),
-				'class' => [],
-				'id' => [],
-				'value' => [],
-				'data-'=>[],
-				'name' =>[],
-			],
-			'select' => [
-				'class' => [],
-				'id' => [],
-				'name' =>[],
-			],
-			'option'=>[
-				'class' => [],
-				'value' => [],
-				'id' => [],
-				'selected' =>[],
-			]
-		];
+		// return [
+		// 	'div' => [
+		// 		'class' => [],
+		// 		'data-display' => [],
+		// 	],
+		// 	'svg' => [
+		// 		'width' => [],
+		// 		'height' => [],
+		// 		'viewbox' => [],
+		// 		'fill' => [],
+		// 		'xmlns' => [],
+		// 	],
+		// 	'path' => [
+		// 		'd' => [],
+		// 		'stroke' => [],
+		// 		'stroke-width' => [],
+		// 		'stroke-linecap' => [],
+		// 		'stroke-linejoin' => [],
+		// 	],
+		// 	'button' => [
+		// 		'class' => [],
+		// 		'data-event' => [],
+		// 		'data-settings' => [],
+		// 		'data-tooltip' => [],
+		// 	],
+		// 	'i' => [
+		// 		'class' => [],
+		// 		'aria-hidden' => [],
+		// 	],
+		// 	'span' => [
+		// 		'class' => [],
+		// 	],
+		// 	'a' => [
+		// 		'href' => [],
+		// 		'style' => [],
+		// 		'target' => [],
+		// 	],
+		// 	'ul' => [
+		// 		'class' => [],
+		// 		'id' => [],
+		// 		''
+		// 	],
+		// 	'li' => [
+		// 		'class' => [],
+		// 		'id' => [],
+		// 	],
+		// 	'ol' => [
+		// 		'class' => [],
+		// 		'id' => [],
+		// 	],
+		// 	'input' => [
+		// 		'type' => [],
+		// 		'value' => array(),
+		// 		'class' => [],
+		// 		'id' => [],
+		// 		'value' => [],
+		// 		'data-'=>[],
+		// 		'name' =>[],
+		// 	],
+		// 	'select' => [
+		// 		'class' => [],
+		// 		'id' => [],
+		// 		'name' =>[],
+		// 	],
+		// 	'option'=>[
+		// 		'class' => [],
+		// 		'value' => [],
+		// 		'id' => [],
+		// 		'selected' =>[],
+		// 	]
+		// ];
+		$kses_defaults = wp_kses_allowed_html( 'post' );
+		$svg_args = array(
+			'svg'   => array(
+				'class'           => true,
+				'aria-hidden'     => true,
+				'aria-labelledby' => true,
+				'role'            => true,
+				'xmlns'           => true,
+				'width'           => true,
+				'height'          => true,
+				'viewbox'         => true // <= Must be lower case!
+			),
+			'g'     => array( 'fill' => true ),
+			'title' => array( 'title' => true ),
+			'path'  => array( 
+				'd'               => true, 
+				'fill'            => true  
+			)
+		);
+		
+		return array_merge( $kses_defaults, $svg_args );
 	}
   	public function pagination( $query = false ){
 	 	global $wp_query;   

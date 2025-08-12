@@ -1,16 +1,16 @@
-=== Lenxel Core for Lenxel(LNX) LMS ===
-Contributors: (ogunlab)
-Tags: LMS, Header builder, Footer builder, Teams, Portfolios, Lenxel Theme Settings
+=== Lenxel Core ===
+Contributors: ogunlab
+Tags: LMS, Header & Footer builder, Teams, Portfolios, Lenxel Theme Settings
 Requires at least: 6.3
-Tested up to: 6.5
-Requires PHP: 7.4 or above
-Stable tag: 1.1
+Tested up to: 6.7
+Requires PHP: 7.4
+Stable tag: 1.2.7
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
-Version: 1.1
+Version: 1.2.7
 Icon: assets/logo.png
 
-Lenxel Core is an extension of the Lenxel theme template that features Team post-type, Portfolio post-type, Header builder, Footer builder, and Lenxel Theme settings. 
+Lenxel Core is an extension of the Lenxel theme template that features Team post-type, Portfolio, Header & Footer builder, and Lenxel Theme settings. 
 
 
 == Description ==
@@ -147,3 +147,14 @@ Source: https://developers.elementor.com/docs/controls/simple-example/
 GPLv2 Licensed | Bartosz Wojciechowski, David Deutsch by Owl carousel2
 License: The MIT License (MIT) https://github.com/OwlCarousel2/OwlCarousel2/blob/master/LICENSE
 Source: https://github.com/OwlCarousel2/OwlCarousel2/archive/2.3.4.zip
+
+
+== Changelog ==
+= 1.2.6 - 17/03/2025 =
+* Free access to premium by filling out lenxel survey
+= 1.2.5 - 2/12/2024 =
+* SVG Fix 
+* Upgrade premium key
+= 1.2.3 - 18/11/2024 =
+* Fix User registration bug
+* Added SVG Restriction and restrict vulnerability

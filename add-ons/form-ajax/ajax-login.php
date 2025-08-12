@@ -81,24 +81,10 @@ class Lenxel_Addons_Login_Ajax{
 		$login_form_top = apply_filters( 'login_form_top', '', array() );
 		$login_form_middle = apply_filters( 'login_form_middle', '', array() );
 		$login_form_bottom = apply_filters( 'login_form_bottom', '', array() );
-		$allow_html = [
+		$allow_html_miss_svg = [
 			'div' => [
 				'class' => [],
 				'data-display' => [],
-			],
-			'svg' => [
-				'width' => [],
-				'height' => [],
-				'viewbox' => [],
-				'fill' => [],
-				'xmlns' => [],
-			],
-			'path' => [
-				'd' => [],
-				'stroke' => [],
-				'stroke-width' => [],
-				'stroke-linecap' => [],
-				'stroke-linejoin' => [],
 			],
 			'button' => [
 				'class' => [],
@@ -139,6 +125,26 @@ class Lenxel_Addons_Login_Ajax{
 				'selected' =>[],
 			]
 		];
+		$svg_args = array(
+			'svg'   => array(
+				'class'           => true,
+				'aria-hidden'     => true,
+				'aria-labelledby' => true,
+				'role'            => true,
+				'xmlns'           => true,
+				'width'           => true,
+				'height'          => true,
+				'viewbox'         => true // <= Must be lower case!
+			),
+			'g'     => array( 'fill' => true ),
+			'title' => array( 'title' => true ),
+			'path'  => array( 
+				'd'               => true, 
+				'fill'            => true
+			)
+		);
+		
+		$allowed_tags = array_merge( $allow_html_miss_svg, $svg_args );
 	?>
 		<form id="ajax-login-form" method="post" class="ajax-form-content">
 			<?php echo wp_kses(html_entity_decode($login_form_top), $allow_html); ?>

@@ -18,30 +18,32 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	<?php if($skin == 'skin-v1'){ ?>
 		<div <?php $this->print_render_attribute_string('carousel'); ?>>
 		  
-		  <div class="images">
+		  <div class="images <?php echo ($skin == 'skin-v1') ? esc_attr('image-content-gallery') : ''?>">
 				<?php if (!empty($settings['image']['url'])) : ?>
 					<div class="image-first">
 						<?php
 							$image_html = Group_Control_Image_Size::get_attachment_image_html($settings, 'image');
-						echo wp_kses($image_html, array('div'=>array('class', 'id'),'img'=>array('class','id'), 'svg' => array(
-							'width' => [],
-							'height' => [],
-							'viewbox' => [],
-							'fill' => [],
-							'xmlns' => [],
-						),
-						'i' => array(
-							'class' => [],
-							'aria-hidden' => [],
-						),
-						'span' => array(
-							'class' => [],
-						),
-						'a' => array(
-							'href' => [],
-							'style' => [],
-							'target' => [],
-						) ));
+							$kses_defaults = wp_kses_allowed_html( 'post' );
+							$svg_args = array(
+								'svg'   => array(
+									'class'           => true,
+									'aria-hidden'     => true,
+									'aria-labelledby' => true,
+									'role'            => true,
+									'xmlns'           => true,
+									'width'           => true,
+									'height'          => true,
+									'viewbox'         => true // <= Must be lower case!
+								),
+								'g'     => array( 'fill' => true ),
+								'title' => array( 'title' => true ),
+								'path'  => array( 
+									'd'               => true, 
+									'fill'            => true  
+								)
+							);
+						$allowed_tags = array_merge( $kses_defaults, $svg_args );
+						echo wp_kses($image_html, $allowed_tags);
 						?>
 					</div>
 				<?php endif; ?>

@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
        return;
     }
 
-	$this->add_render_attribute();
+	// $this->add_render_attribute();
 
 	$this->add_render_attribute('wrapper', 'data-filter', $_random);
 
