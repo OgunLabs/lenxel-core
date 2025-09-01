@@ -42,7 +42,7 @@ class Lenxel_Theme_Support{
       add_action('init', array($this, 'lenxel_generate_reset_pwd_password'));
       //add_action('init', array($this, 'lenxel_get_course_first_lesson'));
       add_action('user_register', array($this, 'lnx_user_registration_hook'), 10, 2);
-      add_filter('body_class', array($this, 'add_custom_body_class'));
+      add_filter('body_class', array($this, 'add_custom_body_class'), 99, 1);
       //add_action('wp_head', array($this, 'lenxel_core_head_ajax_url'));
       add_action('wp_enqueue_scripts', array($this, 'lenxel_core_register_scripts'));
       add_action('admin_enqueue_scripts', array($this, 'lenxel_core_register_scripts_admin'));
@@ -297,8 +297,8 @@ class Lenxel_Theme_Support{
 	}
 
    function add_custom_body_class($classes) {
-      $page_id_data = get_option('lenxel_sign_in_id');
-  
+      $page_id_data = (int) get_option('lenxel_sign_in_id');
+      
       if (!empty($page_id_data) && is_page($page_id_data)) {
           $classes[] = 'lnx-login';
       }

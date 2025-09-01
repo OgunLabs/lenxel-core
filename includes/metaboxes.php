@@ -427,3 +427,36 @@ function lenxel_register_meta_boxes(){
  }  
   /********************* META BOX REGISTERING ***********************/
   add_filter( 'rwmb_meta_boxes', 'lenxel_register_meta_boxes' , 99 );
+  if ( ! function_exists( 'lenxel_get_headers' ) ) {
+    /**
+     * Safe declaration of lenxel_get_headers().
+     * Returns null if not implemented elsewhere.
+     *
+     * @return null
+     */
+    function lenxel_get_headers() {
+        return null;
+    }
+}
+if ( ! function_exists( 'lenxel_get_footer' ) ) {
+    /**
+     * Safe declaration of lenxel_get_headers().
+     * Returns null if not implemented elsewhere.
+     *
+     * @return null
+     */
+    function lenxel_get_footer() {
+        return null;
+    }
+}
+if ( ! function_exists( 'lenxel_get_option' ) ) {
+    /**
+     * Safe declaration of lenxel_get_headers().
+     * Returns null if not implemented elsewhere.
+     *
+     * @return null
+     */
+    function lenxel_get_option() {
+        return null;
+    }
+}
