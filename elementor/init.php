@@ -95,21 +95,35 @@ if(!class_exists('Lenxel_Elementor_Addons')){
 			wp_register_script('isotope', LENXEL_PLUGIN_URL . 'elementor/assets/libs/isotope.pkgd.min.js' , array(), '1.0.0', true);
 			wp_register_script('countdown', LENXEL_PLUGIN_URL . 'elementor/assets/libs/countdown.js' , array(), '1.0.0', true);
 			wp_register_script('lenxel.elements', LENXEL_PLUGIN_URL . 'elementor/assets/main.js' , array(), '1.0.0', true);
-			wp_register_script('map-ui', LENXEL_PLUGIN_URL . '/elementor/assets/libs/jquery.ui.map.min.js');
-			$google_api_key = apply_filters('lenxel-elements/map-api', '');
-			wp_register_script(
-		  		'google-maps-api',
-		  		add_query_arg( array( 'key' => $google_api_key ), 'https://maps.googleapis.com/maps/api/js' ), false, false, true
-			);
-			wp_register_script('gmap3', LENXEL_PLUGIN_URL . '/elementor/assets/libs/gmap3.min.js'); 
+		wp_register_script('map-ui', LENXEL_PLUGIN_URL . '/elementor/assets/libs/jquery.ui.map.min.js', array('jquery'), '1.0.0', true);
+		
+		// Define Google Maps callback BEFORE the API loads
+		$gmaps_callback = "window.lenxelGoogleMapsReady = false; window.lenxelGoogleMapsLoaded = function() { window.lenxelGoogleMapsReady = true; if (window.jQuery) { jQuery(document).trigger('lenxel-google-maps-ready'); } };";
+		wp_add_inline_script('jquery', $gmaps_callback);
+		
+		$google_api_key = apply_filters('lenxel-elements/map-api', '');
+		wp_register_script(
+	  		'google-maps-api',
+	  		add_query_arg( array( 
+	  			'key' => $google_api_key,
+	  			'callback' => 'lenxelGoogleMapsLoaded'
+	  		), 'https://maps.googleapis.com/maps/api/js' ), array('jquery'), false, true
+		);
+		wp_register_script('map-init', LENXEL_PLUGIN_URL . '/elementor/assets/map-init.js', array('jquery', 'map-ui', 'google-maps-api'), '1.0.1', true);
+		wp_register_script('gmap3', LENXEL_PLUGIN_URL . '/elementor/assets/libs/gmap3.min.js', array('jquery'), '1.0.0', true);
 			wp_register_script('circle-progress', LENXEL_PLUGIN_URL . 'elementor/assets/libs/circle-progress.min.js' , array(), '1.0.0', true);
 			wp_register_script('typed', LENXEL_PLUGIN_URL . 'elementor/assets/libs/typed.umd.js' , array(), '1.0.0', true);
+			wp_register_script('testimonial-style-4', LENXEL_PLUGIN_URL . 'elementor/assets/testimonial-style-4.js', array('jquery', 'jquery.owl.carousel'), '1.0.0', true);
+			wp_register_script('category-carousel', LENXEL_PLUGIN_URL . 'elementor/assets/category-carousel.js', array('jquery', 'jquery.owl.carousel'), '1.0.0', true);
 	 		
 	 	}
 
 	 	public function enqueue_frontend_styles() {
 			wp_register_style('owl-carousel-css', LENXEL_PLUGIN_URL . 'elementor/assets/libs/owl-carousel/assets/owl.carousel.css', false, '1.0.0');
 			wp_enqueue_style('lnx-element-base', LENXEL_PLUGIN_URL . 'elementor/assets/css/base.css');
+			wp_register_style('testimonial-style-4-css', LENXEL_PLUGIN_URL . 'elementor/assets/testimonial-style-4.css', array(), '1.0.0');
+			wp_register_style('category-carousel-css', LENXEL_PLUGIN_URL . 'elementor/assets/category-carousel.css', array(), '1.0.0');
+			wp_register_style('learning-grid-css', LENXEL_PLUGIN_URL . 'elementor/assets/learning-grid.css', array(), '1.0.0');
 	 	}
   	}
 }

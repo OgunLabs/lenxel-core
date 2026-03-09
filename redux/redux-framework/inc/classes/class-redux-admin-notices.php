@@ -27,7 +27,7 @@ if ( ! class_exists( 'Redux_Admin_Notices', false ) ) {
 		 * @var array
 		 * @access private
 		 */
-		private static $notices = array();
+		private static array $notices = array();
 
 		/**
 		 * Redux_Admin_Notices constructor.
@@ -133,31 +133,36 @@ if ( ! class_exists( 'Redux_Admin_Notices', false ) ) {
 										echo '<p>' . wp_kses_post( $notice['msg'] ) . '</p>';
 										echo '</div>';
 									} else {
-										echo '<div ' . esc_html( $add_style ) . ' class="' . esc_attr( $notice['type'] ) . ' notice is-dismissable"><p>' . wp_kses_post( $notice['msg'] ) . '&nbsp;&nbsp;<a href="?dismiss=true&amp;id=' . esc_attr( $css_id ) . '">' . esc_html__( 'Dismiss', 'redux-framework' ) . '</a>.</p></div>';
+										echo '<div ' . esc_html( $add_style ) . ' class="' . esc_attr( $notice['type'] ) . ' notice is-dismissable"><p>' . wp_kses_post( $notice['msg'] ) . '&nbsp;&nbsp;<a href="?dismiss=true&amp;id=' . esc_attr( $css_id ) . '">' . esc_html__( 'Dismiss', 'lenxel-core' ) . '</a>.</p></div>';
 									}
 								}
 							} else {
 								// Standard notice.
 								echo '<div ' . esc_html( $add_style ) . ' class="' . esc_attr( $notice['type'] ) . ' notice"><p>' . wp_kses_post( $notice['msg'] ) . '</a>.</p></div>';
 							}
-							?>
-							<script>
-								jQuery( document ).ready( function( $ ) {
+						
+						$admin_notice_script = "
+							document.addEventListener(
+								'DOMContentLoaded',
+								function () {
 									$( document.body ).on(
-										'click', '.redux-notice.is-dismissible .notice-dismiss', function( e ) {
+										'click', '.redux-notice.is-dismissible .notice-dismiss', function ( e ) {
 											e.preventDefault();
-											var $data = $( this ).parent().find( '.dismiss_data' );
+											let \$data = $( this ).parent().find( '.dismiss_data' );
 											$.post(
 												ajaxurl, {
 													action: 'redux_hide_admin_notice',
-													id: $data.attr( 'id' ),
-													nonce: $data.val()
+													id: \$data.attr( 'id' ),
+													nonce: \$data.val()
 												}
 											);
-										} );
-								} );
-							</script>
-							<?php
+										}
+									);
+								}
+							)
+						";
+						wp_enqueue_script('jquery');
+						wp_add_inline_script('jquery', $admin_notice_script, 'after');
 
 						}
 					}
@@ -208,21 +213,26 @@ if ( ! class_exists( 'Redux_Admin_Notices', false ) ) {
 		public function ajax() {
 			global $current_user;
 
-			if ( isset( $_POST['id'] ) ) {
-				// Get the notice id.
-				$id = explode( '&', sanitize_text_field( wp_unslash( $_POST['id'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification
-				$id = $id[0];
-
-				// Get the user id.
-				$userid = $current_user->ID;
-
-				if ( ! isset( $_POST['nonce'] ) || ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['nonce'] ) ), $id . $userid . 'nonce' ) ) ) {
-					die( 0 );
-				} else {
-					// Add the dismissed request to the user meta.
-					update_user_meta( $userid, 'ignore_' . $id, true );
-				}
+			// Verify nonce and POST data exists before processing
+			if ( ! isset( $_POST['id'] ) || ! isset( $_POST['nonce'] ) ) {
+				die( 0 );
 			}
-		}
-	}
+
+			// Get the notice id.
+			$id = explode( '&', sanitize_text_field( wp_unslash( $_POST['id'] ) ) );
+			$id = $id[0];
+
+			// Get the user id.
+			$userid = $current_user->ID;
+
+			// Verify nonce
+			if ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['nonce'] ) ), $id . $userid . 'nonce' ) ) {
+				die( 0 );
+			}
+
+		// Add the dismissed request to the user meta.
+		update_user_meta( $userid, 'ignore_' . $id, true );
+
+		die( 1 );	}
+}
 }

@@ -163,7 +163,7 @@ if(!function_exists('lenxel_post_type_portfolio')  ){
       foreach ( $post_meta_infos as $value ) {
         $data = array();
         $data['value'] = $value['ID'];
-        $data['label'] = esc_html__( 'Id', 'lenxelframework' ) . ': ' . $value['ID']  . esc_html__( ' - Title', 'lenxel-core' ) . ': ' . $value['post_title'];
+        $data['label'] = esc_html__( 'Id', 'lenxel-core' ) . ': ' . $value['ID']  . esc_html__( ' - Title', 'lenxel-core' ) . ': ' . $value['post_title'];
         $result[] = $data;
       }
     }
@@ -224,20 +224,23 @@ if(!function_exists('lenxel_post_type_portfolio')  ){
       ?>
   <span id="pinformations-list"></span>
   <a class="add-information-item"><?php esc_html_e('Add Information', 'lenxel-core'); ?></a>
-  <script>
+  <?php
+  $inline_script = "
       var $ =jQuery.noConflict();
       $(document).ready(function() {
-          var count = <?php echo esc_js($c); ?>;
-          $(".add-information-item").click(function() {
+          var count = " . esc_js($c) . ";
+          $('.add-information-item').click(function() {
               count = count + 1;
-              $('#pinformations-list').append('<p> <input size="40" type="text" placeholder="Label" name="pinformations['+count+'][label]" value="" /><input size="80" type="text" placeholder="Value" name="pinformations['+count+'][value]" value="" /> <a class="remove button">Remove</a></p>' );
+              $('#pinformations-list').append('<p> <input size=\"40\" type=\"text\" placeholder=\"Label\" name=\"pinformations['+count+'][label]\" value=\"\" /><input size=\"80\" type=\"text\" placeholder=\"Value\" name=\"pinformations['+count+'][value]\" value=\"\" /> <a class=\"remove button\">Remove</a></p>' );
               return false;
           });
-          $(".remove").on('click', function() {
+          $('.remove').on('click', function() {
               $(this).parent().remove();
           });
       });
-      </script>
+  ";
+  wp_add_inline_script('jquery', $inline_script);
+  ?>
   </div><?php
   }
 

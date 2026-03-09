@@ -86,7 +86,7 @@ if ( ! class_exists( 'Redux_Media', false ) ) {
 				'preview_size' => 'thumbnail',
 				'url'          => true,
 				'alt'          => '',
-				'placeholder'  => esc_html__( 'No media selected', 'redux-framework' ),
+				'placeholder'  => esc_html__( 'No media selected', 'lenxel-core' ),
 				'readonly'     => true,
 				'class'        => '',
 				'filter'       => array(
@@ -230,7 +230,7 @@ if ( ! class_exists( 'Redux_Media', false ) ) {
 
 			echo '<div class="screenshot" style="' . esc_attr( $hide ) . '">';
 			echo '<a class="of-uploaded-image" href="' . esc_url( $this->value['url'] ) . '" target="_blank">';
-			echo '<img class="redux-option-image" id="image_' . esc_attr( $this->field['id'] ) . '" src="' . esc_url( $this->value['thumbnail'] ) . '" alt="' . esc_attr( $alt ) . '" target="_blank" rel="external" style="' . $css . '" />'; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '<img class="redux-option-image" id="image_' . esc_attr( $this->field['id'] ) . '" src="' . esc_url( $this->value['thumbnail'] ) . '" alt="' . esc_attr( $alt ) . '" target="_blank" rel="external" style="' . esc_attr( $css ) . '" />';
 			echo '</a>';
 			echo '</div>';
 
@@ -238,14 +238,14 @@ if ( ! class_exists( 'Redux_Media', false ) ) {
 			echo '<div class="upload_button_div">';
 
 			// If the user has WP3.5+ show upload/remove button.
-			echo '<span class="button media_upload_button" id="' . esc_attr( $this->field['id'] ) . '-media">' . esc_html__( 'Upload', 'redux-framework' ) . '</span>';
+			echo '<span class="button media_upload_button" id="' . esc_attr( $this->field['id'] ) . '-media">' . esc_html__( 'Upload', 'lenxel-core' ) . '</span>';
 
 			$hide = '';
 			if ( empty( $this->value['url'] ) || '' === $this->value['url'] ) {
 				$hide = ' hide';
 			}
 
-			echo '<span class="button remove-image' . esc_attr( $hide ) . '" id="reset_' . esc_attr( $this->field['id'] ) . '" rel="' . esc_attr( $this->field['id'] ) . '">' . esc_html__( 'Remove', 'redux-framework' ) . '</span>';
+			echo '<span class="button remove-image' . esc_attr( $hide ) . '" id="reset_' . esc_attr( $this->field['id'] ) . '" rel="' . esc_attr( $this->field['id'] ) . '">' . esc_html__( 'Remove', 'lenxel-core' ) . '</span>';
 			echo '</div>';
 
 			if ( $this->filters_enabled ) {

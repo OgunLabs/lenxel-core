@@ -23,21 +23,21 @@ if ( ! class_exists( 'Redux_Welcome', false ) ) {
 		 *
 		 * @var string The capability users should have to view the page
 		 */
-		public $minimum_capability = 'manage_options';
+		public string $minimum_capability = 'manage_options';
 
 		/**
 		 * Display version.
 		 *
 		 * @var string
 		 */
-		public $display_version = '';
+		public string $display_version = '';
 
 		/**
 		 * Is loaded.
 		 *
 		 * @var bool
 		 */
-		public $redux_loaded = false;
+		public bool $redux_loaded = false;
 
 		/**
 		 * Get things started
@@ -84,7 +84,7 @@ if ( ! class_exists( 'Redux_Welcome', false ) ) {
 		 * Change Footer.
 		 */
 		public function change_wp_footer() {
-			echo esc_html__( 'If you like', 'redux-framework' ) . ' <strong>Redux</strong> ' . esc_html__( 'please leave us a', 'redux-framework' ) . ' <a href="https://wordpress.org/support/view/plugin-reviews/redux-framework?filter=5#postform" target="_blank" class="redux-rating-link" data-rated="Thanks :)">&#9733;&#9733;&#9733;&#9733;&#9733;</a> ' . esc_html__( 'rating. A huge thank you in advance!', 'redux-framework' );
+			echo esc_html__( 'If you like', 'lenxel-core' ) . ' <strong>Redux</strong> ' . esc_html__( 'please leave us a', 'lenxel-core' ) . ' <a href="https://wordpress.org/support/view/plugin-reviews/redux-framework?filter=5#postform" target="_blank" class="redux-rating-link" data-rated="Thanks :)">&#9733;&#9733;&#9733;&#9733;&#9733;</a> ' . esc_html__( 'rating. A huge thank you in advance!', 'lenxel-core' );
 		}
 
 
@@ -101,7 +101,7 @@ if ( ! class_exists( 'Redux_Welcome', false ) ) {
 			$page = 'add_options_page';
 
 			// About Page.
-			$page( esc_html__( 'What is Redux Framework?', 'redux-framework' ), esc_html__( 'Redux', 'redux-framework' ), $this->minimum_capability, 'redux-framework', array( $this, 'about_screen' ) );
+			$page( esc_html__( 'What is Redux Framework?', 'lenxel-core' ), esc_html__( 'Redux', 'lenxel-core' ), $this->minimum_capability, 'redux-framework', array( $this, 'about_screen' ) );
 		}
 
 		/**
@@ -150,7 +150,7 @@ if ( ! class_exists( 'Redux_Welcome', false ) ) {
 				<a
 					class="nav-tab <?php echo( 'redux-framework' === $selected ? 'nav-tab-active' : '' ); ?>"
 					href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'redux-framework' ), 'options-general.php' ) ) ); ?>">
-					<?php esc_attr_e( 'What is Redux?', 'redux-framework' ); ?>
+					<?php esc_attr_e( 'What is Redux?', 'lenxel-core' ); ?>
 				</a>
 			</h2>
 			<?php
@@ -176,7 +176,7 @@ if ( ! class_exists( 'Redux_Welcome', false ) ) {
 		public function actions() {
 			?>
 			<p class="redux-actions">
-				<a href="http://devs.redux.io/" class="docs button button-primary">Docs</a>
+				<a href="https://devs.redux.io/" class="docs button button-primary">Docs</a>
 				<a
 					href="https://wordpress.org/support/view/plugin-reviews/redux-framework?filter=5#postform"
 					class="review-us button button-primary"
@@ -202,21 +202,23 @@ if ( ! class_exists( 'Redux_Welcome', false ) ) {
 					?>
 					<a
 						href="<?php echo esc_url( admin_url( add_query_arg( $query_args, 'options-general.php' ) ) ); ?>"
-						class=" button-text button-demo"><?php echo esc_html__( 'Disable Panel Demo', 'redux-framework' ); ?></a>
+						class=" button-text button-demo"><?php echo esc_html__( 'Disable Panel Demo', 'lenxel-core' ); ?></a>
 					<?php
 				} else {
 					?>
 					<a
 						href="<?php echo esc_url( admin_url( add_query_arg( $query_args, 'options-general.php' ) ) ); ?>"
-						class=" button-text button-demo active"><?php echo esc_html__( 'Enable Panel Demo', 'redux-framework' ); ?></a>
+						class=" button-text button-demo active"><?php echo esc_html__( 'Enable Panel Demo', 'lenxel-core' ); ?></a>
 					<?php
 				}
 
 				?>
 				<script>
 					!function( d, s, id ) {
-						var js, fjs = d.getElementsByTagName( s )[0],
-							p = /^http:/.test( d.location ) ? 'http' : 'https';
+						let js;
+						const fjs = d.getElementsByTagName( s )[0],
+
+						p = /^http:/.test( d.location ) ? 'http' : 'https';
 						if ( !d.getElementById( id ) ) {
 							js = d.createElement( s );
 							js.id = id;

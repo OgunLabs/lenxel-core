@@ -19,114 +19,191 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		/**
 		 * Class instance.
 		 *
-		 * @var object
+		 * @var null|Redux_Core
 		 */
-		public static $instance;
+		public static ?Redux_Core $instance = null;
 
 		/**
 		 * Project version
 		 *
 		 * @var string
 		 */
-		public static $version;
+		public static string $version;
 
 		/**
 		 * Project directory.
 		 *
 		 * @var string.
 		 */
-		public static $dir;
+		public static string $dir;
 
 		/**
 		 * Project URL.
 		 *
 		 * @var string.
 		 */
-		public static $url;
+		public static string $url;
 
 		/**
 		 * Base directory path.
 		 *
 		 * @var string
 		 */
-		public static $redux_path;
+		public static string $redux_path;
 
 		/**
 		 * Absolute direction path to WordPress upload directory.
 		 *
-		 * @var null
+		 * @var string
 		 */
-		public static $upload_dir = null;
+		public static string $upload_dir = '';
 
 		/**
 		 * Full URL to WordPress upload directory.
 		 *
-		 * @var string
+		 * @var null|string
 		 */
-		public static $upload_url = null;
+		public static ?string $upload_url = '';
 
 		/**
 		 * Set when Redux is run as a plugin.
 		 *
 		 * @var bool
 		 */
-		public static $is_plugin = true;
+		public static bool $is_plugin = true;
 
 		/**
 		 * Indicated in_theme or in_plugin.
 		 *
 		 * @var string
 		 */
-		public static $installed = '';
+		public static string $installed = '';
 
 		/**
 		 * Set when Redux is run as a plugin.
 		 *
 		 * @var bool
 		 */
-		public static $as_plugin = false;
+		public static bool $as_plugin = false;
 
 		/**
 		 * Set when Redux is embedded within a theme.
 		 *
 		 * @var bool
 		 */
-		public static $in_theme = false;
+		public static bool $in_theme = false;
 
 		/**
 		 * Pointer to an updated Google fonts array.
 		 *
-		 * @var array
+		 * @var array|null
 		 */
-		public static $google_fonts = array();
+		public static ?array $updated_google_fonts = array();
 
 		/**
 		 * List of files calling Redux.
 		 *
-		 * @var array
+		 * @var array|null
 		 */
-		public static $callers = array();
+		public static ?array $callers = array();
 
 		/**
 		 * Pointer to _SERVER global.
 		 *
-		 * @var null
+		 * @var array|null
 		 */
-		public static $server = null;
+		public static ?array $server = array();
+
+		/**
+		 * Field folding information for localization.
+		 *
+		 * @var null|array
+		 */
+		public static ?array $required = array();
+
+		/**
+		 * Field child-folding information for localization.
+		 *
+		 * @var null|array
+		 */
+		public static ?array $required_child = array();
+
+		/**
+		 * Array of fields to be folded.
+		 *
+		 * @var array|null
+		 */
+		public static ?array $folds = array();
+
+		/**
+		 * Array of fields that didn't pass the fold dependency test and are hidden.
+		 *
+		 * @var null|array
+		 */
+		public static ?array $fields_hidden = array();
+
+		/**
+		 * Values to generate google font CSS.
+		 *
+		 * @var null|array
+		 */
+		public static ?array $typography = array();
+
+		/**
+		 * Validation ran flag.
+		 *
+		 * @var bool
+		 */
+		public static bool $validation_ran = false;
+
+		/**
+		 * No output flag.
+		 *
+		 * @var bool
+		 */
+		public static bool $no_output = false;
+
+		/**
+		 * Array of fonts used by the panel for localization.
+		 *
+		 * @var null|array
+		 */
+		public static ?array $fonts = array();
+
+		/**
+		 * Array of Google fonts used by the panel for localization.
+		 *
+		 * @var null|array
+		 */
+		public static ?array $google_array = array();
+
+		/**
+		 * Array of various font groups used within the typography field.
+		 *
+		 * @var null|array
+		 */
+		public static ?array $font_groups = array();
+
+		/**
+		 * File system object used for I/O file operations.  Done the WordPress way.
+		 *
+		 * @var null|object
+		 */
+		public static ?object $filesystem;
 
 		/**
 		 * Pointer to the third party fixes class.
 		 *
-		 * @var null
+		 * @var Redux_ThirdParty_Fixes
 		 */
-		public static $third_party_fixes = null;
+		public static Redux_ThirdParty_Fixes $third_party_fixes;
 
 		/**
 		 * Redux Welcome screen object.
 		 *
-		 * @var null
+		 * @var Redux_Welcome
 		 */
-		public static $welcome = null;
+		public static Redux_Welcome $welcome;
 
 		/**
 		 * Creates instance of class.
@@ -134,7 +211,7 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		 * @return Redux_Core
 		 * @throws Exception Comment.
 		 */
-		public static function instance() {
+		public static function instance(): ?Redux_Core {
 			if ( ! self::$instance ) {
 				self::$instance = new self();
 
@@ -235,9 +312,9 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		/**
 		 * Code to execute on a framework __construct.
 		 *
-		 * @param object $redux Pointer to ReduxFramework object.
+		 * @param ReduxFramework $redux Pointer to ReduxFramework object.
 		 */
-		public static function core_construct( $redux ) {
+		public static function core_construct( ReduxFramework $redux ) {
 			self::$third_party_fixes = new Redux_ThirdParty_Fixes( $redux );
 
 			Redux_ThemeCheck::get_instance();
@@ -249,8 +326,10 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		 * @throws Exception Comment.
 		 */
 		private function includes() {
-			if ( class_exists( 'Redux_Pro' ) && isset( Redux_Pro::$dir ) ) {
-				echo '<div class="error"><p>' . sprintf( esc_html__( 'Redux has detected the Redux Pro plugin is enabled. All featured of Redux Pro are now part of the entire Redux plugin and is no longer required. Please disable the Redux Pro plugin to avoid potential conflicts.', 'redux-framework' ), '<code></code>' ) . '</p></div>';
+			if ( is_admin() ) {
+				if ( class_exists( 'Redux_Pro' ) && isset( Redux_Pro::$dir ) ) {
+					echo '<div class="error"><p>' . sprintf( esc_html__( 'Redux has detected the Redux Pro plugin is enabled. All featured of Redux Pro are now part of the entire Redux plugin and is no longer required. Please disable the Redux Pro plugin to avoid potential conflicts.', 'lenxel-core' ), '<code></code>' ) . '</p></div>';
+				}
 			}
 
 			require_once __DIR__ . '/inc/classes/class-redux-path.php';
@@ -260,13 +339,11 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 
 			Redux_Functions_Ex::register_class_path( 'Redux', __DIR__ . '/inc/classes' );
 			Redux_Functions_Ex::register_class_path( 'Redux', __DIR__ . '/inc/welcome' );
-			Redux_Functions_Ex::load_extendify_css();
 
 			spl_autoload_register( array( $this, 'register_classes' ) );
 
 			self::$welcome = new Redux_Welcome();
 
-			add_action( 'admin_init', array( $this, 'admin_init' ) );
 			add_filter( 'debug_information', array( $this, 'add_debug_info' ) );
 		}
 
@@ -296,29 +373,29 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 
 			// Set Redux dir permission results to Site Health screen.
 			$debug_info['wp-filesystem']['fields'][] = array(
-				'label' => esc_html__( 'The Redux upload directory', 'redux-framework' ),
+				'label' => esc_html__( 'The Redux upload directory', 'lenxel-core' ),
 				'value' => wp_is_writable( self::$upload_dir ) ? 'Writable' : 'Not writable',
 			);
 
 			// Set Redux plugin results to Site Health screen.
 			$debug_info['redux-framework'] = array(
-				'label'       => esc_html__( 'Redux Framework', 'redux-framework' ),
-				'description' => esc_html__( 'Debug information specific to Redux Framework.', 'redux-framework' ),
+				'label'       => esc_html__( 'Redux Framework', 'lenxel-core' ),
+				'description' => esc_html__( 'Debug information specific to Redux Framework.', 'lenxel-core' ),
 				'fields'      => array(
 					'version'        => array(
-						'label' => esc_html__( 'Version', 'redux-framework' ),
+						'label' => esc_html__( 'Version', 'lenxel-core' ),
 						'value' => self::$version,
 					),
 					'installation'   => array(
-						'label' => esc_html__( 'Installation', 'redux-framework' ),
+						'label' => esc_html__( 'Installation', 'lenxel-core' ),
 						'value' => self::$installed,
 					),
 					'data directory' => array(
-						'label' => esc_html__( 'Data directory', 'redux-framework' ),
+						'label' => esc_html__( 'Data directory', 'lenxel-core' ),
 						'value' => self::$dir,
 					),
 					'browser'        => array(
-						'label' => esc_html__( 'Browser', 'redux-framework' ),
+						'label' => esc_html__( 'Browser', 'lenxel-core' ),
 						'value' => $browser_data,
 					),
 				),
@@ -351,9 +428,9 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 					// Output Redux instances.
 					$debug_info[ 'redux-instance-' . $inst ] = array(
 						// translators: %s = Instance name.
-						'label'       => sprintf( esc_html__( 'Redux Instance: %s', 'redux-framework' ), $inst_name ),
+						'label'       => sprintf( esc_html__( 'Redux Instance: %s', 'lenxel-core' ), $inst_name ),
 						// translators: %s = Instance name w/ HTML.
-						'description' => sprintf( esc_html__( 'Debug information for the %s Redux instance.', 'redux-framework' ), '<code>' . $inst . '</code>' ),
+						'description' => sprintf( esc_html__( 'Debug information for the %s Redux instance.', 'lenxel-core' ), '<code>' . $inst . '</code>' ),
 						'fields'      => array(
 							'opt_name'         => array(
 								'label' => esc_html( 'opt_name' ),
@@ -501,13 +578,6 @@ if ( ! class_exists( 'Redux_Core', false ) ) {
 		private function hooks() {
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			do_action( 'redux/core/hooks', $this );
-		}
-
-		/**
-		 * Display the connection banner.
-		 */
-		public function admin_init() {
-			Redux_Connection_Banner::init();
 		}
 
 		/**

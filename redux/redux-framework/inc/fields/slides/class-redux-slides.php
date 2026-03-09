@@ -29,7 +29,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 					'description' => true,
 					'url'         => true,
 				),
-				'content_title' => esc_html__( 'Slide', 'redux-framework' ),
+				'content_title' => esc_html__( 'Slide', 'lenxel-core' ),
 			);
 
 			$this->field = wp_parse_args( $this->field, $defaults );
@@ -45,7 +45,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 		 */
 		public function render() {
 			// translators: New accordion title.
-			echo '<div class="redux-slides-accordion" data-new-content-title="' . esc_attr( sprintf( esc_html__( 'New %s', 'redux-framework' ), $this->field['content_title'] ) ) . '">';
+			echo '<div class="redux-slides-accordion" data-new-content-title="' . esc_attr( sprintf( __( 'New %s', 'lenxel-core' ), $this->field['content_title'] ) ) . '">';
 
 			$x = 0;
 
@@ -102,7 +102,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 
 					echo '<div class="redux_slides_add_remove">';
 
-					echo '<span class="button media_upload_button" id="add_' . esc_attr( $x ) . '">' . esc_html__( 'Upload', 'redux-framework' ) . '</span>';
+					echo '<span class="button media_upload_button" id="add_' . esc_attr( $x ) . '">' . esc_html__( 'Upload', 'lenxel-core' ) . '</span>';
 
 					$hide = '';
 					if ( empty( $slide['image'] ) ) {
@@ -113,7 +113,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 							class="button remove-image' . esc_attr( $hide ) . '"
 							id="reset_' . esc_attr( $x ) . '"
 							rel="' . esc_attr( $slide['attachment_id'] ) . '">' .
-							esc_html__( 'Remove', 'redux-framework' ) . '</span>';
+							esc_html__( 'Remove', 'lenxel-core' ) . '</span>';
 
 					echo '</div>' . "\n";
 
@@ -125,7 +125,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 						$title_type = 'hidden';
 					}
 
-					$placeholder = ( isset( $this->field['placeholder']['title'] ) ) ? esc_attr( $this->field['placeholder']['title'] ) : esc_html__( 'Title', 'redux-framework' );
+					$placeholder = ( isset( $this->field['placeholder']['title'] ) ) ? esc_attr( $this->field['placeholder']['title'] ) : __( 'Title', 'lenxel-core' );
 					echo '<li>';
 					echo '<input
 							type="' . esc_attr( $title_type ) . '"
@@ -137,7 +137,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 					echo '</li>';
 
 					if ( $this->field['show']['description'] ) {
-						$placeholder = ( isset( $this->field['placeholder']['description'] ) ) ? esc_attr( $this->field['placeholder']['description'] ) : esc_html__( 'Description', 'redux-framework' );
+						$placeholder = ( isset( $this->field['placeholder']['description'] ) ) ? esc_attr( $this->field['placeholder']['description'] ) : __( 'Description', 'lenxel-core' );
 						echo '<li>';
 						echo '<textarea
 								name="' . esc_attr( $this->field['name'] . '[' . $x . '][description]' . $this->field['name_suffix'] ) . '"
@@ -149,7 +149,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 						echo '</li>';
 					}
 
-					$placeholder = ( isset( $this->field['placeholder']['url'] ) ) ? esc_attr( $this->field['placeholder']['url'] ) : esc_html__( 'URL', 'redux-framework' );
+					$placeholder = ( isset( $this->field['placeholder']['url'] ) ) ? esc_attr( $this->field['placeholder']['url'] ) : __( 'URL', 'lenxel-core' );
 					if ( $this->field['show']['url'] ) {
 						$url_type = 'text';
 					} else {
@@ -212,7 +212,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 					echo '</li>';
 
 					echo '<li>';
-					echo '<a href="javascript:void(0);" class="button deletion redux-slides-remove">' . esc_html__( 'Delete', 'redux-framework' ) . '</a>';
+					echo '<a href="javascript:void(0);" class="button deletion redux-slides-remove">' . esc_html__( 'Delete', 'lenxel-core' ) . '</a>';
 					echo '</li>';
 
 					echo '</ul>';
@@ -230,7 +230,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 				echo '<h3>';
 
 				// translators:  Content title for new accordion.
-				echo '<span class="redux-slides-header">' . esc_html( sprintf( esc_html__( 'New %s', 'redux-framework' ), esc_html( $this->field['content_title'] ) ) ) . '</span>';
+				echo '<span class="redux-slides-header">' . esc_html( sprintf( __( 'New %s', 'lenxel-core' ), esc_attr( $this->field['content_title'] ) ) ) . '</span>';
 				echo '</h3>';
 				echo '<div>';
 
@@ -246,9 +246,9 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 				echo '<div class="upload_button_div">';
 
 				// If the user has WP3.5+ show upload/remove button.
-				echo '<span class="button media_upload_button" id="add_' . esc_attr( $x ) . '">' . esc_html__( 'Upload', 'redux-framework' ) . '</span>';
+				echo '<span class="button media_upload_button" id="add_' . esc_attr( $x ) . '">' . esc_html__( 'Upload', 'lenxel-core' ) . '</span>';
 
-				echo '<span class="button remove-image' . esc_attr( $hide ) . '" id="reset_' . esc_attr( $x ) . '" rel="' . esc_attr( $this->parent->args['opt_name'] . '[' . $this->field['id'] ) . '][attachment_id]">' . esc_html__( 'Remove', 'redux-framework' ) . '</span>';
+				echo '<span class="button remove-image' . esc_attr( $hide ) . '" id="reset_' . esc_attr( $x ) . '" rel="' . esc_attr( $this->parent->args['opt_name'] . '[' . $this->field['id'] ) . '][attachment_id]">' . esc_html__( 'Remove', 'lenxel-core' ) . '</span>';
 
 				echo '</div>' . "\n";
 
@@ -260,7 +260,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 					$title_type = 'hidden';
 				}
 
-				$placeholder = ( isset( $this->field['placeholder']['title'] ) ) ? esc_attr( $this->field['placeholder']['title'] ) : esc_html__( 'Title', 'redux-framework' );
+				$placeholder = ( isset( $this->field['placeholder']['title'] ) ) ? esc_attr( $this->field['placeholder']['title'] ) : __( 'Title', 'lenxel-core' );
 
 				echo '<li>';
 				echo '<input
@@ -273,7 +273,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 				echo '</li>';
 
 				if ( $this->field['show']['description'] ) {
-					$placeholder = ( isset( $this->field['placeholder']['description'] ) ) ? esc_attr( $this->field['placeholder']['description'] ) : esc_html__( 'Description', 'redux-framework' );
+					$placeholder = ( isset( $this->field['placeholder']['description'] ) ) ? esc_attr( $this->field['placeholder']['description'] ) : __( 'Description', 'lenxel-core' );
 
 					echo '<li>';
 					echo '<textarea
@@ -285,7 +285,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 					echo '</li>';
 				}
 
-				$placeholder = ( isset( $this->field['placeholder']['url'] ) ) ? esc_attr( $this->field['placeholder']['url'] ) : esc_html__( 'URL', 'redux-framework' );
+				$placeholder = ( isset( $this->field['placeholder']['url'] ) ) ? esc_attr( $this->field['placeholder']['url'] ) : __( 'URL', 'lenxel-core' );
 
 				if ( $this->field['show']['url'] ) {
 					$url_type = 'text';
@@ -348,7 +348,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 				echo '</li>';
 
 				echo '<li>';
-				echo '<a href="javascript:void(0);" class="button deletion redux-slides-remove">' . esc_html__( 'Delete', 'redux-framework' ) . '</a>';
+				echo '<a href="javascript:void(0);" class="button deletion redux-slides-remove">' . esc_html__( 'Delete', 'lenxel-core' ) . '</a>';
 				echo '</li>';
 
 				echo '</ul>';
@@ -360,7 +360,7 @@ if ( ! class_exists( 'Redux_Slides', false ) ) {
 			echo '</div>';
 
 			// translators:  Content title for accordion.
-			echo '<a href="javascript:void(0);" class="button redux-slides-add button-primary" rel-id="' . esc_attr( $this->field['id'] ) . '-ul" rel-name="' . esc_attr( $this->field['name'] . '[title][]' . $this->field['name_suffix'] ) . '">' . esc_html( sprintf( esc_html__( 'Add %s', 'redux-framework' ), esc_html( $this->field['content_title'] ) ) ) . '</a>';
+			echo '<a href="javascript:void(0);" class="button redux-slides-add button-primary" rel-id="' . esc_attr( $this->field['id'] ) . '-ul" rel-name="' . esc_attr( $this->field['name'] . '[title][]' . $this->field['name_suffix'] ) . '">' . esc_html( sprintf( __( 'Add %s', 'lenxel-core' ), esc_html( $this->field['content_title'] ) ) ) . '</a>';
 			echo '<br/>';
 		}
 

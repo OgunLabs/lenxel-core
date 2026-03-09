@@ -1,4 +1,7 @@
-<?php if($settings['style'] == 'style-1'): ?>
+<?php 
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+if($settings['style'] == 'style-1'): ?>
    <div class="service-item <?php echo esc_attr($settings['style']) ?>">
       <div class="service-item-content">
 			

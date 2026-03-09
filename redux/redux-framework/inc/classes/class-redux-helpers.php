@@ -31,6 +31,21 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		public static $array_units = array( '', '%', 'in', 'cm', 'mm', 'em', 'rem', 'ex', 'pt', 'pc', 'px', 'vh', 'vw', 'vmin', 'vmax', 'ch' );
 
 		/**
+		 * Is customizer loaded.
+		 *
+		 * @return bool
+		 */
+		public static function is_customizer_loaded(): bool {
+			global $wp_customize;
+
+			if ( isset( $wp_customize ) ) {
+				return true;
+			}
+
+			return false;
+		}
+
+		/**
 		 * Retrieve the section array from field ID.
 		 *
 		 * @param string $opt_name Panel opt_name.
@@ -466,16 +481,6 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		}
 
 		/**
-		 * Create unique hash.
-		 *
-		 * @return string
-		 */
-		public static function get_hash(): string {
-			$remote_addr = Redux_Core::$server['REMOTE_ADDR'] ?? '127.0.0.1';
-			return md5( network_site_url() . '-' . $remote_addr );
-		}
-
-		/**
 		 * Get info for specified file.
 		 *
 		 * @param string $file File to check.
@@ -647,29 +652,29 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 *
 		 * @return string
 		 */
-		public static function get_template_version( $file ) {
-			//Redux_Filesystem::get_instance();
+		public static function get_template_version( string $file ): string {
+			$filesystem = Redux_Filesystem::get_instance();
 			// Avoid notices if file does not exist.
 			if ( ! file_exists( $file ) ) {
 				return '';
 			}
-			// We don't need to write to the file, so just open for reading.
-			$fp = fopen( $file, 'r' );
 
-			// Pull only the first 8kiB of the file in.
-			$file_data = fread( $fp, 8192 );
+			$data = get_file_data( $file, array( 'version' ), 'plugin' );
 
-			// PHP will close file handle, but we are good citizens.
-			fclose( $fp );
+			if ( ! empty( $data[0] ) ) {
+				return $data[0];
+			} else {
+				$file_data = $filesystem->get_contents( $file );
 
-			$file_data = str_replace( "\r", "\n", $file_data );
-			$version   = '1.0.0';
+				$file_data = str_replace( "\r", "\n", $file_data );
+				$version   = '1.0.0';
 
-			if ( preg_match( '/^[ \t\/*#@]*' . preg_quote( '@version', '/' ) . '(.*)$/mi', $file_data, $match ) && $match[1] ) {
-				$version = _cleanup_header_comment( $match[1] );
+				if ( preg_match( '/^[ \t\/*#@]*' . preg_quote( '@version', '/' ) . '(.*)$/mi', $file_data, $match ) && $match[1] ) {
+					$version = _cleanup_header_comment( $match[1] );
+				}
+
+				return $version;
 			}
-
-			return $version;
 		}
 
 		/**
@@ -776,7 +781,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 *        user_can( 42, 'edit_page', 17433 );                  // Checks if user ID 42 has the 'edit_page' cap for post-ID 17433.
 		 *        user_can( 42, array( 'edit_pages', 'edit_posts' ) ); // Checks if user ID 42 has both the 'edit_pages' and 'edit_posts' caps.
 		 */
-		public static function user_can( $user, $capabilities, int $object_id = null ): bool {
+		public static function user_can( $user, $capabilities, ?int $object_id = null ): bool {
 			static $depth = 0;
 
 			if ( $depth >= 30 ) {
@@ -914,50 +919,35 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 * @return array|WP_Error
 		 */
 		public static function google_fonts_array( bool $download = false ) {
-			if ( ! empty( Redux_Core::$google_fonts ) && ! self::google_fonts_update_needed() ) {
-				return Redux_Core::$google_fonts;
+			if ( ! empty( Redux_Core::$updated_google_fonts ) && ! self::google_fonts_update_needed() ) {
+				return Redux_Core::$updated_google_fonts;
 			}
 
-			//Redux_Filesystem::get_instance();
+			$filesystem = Redux_Filesystem::get_instance();
 
 			$path = trailingslashit( Redux_Core::$upload_dir ) . 'google_fonts.json';
 
 			if ( ! file_exists( $path ) || ( file_exists( $path ) && $download && self::google_fonts_update_needed() ) ) {
 				if ( $download ) {
-					// phpcs:ignore WordPress.NamingConventions.ValidHookName
-					// Retrieve an updated Google font array
-					$url = apply_filters( 'redux/typography/google_fonts/url', 'https://raw.githubusercontent.com/reduxframework/google-fonts/master/google_fonts.json' );
-
-					$request = wp_remote_get(
-						$url,
-						array(
-							'timeout' => 20,
-						)
-					);
-
-					if ( ! is_wp_error( $request ) ) {
-						$body = wp_remote_retrieve_body( $request );
+					// Use local bundled Google Fonts file instead of remote call
+					$local_fonts_file = dirname( Redux_Core::$dir ) . '/assets/google-fonts.json';
+					
+					if ( file_exists( $local_fonts_file ) ) {
+						$body = file_get_contents( $local_fonts_file );
 						if ( ! empty( $body ) ) {
-							$fp = fopen($path, "w");
-							fwrite($fp, $body);
-							fclose($fp);
-							Redux_Core::$google_fonts = json_decode( $body, true );
+							$filesystem->put_contents( $path, $body );
+							Redux_Core::$updated_google_fonts = json_decode( $body, true );
 						}
-					} else {
-						return $request;
 					}
 				}
 			} elseif ( file_exists( $path ) ) {
-				$fp = fopen( $path, 'r' );
-				$file_data = fread( $fp, 8192 );
-				fclose( $fp );
-				Redux_Core::$google_fonts = json_decode( $file_data, true );
-				if ( empty( Redux_Core::$google_fonts ) ) {
+				Redux_Core::$updated_google_fonts = json_decode( $filesystem->get_contents( $path ), true );
+				if ( empty( Redux_Core::$updated_google_fonts ) ) {
 					$filesystem->unlink( $path );
 				}
 			}
 
-			return Redux_Core::$google_fonts;
+			return Redux_Core::$updated_google_fonts;
 		}
 
 		/**

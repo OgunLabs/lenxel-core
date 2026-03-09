@@ -379,14 +379,9 @@ class LNXElement_Image_Content extends LNXElement_Base {
 	 * @access protected
 	 */
 	protected function render() {
-		if ( lenxel_get_template_restrict()->has_premium){
-			printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
-				include $this->get_template('image-content.php');
-			print '</div>';
-		}else {
-			$content = '<div></div>';
-			wp_kses($content, array( 'div' ));
-		}
+		$content = '<div></div>';
+
+		echo wp_kses($content, array( 'div' ));
 	}
 	
 }

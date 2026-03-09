@@ -216,53 +216,8 @@ class LNXElement_Users extends LNXElement_Base {
 	 * @access protected
 	 */
 	protected function render() {
-		if ( lenxel_get_template_restrict()->has_premium){
-			$settings = $this->get_settings_for_display();
-
-			$layout    = $settings['layout'];
-			$user_role = $settings['user_role'];
-			$per_page  = $settings['per_page'];
-
-			if (is_front_page()) {
-				$paged = (get_query_var('page')) ? get_query_var('page') : 1;
-			} else {
-				$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-			}
-			$offset = ($paged - 1) * $per_page;
-
-			$args = [
-				'offset'  => $offset,
-				'number'  => $per_page,
-				'role'    => $user_role,
-				'orderby' => $settings['orderby'],
-				'order'   => $settings['order']
-			];
-
-			if($settings['user_ids']){
-				$ids = explode(',', $settings['user_ids']);
-				if( is_array($ids) && count($ids) > 0 ){
-					$args['include'] = $ids;
-				}
-			}
-
-			$users       = count_users();
-			$query       = get_users($args);
-			$total_query = count($query);
-
-			$total_pages = 1;
-			if (isset($users['avail_roles'][$user_role]) && !empty($users['avail_roles'][$user_role])) {
-				$total_pages = intval($users['avail_roles'][$user_role] / $per_page) + 1;
-			}
-
-			printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
-			if( !empty($layout) ){
-				include $this->get_template('course-users/' . $layout . '.php');
-			}
-			print '</div>';
-		}else {
-			$content = '<div></div>';
-			wp_kses($content, array( 'div' ));
-		}
+		$content = '<div></div>';
+		echo wp_kses($content, array( 'div' ));
 	}
 }
 

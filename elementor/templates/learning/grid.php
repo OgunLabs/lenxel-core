@@ -2,17 +2,21 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
   $query = $this->query_posts();
   $_random = lenxel_themesupport_random_id();
+  
+  // Enqueue learning grid styles
+  wp_enqueue_style('learning-grid-css');
+  
   if ( ! $query->found_posts ) {
-    $get_iclude_script = "<script>jQuery( document ).ready(function() {
-        jQuery('.elementor-widget-lnx-learning').css('display','none');
-    });</script>";
-    echo wp_kses( $get_iclude_script, array('script'=>array()) );
+    // Hide widget if no posts found using inline CSS
+    $hide_css = '.elementor-widget-lnx-learning{display:none;}';
+    wp_add_inline_style('learning-grid-css', $hide_css);
 	 return;
   }
-  $get_iclude_scr = "<script>jQuery( document ).ready(function() {
-      jQuery('.elementor-widget-lnx-learning').css('display','block');
-  });</script>";
-  echo wp_kses( $get_iclude_scr, array('script'=>array()) );
+  
+  // Show widget if posts found
+  $show_css = '.elementor-widget-lnx-learning{display:block;}';
+  wp_add_inline_style('learning-grid-css', $show_css);
+  
 	$this->add_render_attribute(['wrapper' => ['class'=>'lnx-course-grid clearfix lnx-course']]);
   $style = (isset($settings['style'])) ? $settings['style'] : '' ;
 	//add_render_attribute grid
@@ -22,9 +26,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
   
   <div <?php $this->print_render_attribute_string('wrapper'); ?>>
   
-  <style>.elementor-widget-lnx-learning{
-    padding:100px 0px 80px;
-  }</style>
   <div class="gsc-heading"><p class="sub-title-learning">You are almost there! Keep learning</p></div>
   <?php $current_user= wp_get_current_user(); ?>
   <div class=""><div class="gsc-heading"><p class="title-learning" style="">Welcome Back <?php echo esc_html( $current_user->user_login ); ?>, Continue Learning</div></div>

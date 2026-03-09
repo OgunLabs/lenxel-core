@@ -22,7 +22,7 @@ class Lenxel_Addons_Login_Ajax{
 	public function ajax_login_init(){
 		if (!is_user_logged_in()) {
 			// Enable the user with no privileges to run ajax_login() in AJAX
-			add_action( 'wp_ajax_nopriv_ajaxlogin', array($this, 'ajax_login') );
+			add_action( 'wp_ajax_nopriv_lenxel_ajaxlogin', array($this, 'ajax_login') );
 		}
 	}
 
@@ -41,9 +41,9 @@ class Lenxel_Addons_Login_Ajax{
 	 	$user_signon = wp_signon( $info, false );
 
 	 	if ( !is_wp_error($user_signon) ){
+		  	// wp_signon() already handles user authentication and sets auth cookies
+		  	// No need to manually set current user - WordPress handles this
 		  	
-		  	wp_set_current_user($user_signon->ID);
-		  	wp_set_auth_cookie($user_signon->ID);
 			$message = esc_html__('Login successful, redirecting...', 'lenxel-core');
 			if(class_exists('WpFastestCache')){
           	$wpfc = new WpFastestCache();
@@ -81,24 +81,10 @@ class Lenxel_Addons_Login_Ajax{
 		$login_form_top = apply_filters( 'login_form_top', '', array() );
 		$login_form_middle = apply_filters( 'login_form_middle', '', array() );
 		$login_form_bottom = apply_filters( 'login_form_bottom', '', array() );
-		$allow_html = [
+		$allow_html_miss_svg = [
 			'div' => [
 				'class' => [],
 				'data-display' => [],
-			],
-			'svg' => [
-				'width' => [],
-				'height' => [],
-				'viewbox' => [],
-				'fill' => [],
-				'xmlns' => [],
-			],
-			'path' => [
-				'd' => [],
-				'stroke' => [],
-				'stroke-width' => [],
-				'stroke-linecap' => [],
-				'stroke-linejoin' => [],
 			],
 			'button' => [
 				'class' => [],
@@ -139,6 +125,26 @@ class Lenxel_Addons_Login_Ajax{
 				'selected' =>[],
 			]
 		];
+		$svg_args = array(
+			'svg'   => array(
+				'class'           => true,
+				'aria-hidden'     => true,
+				'aria-labelledby' => true,
+				'role'            => true,
+				'xmlns'           => true,
+				'width'           => true,
+				'height'          => true,
+				'viewbox'         => true // <= Must be lower case!
+			),
+			'g'     => array( 'fill' => true ),
+			'title' => array( 'title' => true ),
+			'path'  => array( 
+				'd'               => true, 
+				'fill'            => true
+			)
+		);
+		
+		$allowed_tags = array_merge( $allow_html_miss_svg, $svg_args );
 	?>
 		<form id="ajax-login-form" method="post" class="ajax-form-content">
 			<?php echo wp_kses(html_entity_decode($login_form_top), $allow_html); ?>

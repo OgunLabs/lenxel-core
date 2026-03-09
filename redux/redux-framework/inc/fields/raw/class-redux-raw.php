@@ -40,17 +40,21 @@ if ( ! class_exists( 'Redux_Raw', false ) ) {
 			}
 
 			if ( isset( $this->field['content_path'] ) && ! empty( $this->field['content_path'] ) && file_exists( $this->field['content_path'] ) ) {
-				$this->field['content'] = $this->parent->filesystem->execute( 'get_contents', $this->field['content_path'] );
+				$this->field['content'] = Redux_Core::$filesystem->execute( 'get_contents', $this->field['content_path'] );
 			}
 
 			if ( ! empty( $this->field['content'] ) && isset( $this->field['content'] ) ) {
 				if ( isset( $this->field['markdown'] ) && true === $this->field['markdown'] && ! empty( $this->field['content'] ) ) {
-					require_once __DIR__ . '/parsedown.php';
-					$parsedown = new Redux_Parsedown();
-
-					echo( $parsedown->text( $this->field['content'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput
+					// Load namespaced Parsedown library to prevent conflicts with other plugins
+					if ( ! class_exists( 'LenxelRedux\Parsedown' ) ) {
+						require_once __DIR__ . '/parsedown.php';
+					}
+					
+					// Use fully namespaced class
+					$parsedown = new \LenxelRedux\Parsedown();
+					echo wp_kses_post( $parsedown->text( $this->field['content'] ) );
 				} else {
-					echo( $this->field['content'] ); // phpcs:ignore WordPress.Security.EscapeOutput
+					echo wp_kses_post( $this->field['content'] );
 				}
 			}
 

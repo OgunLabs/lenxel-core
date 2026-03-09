@@ -463,7 +463,7 @@ class LNXElement_Course_category extends LNXElement_Base {
 		$this->start_controls_section(
 			'section_sub_title_style',
 			[
-				'label' => esc_html__( 'Sub Title', 'lenxel-core' ),
+				'label' => esc_html__( 'Sub Titles', 'lenxel-core' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -471,7 +471,7 @@ class LNXElement_Course_category extends LNXElement_Base {
 		$this->add_control(
 			'sub_title_color',
 			[
-				'label' => esc_html__( 'Text Color', 'lenxel-core' ),
+				'label' => esc_html__( 'Text Colors', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-heading .sub-title' => 'color: {{VALUE}};',
@@ -481,7 +481,7 @@ class LNXElement_Course_category extends LNXElement_Base {
 		$this->add_control(
 			'sub_title_line_color',
 			[
-				'label' => esc_html__( 'Line Color', 'lenxel-core' ),
+				'label' => esc_html__( 'Line Colors', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-heading .sub-title:after' => 'background: {{VALUE}};',
@@ -549,7 +549,7 @@ class LNXElement_Course_category extends LNXElement_Base {
 		$this->add_control(
 			'desc_color',
 			[
-				'label' => esc_html__( 'Text Color', 'lenxel-core' ),
+				'label' => esc_html__( 'Text Colors', 'lenxel-core' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .gsc-heading .title-desc' => 'color: {{VALUE}};',
@@ -634,17 +634,9 @@ class LNXElement_Course_category extends LNXElement_Base {
 	 * @access protected
 	 */
 	protected function render() {
-		if ( lenxel_get_template_restrict()->has_premium){
-			$settings = $this->get_settings_for_display();
-			printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
-				if( !empty($settings['layout']) ){
-	            include $this->get_template('category/' . $settings['layout'] . '.php');
-	        	}
-			print '</div>';
-		}else {
-			$content = '<div></div>';
-			wp_kses($content, array( 'div' ));
-		}
+		$content = '<div></div>';
+
+		echo wp_kses($content, array( 'div' ));
 	}
 }
 

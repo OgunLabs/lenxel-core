@@ -52,7 +52,7 @@ if ( ! class_exists( 'Redux_Image_Filters' ) ) {
 			$filters = rawurlencode( wp_json_encode( $in_use_filters ) );
 
 			$output .= '<div class="redux-' . $mode . '-filter-container" data-filters="' . $filters . '">';
-			$output .= '<div class="container-label">' . esc_html__( 'Filters', 'redux-framework' ) . '</div>';
+			$output .= '<div class="container-label">' . esc_html__( 'Filters', 'lenxel-core' ) . '</div>';
 
 			foreach ( $in_use_filters as $filter ) {
 				$step = 1;
@@ -76,7 +76,7 @@ if ( ! class_exists( 'Redux_Image_Filters' ) ) {
 					$max = 360;
 				}
 
-				$disabled = 'pro-disabled';
+				$disabled = 'filters-disabled';
 				if ( $value['filter'][ $filter ]['checked'] ) {
 					$disabled = '';
 				}

@@ -24,7 +24,7 @@ if ( ! class_exists( 'Redux_Validation_Html_Custom', false ) ) {
 		 * @since ReduxFramework 1.0.0
 		 */
 		public function validate() {
-			$this->field['msg'] = $this->field['msg'] ?? esc_html__( 'Invalid HTML was found in this field and has been removed.', 'redux-framework' );
+			$this->field['msg'] = $this->field['msg'] ?? esc_html__( 'Invalid HTML was found in this field and has been removed.', 'lenxel-core' );
 
 			if ( isset( $this->field['allowed_html'] ) ) {
 				$html = wp_kses( $this->value, $this->field['allowed_html'] );

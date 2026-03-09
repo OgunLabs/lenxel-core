@@ -95,19 +95,22 @@ if(!function_exists('lenxel_post_type_team')){
       ?>
   <span id="team-social-list"></span>
   <a class="add-social-item"><?php esc_html_e('Add Social','lenxel-core'); ?></a>
-  <script>
+  <?php
+  $inline_script = "
       jQuery(document).ready(function() {
-          var count = <?php echo esc_js($c); ?>;
-          jQuery(".add-social-item").click(function() {
+          var count = " . esc_js($c) . ";
+          jQuery('.add-social-item').click(function() {
               count = count + 1;
-              jQuery('#team-social-list').append('<p> <input size="20" type="text" placeholder="Class Icon" name="team_socials['+count+'][icon]" value="" /><input size="100" type="text" placeholder="Link" name="team_socials['+count+'][link]" value="" /> <a class="remove button">Remove</a></p>' );
+              jQuery('#team-social-list').append('<p> <input size=\"20\" type=\"text\" placeholder=\"Class Icon\" name=\"team_socials['+count+'][icon]\" value=\"\" /><input size=\"100\" type=\"text\" placeholder=\"Link\" name=\"team_socials['+count+'][link]\" value=\"\" /> <a class=\"remove button\">Remove</a></p>' );
               return false;
           });
-          jQuery(".remove").on('click', function() {
+          jQuery('.remove').on('click', function() {
               jQuery(this).parent().remove();
           });
       });
-      </script>
+  ";
+  wp_add_inline_script('jquery', $inline_script);
+  ?>
   </div><?php
   }
 
@@ -156,19 +159,22 @@ if(!function_exists('lenxel_post_type_team')){
       ?>
   <span id="team-education-list"></span>
   <a class="add-education-item"><?php esc_html_e('Add Education','lenxel-core'); ?></a>
-  <script>
+  <?php
+  $inline_script = "
       jQuery(document).ready(function() {
-          var count = <?php echo esc_js($c); ?>;
-          jQuery(".add-education-item").click(function() {
+          var count = " . esc_js($c) . ";
+          jQuery('.add-education-item').click(function() {
               count = count + 1;
-              jQuery('#team-education-list').append('<p><input size="120" type="text" placeholder="Title: MBA, Rotterdam School of Management, Erasmus University" name="team_educations['+count+'][title]" value="" /> <a class="remove button">Remove</a></p>' );
+              jQuery('#team-education-list').append('<p><input size=\"120\" type=\"text\" placeholder=\"Title: MBA, Rotterdam School of Management, Erasmus University\" name=\"team_educations['+count+'][title]\" value=\"\" /> <a class=\"remove button\">Remove</a></p>' );
               return false;
           });
-          jQuery(".remove").on('click', function() {
+          jQuery('.remove').on('click', function() {
               jQuery(this).parent().remove();
           });
       });
-      </script>
+  ";
+  wp_add_inline_script('jquery', $inline_script);
+  ?>
   </div><?php
   }
 
@@ -217,19 +223,22 @@ if(!function_exists('lenxel_post_type_team')){
       ?>
   <span id="team-skills-list"></span>
   <a class="add-skills-item"><?php esc_html_e('Add Skills','lenxel-core'); ?></a>
-  <script>
+  <?php
+  $inline_script = "
       jQuery(document).ready(function() {
-          var count = <?php echo esc_js($c); ?>;
-          jQuery(".add-skills-item").click(function() {
+          var count = " . esc_js($c) . ";
+          jQuery('.add-skills-item').click(function() {
               count = count + 1;
-              jQuery('#team-skills-list').append('<p><input size="80" type="text" placeholder="Label" name="team_skills['+count+'][label]" value="" /> <input size="20" type="text" placeholder="Volume (max 100)" name="team_skills['+count+'][volume]" value="" /><a class="remove button">Remove</a></p>' );
+              jQuery('#team-skills-list').append('<p><input size=\"80\" type=\"text\" placeholder=\"Label\" name=\"team_skills['+count+'][label]\" value=\"\" /> <input size=\"20\" type=\"text\" placeholder=\"Volume (max 100)\" name=\"team_skills['+count+'][volume]\" value=\"\" /><a class=\"remove button\">Remove</a></p>' );
               return false;
           });
-          jQuery(".remove").on('click', function() {
+          jQuery('.remove').on('click', function() {
               jQuery(this).parent().remove();
           });
       });
-      </script>
+  ";
+  wp_add_inline_script('jquery', $inline_script);
+  ?>
   </div><?php
   }
 

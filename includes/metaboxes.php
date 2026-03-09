@@ -1,7 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 function lenxel_register_meta_boxes(){
 	$prefix = 'lenxel_';
-	global $meta_boxes, $wp_registered_sidebars;;
+	global $lenxel_meta_boxes, $wp_registered_sidebars;;
 	$sidebar = array();
 	$sidebar[""] = ' --Default-- ';
 	foreach($wp_registered_sidebars as $key => $value){
@@ -114,7 +116,7 @@ function lenxel_register_meta_boxes(){
 				'id' 			=> $prefix . 'page_header',
 				'desc' 		=> esc_html__("You can change header for page if you like's.", 'lenxel-core'),
 				'type'  		=> 'select',
-				'options'   => lenxel_get_headers(),
+				'options'   => (function_exists('lenxel_get_headers')) ? lenxel_get_headers() : array(),
 				'std' 		=> '__default_option_theme',
 			),
 			array(
@@ -122,7 +124,7 @@ function lenxel_register_meta_boxes(){
 				'id'        => $prefix . 'page_footer',
 				'desc'      => esc_html__("You can change footer for page if you like's",'lenxel-core'),
 				'type'      => 'select',
-				'options'   =>  lenxel_get_footer(),
+				'options'   =>  (function_exists('lenxel_get_footer')) ? lenxel_get_footer() : array(),
 				'std'       => '__default_option_theme'
 			),
 			array(
@@ -191,7 +193,7 @@ function lenxel_register_meta_boxes(){
 			 'prefix'      => 'px',
 			 'class'       => 'breadcrumb_setting',
 			 'desc'        => esc_html__('Option Padding Top of Breacrumb, set empty = padding default of theme', 'lenxel-core'),
-			 'std'         => lenxel_get_option('breadcrumb_padding_top', '135'),
+			 'std'         => (function_exists('lenxel_get_option')) ? lenxel_get_option('breadcrumb_padding_top', '135') : '135',
 		  ),
 		  array(
 			 'name'       => esc_html__( 'Breadcrumb Padding Bottom (px)', 'lenxel-core' ),
@@ -200,7 +202,7 @@ function lenxel_register_meta_boxes(){
 			 'prefix'     => 'px',
 			 'class'      => 'breadcrumb_setting',
 			 'desc'       => esc_html__('Option Padding Bottom of Breacrumb, set empty = padding default of theme', 'lenxel-core'),
-			 'std'        => lenxel_get_option('breadcrumb_padding_bottom', '135'),
+			 'std'        => (function_exists('lenxel_get_option')) ? lenxel_get_option('breadcrumb_padding_bottom', '135') : '135',
 		  ),
 		  array(
 			 'name' 	=> esc_html__( 'Background Overlay Color', 'lenxel-core' ),
@@ -249,7 +251,7 @@ function lenxel_register_meta_boxes(){
 				 'text-dark'      => esc_html__('Dark', 'lenxel-core')
 			 ),
 			 'multiple' => false,
-			 'std'  		=> lenxel_get_option('breadcrumb_text_style', 'text-dark'),
+			 'std'  		=> (function_exists('lenxel_get_option')) ? lenxel_get_option('breadcrumb_text_style', 'text-dark') : 'text-dark',
 			 'desc' 		=> esc_html__('If you uploaded an image in the option above, choose light/dark styling for the text heading text here.', 'lenxel-core')
 		  ),
 		  array(
@@ -263,7 +265,7 @@ function lenxel_register_meta_boxes(){
 				 'text-right'     => esc_html__('Right', 'lenxel-core')
 			 ),
 			 'multiple' => false,
-			 'std'  => lenxel_get_option('breadcrumb_text_align', 'text-center'),
+			 'std'  => (function_exists('lenxel_get_option')) ? lenxel_get_option('breadcrumb_text_align', 'text-center') : 'text-center',
 			 'desc' => esc_html__('Choose the text alignment for the hero heading.', 'lenxel-core')
 		  ),
 		)

@@ -41,7 +41,7 @@ if ( ! class_exists( 'Redux_I18n', false ) ) {
 			 * filter 'redux/textdomain/basepath/{opt_name}'
 			 */
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
-			$locale = apply_filters( 'redux/locale', get_locale(), 'redux-framework' );
+			$locale = apply_filters( 'redux/locale', get_locale(), 'lenxel-core' );
 			$mofile = $domain . '-' . $locale . '.mo';
 
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName

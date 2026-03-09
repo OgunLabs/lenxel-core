@@ -141,7 +141,7 @@ class LNXElement_User extends LNXElement_Base {
             'label'        => esc_html__('Custom Login Link Page', 'lenxel-core'),
             'type'         => Controls_Manager::TEXT,
             'label_block'  => true,
-            'description'  => esc_html__('Empty = Popup Login Form', 'lenxel'),
+            'description'  => esc_html__('Empty = Popup Login Form', 'lenxel-core'),
             'condition' => [
                'enable_register' => 'yes'
             ]
@@ -176,7 +176,7 @@ class LNXElement_User extends LNXElement_Base {
             'label'        => esc_html__('Link Register', 'lenxel-core'),
             'type'         => Controls_Manager::TEXT,
             'label_block'  => true,
-            'description'  => esc_html__('Empty = default link', 'lenxel'),
+            'description'  => esc_html__('Empty = default link', 'lenxel-core'),
             'condition' => [
                'enable_register' => 'yes'
             ]
@@ -391,16 +391,9 @@ class LNXElement_User extends LNXElement_Base {
 	 * @access protected
 	 */
 	protected function render() {
-      if ( lenxel_get_template_restrict()->has_premium){
-         $settings = $this->get_settings_for_display();
+      $content = '<div></div>';
 
-         printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
-         include $this->get_template('user.php');
-         print '</div>';
-      }else {
-			$content = '<div></div>';
-			wp_kses($content, array( 'div' ));
-      }
+      echo wp_kses($content, array( 'div' ));
 	}
 }
 

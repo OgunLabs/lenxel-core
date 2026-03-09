@@ -75,7 +75,7 @@ if ( ! class_exists( 'Redux_Box_Shadow', false ) ) {
 
 			foreach ( $shadow_arr as $shadow_type ) {
 				if ( $this->field[ $shadow_type . '-shadow' ] ) {
-					$disabled = ' pro-disabled';
+					$disabled = ' shadow-disabled';
 
 					if ( $this->value[ $shadow_type . '-shadow' ]['checked'] ) {
 						$disabled = '';
@@ -89,7 +89,7 @@ if ( ! class_exists( 'Redux_Box_Shadow', false ) ) {
 					echo '<label for="' . esc_attr( $this->field['id'] ) . '-' . esc_attr( $shadow_type ) . '-shadow" class="' . esc_attr( $disabled ) . '">';
 					echo '<input type="checkbox" id="' . esc_attr( $this->field['id'] ) . '-' . esc_attr( $shadow_type ) . '-shadow" class="checkbox" value="1"' . checked( $this->value[ $shadow_type . '-shadow' ]['checked'], '1', false ) . '/>';
 					echo '<input type="hidden" data-val="1" value="' . esc_attr( $this->value[ $shadow_type . '-shadow' ]['checked'] ) . '" class="checkbox-check" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[' . esc_attr( $shadow_type ) . '-shadow][checked]"/>';
-					echo esc_html( ucfirst( $shadow_type ) ) . ' ' . esc_html__( 'Shadow', 'redux-framework' );
+					echo esc_html( ucfirst( $shadow_type ) ) . ' ' . esc_html__( 'Shadow', 'lenxel-core' );
 					echo '</label>';
 					echo '</li>';
 					echo '<li>';
@@ -108,7 +108,7 @@ if ( ! class_exists( 'Redux_Box_Shadow', false ) ) {
 					echo '</li>';
 					echo '<li>';
 					echo '<div class="slider-' . esc_attr( $shadow_type ) . '-horizontal">';
-					echo esc_html__( 'Horizontal Length', 'redux-framework' ) . ':  <strong>' . esc_html( $this->value[ $shadow_type . '-shadow' ]['horizontal'] ) . 'px</strong>';
+					echo esc_html__( 'Horizontal Length', 'lenxel-core' ) . ':  <strong>' . esc_html( $this->value[ $shadow_type . '-shadow' ]['horizontal'] ) . 'px</strong>';
 					echo '<div
                             class="redux-box-shadow-slider redux-box-shadow-' . esc_attr( $shadow_type ) . ' redux-' . esc_attr( $shadow_type ) . '-horizontal ' . esc_attr( $shadow_type ) . '-horizontal-input ' . esc_attr( $this->field['class'] ) . '"
                             id="' . esc_attr( $this->field['id'] ) . '"
@@ -117,7 +117,7 @@ if ( ! class_exists( 'Redux_Box_Shadow', false ) ) {
                             data-max="50"
                             data-step="1"
                             data-rtl="' . esc_attr( is_rtl() ) . '"
-                            data-label="' . esc_attr__( 'Horizontal Length', 'redux-framework' ) . '"
+                            data-label="' . esc_attr__( 'Horizontal Length', 'lenxel-core' ) . '"
                             data-default = "' . esc_attr( $this->value[ $shadow_type . '-shadow' ]['horizontal'] ) . '" ' . esc_html( $slider_disable ) . '>
                         </div>';
 					echo '<input
@@ -132,7 +132,7 @@ if ( ! class_exists( 'Redux_Box_Shadow', false ) ) {
 					echo '</li>';
 					echo '<li>';
 					echo '<div class="slider-' . esc_attr( $shadow_type ) . '-vertical">';
-					echo esc_html__( 'Vertical Length', 'redux-framework' ) . ':  <strong>' . esc_html( $this->value[ $shadow_type . '-shadow' ]['vertical'] ) . 'px</strong>';
+					echo esc_html__( 'Vertical Length', 'lenxel-core' ) . ':  <strong>' . esc_html( $this->value[ $shadow_type . '-shadow' ]['vertical'] ) . 'px</strong>';
 					echo '<div
                                 class="redux-box-shadow-slider redux-box-shadow-' . esc_attr( $shadow_type ) . ' redux-' . esc_attr( $shadow_type ) . '-vertical ' . esc_attr( $shadow_type ) . '-vertical-input ' . esc_attr( $this->field['class'] ) . '"
                                 id="' . esc_attr( $this->field['id'] ) . '"
@@ -141,7 +141,7 @@ if ( ! class_exists( 'Redux_Box_Shadow', false ) ) {
                                 data-max="50"
                                 data-step="1"
                                 data-rtl="' . esc_attr( is_rtl() ) . '"
-                                data-label="' . esc_attr__( 'Vertical Length', 'redux-framework' ) . '"
+                                data-label="' . esc_attr__( 'Vertical Length', 'lenxel-core' ) . '"
                                 data-default = "' . esc_attr( $this->value[ $shadow_type . '-shadow' ]['vertical'] ) . '" ' . esc_html( $slider_disable ) . '>
                             </div>';
 					echo '<input
@@ -156,7 +156,7 @@ if ( ! class_exists( 'Redux_Box_Shadow', false ) ) {
 					echo '</li>';
 					echo '<li>';
 					echo '<div class="slider-' . esc_attr( $shadow_type ) . '-blur">';
-					echo esc_html__( 'Blur Radius', 'redux-framework' ) . ':  <strong>' . esc_html( $this->value[ $shadow_type . '-shadow' ]['blur'] ) . 'px</strong>';
+					echo esc_html__( 'Blur Radius', 'lenxel-core' ) . ':  <strong>' . esc_html( $this->value[ $shadow_type . '-shadow' ]['blur'] ) . 'px</strong>';
 					echo '<div
                                 class="redux-box-shadow-slider redux-box-shadow-' . esc_attr( $shadow_type ) . ' redux-' . esc_attr( $shadow_type ) . '-blur ' . esc_attr( $shadow_type ) . '-blur-input ' . esc_attr( $this->field['class'] ) . '"
                                 id="' . esc_attr( $this->field['id'] ) . '"
@@ -165,7 +165,7 @@ if ( ! class_exists( 'Redux_Box_Shadow', false ) ) {
                                 data-max="100"
                                 data-step="1"
                                 data-rtl="' . esc_attr( is_rtl() ) . '"
-                                data-label="' . esc_attr__( 'Blur Radius', 'redux-framework' ) . '"
+                                data-label="' . esc_attr__( 'Blur Radius', 'lenxel-core' ) . '"
                                 data-default = "' . esc_attr( $this->value[ $shadow_type . '-shadow' ]['blur'] ) . '" ' . esc_html( $slider_disable ) . '>
                             </div>';
 					echo '<input
@@ -180,7 +180,7 @@ if ( ! class_exists( 'Redux_Box_Shadow', false ) ) {
 					echo '</li>';
 					echo '<li>';
 					echo '<div class="slider-' . esc_attr( $shadow_type ) . '-spread">';
-					echo esc_html__( 'Spread', 'redux-framework' ) . ':  <strong>' . esc_html( $this->value[ $shadow_type . '-shadow' ]['spread'] ) . 'px</strong>';
+					echo esc_html__( 'Spread', 'lenxel-core' ) . ':  <strong>' . esc_html( $this->value[ $shadow_type . '-shadow' ]['spread'] ) . 'px</strong>';
 					echo '<div
                                 class="redux-box-shadow-slider redux-box-shadow-' . esc_attr( $shadow_type ) . ' redux-' . esc_attr( $shadow_type ) . '-spread ' . esc_attr( $shadow_type ) . '-spread-input ' . esc_attr( $this->field['class'] ) . '"
                                 id="' . esc_attr( $this->field['id'] ) . '"
@@ -189,7 +189,7 @@ if ( ! class_exists( 'Redux_Box_Shadow', false ) ) {
                                 data-max="100"
                                 data-step="1"
                                 data-rtl="' . esc_attr( is_rtl() ) . '"
-                                data-label="' . esc_attr__( 'Spread', 'redux-framework' ) . '"
+                                data-label="' . esc_attr__( 'Spread', 'lenxel-core' ) . '"
                                 data-default = "' . esc_attr( $this->value[ $shadow_type . '-shadow' ]['spread'] ) . '" ' . esc_html( $slider_disable ) . '>
                             </div>';
 					echo '<input
@@ -211,7 +211,7 @@ if ( ! class_exists( 'Redux_Box_Shadow', false ) ) {
 			$css .= 'background:' . esc_html( $this->field['preview-color'] );
 
 			echo '</div>';
-			echo '<div class="" id="shadow-result" style="' . $css . '"></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '<div class="" id="shadow-result" style="' . esc_attr( $css ) . '"></div>';
 			echo '</div>';
 		}
 

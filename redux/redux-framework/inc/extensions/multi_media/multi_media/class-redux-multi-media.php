@@ -29,7 +29,7 @@ if ( ! class_exists( 'Redux_Multi_Media' ) ) {
 		public function render() {
 			$field_id = $this->field['id'];
 
-			$button_text    = $this->field['labels']['button'] ?? esc_html__( 'Add or Upload File(s)', 'redux-framework' );
+			$button_text    = $this->field['labels']['button'] ?? esc_html__( 'Add or Upload File(s)', 'lenxel-core' );
 			$max_file_count = $this->field['max_file_upload'] ?? 0;
 
 			// Set library filter data, if it's set.
@@ -77,11 +77,10 @@ if ( ! class_exists( 'Redux_Multi_Media' ) ) {
 
 			// Hidden inout for file(s).
 			echo '<input
-					name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '"
+					data-name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '"
 					id="' . esc_attr( $field_id ) . '-multi-media"
 					class="redux_upload_file redux_upload_list"
 					type="hidden"
-					value=""
 					size="45" />';
 
 			// Upload button.
@@ -120,7 +119,7 @@ if ( ! class_exists( 'Redux_Multi_Media' ) ) {
 						$html  = '<li class="img_status">';
 						$html .= wp_get_attachment_image( $id, array( 50, 50 ) );
 						$html .= '<p class="redux_remove_wrapper">';
-						$html .= '<a href="#" class="redux_remove_file_button">' . esc_html__( 'Remove Image', 'redux-framework' ) . '</a>';
+						$html .= '<a href="#" class="redux_remove_file_button">' . esc_html__( 'Remove Image', 'lenxel-core' ) . '</a>';
 						$html .= '</p>';
 						$html .= $id_input;
 						$html .= '</li>';
@@ -140,12 +139,12 @@ if ( ! class_exists( 'Redux_Multi_Media' ) ) {
 						for ( $i = 0; $i < $part_count; ++$i ) {
 							$title = $parts[ $i ];
 						}
-						
+
 						// Add file to array.
 						$html  = '<li>';
-						$html .= esc_html__( 'File: ', 'redux-framework' );
-						$html .= '<strong>' . $title . '</strong>&nbsp;&nbsp;&nbsp;';
-						$html .= '(<a href="' . $url . '" target="_blank" rel="external">' . esc_html__( 'Download', 'redux-framework' ) . '</a> / <a href="#" class="redux_remove_file_button">' . esc_html__( 'Remove', 'redux-framework' ) . '</a>)';
+						$html .= esc_html__( 'File: ', 'lenxel-core' );
+						$html .= '<strong>' . esc_html( $title ) . '</strong>&nbsp;&nbsp;&nbsp;';
+						$html .= '(<a href="' . esc_url( $url ) . '" target="_blank" rel="external">' . esc_html__( 'Download', 'lenxel-core' ) . '</a> / <a href="#" class="redux_remove_file_button">' . esc_html__( 'Remove', 'lenxel-core' ) . '</a>)';
 						$html .= $id_input;
 						$html .= '</li>';
 
@@ -167,11 +166,11 @@ if ( ! class_exists( 'Redux_Multi_Media' ) ) {
 					$all_arr[] = $html;
 				}
 			}
-			
+
 			// Output array to page.
 			if ( ! empty( $all_arr ) ) {
 				foreach ( $all_arr as $html ) {
-					echo wp_kses($html, array('img'=>array('class'=>array(),'width'=>array(),'height'=>array(),'src'=>array(),'alt'=>array(),'srcset'=>array(),'sizes'=>array()), 'p'=>array('class'=>array()),'input'=>array('type'=>array(),'value'=>array(), 'name'=>array(),'id'=>array(),'class'=>array()),'strong'=>array(), 'li'=>array('class'=>array()),'a' => array('target'=>array(),'href'=>array(),'rel'=>array(),'class'=>array()))); // phpcs:ignore WordPress.Security.EscapeOutput
+					echo wp_kses_post( $html );
 				}
 			}
 
@@ -225,18 +224,18 @@ if ( ! class_exists( 'Redux_Multi_Media' ) ) {
 		public function enqueue() {
 
 			// Get labels for localization.
-			$upload_file    = $this->field['labels']['upload_file'] ?? esc_html__( 'Select File(s)', 'redux-framework' );
-			$remove_image   = $this->field['labels']['remove_image'] ?? esc_html__( 'Remove Image', 'redux-framework' );
-			$remove_file    = $this->field['labels']['remove_file'] ?? esc_html__( 'Remove', 'redux-framework' );
-			$file_label     = $this->field['labels']['file'] ?? esc_html__( 'File: ', 'redux-framework' );
-			$download_label = $this->field['labels']['download'] ?? esc_html__( 'Download', 'redux-framework' );
+			$upload_file    = $this->field['labels']['upload_file'] ?? esc_html__( 'Select File(s)', 'lenxel-core' );
+			$remove_image   = $this->field['labels']['remove_image'] ?? esc_html__( 'Remove Image', 'lenxel-core' );
+			$remove_file    = $this->field['labels']['remove_file'] ?? esc_html__( 'Remove', 'lenxel-core' );
+			$file_label     = $this->field['labels']['file'] ?? esc_html__( 'File: ', 'lenxel-core' );
+			$download_label = $this->field['labels']['download'] ?? esc_html__( 'Download', 'lenxel-core' );
 			$media_title    = $this->field['labels']['title'] ?? 'Title';
 
 			// translators: %s: Filename.
-			$dup_warn = $this->field['labels']['duplicate'] ?? esc_html__( '%s already exists in your file queue.', 'redux-framework' );
+			$dup_warn = $this->field['labels']['duplicate'] ?? esc_html__( '%s already exists in your file queue.', 'lenxel-core' );
 
 			// translators: %s: Upload limit.
-			$max_warn = $this->field['labels']['max_limit'] ?? esc_html__( 'Maximum upload limit of %s reached/exceeded.', 'redux-framework' );
+			$max_warn = $this->field['labels']['max_limit'] ?? esc_html__( 'Maximum upload limit of %s reached/exceeded.', 'lenxel-core' );
 
 			// Set up min files for dev_mode = false.
 			$min = Redux_Functions::isMin();

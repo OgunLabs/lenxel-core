@@ -23,7 +23,7 @@ if ( ! class_exists( 'Redux_Select_Image', false ) ) {
 		public function set_defaults() {
 			$defaults = array(
 				'options'     => array(),
-				'placeholder' => esc_html__( 'Select an item', 'redux-framework' ),
+				'placeholder' => esc_html__( 'Select an item', 'lenxel-core' ),
 			);
 
 			$this->field = wp_parse_args( $this->field, $defaults );
@@ -132,8 +132,10 @@ if ( ! class_exists( 'Redux_Select_Image', false ) ) {
 				// subtract one from the saved array number.  We then pull the url
 				// out of the options array, and there we go.
 				if ( '' === $this->value ) {
+					// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage -- No image/icon to enqueue.
 					echo '<img src="#" class="redux-preview-image" style="visibility:hidden;" id="image_' . esc_attr( $this->field['id'] ) . '">';
 				} else {
+					// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage -- No image/icon to enqueue.
 					echo '<img src=' . esc_url( $this->value ) . ' class="redux-preview-image" id="image_' . esc_attr( $this->field['id'] ) . '">';
 				}
 
@@ -142,7 +144,7 @@ if ( ! class_exists( 'Redux_Select_Image', false ) ) {
 			} else {
 
 				// No options specified.  Really?
-				echo '<strong>' . esc_html__( 'No items of this type were found.', 'redux-framework' ) . '</strong>';
+				echo '<strong>' . esc_html__( 'No items of this type were found.', 'lenxel-core' ) . '</strong>';
 			}
 		}
 

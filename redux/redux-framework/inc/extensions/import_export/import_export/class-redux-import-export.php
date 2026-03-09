@@ -77,26 +77,26 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 			$this->field = wp_parse_args( $this->field, $defaults );
 
 			?>
-			<h4><?php esc_html_e( 'Import Options', 'redux-framework' ); ?></h4>
+			<h4><?php esc_html_e( 'Import Options', 'lenxel-core' ); ?></h4>
 			<p>
 				<a
 					href="javascript:void(0);"
 					id="redux-import-code-button"
 					class="button-secondary">
-					<?php esc_html_e( 'Import from Clipboard', 'redux-framework' ); ?>
+					<?php esc_html_e( 'Import from Clipboard', 'lenxel-core' ); ?>
 				</a>
 				<a
 					href="#"
 					id="redux-import-upload"
 					class="button-secondary">
-					<?php esc_html_e( 'Upload file', 'redux-framework' ); ?><span></span>
+					<?php esc_html_e( 'Upload file', 'lenxel-core' ); ?><span></span>
 				</a>
 				<input type="file" id="redux-import-upload-file" size="50">
 			</p>
 			<div id="redux-import-code-wrapper">
 				<p class="description" id="import-code-description">
 					<?php // phpcs:ignore WordPress.NamingConventions.ValidHookName ?>
-					<?php echo esc_html( apply_filters( 'redux-import-file-description', esc_html__( 'Paste your clipboard data here.', 'redux-framework' ) ) ); ?>
+					<?php echo esc_html( apply_filters( 'redux-import-file-description', esc_html__( 'Paste your clipboard data here.', 'lenxel-core' ) ) ); ?>
 				</p>
 				<label for="import-code-value"></label><textarea
 					id="import-code-value"
@@ -109,10 +109,10 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 					id="redux-import"
 					name="import"
 					class="button-primary"
-					value="<?php esc_html_e( 'Import', 'redux-framework' ); ?>">&nbsp;&nbsp;
+					value="<?php esc_html_e( 'Import', 'lenxel-core' ); ?>">&nbsp;&nbsp;
 				<span>
 					<?php // phpcs:ignore WordPress.NamingConventions.ValidHookName ?>
-					<?php echo esc_html( apply_filters( 'redux-import-warning', esc_html__( 'WARNING! This will overwrite all existing option values, please proceed with caution!', 'redux-framework' ) ) ); ?>
+					<?php echo esc_html( apply_filters( 'redux-import-warning', esc_html__( 'WARNING! This will overwrite all existing option values, please proceed with caution!', 'lenxel-core' ) ) ); ?>
 				</span>
 			</p>
 			<div class="hr">
@@ -120,23 +120,23 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 					<span>&nbsp;</span>
 				</div>
 			</div>
-			<h4><?php esc_html_e( 'Export Options', 'redux-framework' ); ?></h4>
+			<h4><?php esc_html_e( 'Export Options', 'lenxel-core' ); ?></h4>
 			<div class="redux-section-desc">
 				<p class="description">
 					<?php // phpcs:ignore WordPress.NamingConventions.ValidHookName ?>
-					<?php echo esc_html( apply_filters( 'redux-backup-description', esc_html__( 'Here you can copy/download your current option settings. Keep this safe as you can use it as a backup should anything go wrong, or you can use it to restore your settings on this site (or any other site).', 'redux-framework' ) ) ); ?>
+					<?php echo esc_html( apply_filters( 'redux-backup-description', esc_html__( 'Here you can copy/download your current option settings. Keep this safe as you can use it as a backup should anything go wrong, or you can use it to restore your settings on this site (or any other site).', 'lenxel-core' ) ) ); ?>
 				</p>
 			</div>
 			<?php $link = admin_url( 'admin-ajax.php?action=redux_download_options-' . $this->parent->args['opt_name'] . '&secret=' . $secret ); ?>
 			<p>
 				<button id="redux-export-code-copy" class="button-secondary"
 						data-secret="<?php echo esc_attr( $secret ); ?>"
-						data-copy="<?php esc_attr_e( 'Copy to Clipboard', 'redux-framework' ); ?>"
-						data-copied="<?php esc_attr_e( 'Copied!', 'redux-framework' ); ?>">
-					<?php esc_html_e( 'Copy to Clipboard', 'redux-framework' ); ?>
+						data-copy="<?php esc_attr_e( 'Copy to Clipboard', 'lenxel-core' ); ?>"
+						data-copied="<?php esc_attr_e( 'Copied!', 'lenxel-core' ); ?>">
+					<?php esc_html_e( 'Copy to Clipboard', 'lenxel-core' ); ?>
 				</button>
 				<a href="<?php echo esc_url( $link ); ?>" id="redux-export-code-dl" class="button-primary">
-					<?php esc_html_e( 'Export File', 'redux-framework' ); ?>
+					<?php esc_html_e( 'Export File', 'lenxel-core' ); ?>
 				</a>
 			</p>
 			<p></p>
@@ -166,9 +166,9 @@ if ( ! class_exists( 'Redux_Import_Export', false ) ) {
 
 			wp_localize_script(
 				'redux-extension-import-export',
-				'ImportExport',
+				'LenxelImportExport',
 				array(
-					'unchanged_values' => esc_html__( 'Your panel has unchanged values, would you like to save them now?', 'redux-framework' ),
+					'unchanged_values' => esc_html__( 'Your panel has unchanged values, would you like to save them now?', 'lenxel-core' ),
 				)
 			);
 

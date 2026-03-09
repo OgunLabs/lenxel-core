@@ -6,15 +6,73 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
        return;
     }
 
-	$this->add_render_attribute();
+	// $this->add_render_attribute();
 
 	$this->add_render_attribute('wrapper', 'data-filter', $_random);
 
-	$this->add_render_attribute(['carousel'=> ['class'=> 'init-carousel-owl owl-carousel stag'.$_random], 'wrapper'=> ['class'=> 'lnx-category-carousel lnx-category',  'data-filter'=> $_random]]);
+	// Enqueue category carousel scripts
+	wp_enqueue_script('category-carousel');
+	wp_enqueue_style('category-carousel-css');
+	
+	// Dynamic nav display style
+	$dynamic_css = '.owl-carousel.stag' . $_random . ' .owl-nav{display: block !important;}';
+	wp_add_inline_style('category-carousel-css', $dynamic_css);
+	
+	// Carousel configuration
+	$carousel_config = array(
+		'items' => 3,
+		'loop' => true,
+		'margin' => 10,
+		'autoplay' => true,
+		'navigation' => true,
+		'mouseDrag' => true,
+		'touchDrag' => true,
+		'autoplayTimeout' => 5000,
+		'autoplayHoverPause' => true,
+		'responsive' => array(
+			0 => array(
+				'items' => 1,
+				'nav' => true,
+				'loop' => true,
+				'navRewind' => true,
+				'navigation' => true,
+				'autoplayHoverPause' => true
+			),
+			600 => array(
+				'items' => 2,
+				'nav' => true,
+				'loop' => true,
+				'navRewind' => true,
+				'navigation' => true,
+				'autoplayHoverPause' => true
+			),
+			1000 => array(
+				'items' => (int) $settings['category_per_page'],
+				'nav' => true,
+				'loop' => true,
+				'navRewind' => true,
+				'navigation' => true,
+				'autoplayHoverPause' => true
+			)
+		),
+		'autoplaySpeed' => 500
+	);
+
+	$this->add_render_attribute([
+		'carousel'=> [
+			'class'=> 'init-carousel-owl owl-carousel lnx-category-carousel-init stag'.$_random,
+			'data-carousel-config' => wp_json_encode($carousel_config),
+			'data-carousel-id' => $_random
+		], 
+		'wrapper'=> [
+			'class'=> 'lnx-category-carousel lnx-category',  
+			'data-filter'=> $_random
+		]
+	]);
     $style = (isset($settings['style'])) ? $settings['style'] : '' ;
   ?>
 	<div <?php $this->print_render_attribute_string('wrapper'); ?>>
-		<div <?php $this->print_render_attribute_string('carousel'); ?> <?php echo esc_attr('stag'.$_random); ?> <?php $this->lenxel_print_carousel_settings(); ?>>
+		<div <?php $this->print_render_attribute_string('carousel'); ?>>
                 
                 <?php
                     foreach ( $query as $category ): ?>
@@ -48,52 +106,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                 <?php $category_count++; endforeach; ?>
         </div>
 	</div>
-    <script>
-    getCorouselCat = setInterval(function(){
-        var owl = jQuery('.owl-carousel.stag<?php echo esc_js($_random); ?>');
-        if(owl !== undefined){
-                    owl.owlCarousel({
-                        items:3,
-                        loop:true,
-                        margin:10,
-                        autoplay:true,
-                        navigation:true,
-                        mouseDrag:true,
-                        touchDrag:true,
-                        autoplayTimeout:5000,
-                        autoplayHoverPause:true,
-                        responsive:{
-                            0:{
-                                items:1,
-                                nav:true,
-                                loop:true,
-                                navRewind:true,
-                                navigation:true,
-                                autoplayHoverPause:true,
-                            },
-                            600:{
-                                items:2,
-                                nav:true,
-                                loop:true,
-                                navRewind:true,
-                                navigation:true,
-                                autoplayHoverPause:true,
-                            },
-                            1000:{
-                                items:<?php echo esc_js($settings['category_per_page']); ?>,
-                                nav:true,
-                                loop:true,
-                                navRewind:true,
-                                navigation:true,
-                                autoplayHoverPause:true,
-                            }
-                        },
-                        autoplaySpeed:500
-                    }); jQuery('.owl-carousel.stag<?php echo esc_js($_random ); ?> .owl-nav .owl-prev').html('<i class=\"las la-arrow-left\"></i>'); 
-                    jQuery('.owl-carousel.stag<?php echo esc_js($_random); ?> .owl-nav .owl-next').html('<i class=\"las la-arrow-right\"></i>')
-                    clearInterval(getCorouselCat);}},3000); </script> <style>
-                    .owl-carousel.stag<?php echo esc_js($_random); ?> .owl-nav{display: block !important;}</style>
-
             
   <?php
   wp_reset_postdata();

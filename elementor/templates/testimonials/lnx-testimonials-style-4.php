@@ -16,12 +16,11 @@
       ],
    ] );
 
+   // Enqueue style-4 specific assets
+   wp_enqueue_style('testimonial-style-4-css');
+   wp_enqueue_script('testimonial-style-4');
+
    ?>
-   <style>
-     .resize-height .owl-carousel .owl-stage-outer,.resize-height .owl-carousel .owl-stage,.resize-height .owl-carousel.owl-drag .owl-item{
-         height:100%;
-      }
-   </style>
    <div class="row">
       <div class="col-md-6">
          <div class="current-slide"></div>        
@@ -80,9 +79,6 @@
             </div>
          </div>
       </div>
-      <script>
-         var getEachSlide = setInterval(function () {var slideContent = jQuery('.resize-height .owl-stage-outer .owl-item.active.first .content-profile').html(); jQuery('.current-slide').html(slideContent)}, 1000);
-      </script>
    </div>
    <?php
 }

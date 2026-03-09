@@ -5,7 +5,7 @@
  *
  * @package ReduxFramework/Extentions
  * @class Redux_Extension_Customizer
- * @version 4.4.11
+ * @version 4.5.1
  * @noinspection PhpIgnoredClassAliasDeclaration
  */
 
@@ -26,7 +26,7 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 		 *
 		 * @var string
 		 */
-		public static $version = '4.4.11';
+		public static $version = '4.5.1';
 
 		/**
 		 * Set the name of the field.  Ideally, this will also be your extension's name.
@@ -34,63 +34,63 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 		 *
 		 * @var string
 		 */
-		public $field_name = 'customizer';
+		public string $field_name = 'customizer';
 
 		/**
 		 * Set the friendly name of the extension.  This is for display purposes.  No underscores or dashes are required.
 		 *
 		 * @var string
 		 */
-		public $extension_name = 'Customizer';
+		public string $extension_name = 'Customizer';
 
 		/**
 		 * Original options.
 		 *
-		 * @var array
+		 * @var array|null
 		 */
-		private $orig_options = array();
+		private ?array $orig_options = array();
 
 		/**
 		 * Post values.
 		 *
-		 * @var array
+		 * @var array|null
 		 */
-		private static $post_values = array();
+		private static ?array $post_values = array();
 
 		/**
 		 * Options array.
 		 *
-		 * @var array
+		 * @var array|null
 		 */
-		public $options = array();
+		public ?array $options = array();
 
 		/**
 		 * Controls array.
 		 *
-		 * @var array
+		 * @var array|null
 		 */
-		public $controls = array();
+		public ?array $controls = array();
 
 		/**
 		 * Before save array.
 		 *
-		 * @var array
+		 * @var array|null
 		 */
-		public $before_save = array();
+		public ?array $before_save = array();
 
 		/**
 		 * Redux object.
 		 *
-		 * @var object
+		 * @var ReduxFramework|null
 		 */
-		protected $redux;
+		protected ?ReduxFramework $redux;
 
 		/**
 		 * Field array.
 		 *
-		 * @var array
+		 * @var array|null
 		 */
-		private $redux_fields = array();
+		private ?array $redux_fields = array();
 
 		/**
 		 * Redux_Extension_my_extension constructor.
@@ -174,15 +174,22 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 				$return_array = array();
 
 				if ( isset( $_POST['nonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST['nonce'] ) ), 'redux_customer_nonce' ) && isset( $_POST['opt_name'] ) && '' !== $_POST['opt_name'] ) {
-					$redux = Redux::instance( sanitize_text_field( wp_unslash( $_POST['opt_name'] ) ) );
-					$get_sanitize_data = array_map('sanitize_text_field', $_POST['data']);
-					$post_data = wp_unslash( $get_sanitize_data ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+				$opt_name = sanitize_text_field( wp_unslash( $_POST['opt_name'] ) );
 
-					// New method to avoid input_var nonsense.  Thanks @harunbasic.
-					$values = Redux_Functions_Ex::parse_str( $post_data );
+				// Validate opt_name against registered Redux instances to prevent arbitrary option access.
+				$redux = Redux::instance( $opt_name );
 
-					$all_options = get_option( sanitize_text_field( wp_unslash( $_POST['opt_name'] ) ) );
+				// Only proceed if Redux instance exists for this opt_name.
+				if ( ! $redux ) {
+					throw new Exception( 'Invalid Redux instance.' );
+				}
 
+				$post_data = wp_unslash( $_POST['data'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+
+				// New method to avoid input_var nonsense.  Thanks @harunbasic.
+				$values = Redux_Functions_Ex::parse_str( $post_data );
+
+				$all_options = get_option( $opt_name );
 					$values = wp_parse_args( $values, $all_options );
 
 					$redux->options_class->set( $redux->options_class->validate_options( $values ) );
@@ -237,12 +244,12 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 
 				if ( ! file_exists( $upload_dir . $option['type'] . '.php' ) ) {
 					if ( ! is_dir( $upload_dir ) ) {
-						$this->parent->filesystem->execute( 'mkdir', $upload_dir );
+						Redux_Core::$filesystem->execute( 'mkdir', $upload_dir );
 					}
 
 					$template = str_replace( '{{type}}', $option['type'], '<?php' . PHP_EOL . '   class Redux_Customizer_Control_{{type}} extends Redux_Customizer_Control {' . PHP_EOL . '     public $type = "redux-{{type}}";' . PHP_EOL . '   }' );
 
-					$this->parent->filesystem->execute( 'put_contents', $upload_dir . $option['type'] . '.php', array( 'content' => $template ) );
+					Redux_Core::$filesystem->execute( 'put_contents', $upload_dir . $option['type'] . '.php', array( 'content' => $template ) );
 				}
 
 				if ( file_exists( $upload_dir . $option['type'] . '.php' ) ) {
@@ -311,7 +318,31 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 		 */
 		protected static function get_post_values() {
 			if ( empty( self::$post_values ) && ! empty( $_POST['customized'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-				self::$post_values = json_decode( stripslashes_deep( sanitize_text_field( wp_unslash( $_POST['customized'] ) ) ), true ); // phpcs:ignore WordPress.Security.NonceVerification
+			$customized_raw = wp_unslash( $_POST['customized'] ); // phpcs:ignore WordPress.Security.NonceVerification
+			$the_data = json_decode( stripslashes_deep( $customized_raw ), true );
+			// Validate json_decode succeeded
+			if ( json_last_error() !== JSON_ERROR_NONE || ! is_array( $the_data ) ) {
+				$the_data = array();			} else {
+				// Sanitize decoded JSON data
+				$the_data = Redux_Helpers::sanitize_array( $the_data );			}
+				foreach ( $the_data as $key => $value ) {
+					if ( strpos( wp_json_encode( $value ), 'data' ) > 0 ) {
+						foreach ( $value as $k => $v ) {
+							if ( isset( $v['data'] ) ) {
+								$decode = (array) json_decode( rawurldecode( $v['data'] ) );
+								// Sanitize decoded nested JSON data
+								if ( is_array( $decode ) ) {
+									$decode = Redux_Helpers::sanitize_array( $decode );
+								}
+								$v                = $decode;
+								$dumb_array[ $k ] = $v;
+								$the_data[ $key ] = $dumb_array;
+							}
+						}
+					}
+				}
+
+				self::$post_values = $the_data;
 			}
 		}
 
@@ -332,6 +363,7 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 							$key          = str_replace( $this->parent->args['opt_name'] . '[', '', rtrim( $key, ']' ) );
 							$data[ $key ] = $value;
 
+							// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals
 							$GLOBALS[ $this->parent->args['global_variable'] ][ $key ] = $value;
 							$this->parent->options[ $key ]                             = $value;
 						}
@@ -347,7 +379,7 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 		 *
 		 * @param object $control .
 		 */
-		public function render( $control ) {
+		public function render( object $control ) {
 			$field_id = str_replace( $this->parent->args['opt_name'] . '-', '', $control->redux_id );
 			$field    = $this->options[ $field_id ];
 
@@ -415,8 +447,11 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 
 			foreach ( $this->parent->sections as $key => $section ) {
 				// Not a type that should go on the customizer.
-				if ( isset( $section['type'] ) && ( 'divide' === $section['type'] ) ) {
-					continue;
+
+				foreach ( $section['fields'] as $field ) {
+					if ( 'color_scheme' === $field['type'] || 'divide' === $field['type'] ) {
+						continue 2;
+					}
 				}
 
 				if ( isset( $section['id'] ) && 'import/export' === $section['id'] ) {
@@ -427,6 +462,7 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 				if ( isset( $section['customizer'] ) && false === $section['customizer'] ) {
 					continue;
 				}
+
 				// if we are in a subsection and parent is set to customizer false !!!
 				if ( ( isset( $section['subsection'] ) && $section['subsection'] ) ) {
 					if ( $new_parent ) {
@@ -680,7 +716,14 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 			}
 
 			if ( isset( $_POST['customized'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-				$options = json_decode( sanitize_text_field( wp_unslash( $_POST['customized'] ) ), true ); // phpcs:ignore WordPress.Security.NonceVerification
+				$customized_raw = wp_unslash( $_POST['customized'] ); // phpcs:ignore WordPress.Security.NonceVerification
+				$options = json_decode( $customized_raw, true );
+				// Sanitize decoded JSON data
+				if ( is_array( $options ) ) {
+					$options = Redux_Helpers::sanitize_array( $options );
+				} else {
+					$options = array();
+				}
 
 				$compiler = false;
 				$changed  = false;
@@ -704,7 +747,7 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 					$this->parent->options_class->set( $this->parent->options );
 					if ( $compiler ) {
 						// Have to set this to stop the output of the CSS and typography stuff.
-						$this->parent->no_output = true;
+						Redux_Core::$no_output = true;
 						$this->parent->output_class->enqueue();
 
 						// phpcs:ignore WordPress.NamingConventions.ValidHookName
@@ -727,13 +770,13 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 		 */
 		public function enqueue() {
 			$localize = array(
-				'save_pending'   => esc_html__( 'You have changes that are not saved.  Would you like to save them now?', 'redux-framework' ),
-				'reset_confirm'  => esc_html__( 'Are you sure?  Resetting will lose all custom values.', 'redux-framework' ),
-				'preset_confirm' => esc_html__( 'Your current options will be replaced with the values of this preset.  Would you like to proceed?', 'redux-framework' ),
+				'save_pending'   => esc_html__( 'You have changes that are not saved.  Would you like to save them now?', 'lenxel-core' ),
+				'reset_confirm'  => esc_html__( 'Are you sure?  Resetting will lose all custom values.', 'lenxel-core' ),
+				'preset_confirm' => esc_html__( 'Your current options will be replaced with the values of this preset.  Would you like to proceed?', 'lenxel-core' ),
 				'opt_name'       => $this->parent->args['opt_name'],
 				'field'          => $this->parent->options,
 				'defaults'       => $this->parent->options_defaults,
-				'folds'          => $this->parent->folds,
+				'folds'          => Redux_Core::$folds,
 			);
 
 			// Values used by the javascript.
@@ -793,6 +836,13 @@ if ( ! class_exists( 'Redux_Extension_Customizer', false ) ) {
 		 * @access      public
 		 */
 		public function field_validation( $value ) {
+			if ( strpos( wp_json_encode( $value ), 'data' ) > 0 ) {
+				$replace = $value;
+				foreach ( $replace as $sub_array ) {
+					$cs_array                 = (array) json_decode( rawurldecode( $sub_array['data'] ) );
+					$value[ $cs_array['id'] ] = $cs_array;
+				}
+			}
 
 			return $value;
 		}

@@ -14,9 +14,9 @@
  *
  * @param string $opt_name the defined opt_name as passed in $args.
  *
- * @return object                ReduxFramework
+ * @return ReduxFramework                ReduxFramework
  */
-function lenxel_get_redux_instance( string $opt_name ) {
+function get_redux_instance( string $opt_name ): ReduxFramework { // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals -- Cannot change due to backward compatibility with older themes. Function contains plugin name.
 	_deprecated_function( __FUNCTION__, '4.0', 'Redux::instance($opt_name)' );
 
 	return Redux::instance( $opt_name );
@@ -29,7 +29,7 @@ function lenxel_get_redux_instance( string $opt_name ) {
  * @depreciated
  * @return array        format ['opt_name' => $ReduxFramework]
  */
-function lenxel_get_all_redux_instances(): array {
+function get_all_redux_instances(): array { // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals -- Cannot change due to backward compatibility with older themes. Function contains plugin name.
 	_deprecated_function( __FUNCTION__, '4.0', 'Redux::all_instances()' );
 
 	return Redux::all_instances();

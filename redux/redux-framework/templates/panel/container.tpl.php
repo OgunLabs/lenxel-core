@@ -8,20 +8,28 @@
  * @version:    4.4.4
  */
 
-$expanded = ( $this->parent->args['open_expanded'] ) ? ' fully-expanded' : ( ! empty( $this->parent->args['class'] ) ? ' ' . esc_attr( $this->parent->args['class'] ) : '' );
-$nonce    = wp_create_nonce( 'redux_ajax_nonce' . $this->parent->args['opt_name'] );
-$actionn  = ( 'network' === $this->parent->args['database'] && $this->parent->args['network_admin'] && is_network_admin() ? './edit.php?action=redux_' . $this->parent->args['opt_name'] : './options.php' );
+$redux_expanded = ( $this->parent->args['open_expanded'] ) ? ' fully-expanded' : ( ! empty( $this->parent->args['class'] ) ? ' ' . esc_attr( $this->parent->args['class'] ) : '' );
+$redux_nonce    = wp_create_nonce( 'redux_ajax_nonce' . $this->parent->args['opt_name'] );
+$redux_actionn  = ( 'network' === $this->parent->args['database'] && $this->parent->args['network_admin'] && is_network_admin() ? './edit.php?action=redux_' . $this->parent->args['opt_name'] : './options.php' );
 
 // Last tab?
 $this->parent->options['last_tab'] = ( isset( $_GET['tab'] ) && ! isset( $this->parent->transients['last_save_mode'] ) ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-if($_GET['tab'] != 1){ ?>
+$amp_tab = isset($_GET['amp;tab']) ? sanitize_text_field(wp_unslash($_GET['amp;tab'])) : '';
+if($amp_tab === "1"){
+	if(function_exists('lenxel_get_start_page')){
+		lenxel_get_start_page();
+		exit;
+	}
+}
+$current_tab = isset($_GET['tab']) ? sanitize_text_field(wp_unslash($_GET['tab'])) : '1';
+if($current_tab != 1){ // Debug output removed for security ?>
 	<div
-		class="redux-container<?php echo esc_attr( $expanded ); ?>">
+		class="redux-container<?php echo esc_attr( $redux_expanded ); ?>">
 
 		<form
 			method="post"
-			action="<?php echo esc_attr( $actionn ); ?>"
-			data-nonce="<?php echo esc_attr( $nonce ); ?>"
+			action="<?php echo esc_attr( $redux_actionn ); ?>"
+			data-nonce="<?php echo esc_attr( $redux_nonce ); ?>"
 			enctype="multipart/form-data"
 			class="redux-form-wrapper"
 			id="redux-form-wrapper"

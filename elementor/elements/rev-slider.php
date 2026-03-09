@@ -104,13 +104,13 @@ class LNXElement_Rev_Slider extends \Elementor\Widget_Shortcode{
      * @access protected
      */
     protected function render() {
-        global $rs_loaded_by_editor;
-        if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) $rs_loaded_by_editor = true;
+        global $lenxel_rs_loaded_by_editor;
+        if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) $lenxel_rs_loaded_by_editor = true;
             $settings = $this->get_settings_for_display();
             printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
                 include(LENXEL_PLUGIN_DIR . 'elementor/templates/rev-slider.php');
             print '</div>';
-        if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) $rs_loaded_by_editor = false;
+        if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) $lenxel_rs_loaded_by_editor = false;
     }
 }
 

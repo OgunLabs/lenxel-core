@@ -173,31 +173,31 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 
 				// Default url values for enabling hints.
 				$dismiss = 'true';
-				$s       = esc_html__( 'Enable', 'redux-framework' );
+				$s       = esc_html__( 'Enable', 'lenxel-core' );
 
 				// Values for disabling hints.
 				if ( 'true' === $hint_status ) {
 					$dismiss = 'false';
-					$s       = esc_html__( 'Disable', 'redux-framework' );
+					$s       = esc_html__( 'Disable', 'lenxel-core' );
 				}
 
 				// Make URL.
 				$nonce = wp_create_nonce( 'redux_hint_toggle' );
 				$url   = '<a class="redux_hint_status" href="?nonce=' . $nonce . '&amp;dismiss=' . $dismiss . '&amp;id=hints&amp;page=' . esc_attr( $cur_page ) . '&amp;tab=' . esc_attr( $cur_tab ) . '">' . $s . ' hints</a>';
 
-				$event = esc_html__( 'moving the mouse over', 'redux-framework' );
+				$event = esc_html__( 'moving the mouse over', 'lenxel-core' );
 				if ( 'click' === $core->args['hints']['tip_effect']['show']['event'] ) {
-					$event = esc_html__( 'clicking', 'redux-framework' );
+					$event = esc_html__( 'clicking', 'lenxel-core' );
 				}
 
 				// Construct message.
 				// translators: %1$s: Mouse action.  %2$s: Hint status.
-				$msg = sprintf( esc_html__( 'Hints are tooltips that popup when %1$s the hint icon, offering addition information about the field in which they appear.  They can be %2$s by using the link below.', 'redux-framework' ), $event, Redux_Core::strtolower( $s ) ) . '<br/><br/>' . $url;
+				$msg = sprintf( esc_html__( 'Hints are tooltips that popup when %1$s the hint icon, offering addition information about the field in which they appear.  They can be %2$s by using the link below.', 'lenxel-core' ), $event, Redux_Core::strtolower( $s ) ) . '<br/><br/>' . $url;
 
 				// Construct hint tab.
 				$tab = array(
 					'id'      => 'redux-hint-tab',
-					'title'   => esc_html__( 'Hints', 'redux-framework' ),
+					'title'   => esc_html__( 'Hints', 'lenxel-core' ),
 					'content' => '<p>' . $msg . '</p>',
 				);
 
@@ -213,7 +213,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 				// If a sidebar text is empty and hints are active, display text
 				// about hints.
 
-				$screen->set_help_sidebar( '<p><strong>Redux Framework</strong><br/><br/>' . esc_html__( 'Hint Tooltip Preferences', 'redux-framework' ) . '</p>' );
+				$screen->set_help_sidebar( '<p><strong>Redux Framework</strong><br/><br/>' . esc_html__( 'Hint Tooltip Preferences', 'lenxel-core' ) . '</p>' );
 			}
 
 			/**
@@ -502,7 +502,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 							$field_class = Redux_Functions::class_exists_ex( $field_classes );
 						} else {
 							// translators: %1$s is the field ID, %2$s is the field type.
-							printf( esc_html__( 'Field %1$s could not be displayed. Field type %2$s was not found.', 'redux-framework' ), '<code>' . esc_attr( $field['id'] ) . '</code>', '<code>' . esc_attr( $field['type'] ) . '</code>' );
+							printf( esc_html__( 'Field %1$s could not be displayed. Field type %2$s was not found.', 'lenxel-core' ), '<code>' . esc_attr( $field['id'] ) . '</code>', '<code>' . esc_attr( $field['type'] ) . '</code>' );
 						}
 					}
 				}
@@ -950,6 +950,9 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 				}
 			} else {
 				foreach ( $field['default'] as $defaultk => $defaultv ) {
+					$defaultk = is_numeric( $defaultk ) ? (string) $defaultk : $defaultk;
+					$defaultv = is_numeric( $defaultv ) ? (string) $defaultv : $defaultv;
+
 					if ( ! empty( $field['options'][ $defaultv ]['alt'] ) ) {
 						$default_output .= $field['options'][ $defaultv ]['alt'] . ', ';
 					} elseif ( ! empty( $field['options'][ $defaultv ] ) ) {
@@ -957,13 +960,25 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 					} elseif ( ! empty( $field['options'][ $defaultk ] ) ) {
 						$default_output .= $field['options'][ $defaultk ] . ', ';
 					} elseif ( ! empty( $defaultv ) ) {
+						if ( is_array( $defaultv ) ) {
+							foreach ( $defaultv as $k => $v ) {
+								if( is_array( $v ) ) {
+									$defaultv = implode( ', ', $v );
+								}
+							}
+
+							if ( is_array( $defaultv ) ) {
+								$defaultv = implode( ', ', $defaultv );
+							}
+						}
+
 						$default_output .= $defaultv . ', ';
 					}
 				}
 			}
 
 			if ( ! empty( $default_output ) ) {
-				$default_output = esc_html__( 'Default', 'redux-framework' ) . ': ' . substr( $default_output, 0, - 2 );
+				$default_output = esc_html__( 'Default', 'lenxel-core' ) . ': ' . substr( $default_output, 0, - 2 );
 			}
 
 			if ( ! empty( $default_output ) ) {
@@ -1011,6 +1026,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 
 			$string = '';
 			if ( ( ( isset( $core->args['icon_type'] ) && 'image' === $core->args['icon_type'] ) || ( isset( $section['icon_type'] ) && 'image' === $section['icon_type'] ) ) || ( isset( $section['icon'] ) && false !== strpos( $section['icon'], '/' ) ) ) {
+				// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage -- No image/icon to enqueue.
 				$icon = ( ! isset( $section['icon'] ) ) ? '' : '<img class="image_icon_type" src="' . esc_url( $section['icon'] ) . '" /> ';
 			} else {
 				if ( ! empty( $section['icon_class'] ) ) {
@@ -1081,6 +1097,7 @@ if ( ! class_exists( 'Redux_Page_Render', false ) ) {
 							}
 
 							if ( ( isset( $core->args['icon_type'] ) && 'image' === $core->args['icon_type'] ) || ( isset( $sections[ $next_k ]['icon_type'] ) && 'image' === $sections[ $next_k ]['icon_type'] ) ) {
+								// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage -- No image/icon to enqueue.
 								$icon = ( ! isset( $sections[ $next_k ]['icon'] ) ) ? '' : '<img class="image_icon_type" src="' . esc_url( $sections[ $next_k ]['icon'] ) . '" /> ';
 							} else {
 								if ( ! empty( $sections[ $next_k ]['icon_class'] ) ) {

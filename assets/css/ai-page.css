@@ -1,0 +1,19 @@
+/**
+ * Lenxel Core - AI Page Styles
+ */
+ul.ul {
+    list-style-type: disc !important;
+    margin-left: 20px !important;
+    font-size: 16px;
+    color: #767171;
+    line-height: 24px;
+}
+ul li.li {
+    list-style-type: disc !important;
+    display: list-item !important;
+}
+ul.ul p {
+    font-size: 16px;
+    color: #767171;
+    line-height: 24px;
+}

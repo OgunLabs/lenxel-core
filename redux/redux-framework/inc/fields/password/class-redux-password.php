@@ -50,8 +50,8 @@ if ( ! class_exists( 'Redux_Password', false ) ) {
 				'username'    => '',
 				'password'    => '',
 				'placeholder' => array(
-					'password' => esc_html__( 'Password', 'redux-framework' ),
-					'username' => esc_html__( 'Username', 'redux-framework' ),
+					'password' => esc_html__( 'Password', 'lenxel-core' ),
+					'username' => esc_html__( 'Username', 'lenxel-core' ),
 				),
 			);
 

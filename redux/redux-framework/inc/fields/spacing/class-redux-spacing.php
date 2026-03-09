@@ -164,7 +164,7 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
                             type="text"
                             id="' . esc_attr( $this->field['id'] ) . '-all"
                             class="redux-spacing-all redux-spacing-input mini ' . esc_attr( $this->field['class'] ) . '"
-                            placeholder="' . esc_html__( 'All', 'redux-framework' ) . '"
+                            placeholder="' . esc_html__( 'All', 'lenxel-core' ) . '"
                             rel="' . esc_attr( $this->field['id'] ) . '-all"
                             value="' . esc_attr( $this->value['top'] ) . '"
                         >
@@ -223,7 +223,7 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
                             <input type="text"
                             	   id="' . esc_attr( $this->field['id'] ) . '-top"
                                    class="redux-spacing-top redux-spacing-input mini ' . esc_attr( $this->field['class'] ) . '"
-                                   placeholder="' . esc_html__( 'Top', 'redux-framework' ) . '"
+                                   placeholder="' . esc_html__( 'Top', 'lenxel-core' ) . '"
                                    rel="' . esc_attr( $this->field['id'] ) . '-top-hidden"
                                    value="' . esc_attr( $this->value['top'] ) . '"/>
                         </div>';
@@ -240,7 +240,7 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
                             <input type="text"
                             	   id="' . esc_attr( $this->field['id'] ) . '-right"
                                    class="redux-spacing-right redux-spacing-input mini ' . esc_attr( $this->field['class'] ) . '"
-                                   placeholder="' . esc_html__( 'Right', 'redux-framework' ) . '"
+                                   placeholder="' . esc_html__( 'Right', 'lenxel-core' ) . '"
                                    rel="' . esc_attr( $this->field['id'] ) . '-right-hidden"
                                    value="' . esc_attr( $this->value['right'] ) . '"/>
                         </div>';
@@ -257,7 +257,7 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
                             <input type="text"
                             	   id="' . esc_attr( $this->field['id'] ) . '-bottom"
                                    class="redux-spacing-bottom redux-spacing-input mini ' . esc_attr( $this->field['class'] ) . '"
-                                   placeholder="' . esc_html__( 'Bottom', 'redux-framework' ) . '"
+                                   placeholder="' . esc_html__( 'Bottom', 'lenxel-core' ) . '"
                                    rel="' . esc_attr( $this->field['id'] ) . '-bottom-hidden"
                                    value="' . esc_attr( $this->value['bottom'] ) . '">
                         </div>';
@@ -274,7 +274,7 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
                             <input type="text"
                                    id="' . esc_attr( $this->field['id'] ) . '-left"
                                    class="redux-spacing-left redux-spacing-input mini ' . esc_attr( $this->field['class'] ) . '"
-                                   placeholder="' . esc_html__( 'Left', 'redux-framework' ) . '"
+                                   placeholder="' . esc_html__( 'Left', 'lenxel-core' ) . '"
                                    rel="' . esc_attr( $this->field['id'] ) . '-left-hidden"
                                    value="' . esc_attr( $this->value['left'] ) . '"/>
                         </div>';
@@ -285,8 +285,8 @@ if ( ! class_exists( 'Redux_Spacing', false ) ) {
 			 * Units
 			 * */
 			if ( false !== $this->field['units'] && true === $this->field['display_units'] ) {
-				echo '<div class="select_wrapper spacing-units" original-title="' . esc_html__( 'Units', 'redux-framework' ) . '">';
-				echo '<select data-placeholder="' . esc_html__( 'Units', 'redux-framework' ) . '" class="redux-spacing redux-spacing-units select ' . esc_attr( $this->field['class'] ) . '" original-title="' . esc_html__( 'Units', 'redux-framework' ) . '" id="' . esc_attr( $this->field['id'] ) . '_units"' . esc_attr( $select2_data ) . '>';
+				echo '<div class="select_wrapper spacing-units" original-title="' . esc_html__( 'Units', 'lenxel-core' ) . '">';
+				echo '<select data-placeholder="' . esc_html__( 'Units', 'lenxel-core' ) . '" class="redux-spacing redux-spacing-units select ' . esc_attr( $this->field['class'] ) . '" original-title="' . esc_html__( 'Units', 'lenxel-core' ) . '" id="' . esc_attr( $this->field['id'] ) . '_units"' . esc_attr( $select2_data ) . '>';
 
 				if ( $this->field['units_extended'] ) {
 					$test_units = $unit_arr;

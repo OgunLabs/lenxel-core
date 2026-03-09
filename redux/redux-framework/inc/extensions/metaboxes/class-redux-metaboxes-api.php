@@ -27,56 +27,56 @@ if ( ! class_exists( 'Redux_Metaboxes' ) ) {
 		 *
 		 * @var array
 		 */
-		public static $boxes = array();
+		public static array $boxes = array();
 
 		/**
 		 * Sections array.
 		 *
 		 * @var array
 		 */
-		public static $sections = array();
+		public static array $sections = array();
 
 		/**
 		 * Fields array.
 		 *
 		 * @var array
 		 */
-		public static $fields = array();
+		public static array $fields = array();
 
 		/**
 		 * Priority array.
 		 *
 		 * @var array
 		 */
-		public static $priority = array();
+		public static array $priority = array();
 
 		/**
 		 * Errors array.
 		 *
 		 * @var array
 		 */
-		public static $errors = array();
+		public static array $errors = array();
 
 		/**
 		 * Init array.
 		 *
 		 * @var array
 		 */
-		public static $init = array();
+		public static array $init = array();
 
 		/**
 		 * Args array.
 		 *
 		 * @var array
 		 */
-		public static $args = array();
+		public static array $args = array();
 
 		/**
 		 * Code has run flag.
 		 *
 		 * @var bool
 		 */
-		public static $has_run = false;
+		public static bool $has_run = false;
 
 		/**
 		 * Class load.
@@ -445,7 +445,7 @@ if ( ! class_exists( 'Redux_Metaboxes' ) ) {
 				self::$sections[ $opt_name ][ $section['id'] ] = $section;
 
 			} else {
-				self::$errors[ $opt_name ]['section']['empty'] = esc_html__( 'Unable to create a section due an empty section array or the section variable passed was not an array.', 'redux-framework' );
+				self::$errors[ $opt_name ]['section']['empty'] = esc_html__( 'Unable to create a section due an empty section array or the section variable passed was not an array.', 'lenxel-core' );
 			}
 		}
 
@@ -633,7 +633,7 @@ if ( ! class_exists( 'Redux_Metaboxes' ) ) {
 
 				self::$boxes[ $opt_name ][ $box['id'] ] = $box;
 			} else {
-				self::$errors[ $opt_name ]['box']['empty'] = esc_html__( 'Unable to create a box due an empty box array or the box variable passed was not an array.', 'redux-framework' );
+				self::$errors[ $opt_name ]['box']['empty'] = esc_html__( 'Unable to create a box due an empty box array or the box variable passed was not an array.', 'lenxel-core' );
 			}
 		}
 

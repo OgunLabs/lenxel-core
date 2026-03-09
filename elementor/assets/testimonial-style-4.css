@@ -1,0 +1,8 @@
+/**
+ * Lenxel - Testimonials Style 4 Styles
+ */
+.resize-height .owl-carousel .owl-stage-outer,
+.resize-height .owl-carousel .owl-stage,
+.resize-height .owl-carousel.owl-drag .owl-item {
+    height: 100%;
+}

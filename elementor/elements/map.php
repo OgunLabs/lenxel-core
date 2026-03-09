@@ -78,8 +78,7 @@ class LNXElement_Map extends LNXElement_Base {
 
 	public function get_script_depends() {
       return [
-         'map-ui',
-         'google-maps-api'
+         'map-init' // This includes map-ui and google-maps-api as dependencies
       ];
     }
 

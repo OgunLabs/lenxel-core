@@ -30,10 +30,10 @@ class Lenxel_Addon_Form_Ajax{
 	}
 
 	public function lenxel_core_register_scripts(){
-		wp_register_script('ajax-form', LENXEL_PLUGIN_URL . 'assets/js/ajax-form.js', array('jquery') ); 
-		wp_enqueue_script('ajax-form');
+		// wp_register_script('lenxel-ajax-form', LENXEL_PLUGIN_URL . 'assets/js/ajax-form.js', array('jquery') ); 
+		wp_enqueue_script('lenxel-ajax-form');
 		$redirecturl = function_exists('tutor_utils') ? tutor_utils()->tutor_dashboard_url() : home_url();
-		wp_localize_script( 'ajax-form', 'form_ajax_object', array( 
+		wp_localize_script( 'lenxel-ajax-form', 'lenxelFormAjax', array( 
 		  'ajaxurl' => admin_url( 'admin-ajax.php' ),
 		  'redirecturl' => $redirecturl,
 		  'security_nonce' => wp_create_nonce( "lenxel-ajax-security-nonce" )

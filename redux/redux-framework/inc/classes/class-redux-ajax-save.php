@@ -34,27 +34,15 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 		 *
 		 * @throws ReflectionException Exception.
 		 */
-		function lenxel_recursive_sanitize_text_field($array) {
-			foreach ( $array as $key => &$value ) {
-				if ( is_array( $value ) ) {
-					$value = recursive_sanitize_text_field($value);
-				}
-				else {
-					$value = sanitize_text_field( $value );
-				}
-			}
-		
-			return $array;
-		}
 		public function save() {
 			$redux = null;
 
 			$core = $this->core();
 
 			if ( ! isset( $_REQUEST['nonce'] ) || ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['nonce'] ) ), 'redux_ajax_nonce' . $this->args['opt_name'] ) ) ) {
-				wp_send_json(
+				echo wp_json_encode(
 					array(
-						'status' => esc_html__( 'Invalid security credential.  Please reload the page and try again.', 'redux-framework' ),
+						'status' => esc_html__( 'Invalid security credential.  Please reload the page and try again.', 'lenxel-core' ),
 						'action' => '',
 					)
 				);
@@ -62,9 +50,9 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 			}
 
 			if ( ! Redux_Helpers::current_user_can( $core->args['page_permissions'] ) ) {
-				wp_send_json(
+				echo wp_json_encode(
 					array(
-						'status' => esc_html__( 'Invalid user capability.  Please reload the page and try again.', 'redux-framework' ),
+						'status' => esc_html__( 'Invalid user capability.  Please reload the page and try again.', 'lenxel-core' ),
 						'action' => '',
 					)
 				);
@@ -75,16 +63,17 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 				$redux = Redux::instance( sanitize_text_field( wp_unslash( $_POST['opt_name'] ) ) );
 
 				if ( ! empty( $redux->args['opt_name'] ) ) {
-						$arrayData = array_map('sanitize_text_field', $_POST['data']);
-						$post_data = wp_unslash( $arrayData ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+
+					$post_data = wp_unslash( $_POST['data'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+
 					// New method to avoid input_var nonsense.  Thanks, @harunbasic.
 					$values = Redux_Functions_Ex::parse_str( $post_data );
 					$values = $values[ $redux->args['opt_name'] ];
 
 					if ( ! empty( $values ) ) {
 						try {
-							if ( isset( $redux->validation_ran ) ) {
-								unset( $redux->validation_ran );
+							if ( true === Redux_Core::$validation_ran ) {
+								Redux_Core::$validation_ran = false;
 							}
 
 							$redux->options_class->set( $redux->options_class->validate_options( $values ) );
@@ -101,7 +90,7 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 							}
 
 							if ( $do_reload || ( isset( $values['defaults'] ) && ! empty( $values['defaults'] ) ) || ( isset( $values['defaults-section'] ) && ! empty( $values['defaults-section'] ) ) || ( isset( $values['import_code'] ) && ! empty( $values['import_code'] ) ) || ( isset( $values['import_link'] ) && ! empty( $values['import_link'] ) ) ) {
-								wp_send_json(
+								echo wp_json_encode(
 									array(
 										'status' => 'success',
 										'action' => 'reload',
@@ -123,9 +112,9 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 							$return_array = array( 'status' => $e->getMessage() );
 						}
 					} else {
-						wp_send_json(
+						echo wp_json_encode(
 							array(
-								'status' => esc_html__( 'Your panel has no fields. Nothing to save.', 'redux-framework' ),
+								'status' => esc_html__( 'Your panel has no fields. Nothing to save.', 'lenxel-core' ),
 							)
 						);
 						die();
@@ -134,8 +123,8 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 			}
 
 			if ( isset( $core->transients['run_compiler'] ) && $core->transients['run_compiler'] ) {
-				$core->no_output = true;
-				$temp            = $core->args['output_variables_prefix'];
+				Redux_Core::$no_output = true;
+				$temp                  = $core->args['output_variables_prefix'];
 
 				// Allow the override of variable's prefix for use by SCSS or LESS.
 				if ( isset( $core->args['compiler_output_variables_prefix'] ) ) {
@@ -189,7 +178,7 @@ if ( ! class_exists( 'Redux_AJAX_Save', false ) ) {
 				}
 
 				// phpcs:ignore WordPress.NamingConventions.ValidHookName
-				wp_send_json( apply_filters( 'redux/options/' . $core->args['opt_name'] . '/ajax_save/response', $return_array ) );
+				echo wp_json_encode( apply_filters( 'redux/options/' . $core->args['opt_name'] . '/ajax_save/response', $return_array ) );
 			}
 
 			die();

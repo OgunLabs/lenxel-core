@@ -81,16 +81,16 @@ if ( ! class_exists( 'Redux_Section', false ) ) {
 
 			echo '<table id="section-table-' . esc_attr( $this->field['id'] ) . '" data-id="' . esc_attr( $this->field['id'] ) . '" class="form-table form-table-section no-border' . esc_attr( $add_class ) . '"><tbody><tr><th></th><td id="' . esc_attr( $guid ) . '">';
 
-			?>
-			<script type="text/javascript">
+			$field_id = esc_attr( $this->field['id'] );
+			$section_script = "
 				jQuery( document ).ready(
 					function() {
-						jQuery( '#<?php echo esc_attr( $this->field['id'] ); ?>-marker' ).parents( 'tr:first' )
+						jQuery( '#" . $field_id . "-marker' ).parents( 'tr:first' )
 						.css( {display: 'none'} )
 						.prev( 'tr' )
 						.css( 'border-bottom', 'none' );
 
-						var group = jQuery( '#<?php echo esc_attr( $this->field['id'] ); ?>-marker' ).parents( '.redux-group-tab:first' );
+						var group = jQuery( '#" . $field_id . "-marker' ).parents( '.redux-group-tab:first' );
 						if ( !group.hasClass( 'sectionsChecked' ) ) {
 							group.addClass( 'sectionsChecked' );
 							var test = group.find( '.redux-section-indent-start h3' );
@@ -99,14 +99,16 @@ if ( ! class_exists( 'Redux_Section', false ) ) {
 									jQuery( value ).css( 'margin-top', '20px' )
 								}
 							);
-							if ( group.find( 'h3:first' ).css( 'margin-top' ) === "20px" ) {
+							if ( group.find( 'h3:first' ).css( 'margin-top' ) === '20px' ) {
 								group.find( 'h3:first' ).css( 'margin-top', '0' );
 							}
 						}
 					}
 				);
-			</script>
-			<?php
+			";
+			wp_enqueue_script('jquery');
+			wp_add_inline_script('jquery', $section_script, 'after');
+			?>
 		}
 
 		/**

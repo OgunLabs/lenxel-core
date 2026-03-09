@@ -19,7 +19,7 @@ class Redux_Full_Package implements themecheck {
 	 *
 	 * @var array $error Error storage.
 	 */
-	protected $error = array();
+	protected array $error = array();
 
 	/**
 	 * Check files.
@@ -40,9 +40,9 @@ class Redux_Full_Package implements themecheck {
 		if ( $redux ) {
 
 			$blacklist = array(
-				'codestyles'                       => esc_html__( 'Redux Code Styles', 'redux-framework' ),
-				'class-redux-framework-plugin.php' => esc_html__( 'Redux Plugin File', 'redux-framework' ),
-				'.travis.yml'                      => esc_html__( 'CI Testing File', 'redux-framework' ),
+				'codestyles'                       => esc_html__( 'Redux Code Styles', 'lenxel-core' ),
+				'class-redux-framework-plugin.php' => esc_html__( 'Redux Plugin File', 'lenxel-core' ),
+				'.travis.yml'                      => esc_html__( 'CI Testing File', 'lenxel-core' ),
 			);
 
 			$errors = array();
@@ -55,7 +55,7 @@ class Redux_Full_Package implements themecheck {
 			}
 
 			if ( ! empty( $errors ) ) {
-				$error  = '<span class="tc-lead tc-required">REQUIRED</span> ' . esc_html__( 'It appears that you have embedded the full Redux package inside your theme. You need only embed the', 'redux-framework' ) . ' <strong>redux-core</strong> ' . esc_html__( 'folder. Embedding anything else will get your rejected from theme submission. Suspected Redux package file(s):', 'redux-framework' );
+				$error  = '<span class="tc-lead tc-required">REQUIRED</span> ' . esc_html__( 'It appears that you have embedded the full Redux package inside your theme. You need only embed the', 'lenxel-core' ) . ' <strong>redux-core</strong> ' . esc_html__( 'folder. Embedding anything else will get your rejected from theme submission. Suspected Redux package file(s):', 'lenxel-core' );
 				$error .= '<ol>';
 
 				foreach ( $errors as $key => $e ) {
@@ -81,4 +81,5 @@ class Redux_Full_Package implements themecheck {
 	}
 }
 
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals -- WordPress global. Cannot be changed.
 $themechecks[] = new Redux_Full_Package();

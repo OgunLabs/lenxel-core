@@ -1,0 +1,308 @@
+/**
+ * Lenxel Core - Deactivation Modal Styles (Responsive)
+ */
+
+.feedbackOther,
+.betterPlugin {
+   display: none;
+   margin-bottom: 10px;
+   margin-top: 5px;
+}
+
+.choice {
+   padding: 5px 0px;
+}
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: "Inter", sans-serif;
+}
+
+.modal {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   gap: 0.4rem;
+   width: 90%;
+   max-width: 450px;
+   padding: 1.3rem;
+   min-height: 250px;
+   max-height: 90vh;
+   overflow-y: auto;
+   position: relative;
+   background-color: white;
+   border: 1px solid #ddd;
+   border-radius: 15px;
+   visibility: visible;
+   height: auto;
+   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.modal .flex {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   gap: 0.5rem;
+}
+
+.modal .flex h3 {
+   margin: 0;
+   font-size: clamp(1rem, 2.5vw, 1.2rem);
+}
+
+button.hideButton {
+   display: none;
+}
+
+.modal input[type="text"],
+.modal input[type="email"],
+.modal input[type="password"],
+.modal input[type="search"],
+.modal input[type="url"] {
+   padding: 0.7rem 1rem;
+   border: 1px solid #ddd;
+   border-radius: 5px;
+   font-size: 0.9em;
+   width: 100%;
+}
+
+.modal input[type="radio"],
+.modal input[type="checkbox"] {
+   width: auto !important;
+   padding: 0;
+   margin: 0;
+}
+
+.modal p {
+   font-size: clamp(0.85rem, 2vw, 0.9rem);
+   color: #777;
+   margin: 0.4rem 0 0.2rem;
+}
+
+button {
+   cursor: pointer;
+   border: none;
+   font-weight: 600;
+}
+
+.btn {
+   display: inline-block;
+   padding: 0.8rem 1.4rem;
+   font-weight: 700;
+   background-color: black;
+   color: white;
+   border-radius: 5px;
+   text-align: center;
+   font-size: clamp(0.85rem, 2vw, 1rem);
+   transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+   background-color: #333;
+}
+
+.btn-open {
+   position: absolute;
+   bottom: 150px;
+}
+
+.btn-close {
+   transform: translate(10px, -20px);
+   padding: 0.5rem 0.7rem;
+   background: #eee;
+   border-radius: 50%;
+   transition: background-color 0.2s ease;
+   font-size: 1.2rem;
+   line-height: 1;
+}
+
+.btn-close:hover {
+   background: #ddd;
+}
+
+.overlay {
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(0, 0, 0, 0.5);
+   backdrop-filter: blur(3px);
+   z-index: 99998;
+}
+
+.modal {
+   z-index: 99999;
+}
+
+.hidden {
+   display: none;
+}
+
+.modalContainer {
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   margin: 0;
+   visibility: visible;
+   opacity: 1;
+   z-index: 99999;
+   width: 100%;
+   max-width: 500px;
+   padding: 0 1rem;
+}
+
+/* Footer buttons */
+.modal .footer {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 0.5rem;
+   justify-content: flex-end;
+   margin-top: 1rem;
+}
+
+.modal .footer button {
+   flex: 1 1 auto;
+   min-width: 120px;
+}
+
+.modal .include-email {
+   width: 100%;
+   margin-top: 1.25rem !important;
+   margin-bottom: 1.25rem !important;
+}
+
+.modal .include-email label {
+   display: flex;
+   flex-direction: column;
+   gap: 0.25rem;
+   font-size: 0.9rem;
+}
+
+.modal .include-email small {
+   color: #999;
+   font-size: 0.8rem;
+}
+
+/* Radio button and label styling */
+.modal .choice label {
+   cursor: pointer;
+   user-select: none;
+   display: inline-block;
+   margin-left: 0.5rem;
+}
+
+.modal input[type="radio"] {
+   cursor: pointer;
+   width: auto !important;
+   margin-right: 0.25rem;
+   vertical-align: middle;
+}
+
+.modal input[type="checkbox"] {
+   cursor: pointer;
+   width: auto !important;
+   margin-right: 0.5rem;
+   vertical-align: middle;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+   .modalContainer {
+      padding: 0 0.75rem;
+      max-width: 100%;
+   }
+   
+   .modal {
+      width: 95%;
+      padding: 1rem;
+      border-radius: 10px;
+      max-height: 85vh;
+   }
+   
+   .modal .flex h3 {
+      width: 100%;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+   }
+   
+   .btn-close {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      transform: none;
+   }
+   
+   .modal .footer {
+      flex-direction: column;
+   }
+   
+   .modal .footer button {
+      width: 100%;
+      min-width: 100%;
+   }
+   
+   .choice {
+      padding: 8px 0;
+   }
+   
+   .modal .choice label {
+      font-size: 0.9rem;
+   }
+   
+   .modal input[type="radio"] {
+      width: 16px !important;
+      height: 16px !important;
+      margin-right: 0.5rem;
+      transform: none;
+   }
+   
+   .modal input[type="checkbox"] {
+      width: 16px !important;
+      height: 16px !important;
+   }
+   
+   .modal input[type="text"],
+   .modal input[type="email"],
+   .modal input[type="password"],
+   .modal input[type="search"],
+   .modal input[type="url"] {
+      padding: 0.6rem 0.8rem;
+      font-size: 0.85em;
+      min-height: 44px; /* iOS touch target minimum */
+   }
+   
+   .modal button {
+      min-height: 44px; /* iOS touch target minimum */
+   }
+}
+
+@media screen and (max-width: 400px) {
+   .modal {
+      width: 98%;
+      padding: 0.8rem;
+      gap: 0.3rem;
+   }
+   
+   .modal p {
+      font-size: 0.85rem;
+   }
+   
+   .btn {
+      padding: 0.7rem 1rem;
+      font-size: 0.85rem;
+   }
+}
+
+/* Ensure modal is scrollable on very small screens */
+@media screen and (max-height: 600px) {
+   .modal {
+      max-height: 80vh;
+   }
+}

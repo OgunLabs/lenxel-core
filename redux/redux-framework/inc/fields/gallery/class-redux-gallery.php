@@ -35,18 +35,20 @@ if ( ! class_exists( 'Redux_Gallery', false ) ) {
 
 				foreach ( $ids as $attachment_id ) {
 					$img = wp_get_attachment_image_src( $attachment_id );
-					$alt = wp_prepare_attachment_for_js( $attachment_id );
-					$alt = $alt['alt'] ?? '';
+					if ( false !== $img ) {
+						$alt = wp_prepare_attachment_for_js( $attachment_id );
+						$alt = $alt['alt'] ?? '';
 
-					echo '<a class="of-uploaded-image" href="' . esc_url( $img[0] ) . '">';
-					echo '<img class="redux-option-image" id="image_' . esc_attr( $this->field['id'] ) . '_' . esc_attr( $attachment_id ) . '" src="' . esc_url( $img[0] ) . '" alt="' . esc_attr( $alt ) . '" target="_blank" rel="external" />';
-					echo '</a>';
+						echo '<a class="of-uploaded-image" href="' . esc_url( $img[0] ) . '">';
+						echo '<img class="redux-option-image" id="image_' . esc_attr( $this->field['id'] ) . '_' . esc_attr( $attachment_id ) . '" src="' . esc_url( $img[0] ) . '" alt="' . esc_attr( $alt ) . '" target="_blank" rel="external" />';
+						echo '</a>';
+					}
 				}
 			}
 
 			echo '</div>';
-			echo '<a href="#" onclick="return false;" id="edit-gallery" class="gallery-attachments button button-primary">' . esc_html__( 'Add/Edit Gallery', 'redux-framework' ) . '</a> ';
-			echo '<a href="#" onclick="return false;" id="clear-gallery" class="gallery-attachments button">' . esc_html__( 'Clear Gallery', 'redux-framework' ) . '</a>';
+			echo '<a href="#" onclick="return false;" id="edit-gallery" class="gallery-attachments button button-primary">' . esc_html__( 'Add/Edit Gallery', 'lenxel-core' ) . '</a> ';
+			echo '<a href="#" onclick="return false;" id="clear-gallery" class="gallery-attachments button">' . esc_html__( 'Clear Gallery', 'lenxel-core' ) . '</a>';
 			echo '<input type="hidden" class="gallery_values ' . esc_attr( $this->field['class'] ) . '" value="' . esc_attr( $this->value ) . '" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '" />';
 		}
 

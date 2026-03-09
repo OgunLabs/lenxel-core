@@ -5,6 +5,8 @@
  * @class   Redux_Extension_Import_Export
  * @version 4.0.0
  * @package Redux Framework
+ *
+ * @noinspection PhpIgnoredClassAliasDeclaration
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -31,7 +33,7 @@ if ( ! class_exists( 'Redux_Extension_Import_Export', false ) ) {
 		 *
 		 * @var bool
 		 */
-		public $is_field = false;
+		public bool $is_field = false;
 
 		/**
 		 * Class Constructor. Defines the args for the extensions class
@@ -81,7 +83,7 @@ if ( ! class_exists( 'Redux_Extension_Import_Export', false ) ) {
 		public function add_section() {
 			$this->parent->sections[] = array(
 				'id'         => 'import/export',
-				'title'      => esc_html__( 'Import / Export', 'redux-framework' ),
+				'title'      => esc_html__( 'Import / Export', 'lenxel-core' ),
 				'heading'    => '',
 				'icon'       => 'el el-refresh',
 				'customizer' => false,

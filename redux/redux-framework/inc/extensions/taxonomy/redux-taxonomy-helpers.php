@@ -15,12 +15,11 @@ if ( ! function_exists( 'create_term_redux_taxonomy' ) ) {
 	 *
 	 * @param int $term_id  Term ID.
 	 */
-	function create_term_redux_taxonomy( int $term_id ) {
+	function create_term_redux_taxonomy( int $term_id ) { // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals -- Existing API already used in themes. Cannot change due to backward compatibility. Contains the plugin name.
 		$instances = Redux::all_instances();
 
 		foreach ( $_POST as $key => $value ) { // phpcs:ignore WordPress.Security.NonceVerification
 			if ( is_array( $value ) && isset( $instances[ $key ] ) ) {
-				$get_key_sanitize = sanitize_text_field( $key );
 				$instances[ $key ]->extensions['taxonomy']->meta_terms_save( $term_id );
 			}
 		}

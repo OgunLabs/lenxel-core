@@ -1,4 +1,6 @@
 <?php 
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 use Elementor\Icons_Manager;
 	
 $has_icon = ! empty( $item['selected_icon']['value']); 

@@ -57,7 +57,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
                            )
                         );
-                     $html = str_replace('<select', '<select data-placeholder="All Categories"', ob_get_clean()); 
+                     $content = ob_get_clean();
+                     $html = str_replace('<select', '<select data-placeholder="All Categories"', $content); 
                      echo wp_kses(
                         $html,
                         array(

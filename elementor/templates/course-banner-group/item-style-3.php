@@ -48,7 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
          <?php 
             if ( $settings['show_number_content'] == 'yes' && $term ) {
                if(!empty($banner['term_slug'])){
-                  echo '<div class="number-course">' . sprintf(_n('%d Course', '%d Courses', esc_html($term->count), 'lenxel-core'), esc_html($term->count)) . '</div>';
+                  echo '<div class="number-course">' . esc_html( sprintf(_n('%d Course', '%d Courses', $term->count, 'lenxel-core'), $term->count) ) . '</div>';
                }
             }
          ?>

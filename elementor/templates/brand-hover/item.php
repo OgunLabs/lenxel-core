@@ -1,4 +1,6 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
    $image_url = $brand['image']['url']; 
    $image_hover_url = $brand['image_hover']['url']; 
    $active = $brand['active'];

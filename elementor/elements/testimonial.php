@@ -485,17 +485,9 @@ class LNXElement_Testimonial extends LNXElement_Base{
      * @access protected
      */
     protected function render() {
-        if ( lenxel_get_template_restrict()->has_premium){
-            $settings = $this->get_settings_for_display();
-            printf( '<div class="lnx-element-%s lnx-element">', esc_html($this->get_name()) );
-            if(isset($settings['style']) && $settings['style']){
-                include $this->get_template('testimonials/lnx-testimonials-' . $settings['style'] . '.php');
-            }
-            print '</div>';
-        }else {
-			$content = '<div></div>';
-			wp_kses($content, array( 'div' ));
-        }
+        $content = '<div></div>';
+
+        echo wp_kses($content, array( 'div' ));
     }
 
 }

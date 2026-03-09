@@ -44,13 +44,13 @@ if ( ! class_exists( 'Redux_Instances', false ) ) {
 		}
 
 		/**
-		 * Shim for old lenxel_get_redux_instance method.
+		 * Shim for old get_redux_instance method.
 		 *
 		 * @param  string|false $opt_name the defined opt_name.
 		 *
 		 * @return ReduxFramework class instance
 		 */
-		public static function lenxel_get_redux_instance( $opt_name = '' ) {
+		public static function get_redux_instance( $opt_name = '' ) {
 			return self::get_instance( $opt_name );
 		}
 
@@ -94,7 +94,7 @@ if ( ! class_exists( 'ReduxFrameworkInstances' ) ) {
 	class_alias( 'Redux_Instances', 'ReduxFrameworkInstances' );
 }
 
-if ( ! function_exists( 'lenxel_get_redux_instance' ) ) {
+if ( ! function_exists( 'get_redux_instance' ) ) {
 	/**
 	 * Shim function that some theme oddly used.
 	 *
@@ -102,19 +102,19 @@ if ( ! function_exists( 'lenxel_get_redux_instance' ) ) {
 	 *
 	 * @return ReduxFramework class instance
 	 */
-	function lenxel_get_redux_instance( $opt_name ) {
+	function get_redux_instance( $opt_name ) { // phpcs:ignore Universal.Files.SeparateFunctionsFromOO, WordPress.NamingConventions.PrefixAllGlobals -- Themes use this function. Name cannot be changed for backward compatibility reasons.
 		return Redux_Instances::get_instance( $opt_name );
 	}
 }
 
-if ( ! function_exists( 'lenxel_get_all_redux_instances' ) ) {
+if ( ! function_exists( 'get_all_redux_instances' ) ) {
 	/**
 	 * Fetch all instances of ReduxFramework
 	 * as an associative array.
 	 *
 	 * @return array        format ['opt_name' => $ReduxFramework]
 	 */
-	function lenxel_get_all_redux_instances(): ?array {
+	function get_all_redux_instances(): ?array { // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals -- Themes use this function. Name cannot be changed for backward compatibility reasons.
 		return Redux_Instances::get_all_instances();
 	}
 }

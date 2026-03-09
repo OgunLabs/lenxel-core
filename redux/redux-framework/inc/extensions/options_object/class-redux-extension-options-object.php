@@ -5,6 +5,8 @@
  * @class Redux_Core
  * @version 4.0.0
  * @package Redux Framework
+ *
+ * @noinspection PhpIgnoredClassAliasDeclaration
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -33,14 +35,14 @@ if ( ! class_exists( 'Redux_Extension_Options_Object', false ) ) {
 		 *
 		 * @var string
 		 */
-		private $field_name = 'options_object';
+		private string $field_name = 'options_object';
 
 		/**
 		 * Is field bit.
 		 *
 		 * @var bool
 		 */
-		public $is_field = false;
+		public bool $is_field = false;
 
 		/**
 		 * Class Constructor. Defines the args for the extensions class
@@ -69,7 +71,7 @@ if ( ! class_exists( 'Redux_Extension_Options_Object', false ) ) {
 		public function add_section() {
 			$this->parent->sections[] = array(
 				'id'         => 'options-object',
-				'title'      => esc_html__( 'Options Object', 'redux-framework' ),
+				'title'      => esc_html__( 'Options Object', 'lenxel-core' ),
 				'heading'    => '',
 				'icon'       => 'el el-info-circle',
 				'customizer' => false,

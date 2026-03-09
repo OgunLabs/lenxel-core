@@ -5,6 +5,8 @@
  * @package     ReduxFramework/Fields
  * @author      Dovy Paukstys & Kevin Provance (kprovance)
  * @version     4.0.0
+ *
+ * @noinspection PhpIgnoredClassAliasDeclaration
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -42,7 +44,7 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 		public function render() {
 			$sortable = ( isset( $this->field['sortable'] ) && true === (bool) $this->field['sortable'] ) ? ' select2-sortable' : '';
 
-			if ( ! empty( $sortable ) ) { // Dummy proofing  :P.
+			if ( ! empty( $sortable ) ) { // Dummy proofing :P.
 				$this->field['multi'] = true;
 			}
 
@@ -77,7 +79,7 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 					}
 				}
 
-				// First one get with AJAX.
+				// The First one obtained with AJAX.
 				$ajax = false;
 				if ( isset( $this->field['ajax'] ) && $this->field['ajax'] ) {
 					$ajax = true;
@@ -103,7 +105,7 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 					$name_brackets = '[]';
 				}
 
-				$placeholder = ( isset( $this->field['placeholder'] ) ) ? esc_attr( $this->field['placeholder'] ) : esc_html__( 'Select an item', 'redux-framework' );
+				$placeholder = ( isset( $this->field['placeholder'] ) ) ? esc_attr( $this->field['placeholder'] ) : esc_html__( 'Select an item', 'lenxel-core' );
 
 				$select2_width = 'resolve';
 				if ( '' !== $multi ) {
@@ -180,7 +182,7 @@ if ( ! class_exists( 'Redux_Select', false ) ) {
 
 				echo '</select>';
 			} else {
-				echo '<strong>' . esc_html__( 'No items of this type were found.', 'redux-framework' ) . '</strong>';
+				echo '<strong>' . esc_html__( 'No items of this type were found.', 'lenxel-core' ) . '</strong>';
 			}
 		}
 

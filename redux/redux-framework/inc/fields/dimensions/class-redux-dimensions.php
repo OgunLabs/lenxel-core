@@ -142,7 +142,7 @@ if ( ! class_exists( 'Redux_Dimensions', false ) ) {
 						type="text"
 						id="' . esc_attr( $this->field['id'] ) . '-width"
 						class="redux-dimensions-input redux-dimensions-width mini ' . esc_attr( $this->field['class'] ) . '"
-						placeholder="' . esc_html__( 'Width', 'redux-framework' ) . '"
+						placeholder="' . esc_html__( 'Width', 'lenxel-core' ) . '"
 						rel="' . esc_attr( $this->field['id'] ) . '-width-hidden"
 						value="' . esc_attr( filter_var( $this->value['width'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ) ) . '">';
 
@@ -172,7 +172,7 @@ if ( ! class_exists( 'Redux_Dimensions', false ) ) {
 						type="text"
 						id="' . esc_attr( $this->field['id'] ) . '-height"
 						class="redux-dimensions-input redux-dimensions-height mini ' . esc_attr( $this->field['class'] ) . '"
-						placeholder="' . esc_html__( 'Height', 'redux-framework' ) . '"
+						placeholder="' . esc_html__( 'Height', 'lenxel-core' ) . '"
 						rel="' . esc_attr( $this->field['id'] ) . '-height-hidden"
 						value="' . esc_attr( filter_var( $this->value['height'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION ) ) . '">';
 
@@ -193,13 +193,13 @@ if ( ! class_exists( 'Redux_Dimensions', false ) ) {
 			if ( isset( $this->field['units'] ) && false !== $this->field['units'] ) {
 				echo '<div
 						class="select_wrapper dimensions-units"
-						original-title="' . esc_html__( 'Units', 'redux-framework' ) . '">';
+						original-title="' . esc_html__( 'Units', 'lenxel-core' ) . '">';
 
 				echo '<select
 						data-id="' . esc_attr( $this->field['id'] ) . '"
-						data-placeholder="' . esc_html__( 'Units', 'redux-framework' ) . '"
+						data-placeholder="' . esc_html__( 'Units', 'lenxel-core' ) . '"
 						class="redux-dimensions redux-dimensions-units select ' . esc_attr( $this->field['class'] ) . '"
-						original-title="' . esc_html__( 'Units', 'redux-framework' ) . '"
+						original-title="' . esc_html__( 'Units', 'lenxel-core' ) . '"
 						name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '[units]"' . esc_attr( $select2_data ) . '>';
 
 				// Extended units, show 'em all.
