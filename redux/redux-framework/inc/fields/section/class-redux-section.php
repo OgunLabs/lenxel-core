@@ -108,7 +108,7 @@ if ( ! class_exists( 'Redux_Section', false ) ) {
 			";
 			wp_enqueue_script('jquery');
 			wp_add_inline_script('jquery', $section_script, 'after');
-			?>
+
 		}
 
 		/**
