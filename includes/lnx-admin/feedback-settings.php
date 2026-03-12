@@ -147,7 +147,7 @@ wp_enqueue_style('lenxel-feedback-settings', LENXEL_PLUGIN_URL . 'assets/css/ai-
             </ul>
          </div>
          <div style="margin-top: 20px;">
-            <a href="https://lenxel.ai/external-services-documentation" target="_blank" class="lenxel-install-banner-button" style="display: inline-block; padding: 10px 20px; text-decoration: none;">
+            <a href="https://lenxel.ai/wp/documentation/index.html" target="_blank" class="lenxel-install-banner-button" style="display: inline-block; padding: 10px 20px; text-decoration: none;">
                <?php esc_html_e('View Full External Services Documentation', 'lenxel-core'); ?>
             </a>
          </div>
