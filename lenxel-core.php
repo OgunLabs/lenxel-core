@@ -4,7 +4,7 @@
  * Plugin Name: Lenxel Core
  * Description: AI-powered LMS, Header builder, Footer builder, Teams, Portfolios, Lenxel Theme Settings ... for theme
  * Plugin URI: https://lenxel.ai 
- * Version: 1.3.5
+ * Version: 1.3.6
  * Requires PHP: 7.4
  * Author: Ogun Labs
  * Requires at least: 6.3
@@ -21,7 +21,7 @@ if (! defined('ABSPATH')) exit; // Exit if accessed directly
 define('LENXEL_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('LENXEL_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('LENXEL_CORE_PATH', plugin_dir_path(__FILE__)); // Add this line
-define('LENXEL_CORE_VERSION', '1.3.5');
+define('LENXEL_CORE_VERSION', '1.3.6');
 
 class Lenxel_Theme_Support
 {
@@ -87,6 +87,9 @@ class Lenxel_Theme_Support
 
       // Override admin footer text for Lenxel pages
       add_filter('admin_footer_text', array($this, 'lenxel_admin_footer_text'), 2);
+      
+      // Register settings for privacy compliance (settings page rendered via lnx-admin/feedback-settings.php)
+      add_action('admin_init', array($this, 'lenxel_register_settings'));
    }
 
    function lenxel_reclone_post_data(object $post = NULL)
@@ -195,7 +198,8 @@ class Lenxel_Theme_Support
    function lenxel_duplicate_post_link(int $post_id = 0)
    {
       if ($post_id > 0):
-         $get_escaped = '<a href="?page=tutor&tutor_action=duplicate_course&course_id=' . sanitize_text_field($post_id) . '" title="Duplicate" class="tutor-dropdown-item" style="padding-left:15px;color:#ffffff">
+         $nonce = wp_create_nonce('lenxel_duplicate_course_' . $post_id);
+         $get_escaped = '<a href="?page=tutor&tutor_action=duplicate_course&course_id=' . sanitize_text_field($post_id) . '&_wpnonce=' . esc_attr($nonce) . '" title="Duplicate" class="tutor-dropdown-item" style="padding-left:15px;color:#ffffff">
             <i class="tutor-icon-copy tutor-mr-8" area-hidden="true"></i>
             <span>Duplicate </span>
          </a>';
@@ -205,9 +209,19 @@ class Lenxel_Theme_Support
 
    function lenxel_duplicate_course($course_id)
    {
-      if (isset($_GET['tutor_action']) && isset($_GET['course_id'])) {
+      if (isset($_GET['tutor_action']) && 'duplicate_course' === $_GET['tutor_action'] && isset($_GET['course_id'])) {
+         // Security: Verify nonce
+         $course_id = absint($_GET['course_id']);
+         if (!isset($_GET['_wpnonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['_wpnonce'])), 'lenxel_duplicate_course_' . $course_id)) {
+            wp_die(esc_html__('Security check failed', 'lenxel-core'));
+         }
+         
+         // Security: Check user capability
+         if (!current_user_can('edit_post', $course_id)) {
+            wp_die(esc_html__('You do not have permission to duplicate this course', 'lenxel-core'));
+         }
+         
          // Get the post by its ID
-         $course_id = (int)$_GET['course_id'];
          $course = get_post($course_id);
          // Create an array with the post data to duplicate
          $new_course_id = $this->lenxel_reclone_post_data($course);
@@ -638,6 +652,13 @@ class Lenxel_Theme_Support
          return;
       }
 
+      // Check if user has opted-in to deactivation feedback
+      $feedback_enabled = get_option('lenxel_enable_deactivation_feedback', '0');
+      if ($feedback_enabled !== '1') {
+         wp_send_json_success(array('message' => 'Feedback not enabled.'));
+         return;
+      }
+
       // Process feedback
       $feedback = isset($_POST['feedback']) ? sanitize_text_field(wp_unslash($_POST['feedback'])) : '';
       $comment = isset($_POST['comment']) ? sanitize_text_field(wp_unslash($_POST['comment'])) : '';
@@ -672,6 +693,8 @@ class Lenxel_Theme_Support
       
       // Log for debugging
       error_log('Lenxel Deactivation Feedback - Slack Response: ' . print_r($slack_response, true));
+      
+      wp_send_json_success(array('message' => 'Feedback submitted successfully.'));
    }
 
    // Usage
@@ -822,10 +845,11 @@ class Lenxel_Theme_Support
 
       $current_user = wp_get_current_user();
       $user_email = $current_user->user_email;
+      $feedback_enabled = get_option('lenxel_enable_deactivation_feedback', '0');
       ob_start();
    ?>
       <div class="modalContainer">
-         <section class="modal hidden">
+         <section class="modal hidden" data-feedback-enabled="<?php echo esc_attr($feedback_enabled === '1' ? 'true' : 'false'); ?>">
             <div class="flex">
                <h3>QUICK FEEDBACK</h3>
                <button class="btn-close">⨉</button>
@@ -1011,6 +1035,26 @@ class Lenxel_Theme_Support
       wp_redirect('https://lenxel.ai/#lenxel-pro');
       exit;
    }
+
+   /**
+    * Register plugin settings for privacy compliance
+    */
+   public function lenxel_register_settings() {
+      register_setting(
+         'lenxel_privacy_settings',
+         'lenxel_enable_deactivation_feedback',
+         array(
+            'type' => 'string',
+            'sanitize_callback' => 'sanitize_text_field',
+            'default' => '0'
+         )
+      );
+   }
+
+   /**
+    * Settings page is rendered via includes/lnx-admin/feedback-settings.php
+    * This file is loaded by the theme's admin interface
+    */
 }
 
 new Lenxel_Theme_Support();

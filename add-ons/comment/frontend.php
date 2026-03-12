@@ -36,7 +36,7 @@ class Lenxel_Listing_Comment_FE extends Lenxel_Listing_Comment{
 
 		do_action( 'lt_review_field_init', $post, $current_user, $is_author );
 
-		echo apply_filters( 'lt_review_field', $this->review_field() );
+		echo wp_kses_post( apply_filters( 'lt_review_field', $this->review_field() ) );
 	}
 
 

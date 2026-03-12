@@ -76,7 +76,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 					'index' => 'regular',
 				);
 
-				echo Redux_Functions_Ex::output_alpha_data( $data ); // phpcs:ignore WordPress.Security.EscapeOutput
+				echo wp_kses_post( Redux_Functions_Ex::output_alpha_data( $data ) );
 
 				echo '>';
 				echo '</span>';
@@ -98,7 +98,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 					'index' => 'hover',
 				);
 
-				echo Redux_Functions_Ex::output_alpha_data( $data ); // phpcs:ignore WordPress.Security.EscapeOutput
+				echo wp_kses_post( Redux_Functions_Ex::output_alpha_data( $data ) );
 
 				echo '>';
 				echo '</span>';
@@ -120,7 +120,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 					'index' => 'visited',
 				);
 
-				echo Redux_Functions_Ex::output_alpha_data( $data ); // phpcs:ignore WordPress.Security.EscapeOutput
+				echo wp_kses_post( Redux_Functions_Ex::output_alpha_data( $data ) );
 
 				echo '>';
 				echo '</span>';
@@ -142,7 +142,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 					'index' => 'active',
 				);
 
-				echo Redux_Functions_Ex::output_alpha_data( $data ); // phpcs:ignore WordPress.Security.EscapeOutput
+				echo wp_kses_post( Redux_Functions_Ex::output_alpha_data( $data ) );
 
 				echo '>';
 				echo '</span>';
@@ -164,7 +164,7 @@ if ( ! class_exists( 'Redux_Link_Color', false ) ) {
 					'index' => 'focus',
 				);
 
-				echo Redux_Functions_Ex::output_alpha_data( $data ); // phpcs:ignore WordPress.Security.EscapeOutput
+				echo wp_kses_post( Redux_Functions_Ex::output_alpha_data( $data ) );
 
 				echo '>';
 				echo '</span>';

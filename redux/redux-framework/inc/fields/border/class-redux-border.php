@@ -208,7 +208,7 @@ if ( ! class_exists( 'Redux_Border', false ) ) {
 					'index' => '',
 				);
 
-				echo Redux_Functions_Ex::output_alpha_data( $data ); // phpcs:ignore WordPress.Security.EscapeOutput
+				echo wp_kses_post( Redux_Functions_Ex::output_alpha_data( $data ) );
 
 				echo '>';
 			} else {

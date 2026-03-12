@@ -99,13 +99,13 @@ if ( ! class_exists( 'Redux_Options_Object', false ) ) {
 					class="redux-field redux-container-<?php echo esc_attr( $this->field['type'] ) . ' ' . esc_attr( $this->field['class'] ); ?>"
 					data-id="<?php echo esc_attr( $this->field['id'] ); ?>">
 
-				<h3><?php esc_html_e( 'Options Object', 'lenxel-core' ); ?></h3>
+				<h3><?php esc_html_e( 'Options Object', 'redux-framework' ); ?></h3>
 				<div id="redux-object-browser"></div>
-				<div id="redux-object-json" class="hide"><?php echo( $json ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
+				<div id="redux-object-json" class="hide"><?php echo wp_kses_post( $json ); ?></div>
 				<a
 					href="#" id="consolePrintObject"
 					class="button">
-					<?php esc_html_e( 'Show Object in Javascript Console Object', 'lenxel-core' ); ?></a>
+					<?php esc_html_e( 'Show Object in Javascript Console Object', 'redux-framework' ); ?></a>
 
 			</fieldset>
 			<?php if ( true === $do_close ) { ?>

@@ -73,7 +73,7 @@ if ( ! class_exists( 'Redux_Multi_Media' ) ) {
 					data-id="' . esc_attr( $field_id ) . '">';
 
 			// Library filter.
-			echo '<input type="hidden" class="library-filter" data-lib-filter="' . $lib_filter . '" />'; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '<input type="hidden" class="library-filter" data-lib-filter="' . esc_attr( $lib_filter ) . '" />';
 
 			// Hidden inout for file(s).
 			echo '<input

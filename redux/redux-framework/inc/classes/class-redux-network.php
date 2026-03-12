@@ -65,14 +65,18 @@ if ( ! class_exists( 'Redux_Network', false ) ) {
 		public function save_network_page() {
 			$core = $this->core();
 
-			if ( isset( $_POST[ $core->args['opt_name'] ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-				$opt_name = sanitize_text_field( wp_unslash( $_POST[ $core->args['opt_name'] ] ) ); // phpcs:ignore WordPress.Security.NonceVerification
-			}
+		// Security: Verify nonce
+		if (!isset($_POST['_wpnonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'])), 'redux_' . $core->args['opt_name'] . '-options')) {
+			wp_die(esc_html__('Security check failed', 'redux-framework'));
+		}
 
-			$data = $core->options_class->validate_options( $opt_name );
+		// Security: Check user capability
+		if (!current_user_can('manage_network_options')) {
+			wp_die(esc_html__('You do not have permission to save network options', 'redux-framework'));
+		}
 
-			if ( ! empty( $data ) ) {
-				$core->options_class->set( $data );
+		if ( isset( $_POST[ $core->args['opt_name'] ] ) ) {
+			$opt_name = sanitize_text_field( wp_unslash( $_POST[ $core->args['opt_name'] ] ) );
 			}
 
 			wp_safe_redirect(

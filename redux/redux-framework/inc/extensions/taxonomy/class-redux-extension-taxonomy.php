@@ -957,13 +957,13 @@ if ( ! class_exists( 'Redux_Extension_Taxonomy' ) ) {
 									if ( ! ( isset( $metaterm['args']['sections'] ) && count( $metaterm['args']['sections'] ) === 1 && isset( $metaterm['args']['sections'][0]['fields'] ) && count( $metaterm['args']['sections'][0]['fields'] ) === 1 ) && isset( $field['title'] ) ) {
 										echo '<th scope="row">';
 										if ( ! empty( $th ) ) {
-											echo $th; // phpcs:ignore WordPress.Security.EscapeOutput
+											echo wp_kses_post( $th );
 										}
 										echo '</th>';
 										echo '<td>';
 									}
 								} else {
-									echo '<td>' . $th; // phpcs:ignore WordPress.Security.EscapeOutput
+									echo '<td>' . wp_kses_post( $th );
 								}
 
 								if ( 'section' === $field['type'] && true === $field['indent'] ) {

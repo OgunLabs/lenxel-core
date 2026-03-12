@@ -1,6 +1,7 @@
 /**
  * Lenxel Core - Deactivation Modal Handler
  * Handles the plugin deactivation feedback modal
+ * Only shows modal if user has opted-in to feedback collection
  */
 (function($) {
     'use strict';
@@ -17,6 +18,9 @@
         
         // Store the original deactivation URL
         let deactivationUrl = '';
+        
+        // Check if feedback is enabled via data attribute
+        const feedbackEnabled = $modal.data('feedback-enabled') || false;
 
         // Intercept deactivate link click
         $deactivateLink.on('click', function(e) {
@@ -26,9 +30,15 @@
             // Store the deactivation URL
             deactivationUrl = $(this).attr('href');
             
-            // Show modal
-            $modal.removeClass('hidden');
-            $overlay.removeClass('hidden');
+            // Only show modal if feedback is enabled (user has opted-in)
+            if (feedbackEnabled) {
+                // Show modal
+                $modal.removeClass('hidden');
+                $overlay.removeClass('hidden');
+            } else {
+                // Feedback not enabled - proceed directly to deactivation
+                window.location.href = deactivationUrl;
+            }
             
             return false;
         });

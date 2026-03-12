@@ -1237,7 +1237,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes', false ) ) {
 									continue;
 								}
 
-								echo $this->parent->render_class->section_menu( $s_key, $section, '_box_' . $metabox['id'], $sections ); // phpcs:ignore WordPress.Security.EscapeOutput
+								echo wp_kses_post( $this->parent->render_class->section_menu( $s_key, $section, '_box_' . $metabox['id'], $sections ) );
 							}
 							?>
 						</ul>
@@ -1284,7 +1284,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes', false ) ) {
 									$ex_style  = ' style="border-bottom: none;"';
 								}
 
-								echo '<tr valign="top"' . $ex_style . '>'; // phpcs:ignore WordPress.Security.EscapeOutput
+								echo wp_kses_post( '<tr valign="top"' . $ex_style . '>' );
 
 								$th = $this->parent->render_class->get_header_html( $field );
 
@@ -1300,17 +1300,13 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes', false ) ) {
 									if ( ! ( isset( $metabox['args']['sections'] ) && 1 === count( $metabox['args']['sections'] ) && isset( $metabox['args']['sections'][0]['fields'] ) && 1 === count( $metabox['args']['sections'][0]['fields'] ) ) && isset( $field['title'] ) ) {
 										echo '<th scope="row">';
 										if ( ! empty( $th ) ) {
-											echo $th; // phpcs:ignore WordPress.Security.EscapeOutput
-										}
-										echo '</th>';
-										echo '<td>';
+										echo wp_kses_post( $th );
 									}
-								} else {
-									echo '<td>' . $th; // phpcs:ignore WordPress.Security.EscapeOutput
+									echo '</th>';
+									echo '<td>';
 								}
-
-								if ( 'section' === $field['type'] && ( 'true' === $field['indent'] || true === $field['indent'] ) ) {
-									$field['class']  = $field['class'] ?? '';
+							} else {
+								echo '<td>' . wp_kses_post( $th );
 									$field['class'] .= 'redux-section-indent-start';
 								}
 

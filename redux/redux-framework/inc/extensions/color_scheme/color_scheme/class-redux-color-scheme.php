@@ -121,20 +121,17 @@ if ( ! class_exists( 'Redux_Color_Scheme' ) ) {
 				$select2_params = wp_json_encode( $this->field['select2'] );
 				$select2_params = htmlspecialchars( $select2_params, ENT_QUOTES );
 
-				echo '<input type="hidden" class="select2_params" value="' . $select2_params . '">'; // phpcs:ignore WordPress.Security.EscapeOutput
-			}
+			echo '<input type="hidden" class="select2_params" value="' . esc_attr( $select2_params ) . '">';
+		}
 
-			$tt_in_use = Redux_Color_Scheme_Functions::tooltips_in_use( $this->field );
+	$tt_in_use = Redux_Color_Scheme_Functions::tooltips_in_use( $this->field );
 
-			$tooltips = '';
-			if ( $tt_in_use ) {
-				$tooltips = rawurlencode( wp_json_encode( $this->field['tooltips'] ) );
-			}
-
-			$tt_toggle_state = Redux_Color_Scheme_Functions::get_tooltip_toggle_state();
-
+	$tooltips = '';
+	if ( $tt_in_use ) {
+		$tooltips = rawurlencode( wp_json_encode( $this->field['tooltips'] ) );
+	}
+	$tt_toggle_state = Redux_Color_Scheme_Functions::get_tooltip_toggle_state();
 			// Color picker container.
-			// phpcs:disable WordPress.Security.EscapeOutput
 			echo '<div
                       class="redux-color-scheme-container ' . esc_attr( $this->field['class'] ) . '"
                       data-id="' . esc_attr( $field_id ) . '"
@@ -143,7 +140,7 @@ if ( ! class_exists( 'Redux_Color_Scheme' ) ) {
                       data-picker-gap="' . esc_attr( $this->field['options']['picker_gap'] ) . '"
                       data-picker-font-size="' . esc_attr( $this->field['options']['picker_font_size'] ) . '"
                       data-accordion="' . esc_attr( $this->field['accordion'] ) . '"
-                      data-tooltips="' . $tooltips . '"
+                      data-tooltips="' . esc_attr( $tooltips ) . '"
                       data-show-tooltips="' . esc_attr( $tt_toggle_state ) . '"
                       data-show-input="' . esc_attr( $this->field['options']['show_input'] ) . '"
                       data-show-initial="' . esc_attr( $this->field['options']['show_initial'] ) . '"
@@ -156,7 +153,7 @@ if ( ! class_exists( 'Redux_Color_Scheme' ) ) {
                       data-clickout-fires-change="' . esc_attr( $this->field['options']['clickout_fires_change'] ) . '"
                       data-choose-text="' . esc_attr( $this->field['options']['choose_text'] ) . '"
                       data-cancel-text="' . esc_attr( $this->field['options']['cancel_text'] ) . '"
-                      data-palette="' . rawurlencode( wp_json_encode( $this->field['options']['palette'] ) ) . '"
+                      data-palette="' . esc_attr( rawurlencode( wp_json_encode( $this->field['options']['palette'] ) ) ) . '"
                   >';
 			// phpcs:enable WordPress.Security.EscapeOutput
 
@@ -168,7 +165,7 @@ if ( ! class_exists( 'Redux_Color_Scheme' ) ) {
 				echo '    <span class="redux-label redux-select-scheme-label">Scheme:</span>';
 
 				// Output scheme selector.
-				echo Redux_Color_Scheme_Functions::get_scheme_select_html( '' ); // phpcs:ignore WordPress.Security.EscapeOutput
+				echo wp_kses_post( Redux_Color_Scheme_Functions::get_scheme_select_html( '' ) );
 
 				echo '</div>';
 
@@ -244,7 +241,7 @@ if ( ! class_exists( 'Redux_Color_Scheme' ) ) {
 			Redux_Color_Scheme_Functions::$field_class = 'redux-color-scheme ';
 
 			// Color picker layout.
-			echo Redux_Color_Scheme_Functions::get_current_color_scheme_html(); // phpcs:ignore WordPress.Security.EscapeOutput
+			echo wp_kses_post( Redux_Color_Scheme_Functions::get_current_color_scheme_html() );
 
 			echo '</div>';
 		}

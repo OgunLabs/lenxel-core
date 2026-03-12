@@ -173,7 +173,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 		  		<?php if($description_text){ ?>
 			  		<div <?php $this->print_render_attribute_string( 'description_text' ); ?>>
-			  			<?php echo html_entity_decode($description_text); ?>
+			  			<?php echo wp_kses_post( html_entity_decode($description_text) ); ?>
 			  		</div>
 			  	<?php } ?>	
 		  	</div>	

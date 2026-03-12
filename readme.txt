@@ -4,10 +4,10 @@ Tags: learning management system, LMS, education, elearning, online courses
 Requires at least: 6.5
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.3.5
+Stable tag: 1.3.6
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
-Version: 1.3.5
+Version: 1.3.6
 Icon: assets/logo.png
 
 Lenxel AI LMS is a WordPress plugin that provides a comprehensive Learning Management System with AI-assisted course creation.
@@ -85,7 +85,7 @@ This repository contains the build tools and source files used to generate the c
 * Setting up your Google Map API key.
 
 == Feedback ==
-* Improving performance through deactivation feedback.
+Help improve Lenxel Core by optionally sharing deactivation feedback. This feature is **disabled by default** and requires opt-in via LenxelWP → Privacy & Feedback. See the "External Services" section below for complete details on what data is collected and how it's used.
 
 == Plugin prerequisites ==
 1. Ensure that the WooCommerce plugin is installed and activated on your WordPress website.
@@ -94,19 +94,30 @@ This repository contains the build tools and source files used to generate the c
 
 == External services ==
 
-This plugin relies on several external services to provide its functionality. Below is a complete list of all external services used, what data is sent, and when:
+This plugin relies on several external services to provide its functionality. Below is a complete list of all external services used, including comprehensive details about what data is sent, when it's sent, code locations, and links to each service's Terms of Service and Privacy Policy.
+
+**IMPORTANT DISTINCTION:** This section documents actual external API services that receive data during plugin operation. URLs that appear in third-party vendor library code (like documentation links, comments, or unused features) are addressed separately at the end of this section under "Third-Party Vendor Library Code."
 
 = 1. Lenxel AI API =
 **Service URL:** https://api.lenxel.ai (production) and https://devapi.lenxel.ai (development)
+**Service Provider:** Lenxel (Ogun Labs)
 
 **Purpose:** Generates AI-powered course content including course modules, lessons, quizzes, and questions automatically.
 
-**Data Sent:** When users click the "Generate with AI" button or request AI course generation, the following data is transmitted:
+**What Data is Sent:** When users click the "Generate with AI" button or request AI course generation, the following data is transmitted:
 - Course title and description
 - Supporting files and course prompts provided by the user
 - API Key (obtained from the Lenxel User Portal - see below) for authentication and credit tracking
+- WordPress site URL (for API key validation)
 
-**When Data is Sent:** Only when users explicitly request AI course generation through the plugin interface.
+**When Data is Sent:** Only when users explicitly request AI course generation through the plugin interface, or when API key validation is performed.
+
+**API Endpoints Used:**
+- `https://api.lenxel.ai/wp/sites/status/verify` - API key validation (optional, informational only)
+- `https://api.lenxel.ai/` - Course generation endpoints
+- All requests are sent via `wp_remote_post()` and `wp_remote_get()`
+
+**Code Location:** `lenxel-core.php` (line 502 and related functions) - Uses `wp_remote_post()` to send course data to Lenxel API endpoints
 
 **IMPORTANT: API Key Validation**
 When users optionally enter an API key, the plugin may send a validation request to https://api.lenxel.ai/wp/sites/status/verify to verify the key is valid. This validation is informational only and does NOT gate or restrict any plugin features. All functionality is fully available regardless of API key validation status.
@@ -116,18 +127,33 @@ When users optionally enter an API key, the plugin may send a validation request
 **Privacy & Terms:**
 - Terms of Service: https://lenxel.ai/terms-of-service
 - Privacy Policy: https://lenxel.ai/privacy-and-policy
+- Service provided by: Ogun Labs (https://www.devteamsondemand.com/)
 
-= 2. Google Maps API =
+= 2. Google Maps JavaScript API =
 **Service URL:** https://maps.googleapis.com/maps/api/js
+**Service Provider:** Google LLC
 
-**Purpose:** Displays interactive maps in course location widgets and venue displays when using Elementor integration.
+**Purpose:** Loads the Google Maps JavaScript API for two purposes:
+1. Displaying interactive maps in course location widgets and venue displays (Elementor integration)
+2. Redux Framework admin options (vendor library) - provides map field type for theme/plugin settings
 
-**Data Sent:** 
+**What Data is Sent:** 
 - Google Maps API key (configured by site administrator)
 - Map location coordinates and venue addresses (when displaying course locations)
-- User's IP address (automatically sent by Google Maps for geolocation)
+- User's IP address (automatically sent by Google's servers via standard HTTP requests)
+- Browser information (standard HTTP headers)
+- Map interactions (clicks, zooms, searches) sent to Google to retrieve map tiles and geocoding data
 
-**When Data is Sent:** When pages with map widgets are loaded, or when users interact with location-based features.
+**When Data is Sent:** 
+- Frontend: When pages with map widgets are loaded, or when users interact with location-based features
+- Admin: When WordPress admin pages containing Redux Framework Google Maps fields are accessed
+
+**Code Locations:**
+- Redux Framework: `redux/redux-framework/inc/extensions/google_maps/google_maps/class-redux-google-maps.php` (line 357 - wp_register_script; line 367 - Google Maps API inline script loader)
+- Elementor/theme integrations: Course location displays
+
+**Technical Details:**
+The Redux Framework Google Maps extension registers a JavaScript file (line 357) and adds an inline script (lines 365-371) that dynamically loads the Google Maps JavaScript API from `https://maps.googleapis.com/maps/api/js` with the configured API key. This allows the map field to function in WordPress admin theme settings.
 
 **Privacy & Terms:**
 - Google Maps Platform Terms of Service: https://cloud.google.com/maps-platform/terms
@@ -203,40 +229,100 @@ When users optionally enter an API key, the plugin may send a validation request
 - Redux Framework Repository: https://github.com/reduxframework/redux-framework
 - Redux.io Website: https://redux.io
 - Redux Framework is MIT Licensed (included as vendor code)
+- Redux.io Terms of Service: https://redux.io/terms-of-service/
+- Redux.io Privacy Policy: https://redux.io/privacy-policy/
 
 = 7. Feedback Notification Service (Deactivation Feedback) =
 **Service URL:** https://form-submission-to-slack-notify-495600076509.us-central1.run.app
+**Service Provider:** Lenxel (Ogun Labs) via Google Cloud Run
 **Service Type:** Google Cloud Run endpoint that forwards feedback to Slack workspace
 
 **Purpose:** Collects optional user feedback when site administrators deactivate the plugin. This feedback is used for commercial purposes to improve the plugin based on real user experiences and deactivation reasons.
 
-**Data Sent (All Optional - User Can Skip):**
+**IMPORTANT - OPT-IN REQUIRED (Disabled by Default):**
+This feature is **disabled by default** and requires explicit opt-in consent. To enable deactivation feedback:
+1. Go to WordPress Admin → LenxelWP → Privacy & Feedback tab
+2. Check the "Help improve Lenxel Core by sharing why you deactivate the plugin" checkbox
+3. Click "Save Settings"
+
+Without opting in, NO data is collected when you deactivate the plugin.
+
+**What Data is Sent (Only if Opted-In and Only if User Chooses to Provide Feedback):**
+Even after opting in, providing feedback is still optional. When the deactivation modal appears, users can:
+- Click "Skip & Deactivate" to bypass feedback submission entirely
+- Close the modal without submitting
+- OR submit feedback by completing the form
+
+If feedback is submitted via `wp_remote_post()`, the following data is sent to the Google Cloud Run endpoint:
 - Deactivation reason selected from predefined choices (e.g., "I no longer need the plugin", "The plugin broke my website", "I found a better plugin", etc.)
 - Optional additional comment or alternative plugin name (if user chooses to provide it)
 - Site administrator's email address (only if user explicitly checks "Include my email" checkbox)
 - WordPress site URL (home_url)
 - Date and time of deactivation
 
-**When Data is Sent:** Only when a site administrator clicks the "Deactivate" button for this plugin in the WordPress plugins page AND chooses to submit feedback through the optional feedback modal. Users can:
-- Click "Skip & Deactivate" to bypass feedback submission entirely
-- Close the modal (X button or ESC key) without submitting
-- Submit feedback by completing the form and clicking "Submit & Deactivate"
+**When Data is Sent:** 
+1. User must first opt-in via LenxelWP → Privacy & Feedback (disabled by default)
+2. Then, when a site administrator clicks the "Deactivate" button for this plugin in the WordPress plugins page, a feedback modal appears
+3. User can still choose to skip or submit feedback
+4. Data is only transmitted if the user completes the form and clicks "Submit & Deactivate"
+
+**Code Location:** `lenxel-core.php` (lines 640-690) - Deactivation handler with opt-in check and wp_remote_post() to Google Cloud Run endpoint (line 684)
+
+**How to Disable:**
+To stop seeing the feedback modal entirely:
+1. Go to LenxelWP → Privacy & Feedback
+2. Uncheck the deactivation feedback option
+3. Click "Save Settings"
+
+You can also skip the modal on a per-deactivation basis by clicking "Skip & Deactivate" or closing the modal.
 
 **Important Notes:**
-- This is completely optional - users can deactivate without providing any feedback
+- This is completely opt-in and disabled by default - you must explicitly enable it in plugin settings
+- Even after enabling, providing feedback is optional on each deactivation
 - The feedback modal only appears to site administrators with plugin management capabilities
 - No data is transmitted if the user skips or closes the feedback form
 - Email address is only sent if the user keeps the "Include my email" checkbox checked
 - Data is used solely for improving the plugin and understanding user needs
+- This can be disabled at any time from LenxelWP → Privacy & Feedback
 
 **Privacy & Terms:**
+- Lenxel Terms of Service: https://lenxel.ai/terms-of-service
+- Lenxel Privacy Policy: https://lenxel.ai/privacy-and-policy
 - Google Cloud Platform Privacy Policy: https://cloud.google.com/terms/cloud-privacy-notice
 - Slack Platform Privacy Policy: https://slack.com/trust/privacy/privacy-policy
 - Slack API Terms of Service: https://slack.com/terms-of-service/api
-- Terms of Service: https://lenxel.ai/terms-of-service
-- Privacy Policy: https://lenxel.ai/privacy-and-policy
 - Data is transmitted over secure HTTPS connection
 - Feedback is processed through Google Cloud Run and forwarded to a private Slack workspace accessible only to Lenxel development team
+
+= Third-Party Vendor Library Code (Not External Services) =
+
+**IMPORTANT:** The following URLs appear in third-party vendor library code included with this plugin. These are NOT external API services called by this plugin - they are simply documentation URLs, comments, or dead code within vendor libraries. **NO data is transmitted to these URLs during plugin operation.**
+
+**1. Vzaar API URL in Owl Carousel Library**
+**Code Location:** `elementor/assets/libs/owl-carousel/owl.carousel.js` (line 2388)
+**URL Found:** `url: '//vzaar.com/api/videos/' + video.id + '.json'`
+**Library:** Owl Carousel 2.x (MIT Licensed)
+**Status:** This is a hardcoded URL within the Owl Carousel JavaScript library's video support feature. The Vzaar video platform integration is NOT used or called by this plugin - it's simply part of the complete Owl Carousel library code that includes support for various video platforms (YouTube, Vimeo, Vzaar, etc.). The URL appears in a JavaScript object but the Vzaar feature is never invoked by this plugin.
+**Data Sent:** NONE - This URL is never contacted during plugin operation.
+
+**2. React Router Documentation URLs**
+**Code Location:** `build/course-builder.js` (line 2 and other build files)
+**URLs Found:** Documentation links such as:
+- https://reactrouter.com/v6/upgrading/future#v7_starttransition
+- https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath
+- https://reactrouter.com/v6/upgrading/future#v7_fetcherpersist
+- https://reactrouter.com/v6/upgrading/future#v7_normalizeformmethod
+- https://reactrouter.com/v6/upgrading/future#v7_partialhydration
+- And other similar upgrade guide URLs
+
+**Library:** React Router (MIT Licensed)
+**Status:** These URLs are documentation/warning links embedded in the React Router library code that appear in built JavaScript bundles. They are used in console warnings to guide developers during React Router version upgrades. They are NOT API endpoints and do NOT receive any data during plugin operation. These are purely informational links that may appear in browser developer console warnings.
+**Data Sent:** NONE - These are documentation reference links only.
+
+**3. Redux Framework Vendor Code**
+**Code Location:** `redux/redux-framework/` directory
+**Library:** Redux Framework 4.x (MIT Licensed)
+**Status:** The Redux Framework is a complete third-party library that includes various extensions and features. Some features (like Google Maps fields and Custom Fonts API) may reference external services, which are documented separately in sections 2 and 6 above where applicable.
 
 **Important Notes:**
 - All data transmissions to Lenxel services (AI API, User Portal) are sent over secure HTTPS connections.
@@ -385,6 +471,21 @@ Lenxel Core itself (all code outside the vendor directory) has been thoroughly a
 
 
 == Changelog ==
+= 1.3.6 - 11/03/2026 =
+* Compliance: Comprehensive external services documentation enhancement per WordPress.org requirements
+* Updated: All 7 external services now include complete Terms of Service and Privacy Policy links
+* Updated: Lenxel AI API section - Added code location (lenxel-core.php:502), API endpoints list, and wp_remote_post() usage disclosure
+* Updated: Google Maps JavaScript API section - Added exact file path (class-redux-google-maps.php:357), inline script loader details (line 367), and technical implementation explanation
+* Updated: Redux.io Custom Fonts API - Added Terms of Service and Privacy Policy links
+* Updated: Deactivation Feedback Service - Enhanced with Google Cloud Run endpoint URL, service provider details, code location (line 684), and complete Lenxel/Google Cloud/Slack privacy links
+* Added: "Third-Party Vendor Library Code" section clarifying URLs in vendor libraries (React Router, Owl Carousel, Redux Framework)
+* Added: Specific disclosure for React Router documentation URLs (build/course-builder.js:2) - console warnings only, no data transmission
+* Added: Specific disclosure for Vzaar API URL (owl.carousel.js:2388) - unused Owl Carousel library code, no data transmission
+* Updated: LENXEL-AI-WEBSITE-DOCUMENTATION.md with enhanced Privacy Policy and Terms of Service content for lenxel.ai website
+* Improved: Every external service now includes standardized fields: Service URL, Service Provider, Purpose, What Data is Sent, When Data is Sent, Code Location, Privacy & Terms
+* Improved: Clear distinction between actual external API services and third-party vendor library documentation URLs
+* Documentation: Added COMPLIANCE-FIX-SUMMARY.md tracking all external services compliance improvements
+
 = 1.3.5 - 06/03/2026 =
 * Security: Fixed capability mapping in taxonomy operations to comply with WordPress.org requirements
 * Security: Removed capability bypass that granted universal access - now properly maps to 'edit_posts'

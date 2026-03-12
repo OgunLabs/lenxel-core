@@ -176,7 +176,7 @@ if ( ! class_exists( 'Redux_Widget_Areas' ) ) {
 				$name = $this->check_widget_area_name( $new_name );
 			}
 
-			echo $name; // phpcs:disable WordPress.Security.EscapeOutput
+			echo wp_kses_post( $name );
 
 			exit();
 		}

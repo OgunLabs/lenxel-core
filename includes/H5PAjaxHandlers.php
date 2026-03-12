@@ -31,7 +31,14 @@ class H5PAjaxHandlers {
      * AJAX: Get lesson H5P contents
      */
     public function lesson_contents() {
-        $search = $this->get_search('search_filter');
+        // Security: Verify nonce
+        if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'lenxel_h5p_ajax')) {
+            wp_send_json_error(['message' => 'Security check failed'], 403);
+            return;
+        }
+
+        // After nonce verification, safely access POST data
+        $search = $this->get_search($_POST, 'search_filter');
 
         $this->respond(function() use ($search) {
             return [
@@ -44,8 +51,15 @@ class H5PAjaxHandlers {
      * AJAX: Get quiz H5P contents
      */
     public function quiz_contents() {
+        // Security: Verify nonce
+        if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'lenxel_h5p_ajax')) {
+            wp_send_json_error(['message' => 'Security check failed'], 403);
+            return;
+        }
+
+        // After nonce verification, safely access POST data
         // Don't break frontend: accept both `search` and `search_filter`
-        $search = $this->get_search(['search', 'search_filter']);
+        $search = $this->get_search($_POST, ['search', 'search_filter']);
 
         $this->respond(function() use ($search) {
             return [
@@ -55,17 +69,18 @@ class H5PAjaxHandlers {
     }
 
     /**
-     * Helper: Get search value safely
+     * Helper: Get search value safely from verified POST data
+     * Note: Only call this AFTER nonce verification
      */
-    private function get_search($keys) {
+    private function get_search($post_data, $keys) {
 
         if (is_string($keys)) {
             $keys = [$keys];
         }
 
         foreach ($keys as $key) {
-            if (!empty($_POST[$key])) {
-                return sanitize_text_field($_POST[$key]);
+            if (!empty($post_data[$key])) {
+                return sanitize_text_field($post_data[$key]);
             }
         }
 

@@ -318,9 +318,16 @@ if ( ! class_exists( 'Redux_Output', false ) ) {
 				$core->outputCSS = $root_css . $core->outputCSS;
 			}
 
-			// phpcs:ignore WordPress.NamingConventions.ValidVariableName
-			if ( ! empty( $core->outputCSS ) && ( true === $core->args['output_tag'] || ( isset( $_POST['customized'] ) && isset( $_POST['nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'preview-customize_' . wp_get_theme()->get_stylesheet() ) ) ) ) {
-				// phpcs:ignore WordPress.NamingConventions.ValidVariableName
+		// Simplified nonce logic: Check customizer preview separately
+		$is_customizer_preview = false;
+		if (isset($_POST['customized']) && isset($_POST['nonce'])) {
+			$nonce = sanitize_text_field(wp_unslash($_POST['nonce']));
+			if (wp_verify_nonce($nonce, 'preview-customize_' . wp_get_theme()->get_stylesheet())) {
+				$is_customizer_preview = true;
+			}
+		}
+
+		if ( ! empty( $core->outputCSS ) && ( true === $core->args['output_tag'] || $is_customizer_preview ) ) {
 				echo '<style id="' . esc_attr( $core->args['opt_name'] ) . '-dynamic-css" title="dynamic-css" class="redux-options-output">' . wp_strip_all_tags( $core->outputCSS ) . '</style>';
 			}
 		}

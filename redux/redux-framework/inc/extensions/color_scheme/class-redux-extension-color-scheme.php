@@ -558,7 +558,7 @@ if ( ! class_exists( 'Redux_Extension_Color_Scheme' ) ) {
 			header( 'Pragma: public' );
 
 			// File download.
-			echo $content; // phpcs:ignore WordPress.Security.EscapeOutput
+echo wp_kses_post( $content );
 
 			// 2B ~! 2B
 			die;
@@ -608,7 +608,7 @@ if ( ! class_exists( 'Redux_Extension_Color_Scheme' ) ) {
 						if ( true === Redux_Color_Scheme_Functions::set_scheme_data( $scheme_name, $scheme_data ) ) {
 
 							// Update scheme selector.
-							echo Redux_Color_Scheme_Functions::get_scheme_select_html( $scheme_name ); // phpcs:ignore WordPress.Security.EscapeOutput
+							echo wp_kses_post( Redux_Color_Scheme_Functions::get_scheme_select_html( $scheme_name ) );
 						}
 					}
 				}
@@ -719,7 +719,7 @@ if ( ! class_exists( 'Redux_Extension_Color_Scheme' ) ) {
 					$html = Redux_Color_Scheme_Functions::get_current_color_scheme_html( $scheme_id );
 
 					// Print!
-					echo $html; // phpcs:ignore WordPress.Security.EscapeOutput
+					echo wp_kses_post( $html );
 				}
 			}
 

@@ -748,7 +748,7 @@ if ( ! class_exists( 'Redux_Typography', false ) ) {
 					'index' => 'color',
 				);
 
-				echo Redux_Functions_Ex::output_alpha_data( $data ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo wp_kses_post( Redux_Functions_Ex::output_alpha_data( $data ) );
 
 				echo '>';
 				echo '</div>';

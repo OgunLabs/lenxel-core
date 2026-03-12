@@ -26,7 +26,7 @@
 			}
 
 			if ( false === $redux_skip_sec ) {
-				echo( $this->parent->render_class->section_menu( $redux_key, $redux_section ) ); // phpcs:ignore WordPress.Security.EscapeOutput
+				echo wp_kses_post( $this->parent->render_class->section_menu( $redux_key, $redux_section ) );
 				$redux_skip_sec = false;
 			}
 		}

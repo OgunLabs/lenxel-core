@@ -375,11 +375,9 @@ if ( ! class_exists( 'Redux_Slider', false ) ) {
 	                data-rtl="' . esc_attr( is_rtl() ) . '"
 	                data-forced="' . esc_attr( $this->field['forced'] ) . '"
 	                data-float-mark="' . esc_attr( $this->field['float_mark'] ) . '"
-	                data-resolution="' . esc_attr( $this->field['resolution'] ) . '" ' . esc_html( $html ) . '></div>';
-
-			// Double slider output.
-			if ( true === $two_handles ) {
-
+	            data-resolution="' . esc_attr( $this->field['resolution'] ) . '" ' . $html . '></div>';
+		// Double slider output.
+		if ( true === $two_handles ) {
 				// TEXT.
 				if ( true === $show_input ) {
 					echo '<input
