@@ -31,7 +31,18 @@ $output .= "\t\t" . 'return array( ' . fa_icons() . ' );' . "\r";
 $output .= "\t" . '}' . "\r";
 $output .= '}' . "\r";
 
-file_put_contents( dirname( __DIR__ ) . '/lib/font-awesome-6-free.php', $output );
+// WordPress.org compliance: Write to uploads directory instead of plugin directory.
+// Plugin directory files are deleted on upgrade and accessible to public.
+$upload_dir = wp_upload_dir();
+$target_dir = $upload_dir['basedir'] . '/lenxel-core/redux/';
+
+// Ensure directory exists.
+if ( ! file_exists( $target_dir ) ) {
+	wp_mkdir_p( $target_dir );
+}
+
+$target_file = $target_dir . 'font-awesome-6-free.php';
+file_put_contents( $target_file, $output );
 
 // print_r ( fa_icons() );
 

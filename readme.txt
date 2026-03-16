@@ -4,10 +4,10 @@ Tags: learning management system, LMS, education, elearning, online courses
 Requires at least: 6.5
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.3.7
+Stable tag: 1.3.8
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
-Version: 1.3.7
+Version: 1.3.8
 Icon: assets/logo.png
 
 Lenxel AI LMS is a WordPress plugin that provides a comprehensive Learning Management System with AI-assisted course creation.
@@ -471,6 +471,15 @@ Lenxel Core itself (all code outside the vendor directory) has been thoroughly a
 
 
 == Changelog ==
+= 1.3.8 - 16/03/2026 =
+* Compliance: Fixed data storage in plugin folder per WordPress.org requirements
+* Security: Redux Framework font-awesome file now writes to wp-content/uploads/lenxel-core/redux/ instead of plugin directory
+* Security: Added path validation to Redux Framework unzip function to prevent arbitrary file extraction
+* Fixed: redux/redux-framework/inc/lib/get-font-classes.php now writes to uploads directory (WordPress.org compliant)
+* Fixed: redux/redux-framework/inc/classes/class-redux-filesystem.php unzip validates destination is within uploads directory
+* Improved: Plugin directory no longer used for data storage (prevents data loss on upgrade and unauthorized public access)
+* Note: Icon select extension already includes fallback for existing installations with files in plugin directory
+
 = 1.3.7 - 16/03/2026 =
 * Security: Removed unmaintained skrollr library (v0.6.30) per WordPress.org requirements
 * Compliance: Eliminated security risk from deprecated parallax scrolling library

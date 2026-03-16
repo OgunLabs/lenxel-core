@@ -410,6 +410,26 @@ if ( ! class_exists( 'Redux_Filesystem', false ) ) {
 			} elseif ( 'object' === $action ) {
 				$res = $this->wp_filesystem;
 			} elseif ( 'unzip' === $action ) {
+				// WordPress.org compliance: Validate destination is within allowed uploads directory.
+				$upload_dir = wp_upload_dir();
+				$allowed_base = Redux_Functions_Ex::wp_normalize_path( $upload_dir['basedir'] );
+				$destination_normalized = Redux_Functions_Ex::wp_normalize_path( $destination );
+				
+				// Ensure destination is within uploads directory (prevent path traversal).
+				if ( 0 !== strpos( $destination_normalized, $allowed_base ) ) {
+					$this->killswitch = true;
+					$msg = '<strong>' . esc_html__( 'Security Error', 'lenxel-core' ) . '</strong><br/>' . esc_html__( 'Unzip destination must be within the WordPress uploads directory.', 'lenxel-core' );
+					$data = array(
+						'parent'  => self::$instance->parent,
+						'type'    => 'error',
+						'msg'     => $msg,
+						'id'      => 'redux-security-error',
+						'dismiss' => false,
+					);
+					Redux_Admin_Notices::set_notice( $data );
+					return false;
+				}
+				
 				$unzipfile = unzip_file( $file, $destination );
 				if ( $unzipfile ) {
 					$res = true;
