@@ -51,7 +51,7 @@
                <div class="user-registration">
                   <?php echo esc_html__("Don't have an account", "lenxel-core"); ?>
                   <?php if(class_exists('uListing\Classes\StmUser')){ ?>
-                     <a class="registration-popup" href="<?php echo uListing\Classes\StmUser::getProfileUrl() ?>?tab=register">
+                     <a class="registration-popup" href="<?php echo esc_url( uListing\Classes\StmUser::getProfileUrl() ) ?>?tab=register">
                         <?php echo esc_html__('Register', 'lenxel-core') ?>
                      </a>
                   <?php }else{ ?>

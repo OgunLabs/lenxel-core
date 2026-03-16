@@ -910,7 +910,10 @@ if ( ! class_exists( 'Redux_Extension_Taxonomy' ) ) {
 							$section['class'] = isset( $section['class'] ) ? " {$section['class']}" : '';
 
 							// phpcs:ignore WordPress.Security.EscapeOutput
-							echo "<div id='{$s_key}_{$metaterm['args']['id']}_section_group' class='redux-group-tab{$section['class']} redux_metaterm_panel$hide'>";
+							$section_id = $s_key . '_' . $metaterm['args']['id'] . '_section_group';
+                            $section_class = 'redux-group-tab' . $section['class'] . ' redux_metaterm_panel' . $hide;
+                            echo '<div id="' . esc_attr( $section_id ) . '" class="' . esc_attr( $section_class ) . '">';
+                                
 
 							if ( ! empty( $section['title'] ) ) {
 								echo '<h3 class="redux-section-title">' . wp_kses_post( $section['title'] ) . '</h3>';

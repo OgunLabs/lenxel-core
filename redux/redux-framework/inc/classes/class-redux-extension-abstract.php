@@ -227,7 +227,7 @@ abstract class Redux_Extension_Abstract {
 				} else {
 					echo '<div class="error">';
 					echo '<p>';
-					echo $msg; // phpcs:ignore WordPress.Security.EscapeOutput
+					echo wp_kses_post( $msg );
 					echo '</p>';
 					echo '</div>';
 				}

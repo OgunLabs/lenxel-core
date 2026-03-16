@@ -123,7 +123,7 @@ if ( ! class_exists( 'Redux_Sortable', false ) ) {
 				echo '<li class="' . esc_attr( $invisible ) . '">';
 
 				$checked = '';
-				$name    = 'name="' . $this->field['name'] . $this->field['name_suffix'] . '[' . esc_attr( $k ) . ']" ';
+				$name    = 'name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] . '[' . $k . ']' ) . '" ';
 
 				if ( 'checkbox' === $this->field['mode'] ) {
 					$value_display = $this->value[ $k ];
@@ -157,7 +157,7 @@ if ( ! class_exists( 'Redux_Sortable', false ) ) {
 						rel="' . esc_attr( $this->field['id'] . '-' . $k ) . '-hidden"
 						class="' . esc_attr( $class ) . '" ' . esc_html( $checked ) . '
 						type="' . esc_attr( $this->field['mode'] ) . '"
-						' . $name . // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] . '[' . $k . ']' ) . '" ';
 						'id="' . esc_attr( $this->field['id'] . '[' . $k ) . ']"
 						value="' . esc_attr( $value_display ) . '"
 						placeholder="' . esc_attr( $nicename ) . '" />';

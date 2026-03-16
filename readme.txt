@@ -4,10 +4,10 @@ Tags: learning management system, LMS, education, elearning, online courses
 Requires at least: 6.5
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.3.8
+Stable tag: 1.3.9
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
-Version: 1.3.8
+Version: 1.3.9
 Icon: assets/logo.png
 
 Lenxel AI LMS is a WordPress plugin that provides a comprehensive Learning Management System with AI-assisted course creation.
@@ -471,6 +471,17 @@ Lenxel Core itself (all code outside the vendor directory) has been thoroughly a
 
 
 == Changelog ==
+= 1.3.9 - 16/03/2026 =
+* Security: Fixed output escaping per WordPress.org requirements - prevents XSS vulnerabilities
+* Fixed: Redux extension abstract error messages now use wp_kses_post() instead of raw output
+* Fixed: uListing profile URL now properly escaped with esc_url() in registration template
+* Fixed: Redux taxonomy extension ID and class attributes now properly escaped with esc_attr()
+* Fixed: Redux sortable field name attribute now fully escaped (all components)
+* Fixed: Redux Google Maps extension data attributes now use esc_attr() for data-geo-alert and data-address
+* Fixed: Redux Google Maps inline styles and hide attributes now use wp_kses_post()
+* Improved: All outputs now use context-appropriate escaping (esc_url, esc_attr, esc_html, wp_kses_post)
+* Compliance: Applied late escaping as close to output as possible per WordPress security standards
+
 = 1.3.8 - 16/03/2026 =
 * Compliance: Fixed data storage in plugin folder per WordPress.org requirements
 * Security: Redux Framework font-awesome file now writes to wp-content/uploads/lenxel-core/redux/ instead of plugin directory

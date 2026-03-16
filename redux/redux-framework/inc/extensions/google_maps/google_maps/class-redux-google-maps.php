@@ -160,8 +160,8 @@ if ( ! class_exists( 'Redux_Google_Maps' ) ) {
 				data-street-view="<?php echo esc_attr( $this->field['street_view_control'] ); ?>"
 				data-map-type="<?php echo esc_attr( $this->field['map_type_control'] ); ?>"
 				data-marker-tooltip="<?php echo esc_attr( $marker_tooltip ); ?>"
-				data-geo-alert="<?php echo $geo_alert; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"
-				data-address="<?php echo $data_full; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
+				data-geo-alert="<?php echo esc_attr( $geo_alert ); ?>"
+				data-address="<?php echo esc_attr( $data_full ); ?>">
 
 				<input
 					type="hidden"
@@ -184,12 +184,16 @@ if ( ! class_exists( 'Redux_Google_Maps' ) ) {
 					data-default-long="<?php echo esc_attr( $the_long ); ?>"
 					data-default-lat="<?php echo esc_attr( $the_lat ); ?>"
 					data-default-zoom="<?php echo esc_attr( $the_zoom ); ?>"
-					<?php echo $map_height; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+					<?php
+					if ( ! empty( $map_height ) ) {
+						echo wp_kses_post( $map_height );
+					}
+					?>>
 				</div>
 
 				<div class="google_maps_address_results">
 					<?php $is_hidden = $show_address ? '' : $hidden_style; ?>
-					<div class="input_wrapper street-address" <?php echo $is_hidden; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+					<div class="input_wrapper street-address" <?php echo wp_kses_post( $is_hidden ); ?>>
 						<label for="<?php echo esc_attr( $this->field['id'] ); ?>_street_number"><?php esc_html_e( 'Address', 'lenxel-core' ); ?></label>
 						<input
 							data-id="<?php echo esc_attr( $this->field['id'] ); ?>"
@@ -215,7 +219,7 @@ if ( ! class_exists( 'Redux_Google_Maps' ) ) {
 					</div>
 
 					<?php $is_hidden = $show_city ? '' : $hidden_style; ?>
-					<div class="input_wrapper city" <?php echo( $is_hidden ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+					<div class="input_wrapper city" <?php echo wp_kses_post( $is_hidden ); ?>>
 						<label for="<?php echo esc_attr( $this->field['id'] ); ?>_locality"><?php esc_html_e( 'City', 'lenxel-core' ); ?></label>
 						<input
 							data-id="<?php echo esc_attr( $this->field['id'] ); ?>"
@@ -229,7 +233,7 @@ if ( ! class_exists( 'Redux_Google_Maps' ) ) {
 					</div>
 
 					<?php $is_hidden = $show_state ? '' : $hidden_style; ?>
-					<div class="input_wrapper state" <?php echo( $is_hidden ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+					<div class="input_wrapper state" <?php echo wp_kses_post( $is_hidden ); ?>>
 						<label for="<?php echo esc_attr( $this->field['id'] ); ?>_administrative_area_level_1"><?php esc_html_e( 'State', 'lenxel-core' ); ?></label>
 						<input
 							data-id="<?php echo esc_attr( $this->field['id'] ); ?>"
@@ -243,7 +247,7 @@ if ( ! class_exists( 'Redux_Google_Maps' ) ) {
 					</div>
 
 					<?php $is_hidden = $show_postal ? '' : $hidden_style; ?>
-					<div class="input_wrapper zip-code" <?php echo( $is_hidden ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+					<div class="input_wrapper zip-code" <?php echo wp_kses_post( $is_hidden ); ?>>
 						<label for="<?php echo esc_attr( $this->field['id'] ); ?>_postal_code"><?php esc_html_e( 'ZIP Code', 'lenxel-core' ); ?></label>
 						<input
 							data-id="<?php echo esc_attr( $this->field['id'] ); ?>"
@@ -257,7 +261,7 @@ if ( ! class_exists( 'Redux_Google_Maps' ) ) {
 					</div>
 
 					<?php $is_hidden = $show_country ? '' : $hidden_style; ?>
-					<div class="input_wrapper country" <?php echo( $is_hidden ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+					<div class="input_wrapper country" <?php echo wp_kses_post( $is_hidden ); ?>>
 						<label for="<?php echo esc_attr( $this->field['id'] ); ?>_country"><?php esc_html_e( 'Country', 'lenxel-core' ); ?></label>
 						<input
 							data-id="<?php echo esc_attr( $this->field['id'] ); ?>"
@@ -271,7 +275,7 @@ if ( ! class_exists( 'Redux_Google_Maps' ) ) {
 					</div>
 
 					<?php $is_hidden = $show_lat ? '' : $hidden_style; ?>
-					<div class="input_wrapper latitude" <?php echo( $is_hidden ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+					<div class="input_wrapper latitude" <?php echo wp_kses_post( $is_hidden ); ?>>
 						<label for="<?php echo esc_attr( $this->field['id'] ); ?>_latitude"><?php esc_html_e( 'Latitude', 'lenxel-core' ); ?></label>
 						<input
 							data-id="<?php echo esc_attr( $this->field['id'] ); ?>"
@@ -285,7 +289,7 @@ if ( ! class_exists( 'Redux_Google_Maps' ) ) {
 					</div>
 
 					<?php $is_hidden = $show_long ? '' : $hidden_style; ?>
-					<div class="input_wrapper longitude" <?php echo( $is_hidden ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+					<div class="input_wrapper longitude" <?php echo wp_kses_post( $is_hidden ); ?>>
 						<label for="<?php echo esc_attr( $this->field['id'] ); ?>_longitude"><?php esc_html_e( 'Longitude', 'lenxel-core' ); ?></label>
 						<input
 							data-id="<?php echo esc_attr( $this->field['id'] ); ?>"
@@ -299,7 +303,7 @@ if ( ! class_exists( 'Redux_Google_Maps' ) ) {
 					</div>
 
 					<?php $is_hidden = $show_marker_info ? '' : $hidden_style; ?>
-					<div class="input_wrapper marker-info" <?php echo( $is_hidden ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+					<div class="input_wrapper marker-info" <?php echo wp_kses_post( $is_hidden ); ?>>
 						<label for="<?php echo esc_attr( $this->field['id'] ); ?>_marker_info"><?php esc_html_e( 'Marker Info', 'lenxel-core' ); ?></label>
 						<textarea
 							data-id="<?php echo esc_attr( $this->field['id'] ); ?>"
