@@ -4,7 +4,7 @@
  * Plugin Name: Lenxel Core
  * Description: AI-powered LMS, Header builder, Footer builder, Teams, Portfolios, Lenxel Theme Settings ... for theme
  * Plugin URI: https://lenxel.ai 
- * Version: 1.3.6
+ * Version: 1.3.7
  * Requires PHP: 7.4
  * Author: Ogun Labs
  * Requires at least: 6.3
@@ -21,7 +21,7 @@ if (! defined('ABSPATH')) exit; // Exit if accessed directly
 define('LENXEL_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('LENXEL_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('LENXEL_CORE_PATH', plugin_dir_path(__FILE__)); // Add this line
-define('LENXEL_CORE_VERSION', '1.3.6');
+define('LENXEL_CORE_VERSION', '1.3.7');
 
 class Lenxel_Theme_Support
 {
