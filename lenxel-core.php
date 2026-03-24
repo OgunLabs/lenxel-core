@@ -59,7 +59,7 @@ class Lenxel_Theme_Support
       add_action('elementor/editor/footer', array($this, 'lenxel_core_pro_content_div'), 99);
       add_shortcode('lenxel_core_login_form_shortcode', array($this, 'lenxel_core_login_form'));
       add_shortcode('lenxel_core_course_category', array($this, 'lenxel_core_course_categories'));
-      add_action('wp_head', array($this, 'lenxel_custom_login'), 5);
+      add_action('init', array($this, 'lenxel_custom_login'), 5);
       add_filter('lenxel_admin_theme_menu', array($this, 'lenxel_extended_admin_theme_menu'), 10);
       add_action('wp_ajax_lenxel_api_key_actions', array($this, 'lenxel_api_key_actionss_callback'));
       add_action('wp_ajax_lenxel_get_secret_token', array($this, 'lenxel_get_secret_token_callback'));
@@ -840,7 +840,9 @@ class Lenxel_Theme_Support
        if ( isset( $_GET['tab'] ) && (int) $_GET['tab'] > 0) {
          $tab = ((int) $_GET['tab']) + 1;
          $custom_css = 'ul.wp-submenu.wp-submenu-wrap li:nth-child(' . $tab . ') a{ background-color: #171919; }';
-         wp_add_inline_style('wp-admin', $custom_css);
+         wp_register_style( 'lenxel-admin-tabs-inline', false );
+         wp_enqueue_style( 'lenxel-admin-tabs-inline' );
+         wp_add_inline_style( 'lenxel-admin-tabs-inline', wp_strip_all_tags( $custom_css ) );
       }
 
       $current_user = wp_get_current_user();
@@ -923,18 +925,24 @@ class Lenxel_Theme_Support
 
    function lenxel_custom_login()
    {
+      // Only process if this is a POST request with login form data
+      if (!isset($_POST['email']) || !isset($_POST['password'])) {
+         return;
+      }
+
       if (isset($_POST['_wpnonce'])) {
          if (wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'])), LENXEL_THEME_URL)) {
 
             $email = sanitize_email($_POST['email']);
             $password = isset($_POST['password']) ? wp_unslash($_POST['password']) : '';
-            $remember = sanitize_text_field($_POST['checkbox']);
+            $remember = isset($_POST['checkbox']) ? sanitize_text_field($_POST['checkbox']) : false;
             $credentials = array(
                'user_login' => $email,
                'user_password' => $password,
                'remember' => $remember
             );
-            $login_user = wp_signon($credentials, false);
+            // Use is_ssl() to properly detect secure cookie requirement
+            $login_user = wp_signon($credentials, is_ssl());
 
             if (is_wp_error($login_user)) {
 
@@ -944,21 +952,25 @@ class Lenxel_Theme_Support
                $landing_page_id = lenxel_get_option('enable_login_on_landing_page', false);
                if ($page_id != null) {
 
-                  wp_redirect($page_url . '/?status=invalid_credentials');
+                  wp_safe_redirect($page_url . '/?status=invalid_credentials');
+                   exit;
                } else {
                   if ($landing_page_id != null) {
-                     wp_redirect(home_url('/?status=invalid_credentials'));
+                     wp_safe_redirect(home_url('/?status=invalid_credentials'));
+                      exit;
                   }
                }
             } else {
-               // wp_signon() already handles authentication and sets cookies
-               // No need to manually set auth cookie
-               $tutor_option = get_option('tutor_option', []);
-               if ($tutor_option['tutor_dashboard_page_id']) {
+               $dashboard_url = home_url('/dashboard');
+               $tutor_option = get_option('tutor_option', array());
+               if (!empty($tutor_option['tutor_dashboard_page_id'])) {
                   $get_postData = get_post($tutor_option['tutor_dashboard_page_id']);
-                  $dashboard_post_name = $get_postData->post_name;
+                  if ($get_postData && !empty($get_postData->post_name)) {
+                     $dashboard_url = home_url('/' . $get_postData->post_name);
+                  }
                }
-               wp_redirect(home_url('/' . $dashboard_post_name));
+               wp_safe_redirect($dashboard_url);
+               exit;
             }
          }
       }
@@ -1014,7 +1026,9 @@ class Lenxel_Theme_Support
             color: #000 !important;
          }
       ";
-      wp_add_inline_style('wp-admin', $custom_css);
+      wp_register_style( 'lenxel-upgrade-menu-inline', false );
+      wp_enqueue_style( 'lenxel-upgrade-menu-inline' );
+      wp_add_inline_style( 'lenxel-upgrade-menu-inline', wp_strip_all_tags( $custom_css ) );
       
       $custom_js = "
          jQuery(document).ready(function($) {
@@ -1166,7 +1180,9 @@ add_action('admin_head', function () {
    // Target ONLY your course builder page
    if (isset($_GET['page']) && $_GET['page'] === 'create-course') {
        $custom_css = 'div#adminmenumain {display: none;} #wpbody{display:none;}';
-       wp_add_inline_style('wp-admin', $custom_css);
+       wp_register_style( 'lenxel-course-builder-hide-admin-inline', false );
+       wp_enqueue_style( 'lenxel-course-builder-hide-admin-inline' );
+       wp_add_inline_style( 'lenxel-course-builder-hide-admin-inline', wp_strip_all_tags( $custom_css ) );
    }
 });
 /**
