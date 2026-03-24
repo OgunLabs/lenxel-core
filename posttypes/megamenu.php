@@ -38,6 +38,25 @@ if(!function_exists('lenxel_post_type_megamenu')   ){
   }
   add_action( 'init','lenxel_post_type_megamenu' ); 
 
+  /**
+   * DEPRECATED: This function is not currently used/hooked.
+   * 
+   * If you need to output WPBakery custom CSS for megamenus, the proper approach is:
+   * 1. Enqueue a dummy stylesheet handle
+   * 2. Use wp_add_inline_style() to attach the custom CSS to that handle
+   * 3. This avoids direct <style> tag output per WordPress.org guidelines
+   * 
+   * Example implementation:
+   * add_action('wp_enqueue_scripts', function() {
+   *    wp_register_style('lenxel-megamenu-custom', false);
+   *    wp_enqueue_style('lenxel-megamenu-custom');
+   *    // Collect custom CSS from megamenu posts
+   *    $custom_css = get_megamenu_custom_css();
+   *    if (!empty($custom_css)) {
+   *       wp_add_inline_style('lenxel-megamenu-custom', $custom_css);
+   *    }
+   * });
+   */
   function lenxel_themesupport_add_custom_css_megamenu(){
       global $post;
       $args = array(
