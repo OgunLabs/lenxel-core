@@ -909,7 +909,6 @@ if ( ! class_exists( 'Redux_Extension_Taxonomy' ) ) {
 							$hide             = $sidebar ? '' : ' display-group';
 							$section['class'] = isset( $section['class'] ) ? " {$section['class']}" : '';
 
-							// phpcs:ignore WordPress.Security.EscapeOutput
 							$section_id = $s_key . '_' . $metaterm['args']['id'] . '_section_group';
                             $section_class = 'redux-group-tab' . $section['class'] . ' redux_metaterm_panel' . $hide;
                             echo '<div id="' . esc_attr( $section_id ) . '" class="' . esc_attr( $section_class ) . '">';
