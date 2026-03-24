@@ -22,13 +22,6 @@ class Lenxel_WPRP {
 
         // Inject mount container into admin footer when on course builder page
         add_action( 'admin_footer', [ $this, 'print_admin_mount' ], 999 );
-
-        // Ensure webpack public path is available early (before course-builder bundle executes)
-        // This prints a small inline script in admin head on the create-course page so that
-        // dynamically loaded assets resolve to the plugin's build/ folder instead of /wp-admin/...
-        add_action( 'admin_head', [ $this, 'print_public_path_js' ], 1 );
-        // Also ensure it runs right before scripts are printed (some themes/plugins move scripts)
-        add_action( 'admin_print_scripts', [ $this, 'print_public_path_js' ], 1 );
     }
 
     public static function instance() {
@@ -190,6 +183,16 @@ class Lenxel_WPRP {
 
             wp_enqueue_script( 'lenxel-wprp-course-builder-script', $script_url, $deps, LENXEL_CORE_VERSION, true );
 
+            // Set webpack public path BEFORE the main bundle loads (for dynamic imports)
+            // This ensures dynamically loaded chunks resolve to the plugin build folder
+            $public_path = esc_url( LENXEL_PLUGIN_URL . 'build/' );
+            $inline_script = sprintf(
+                "/* Lenxel WPRP: set webpack public path so dynamic imports resolve to plugin build folder */\nif (typeof __webpack_public_path__ !== 'undefined') { __webpack_public_path__ = %s; } else { window.__lenxel_wprp_public_path = %s; }",
+                wp_json_encode( $public_path ),
+                wp_json_encode( $public_path )
+            );
+            wp_add_inline_script( 'lenxel-wprp-course-builder-script', $inline_script, 'before' );
+
             // Pass some runtime data to the bundle
             $data = [
                 'ajaxUrl'    => admin_url( 'admin-ajax.php' ),
@@ -226,26 +229,6 @@ class Lenxel_WPRP {
        echo "\n<!-- Lenxel WPRP: Course Builder mount -->\n<div id=\"lenxel-course-builder\"></div>\n";
        echo "\n<!-- Lenxel WPRP: Course Builder mount -->\n<div id=\"lenxel-course-builder\" data-courses-id=\"" . esc_attr( $courses_id ) . "\"></div>\n";
         
-    }
-
-    public function print_public_path_js() {
-        // Ensure this runs only on the course builder admin page to set webpack public path
-        if ( ! is_admin() ) {
-            return;
-        }
-
-        if ( ! isset( $_GET['page'] ) || sanitize_text_field( wp_unslash( $_GET['page'] ) ) !== 'create-course' ) {
-            return;
-        }
-
-        // Only print when build assets exist under build/ folder
-        $public_path = esc_url( LENXEL_PLUGIN_URL . 'build/' );
-
-        printf(
-            "<script>\n/* Lenxel WPRP: set webpack public path so dynamic imports resolve to plugin build folder */\nif (typeof __webpack_public_path__ !== 'undefined') { __webpack_public_path__ = %s; } else { window.__lenxel_wprp_public_path = %s; }\n</script>\n",
-            wp_json_encode( $public_path ),
-            wp_json_encode( $public_path )
-        );
     }
 
     public function enqueue_front_assets() {
